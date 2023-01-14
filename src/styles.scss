@@ -1,1 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+mat-form-field{
+    width: 100%;
+}
+
+.mat-form-field-label {color: #000000}
+.mat-form-field-label {color: #000000}
+.mat-form-field.mat-focused .mat-form-field-label {color: #000000}
+.mat-form-field-appearance-outline .mat-form-field-outline-thick {color: #000000}
+.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {color: #000000}
+.mat-form-field-appearance-outline .mat-form-field-outline {color: #000000}
+.tab-active{border: 2px solid #000000}
+.tab-option{border-bottom: 2px solid #000000}
+input::placeholder{color: #000000 !important}
+.inputs{background-color: transparent; color: #000000;}
+.mat-select-value {color: #000000}
