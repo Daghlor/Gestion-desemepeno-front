@@ -8,6 +8,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { CrearPDDComponent } from './pages/crear-pdd/crear-pdd.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { EmpleadosComponent } from './pages/usuarios/empleados/empleados.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { EmpleadosComponent } from './pages/usuarios/empleados/empleados.compone
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
