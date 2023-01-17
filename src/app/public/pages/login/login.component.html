@@ -1,0 +1,40 @@
+<div class="LoginClass">
+    <div class="LoginImg">
+        Imagen
+    </div>
+    <div class="LoginArea center">
+        <div>
+            <h2 style="text-align: center;">Iniciar Sesión</h2>
+            <mat-form-field appearance="outline">
+                <mat-label>Usuario</mat-label>
+                <input matInput autocomplete="off" [(ngModel)]="email" type="text">
+            </mat-form-field><br>
+             
+            <mat-form-field appearance="outline">
+                <mat-label>Contraseña</mat-label>
+                <input matInput autocomplete="off" [(ngModel)]="pass" [type]="typePass">
+                <mat-icon matSuffix (click)="passVisible()">{{iconPass}}</mat-icon>
+                <mat-hint><a href="/ForgetPass" class="textsLogin">¿Haz olvidado tu Contraseña?</a></mat-hint>
+            </mat-form-field><br><br>
+               
+            <div class="center">
+                <div>
+                  <button  mat-raised-button color="primary" class="LoginButton" (click)="login()">
+                    <span class="material-icons" style="margin-right: 20px;">login</span>Ingresar
+                  </button>
+                </div>
+              </div>
+              <div style="text-align: center;">
+                <a href="/registrarse" class="textsLogin" style="font-size: 12px;">¿No estas registrado?</a>
+              </div>
+            
+
+            
+        </div>
+     
+            
+
+    </div>
+    
+
+</div>
