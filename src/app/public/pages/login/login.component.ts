@@ -63,7 +63,9 @@ iconPass: string = 'visibility';
 
     this.userAPI.login(datos).then((res:any)=>{
       console.log(res)
-      if(res.loged){}
+      if(res.loged){
+        
+      }
       else{
         return this.snack.viewsnack(res.msg,'Error');
       }
