@@ -85,7 +85,57 @@ export class UsuariosIndexComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
+    this.getAll();
+  }
+  getAll(){
+    const paginate = {
+      paginate: this.pageSize,
+      page: this.actualPage,
+      column: this.filterColumn || 'name',
+      direction: this.filterType || 'asc'
+    }
+    this.UsersAPI.getAllUsers(paginate).then((res:any)=>{
+      for (let i =0; i< res.data.lenght; i ++){
+        res.data[i].icons={
+          edit: res.data[i].state_id == 1 ? true : false,
+          delete: res.data[i].state_id == 1 ? true: false,
+          historial: res.data[i].state_id == 2 ? true: false
+        }
+      }
+      this.dataSource = new MatTableDataSource(res.data)
+      this.length = res.total;
+    })
   }
 
+  changeSort(item:any){
+    this.filterColumn = item.active;
+    this.filterType = item.direction;
+    this.getAll();
+  }
+
+  changePaginator(info:any){
+    this.actualPage = info.pageIndex + 1;
+    this.filterType = info.pageSize;
+    this.getAll();
+  }
+
+  deleteItems(item:any){
+    const dialogRef = this.dialogCtrl.open(ConfirmsModalComponent, {
+      width: '25%',
+      data: {
+        title: 'Eliminar Usuario',
+        message: `¿Seguro que desea eliminiar la cuenta del usuario ${item.name} ${item.lastName}?`,
+        type: 1
+      },
+    });
+    dialogRef.afterClosed().subscribe(result =>{
+      if(result){this.deleteUser(item.unique_id);}
+    });
+  }
+  deleteUser(iden:any){
+    this.UsersAPI.deleteUser(iden).then((res:any)=>{
+      this.snack.viewsnack('Se elimino el usuario correctamente', 'Success');
+      this.getAll();
+    })
+  }
 }

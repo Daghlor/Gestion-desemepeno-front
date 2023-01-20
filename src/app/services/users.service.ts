@@ -25,8 +25,18 @@ public userUrl: string = 'user'
     }).catch((error)=>{throw error})
 
   }
-  /*getAllUsers(body: any){
-    //this.token = localStorage.getItem('token');
+  registerUser(body:any){
+    this.token != localStorage.getItem('token');
+    return api.post(`/public/register`, body,{
+      headers: {Authorization: "Bearer" + this.token}
+    })
+    .then((res)=> res.data)
+    .catch((err)=>{
+      throw err.response
+    })
+  }
+  getAllUsers(body: any){
+    this.token != localStorage.getItem('token');
     return api.post(`/users/getAll`, body, {
       headers: {Authorization: "Bearer " + this.token}
     })
@@ -34,10 +44,10 @@ public userUrl: string = 'user'
     .catch((err) => {
       throw err.response
     })
-  }*/
+  }
 
- /* deleteUser(unique_id:any){
-    //this.token = localStorage.getItem('token');
+  deleteUser(unique_id:any){
+    this.token != localStorage.getItem('token');
     return api.get(`delete/${unique_id}`, {
       headers: {Authorization: "Bearer " + this.token}
     })
@@ -45,6 +55,28 @@ public userUrl: string = 'user'
     .catch((err) => {
       throw err.response
     })
-  }*/
+  }
+
+  updateUser(unique_id:any){
+    this.token != localStorage.getItem('token');
+    return api.post(`/users/update/${unique_id}`,{
+      headers: {Authorization: "Bearer" + this.token}
+    })
+    .then((res)=> res.data)
+    .catch((err)=>{
+      throw err.response
+    })
+  }
+
+  findOne(unique_id:any){
+    this.token != localStorage.getItem('token');
+    return api.get(`getOne/${unique_id}`,{
+      headers: {Authorization: "Bearer" + this.token}
+    })
+    .then((res)=> res.data)
+    .catch((err)=>{
+      throw err.response
+    })
+  }
 
 }

@@ -15,15 +15,19 @@ import { libraries } from 'src/assets/library';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import {MatInputModule} from '@angular/material/input';
+import { MyTableComponent } from "../assets/components/my-table/my-table/my-table.component";
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ConfirmsModalComponent,
+    MyTableComponent,
   ],
   imports: [
     BrowserModule,
+    MatInputModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     AdminModule,

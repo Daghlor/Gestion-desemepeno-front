@@ -1,13 +1,22 @@
 <div class="content"><br>
-    <div class="buttonsForms">
-      <a mat-raised-button color="primary" class="buttons" href="/usuarios/create">
-        <mat-icon  style="margin-right: 10px;">add</mat-icon>Agregar Usuario
-      </a>
-    </div><br>
+  <div class="buttonsForms">
+    <a mat-raised-button color="primary" class="buttons" href="/usuarios/create">
+      <mat-icon  style="margin-right: 10px;">add</mat-icon>Agregar Usuario
+    </a>
+  </div><br>
 
-    <div style="width: 99%;">
-
-    </div><br><br>
-
-
-  </div>
+  <div style="width: 99%;">
+    <app-my-table
+      [(datasource)]="dataSource"
+      [(columns)]="columns"
+      [(length)]="length"
+      paginator="true"
+      search="true"
+      [(pagesize)]="pageSize"
+      [(pagesizeoptions)]="pageSizeOptions"
+      (changePaginator)="changePaginator($event)"
+      (changeSort)="changeSort($event)"
+      (deleteItems)="deleteItems($event)"
+    ></app-my-table>
+  </div><br><br>
+</div>
