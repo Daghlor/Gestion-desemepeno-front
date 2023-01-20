@@ -14,7 +14,7 @@ api.interceptors.response.use(
     return response;
   },
   (error) => {
-    console.log('Aqui esta el error:', error);
+    console.log('Aqui se muestra el error:', error);
     return error;
   }
 );

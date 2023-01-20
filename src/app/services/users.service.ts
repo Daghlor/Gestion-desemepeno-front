@@ -12,13 +12,39 @@ constructor(
   private snack: SnackbarService,
   private auth: AuthService
 ) { }
-login(body: any){
-  return api.post(`auth/login`, body, {}).then((res:any)=>{
-    if (res.data) {return res.data} 
-    else {
-      this.snack.viewsnack(res.response.data.msg, 'Error')
-      return;
-    }
-  }).catch((error)=>{throw error})
-}
+public userUrl: string = 'user'
+  token!: string;
+
+  login(body: any){
+    return api.post(`auth/login`, body, {}).then((res:any)=>{
+      if (res.data) {return res.data}
+      else {
+        this.snack.viewsnack(res.response.data.msg, 'Error')
+        return;
+      }
+    }).catch((error)=>{throw error})
+
+  }
+  /*getAllUsers(body: any){
+    //this.token = localStorage.getItem('token');
+    return api.post(`/users/getAll`, body, {
+      headers: {Authorization: "Bearer " + this.token}
+    })
+    .then((res) => res.data)
+    .catch((err) => {
+      throw err.response
+    })
+  }*/
+
+ /* deleteUser(unique_id:any){
+    //this.token = localStorage.getItem('token');
+    return api.get(`delete/${unique_id}`, {
+      headers: {Authorization: "Bearer " + this.token}
+    })
+    .then((res) => res.data)
+    .catch((err) => {
+      throw err.response
+    })
+  }*/
+
 }

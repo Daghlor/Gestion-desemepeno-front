@@ -1,0 +1,38 @@
+mat-form-field{
+    width: 95%;
+}
+
+mat-grid-list{
+    margin-left: 30px;
+    margin-right: 20px;
+}
+
+mat-hint{
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.aggImg{
+    text-align: center;
+    border: 5px solid;
+    //padding: 50px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.selectImg{
+    position: relative;
+    margin-left: -4%;
+    margin-top: 10%;
+    background-color: #1c1d26;
+    border-radius: 50%;
+    padding: 10px;
+    border: 2px solid;  
+    
+}
