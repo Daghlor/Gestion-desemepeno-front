@@ -5,7 +5,7 @@ import { UsersService } from 'src/app/services/users.service';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { MatTableDataSource } from '@angular/material/table';
 import * as moment from 'moment';
-import * as bcrypt from 'bcryptjs';
+//import * as bcrypt from 'bcryptjs';
 
 @Component({
   selector: 'app-register',
@@ -225,12 +225,12 @@ export class RegisterComponent implements OnInit {
       apellidos: this.apellidos,
       identificacion: this.identificacion,
       email: this.email,
-      password: !this.password ? null : bcrypt.hashSync(this.password,10),
+      //password: !this.password ? null : bcrypt.hashSync(this.password,10),
       nacimiento: moment(this.nacimiento).format('YYYY-MM-DD'),
       direccion: this.direccion,
       ciudad: this.ciudad,
       telefono: this.telefono,
-      codigo: bcrypt.hashSync(code, 10),
+      //codigo: bcrypt.hashSync(code, 10),
       view: code,
     }
 
@@ -244,7 +244,7 @@ export class RegisterComponent implements OnInit {
 
     if(this.validateUrl == 1){
 
-      this.UsersAPI.registerUserAdmin(body).then((res:any)=>{
+      /*this.UsersAPI.registerUserAdmin(body).then((res:any)=>{
         console.log(res.data, this.validateUrl);
 
         if(!res.create){
@@ -275,8 +275,8 @@ export class RegisterComponent implements OnInit {
         this.photoSync = true;
         this.snack.viewsnack('Se actualizo la informacion del usuario', 'Success')
       })
+    }*/
     }
-
   }
 
 
