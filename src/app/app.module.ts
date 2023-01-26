@@ -12,10 +12,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConfirmsModalComponent } from './components/confirms-modal/confirms-modal.component';
 import { libraries } from 'src/assets/library';
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
-import {MatInputModule} from '@angular/material/input';
 import { MyTableComponent } from "../assets/components/my-table/my-table/my-table.component";
 
 
@@ -27,19 +23,13 @@ import { MyTableComponent } from "../assets/components/my-table/my-table/my-tabl
   ],
   imports: [
     BrowserModule,
-    MatInputModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    AdminModule,
-    PublicModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     CommonModule,
     libraries,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]
