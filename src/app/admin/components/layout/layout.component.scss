@@ -1,0 +1,120 @@
+.nav{
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.content{
+    width: 80%;
+}
+
+.navbarUp{
+	height: 56px;
+	left: 0;
+    font-size: 18px;
+    margin-right: 2%;
+}
+
+.navbarLeft{
+	height: 100%;
+    width: 20%;
+	left: 0;
+    font-size: 18px;
+    background-color: #c70101;
+}
+
+.listItems{
+    //width: 100%;
+   //margin-left: 8%;
+    
+}
+
+.items{
+    max-width: 100%; 
+    display: flex; 
+    padding-left: 6%;
+    padding-top: 3%;
+    padding-bottom: 2%;
+}
+
+.itemsTitle{
+    color: #ffffff;
+    text-decoration: none;
+    text-align: left;
+    width: 70%; 
+    padding-top: 1%;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -ms-user-select: none;
+}
+
+.itemsIcon{   
+    color: #ffffff;
+    width: 10%;
+    
+}
+
+.subMenu{
+    max-width: 100%;
+    background-color: #252850;
+    padding-top: 3%;
+    padding-bottom: 2%;
+}
+
+.subMenuOption{
+    margin-left: 15%;
+    display: flex;
+}
+
+.subMenuIcon{   
+    color: #ffffff;
+    transform: scale(0.8);
+    width: 15%;
+    
+}
+
+
+.title{
+    text-align: center;
+    padding-top: 10%;
+}
+
+
+h1{
+    font-size: 180% !important;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.line{
+    width: 85%;
+}
+
+.lineContent{
+    width: 95%;
+}
+
+
+.perfil{  
+    margin-right: 1%;
+    width: 3%;
+    max-width: 7%;
+    border-radius: 20px;
+    border: 2px solid #000000;
+}
+
+.nameProfile{
+    color: #000000;
+}
+
+
+.openOptionProfile {
+    margin-left: 0.5%;
+    transform: scale(1.5);
+ }
+
+.pages{
+    padding: 2%;
+}
+
