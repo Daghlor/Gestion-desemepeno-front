@@ -95,6 +95,7 @@ export class UsuariosIndexComponent implements OnInit {
       direction: this.filterType || 'asc'
     }
     this.UsersAPI.getAllUsers(paginate).then((res:any)=>{
+      console.log(res)
       for (let i =0; i< res.data.lenght; i ++){
         res.data[i].icons={
           edit: res.data[i].state_id == 1 ? true : false,

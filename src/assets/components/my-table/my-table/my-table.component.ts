@@ -9,28 +9,19 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class MyTableComponent implements OnInit {
 
-  @Input("datasource")
-  datasource!: MatTableDataSource<any>;
+  @Input("datasource") datasource!: MatTableDataSource<any>;
   @Input("columns") columns: any;
-  @Input("length")
-  length!: number;
-  @Input("paginator")
-  paginator!: string;
+  @Input("length") length?: number;
+  @Input("paginator") paginator?: string;
   @Input("search") search: boolean = false;
-  @Input("isLoadingResults")
-  isLoadingResults!: boolean;
-  @Input("placeholder")
-  placeholder!: string;
-  @Input("label")
-  label!: string;
+  @Input("isLoadingResults") isLoadingResults?: boolean;
+  @Input("placeholder") placeholder?: string;
+  @Input("label") label?: string;
   @Input("pagesizeoptions") pageSizeOptions: any;  
   @Input("filter") filter: boolean = true;
-  @Input("url")
-  url!: boolean;
-  @Input("urlName")
-  urlName!: string;
-  @Input("pagesize")
-  pageSize!: number;
+  @Input("url") url?: boolean;
+  @Input("urlName") urlName?: string;
+  @Input("pagesize") pageSize?: number;
   @Output() changePaginator = new EventEmitter();
   @Output() changeFilter = new EventEmitter();
   @Output() changeSort = new EventEmitter();

@@ -1,4 +1,70 @@
-<p>layout!</p>
+<div class="nav">
+    <div class="navbarLeft">
+        
+        <div class="title">
+            <h1>{{title}}</h1>
+        </div>
+        <hr class="line">
+
+        <div class="listItems" >
+
+            <div class="items" (click)="openOptions(1)" [ngStyle]="{'background-color': option == 1 ? '#700000' : '#c70101' }">
+                <mat-icon class="itemsIcon">tune</mat-icon>
+                <a class="itemsTitle">Parametrización</a>
+                <mat-icon class="itemsIcon"> {{option == 1 ? 'expand_less' : 'expand_more'}} </mat-icon>
+            </div>
+            <div class="subMenu" *ngIf="option == 1">
+                <div class="subMenuOption"  (click)="routers(1, '/usuarios')">
+                    <mat-icon class="subMenuIcon">public</mat-icon>
+                    <a class="itemsTitle">Roles</a>
+                </div>
+                <div class="subMenuOption"  (click)="routers(1, '/usuarios')">
+                    <mat-icon class="subMenuIcon">key</mat-icon>
+                    <a class="itemsTitle">Permisos</a>
+                </div>
+                <div class="subMenuOption"  (click)="routers(1, '/usuarios')">
+                    <mat-icon class="subMenuIcon">assignment_ind</mat-icon>
+                    <a class="itemsTitle">Cargos</a>
+                </div>
+                <div class="subMenuOption"  (click)="routers(1, '/usuarios')">
+                    <mat-icon class="subMenuIcon">view_in_ar</mat-icon>
+                    <a class="itemsTitle">Áreas</a>
+                </div>
+            </div>
+
+            <div class="items" (click)="openOptions(2)" [ngStyle]="{'background-color': option == 2 ? '#700000' : '#c70101' }">
+                <mat-icon class="itemsIcon">manage_accounts</mat-icon>
+                <a class="itemsTitle">Administración</a>
+                <mat-icon class="itemsIcon"> {{option == 2 ? 'expand_less' : 'expand_more'}} </mat-icon>
+            </div>
+            <div class="subMenu" *ngIf="option == 2">
+                <div class="subMenuOption"  (click)="routers(1, '/usuarios')">
+                    <mat-icon class="subMenuIcon">people</mat-icon>
+                    <a class="itemsTitle">Usuarios</a>
+                </div>
+                <div class="subMenuOption"  (click)="routers(1, '/usuarios')">
+                    <mat-icon class="subMenuIcon">store</mat-icon>
+                    <a class="itemsTitle">Empresas</a>
+                </div>
+            </div>
 
 
-<router-outlet></router-outlet>
+        </div>    
+     </div>
+
+     <div class="content">
+        <div class="navbarUp right">
+            <img src="assets/img/usuarioPNG.png" class="perfil right">
+            <div class="nameProfile"> {{nameUser}} </div>
+            <mat-icon class="openOptionProfile" >arrow_drop_down</mat-icon>
+        </div>
+
+        <hr class="lineContent" color="#FF8000">
+
+        <div class="pages">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+
+   
+</div>
