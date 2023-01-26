@@ -25,9 +25,19 @@ public userUrl: string = 'user'
     }).catch((error)=>{throw error})
 
   }
-  registerUser(body:any){
+  registerEmpleado(body:any){
     this.token != localStorage.getItem('token');
     return api.post(`/public/register`, body,{
+      headers: {Authorization: "Bearer" + this.token}
+    })
+    .then((res)=> res.data)
+    .catch((err)=>{
+      throw err.response
+    })
+  }
+  registerUserAdmin(body:any){
+    this.token != localStorage.getItem('token');
+    return api.post(`/users/register`, body,{
       headers: {Authorization: "Bearer" + this.token}
     })
     .then((res)=> res.data)

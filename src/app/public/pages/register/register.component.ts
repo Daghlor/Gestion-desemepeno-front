@@ -276,7 +276,6 @@ export class RegisterComponent implements OnInit {
         this.snack.viewsnack('Se actualizo la informacion del usuario', 'Success')
       })
     }
-
   }
 
 
