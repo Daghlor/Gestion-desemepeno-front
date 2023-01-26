@@ -8,7 +8,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './pages/register/register.component';
 import { UsuariosIndexComponent } from './pages/usuarios-index/usuarios-index.component';
-import { MyTableComponent } from "../../assets/components/my-table/my-table/my-table.component";
 
 @NgModule({
     declarations: [
@@ -22,7 +21,6 @@ import { MyTableComponent } from "../../assets/components/my-table/my-table/my-t
         HttpClientModule,
         ReactiveFormsModule,
         PublicRoutingModule,
-        MyTableComponent
     ]
 })
 export class PublicModule { }

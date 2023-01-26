@@ -5,7 +5,7 @@
     <img [src]="photoPerfil" for="producto_img" class="aggImg" >
     <label for="producto_img" class="selectImg" ><mat-icon>add_a_photo</mat-icon></label>
   </div><br>
-  <input class="ng-hide" style="display: none;" id="producto_img" type="file" accept="image/*" (input)="changePhoto(imageInput)" #imageInput/>
+  <input class="ng-hide" style="display: none;" id="producto_img" type="file" accept="image/*" #imageInput/>
 
 
   <mat-grid-list [cols]="columns" rowHeight="100px">
@@ -42,8 +42,8 @@
       <mat-form-field appearance="outline">
         <mat-label>Contraseña</mat-label>
         <input matInput [(ngModel)]="password" autocomplete="off" [type]="typePass">
-        <mat-icon matSuffix id="iconVisibility" (click)="passVisible(1)">visibility</mat-icon>
-        <mat-icon matSuffix id="iconVisibilityOff" style="display: none;" (click)="passVisible(2)">visibility_off</mat-icon>
+        <mat-icon matSuffix id="iconVisibility" >visibility</mat-icon>
+        <mat-icon matSuffix id="iconVisibilityOff" style="display: none;">visibility_off</mat-icon>
       </mat-form-field>
     </mat-grid-tile>
 
@@ -51,8 +51,8 @@
       <mat-form-field appearance="outline">
         <mat-label>Verifique su Contraseña</mat-label>
         <input matInput [(ngModel)]="varifyPassord" autocomplete="off" [type]="typePass1">
-        <mat-icon matSuffix id="iconVisibility1" (click)="passVisible(3)">visibility</mat-icon>
-        <mat-icon matSuffix id="iconVisibilityOff1" style="display: none;" (click)="passVisible(4)">visibility_off</mat-icon>
+        <mat-icon matSuffix id="iconVisibility1" >visibility</mat-icon>
+        <mat-icon matSuffix id="iconVisibilityOff1" style="display: none;" >visibility_off</mat-icon>
       </mat-form-field>
     </mat-grid-tile>
 
@@ -74,7 +74,7 @@
     <mat-grid-tile [colspan]="1" *ngIf="validateUrl != 2">
       <mat-form-field appearance="outline">
         <mat-label>Roles</mat-label>
-        <mat-select [(ngModel)]="rol" [readonly]="readonlyInputs"  >
+        <mat-select [(ngModel)]="rol">
           <mat-option *ngFor="let item of listRoles" [value]="item.rol_id" [disabled]="readonlyInputs">{{item.rol_descripcion}}</mat-option>
         </mat-select>
       </mat-form-field>
