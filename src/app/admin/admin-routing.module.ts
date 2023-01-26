@@ -11,6 +11,18 @@ const routes: Routes = [
         path: "",
         component: Pages.DashboardComponent,
       },
+      {
+        path: "empresas",
+        component: Pages.CompaniesTableComponent,
+      },
+      {
+        path: "empresas/form",
+        component: Pages.CompaniesFormComponent,
+      },
+      {
+        path: "empresas/edit/:uuid",
+        component: Pages.CompaniesFormComponent,
+      },
     ]
   },
 ];

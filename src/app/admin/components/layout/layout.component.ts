@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-layout',
@@ -11,15 +13,25 @@ export class LayoutComponent implements OnInit {
   option?: number;
   closeTimeOptions: any;
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    private ref: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
-    this.title = '¡Bienvenido!';
-    this.nameUser = 'David Santiago Tuta Diaz'
+  
+    this.nameUser = 'David Santiago Tuta Diaz';
   }
 
-  routers(n: number, url: string){
+  ngAfterViewInit(): void {
+    setInterval(() => {
+      this.title = !this.router.url.split('/')[2] ? '¡Bienvenido!' : this.router.url.split('/')[2]; 
+  
+    }, 500);
+  } 
 
+  routers(url: string){
+    this.router.navigateByUrl('/admin'+url);
   }
 
   openOptions(n: number){
