@@ -5,7 +5,6 @@ import { UsersService } from 'src/app/services/users.service';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { MatTableDataSource } from '@angular/material/table';
 import * as moment from 'moment';
-import { elementAt } from 'rxjs';
 //import * as bcrypt from 'bcryptjs';
 
 @Component({
@@ -14,20 +13,20 @@ import { elementAt } from 'rxjs';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  nombres?: string;
-  apellidos?: string;
-  identificacion?: number;
+  name?: string;
+  lastName?: string;
+  identify?: number;
   email?: string;
   password?: string;
   varifyPassord?: string;
-  nacimiento?: any;
-  telefono?: number;
+  dateBirth?: any;
+  phone?: number;
   typePass: string = 'password';
   typePass1: string = 'password';
   validateUrl?: number;
   user?: string;
-  direccion?: string;
-  ciudad?: string;
+  address?: string;
+  city?: string;
   listRoles: any = [];
   rol!: number;
   columns?:number;
@@ -115,77 +114,20 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.deviceInfo != this.deviceService.getDeviceInfo();
 
-    if(this.router.url == '/usuarios/create'){
-      this.validateUrl = 1;
-      this.titleButton = 'Registrar usuario'
-      this.user = 'Nuevo Usuario'
-      this.columns = 3;
-      this.readonlyInputs = false;
-      this.photoPerfil = 'assets/img/usuarioPNG'
-      this.messageTxt = 'Creando usuario, por favor espere';
-     //this.allRoles();
-    }
-    else if (this.router.url == '/usuarios/editar/'+this.routerActive.snapshot.params["id"]){
-      this.snack.viewsnack('Buscando Informacion del usuario', 'Loading', 1500)
-      this.validateUrl = 3;
-      this.titleButton = 'Actualizar'
-      this.user = "Informacion del usuario";
-      this.columns = 3;
-      this.readonlyInputs = false;
-      this.messageTxt = 'Actualizando usuario, por favor espere';
-      //this.allRoles();
-      this.getByUniqueid(this.routerActive.snapshot.params["id"]);
-      this.readonlyInputs = true;
-    }
-    else if(this.router.url=='/miperfil'){
-      this.snack.viewsnack('Buscando Informacion del usuario','Loading',1500)
-      this.validateUrl=3;
-      this.titleButton = 'Actualizar'
-      this.user='Mi Perfil'
-      this.columns = 3;
-      this.messageTxt = 'Actualizando usuario, por favor espere';
-      //this.allRoles();
-      //this.getByUniqueid(JSON.parse(localStorage.getItem('userInfo')).getByUniqueid);
-      this.readonlyInputs = true;
-    }
-    else{
-      this.validateUrl = 2;
-      this.titleButton = 'Registrarse'
-      this.user = 'Nuevo Empleado';
-      this.columns = 4;
-      this.photoPerfil = 'assets/img/usuarioPNG.png'
-      this.messageTxt = 'Registrando usuario, por favor espere';
-      this.readonlyInputs = false;
-    }
-  }
-  getByUniqueid(ide:any){
-    this.UsersAPI.findOne(ide).then((res:any)=>{
-      this.nombres = res.data.name;
-      this.apellidos = res.data.lastName;
-      this.identificacion = res.data.identify;
-      this.telefono = res.data.phone;
-      this.email = res.data.email;
-      this.direccion = res.data.address;
-      this.ciudad = res.data.city; //@ts-ignore
-      this.nacimiento = new Date (moment(res.data.dateBirth));
-    })
   }
 
   guardar(){
     let emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
-    let diff = moment().diff(this.nacimiento, 'years');
+    let diff = moment().diff(this.dateBirth, 'years');
 
-    if(!this.nombres){
+    if(!this.name){
       return this.snack.viewsnack('Los nombres son obligatorios', 'Error');
     }
-    if(!this.apellidos){
+    if(!this.lastName){
       return this.snack.viewsnack('Los apellidos son obligatorios', 'Error');
     }
-    if(!this.identificacion){
+    if(!this.identify){
       return this.snack.viewsnack('El numero de identificación es obligatorio', 'Error');
-    }
-    if(String(this.identificacion).length < 6){
-      return this.snack.viewsnack('El numero de identificación es muy corto', 'Error')
     }
     if(!this.email){
       return this.snack.viewsnack('El email es obligatorio', 'Error');
@@ -193,41 +135,25 @@ export class RegisterComponent implements OnInit {
     if(!emailRegex.test(this.email)){
       return this.snack.viewsnack('El formato del email es invalido', 'Error');
     }
-    if(this.validateUrl !=3){
-      if(!this.password){
-        return this.snack.viewsnack('la contraseña es obligatoria', 'Error');
-      }
+    if(!this.password){
+      return this.snack.viewsnack('Falta ingresar la contraseña', 'Error');
     }
-    if(this.password){
-      if(!this.varifyPassord){
-        return this.snack.viewsnack('La verificacion de contraseña es obligatoria','Error');
-      }
-      if(this.password.length < 8){
-        return this.snack.viewsnack('La contraseña debe tener minimo 8 caracteres','Error');
-      }
-      if(this.varifyPassord.length < 8){
-        return this.snack.viewsnack('La verificacion de contraseña debe tener minimo 8 caracteres','Error');
-      }
-      if(this.password != this.varifyPassord){
-        return this.snack.viewsnack('La verificacion debe ser igual a la contraseña','Error');
-      }
-    }
-    if(!this.nacimiento){
+    if(!this.dateBirth){
       return this.snack.viewsnack('La fecha de nacimiento es obligatoria','Error');
     }
     if(diff < 18){
       return this.snack.viewsnack('Deber ser mayor de 18 años','Error');
     }
-    if(!this.telefono){
+    if(!this.phone){
       return this.snack.viewsnack('El numero de telefono es obligatorio', 'Error');
     }
-    if(!this.direccion){
+    if(!this.address){
       return this.snack.viewsnack('La direccion es obligatoria','Error');
     }
-    if(!this.ciudad){
+    if(!this.city){
       return this.snack.viewsnack('La ciudad es obligatoria', 'Error');
     }
-    if(String(this.telefono).length !=10){
+    if(String(this.phone).length !=10){
       return this.snack.viewsnack('El numero de telefono debe tener 10 digitos','Error');
     }
     this.disableButton = true;
@@ -235,18 +161,25 @@ export class RegisterComponent implements OnInit {
     let code = String(Math.floor(Math.random() * (999999 - 111111)) + 111111);
 
     const body: any = {
-      nombres: this.nombres,
-      apellidos: this.apellidos,
-      identificacion: this.identificacion,
+      name: this.name,
+      lastName: this.lastName,
+      identify: this.identify,
       email: this.email,
-      //password: !this.password ? null : bcrypt.hashSync(this.password,10),
-      nacimiento: moment(this.nacimiento).format('YYYY-MM-DD'),
-      direccion: this.direccion,
-      ciudad: this.ciudad,
-      telefono: this.telefono,
+      password: !this.password,
+      dateBirth: moment(this.dateBirth).format('YYYY-MM-DD'),
+      address: this.address,
+      city: this.city,
+      phone: this.phone,
       //codigo: bcrypt.hashSync(code, 10),
       view: code,
     }
+
+    this.UsersAPI.registerEmpleado(body).then((res:any)=>{
+      this.snack.viewsnack('Se registro correctamente','Success');
+      this.router.navigateByUrl('/src/app/public/pages/login/login.component.html')
+    }).catch((err)=>{
+      console.log(err);
+    })
 
     body.info = JSON.stringify(body)
     body.device = this.deviceInfo
@@ -272,11 +205,11 @@ export class RegisterComponent implements OnInit {
 
     if(this.validateUrl == 2){
       this.UsersAPI.registerEmpleado(body).then((res:any)=>{
-        console.log(res.data, this.validateUrl);
+        console.log(res.data.user, this.validateUrl);
         if(!res.create){
-          this.snack.viewsnack(res.data, 'Error');
+          this.snack.viewsnack(res.data.user, 'Error');
         }else{
-          this.snack.viewsnack(res.data, 'Success');
+          this.snack.viewsnack(res.data.user, 'Success');
           this.router.navigateByUrl('/login');
         }
       })
@@ -290,8 +223,7 @@ export class RegisterComponent implements OnInit {
         this.snack.viewsnack('Se actualizo la informacion del usuario', 'Success')
       })
     }*/
-    }
   }
-
+  }
 
 }

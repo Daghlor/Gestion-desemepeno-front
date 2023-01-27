@@ -9,25 +9,27 @@
 
 
   <mat-grid-list [cols]="columns" rowHeight="100px">
-
+<div class="bar">
+<h1>Registro</h1>
+</div>
     <mat-grid-tile [colspan]="1">
       <mat-form-field appearance="outline">
         <mat-label>Nombres</mat-label>
-        <input matInput [(ngModel)]="nombres" autocomplete="off" type="text">
+        <input matInput [(ngModel)]="name" autocomplete="off" type="text">
       </mat-form-field>
     </mat-grid-tile>
 
     <mat-grid-tile [colspan]="1">
       <mat-form-field appearance="outline">
         <mat-label>Apellidos</mat-label>
-        <input matInput [(ngModel)]="apellidos" autocomplete="off" type="text">
+        <input matInput [(ngModel)]="lastName" autocomplete="off" type="text">
       </mat-form-field>
     </mat-grid-tile>
 
     <mat-grid-tile [colspan]="1">
       <mat-form-field appearance="outline">
         <mat-label>Numero de Identificación</mat-label>
-        <input matInput [(ngModel)]="identificacion" autocomplete="off" type="number">
+        <input matInput [(ngModel)]="identify" autocomplete="off" type="number">
       </mat-form-field>
     </mat-grid-tile>
 
@@ -59,31 +61,22 @@
     <mat-grid-tile [colspan]="1">
       <mat-form-field appearance="outline">
         <mat-label>Numero de Telefono</mat-label>
-        <input matInput [(ngModel)]="telefono" autocomplete="off" type="number" >
+        <input matInput [(ngModel)]="phone" autocomplete="off" type="number" >
       </mat-form-field>
     </mat-grid-tile>
 
     <mat-grid-tile [colspan]="1">
       <mat-form-field appearance="outline" (click)="picker.open()">
         <mat-label>Fecha de Nacimiento</mat-label>
-        <input matInput [matDatepicker]="picker" autocomplete="off" [(ngModel)]="nacimiento">
+        <input matInput [matDatepicker]="picker" autocomplete="off" [(ngModel)]="dateBirth">
         <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-    </mat-grid-tile>
-
-    <mat-grid-tile [colspan]="1" *ngIf="validateUrl != 2">
-      <mat-form-field appearance="outline">
-        <mat-label>Roles</mat-label>
-        <mat-select [(ngModel)]="rol">
-          <mat-option *ngFor="let item of listRoles" [value]="item.rol_id" [disabled]="readonlyInputs">{{item.rol_descripcion}}</mat-option>
-        </mat-select>
       </mat-form-field>
     </mat-grid-tile>
 
     <mat-grid-tile [colspan]="1">
       <mat-form-field appearance="outline">
         <mat-label>Dirección de residencia</mat-label>
-        <input matInput [(ngModel)]="direccion" autocomplete="off" type="text">
+        <input matInput [(ngModel)]="address" autocomplete="off" type="text">
         <mat-hint>Esta Información debe ser veridica</mat-hint>
       </mat-form-field>
     </mat-grid-tile>
@@ -91,7 +84,7 @@
     <mat-grid-tile [colspan]="1">
       <mat-form-field appearance="outline">
         <mat-label>Ciudad</mat-label>
-        <input matInput [(ngModel)]="ciudad" autocomplete="off" type="text">
+        <input matInput [(ngModel)]="city" autocomplete="off" type="text">
       </mat-form-field>
     </mat-grid-tile>
 

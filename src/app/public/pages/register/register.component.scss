@@ -1,14 +1,16 @@
 mat-form-field{
-    width: 95%;
+    width: 25%;
 }
-
+bar{
+  background-color: #940000;
+}
 mat-grid-list{
     margin-left: 30px;
     margin-right: 20px;
 }
 
 mat-hint{
-    color: rgba(255, 255, 255, 0.5);
+    color: #940000;
 }
 
 .center{
@@ -33,6 +35,6 @@ mat-hint{
     background-color: #1c1d26;
     border-radius: 50%;
     padding: 10px;
-    border: 2px solid;  
-    
+    border: 2px solid;
+
 }
