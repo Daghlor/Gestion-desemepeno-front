@@ -14,8 +14,10 @@
                 <mat-icon class="itemsIcon"> {{option == 1 ? 'expand_less' : 'expand_more'}} </mat-icon>
             </div>
             <div class="subMenu" *ngIf="option == 1">
-               
-                
+                <div class="subMenuOption"  (click)="routers('/')">
+                    <mat-icon class="subMenuIcon">key</mat-icon>
+                    <a class="itemsTitle">Permisos</a>
+                </div>
             </div>
 
             <div class="items" (click)="openOptions(2)" [ngStyle]="{'background-color': option == 2 ? '#700000' : '#c70101' }">
@@ -32,10 +34,7 @@
                     <mat-icon class="subMenuIcon">public</mat-icon>
                     <a class="itemsTitle">Roles</a>
                 </div>
-                <div class="subMenuOption"  (click)="routers('/')">
-                    <mat-icon class="subMenuIcon">key</mat-icon>
-                    <a class="itemsTitle">Permisos</a>
-                </div>
+                
             </div>
 
             <div class="items" (click)="openOptions(3)" [ngStyle]="{'background-color': option == 3 ? '#700000' : '#c70101' }">
