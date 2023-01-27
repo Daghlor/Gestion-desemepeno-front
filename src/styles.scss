@@ -25,12 +25,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 .column {
     float: left;
-    width: 50%;
-    padding: 10px;
+    width: 90%;
+    padding-top: 15%;
+    padding-left: 200px;
+    //margin-left: 15%;
 }
 
 mat-form-field{
     width: 100%;
+    padding-left: 60px;
 }
 
 .mat-form-field-label {color: #000000}
@@ -47,3 +50,4 @@ input::placeholder{color: #000000 !important}
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+

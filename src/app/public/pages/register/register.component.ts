@@ -38,6 +38,8 @@ export class RegisterComponent implements OnInit {
   pageSize: number = 10;
   readonlyInputs!: boolean;
   deviceInfo = null;
+  showPass: boolean = false;
+  iconPass: string = 'visibility';
   dataSource = new MatTableDataSource();
   length: any;
   actualPage: any = 1;
@@ -113,7 +115,45 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.deviceInfo != this.deviceService.getDeviceInfo();
+    this.photoPerfil = 'assets/img/R.png'
+  }
 
+  async changePhoto(imageInput:any){
+    const file: File = imageInput.files[0];
+
+    if(!file){
+      return this.snack.viewsnack('No ha seleccionado ninguna imagen','Error')
+    }
+    const reader = new FileReader();
+
+    await reader.addEventListener('load', async (event:any)=>{
+      this.photoPerfil = event.target.result
+      this.photoSync = false;
+    });
+
+    await reader.readAsDataURL(file);
+  }
+
+  passVisible(){
+    this.showPass = !this.showPass;
+    if(this.showPass){
+      this.typePass = 'text';
+      this.iconPass = 'visibility_off';
+    }else{
+      this.typePass = 'password';
+      this.iconPass = 'visibility';
+    }
+  }
+
+  passVisible1(){
+    this.showPass = !this.showPass;
+    if(this.showPass){
+      this.typePass1 = 'text';
+      this.iconPass = 'visibility_off';
+    }else{
+      this.typePass1 = 'password';
+      this.iconPass = 'visibility';
+    }
   }
 
   guardar(){
@@ -187,7 +227,7 @@ export class RegisterComponent implements OnInit {
       date: moment().format('YYYY-MM-DD'),
       time: moment().format('HH:mm:ss'),
     }
-    body.img = this.photoPerfil != 'assets/img/usuarioPNG.png' && !this.photoSync ? this.photoPerfil : null
+    body.UrlImg = this.photoPerfil != 'assets/img/R.png' && !this.photoSync ? this.photoPerfil : null
 
     if(this.validateUrl == 1){
 
