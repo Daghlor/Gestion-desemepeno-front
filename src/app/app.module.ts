@@ -12,14 +12,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConfirmsModalComponent } from './components/confirms-modal/confirms-modal.component';
 import { libraries } from 'src/assets/library';
-import { MyTableComponent } from "../assets/components/my-table/my-table/my-table.component";
-
 
 @NgModule({
   declarations: [
     AppComponent,
-    ConfirmsModalComponent,
-    MyTableComponent,
   ],
   imports: [
     BrowserModule,

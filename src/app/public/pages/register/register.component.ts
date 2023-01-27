@@ -5,6 +5,7 @@ import { UsersService } from 'src/app/services/users.service';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { MatTableDataSource } from '@angular/material/table';
 import * as moment from 'moment';
+import { elementAt } from 'rxjs';
 //import * as bcrypt from 'bcryptjs';
 
 @Component({
@@ -13,24 +14,23 @@ import * as moment from 'moment';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  internationalNumberFormat: any = new Intl.NumberFormat('en-US')
-  nombres!: string;
-  apellidos!: string;
-  identificacion!: number;
-  email!: string;
-  password!: string;
-  varifyPassord!: string;
-  nacimiento: any;
-  telefono!: number;
+  nombres?: string;
+  apellidos?: string;
+  identificacion?: number;
+  email?: string;
+  password?: string;
+  varifyPassord?: string;
+  nacimiento?: any;
+  telefono?: number;
   typePass: string = 'password';
   typePass1: string = 'password';
-  validateUrl!: number;
-  user!: string;
-  direccion!: string;
-  ciudad!: string;
-  columns!: number;
+  validateUrl?: number;
+  user?: string;
+  direccion?: string;
+  ciudad?: string;
   listRoles: any = [];
   rol!: number;
+  columns?:number;
   titleButton!: string;
   photoPerfil!: string;
   messageTxt!: string;
@@ -47,49 +47,63 @@ export class RegisterComponent implements OnInit {
   disableButton: boolean = false;
   pageSizeOptions: number[] = [10, 15, 20, 25];
   columnas = [{
-    columnDef: 'sal_id',
-    header: 'Codigo',
-    width: '5%',
+    columDef: 'name',
+    header: 'Nombres',
+    width: '18%',
     sort: true,
     type: 'text',
-    cell: (element: any) => `${element.sal_id}`,
+    cell:(element:any) => `${element.name}`,
   },{
-    columnDef: 'prod_nombre',
-    header: 'Producto',
-    width: '20%',
+    columnDef : 'lastName',
+    header: 'apellidos',
+    width : '12%',
+    sort: true,
+    type:'text',
+    cell: (element:any)=> `${element.lastName}`,
+  },{
+    colummnDef:'identify',
+    header:'Identificacion',
+    width: '12%',
     sort: true,
     type: 'text',
-    cell: (element: any) => `${element.prod_nombre}`,
+    cell:(element:any)=> `${element.identify}`,
   },{
-    columnDef: 'sal_fecha',
-    header: 'Fecha',
+    columnDef: 'phone',
+    header:'Telefono',
+    width:'10%',
+    sort: true,
+    type: 'text',
+    cell: (element:any) => `${element.phone}`,
+  },{
+    columDef: 'email',
+    header: 'Email',
+    width:'12%',
+    sort: true,
+    type: 'text',
+    cell: (element:any)=> `${element.email}`,
+  },{
+    columDef: 'address',
+    header:'Direccion',
+    width:'12%',
+    sort: true,
+    type: 'text',
+    cell: (element:any)=> `${element.addres}`,
+  },{
+    columDef: 'city',
+    header: 'Ciudad',
     width: '10%',
     sort: true,
     type: 'text',
-    cell: (element: any) => `${element.sal_fecha}`,
+    cell:(element:any)=>`${element.city}`,
   },{
-    columnDef: 'sal_cantidad',
-    header: 'Cantidad',
-    width: '5%',
-    sort: true,
-    type: 'text',
-    cell: (element: any) => `${element.sal_cantidad}`,
-  },{
-    columnDef: 'sal_precio',
-    header: 'Precio de compra',
+    columDef: 'dateBirth',
+    header: 'Fecha de nacimiento',
     width: '10%',
     sort: true,
-    type: 'text',
-    cell: (element: any) => `$ ${this.internationalNumberFormat.format(element.sal_precio)}`,
-  },{
-    columnDef: 'sal_total',
-    header: 'Total',
-    width: '10%',
-    sort: false,
-    type: 'text',
-    cell: (element: any) => `$ ${this.internationalNumberFormat.format(element.sal_total)}`,
+    type: "text",
+    cell: (element:any)=>`${element.dateBirth}`,
   }
-];
+  ]
   constructor(
     private UsersAPI: UsersService,
     private snack: SnackbarService,
