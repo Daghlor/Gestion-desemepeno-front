@@ -10,7 +10,6 @@ import { PublicModule } from './public/public.module';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ConfirmsModalComponent } from './components/confirms-modal/confirms-modal.component';
 import { libraries } from 'src/assets/library';
 
 @NgModule({

@@ -4,7 +4,6 @@ import { SnackbarService } from 'src/app/config/snackbar.service';
 import { UsersService } from 'src/app/services/users.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-import { ConfirmsModalComponent } from 'src/app/components/confirms-modal/confirms-modal.component';
 
 @Component({
   selector: 'app-usuarios-index',
@@ -121,17 +120,7 @@ export class UsuariosIndexComponent implements OnInit {
   }
 
   deleteItems(item:any){
-    const dialogRef = this.dialogCtrl.open(ConfirmsModalComponent, {
-      width: '25%',
-      data: {
-        title: 'Eliminar Usuario',
-        message: `¿Seguro que desea eliminiar la cuenta del usuario ${item.name} ${item.lastName}?`,
-        type: 1
-      },
-    });
-    dialogRef.afterClosed().subscribe(result =>{
-      if(result){this.deleteUser(item.unique_id);}
-    });
+
   }
   deleteUser(iden:any){
     this.UsersAPI.deleteUser(iden).then((res:any)=>{

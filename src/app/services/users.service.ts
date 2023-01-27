@@ -27,17 +27,17 @@ public userUrl: string = 'user'
   }
   registerEmpleado(body:any){
     this.token != localStorage.getItem('token');
-    return api.post(`/public/register`, body,{
+    return api.post(`public/register`, body,{
       headers: {Authorization: "Bearer" + this.token}
     })
-    .then((res)=> res.data)
+    .then((res)=> res.data.unique_id)
     .catch((err)=>{
       throw err.response
     })
   }
   registerUserAdmin(body:any){
     this.token != localStorage.getItem('token');
-    return api.post(`/users/register`, body,{
+    return api.post(`users/register`, body,{
       headers: {Authorization: "Bearer" + this.token}
     })
     .then((res)=> res.data)
