@@ -22,7 +22,7 @@ iconPass: string = 'visibility';
     private snack: SnackbarService,
     private router: Router,
   ) { }
-  
+
   ngOnInit(): void {
   }
 
@@ -40,7 +40,7 @@ iconPass: string = 'visibility';
   login(){
     let emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
 
-  
+
     if(!this.email){
       return this.snack.viewsnack('Falta ingresar el correo', 'Error');
     }
@@ -64,7 +64,19 @@ iconPass: string = 'visibility';
     this.userAPI.login(datos).then((res:any)=>{
       console.log(res)
       if(res.loged){
-        
+        localStorage.setItem('token',res.token);
+        localStorage.setItem('expired',res.expired);
+        localStorage.setItem('userInfo', JSON.stringify(res.data.user));
+        localStorage.setItem('role',JSON.stringify(res.role));
+        this.snack.viewsnack(res.msg,'Success');
+
+        if(res.data.verify == 0){
+          localStorage.setItem('verify','false');
+          this.router.navigateByUrl('/verificacion');
+        }else{
+          localStorage.setItem('verify','true');
+          this.router.navigateByUrl('/dashboard');
+        }
       }
       else{
         return this.snack.viewsnack(res.msg,'Error');

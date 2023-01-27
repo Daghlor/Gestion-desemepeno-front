@@ -89,4 +89,15 @@ public userUrl: string = 'user'
     })
   }
 
+  verifyUser(body:any){
+    this.token != localStorage.getItem('token');
+    return api.post(`verify`, body, {
+      headers: {Authorization:"Bearer" + this.token}
+    })
+    .then((res)=> res.data.user)
+    .catch((err)=>{
+      throw err.response
+    })
+  }
+
 }

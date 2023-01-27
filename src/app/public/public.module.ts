@@ -7,11 +7,12 @@ import { MaterialModule } from 'src/assets/library';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './pages/register/register.component';
+import { VerifyComponent } from './pages/verify/verify.component';
 
 @NgModule({
     declarations: [
         PublicComponents,
-        PublicPages, RegisterComponent,
+        PublicPages, RegisterComponent, VerifyComponent,
     ],
     imports: [
         CommonModule,
