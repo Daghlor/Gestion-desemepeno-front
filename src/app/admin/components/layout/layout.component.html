@@ -14,22 +14,8 @@
                 <mat-icon class="itemsIcon"> {{option == 1 ? 'expand_less' : 'expand_more'}} </mat-icon>
             </div>
             <div class="subMenu" *ngIf="option == 1">
-                <div class="subMenuOption"  (click)="routers('/')">
-                    <mat-icon class="subMenuIcon">public</mat-icon>
-                    <a class="itemsTitle">Roles</a>
-                </div>
-                <div class="subMenuOption"  (click)="routers('/')">
-                    <mat-icon class="subMenuIcon">key</mat-icon>
-                    <a class="itemsTitle">Permisos</a>
-                </div>
-                <div class="subMenuOption"  (click)="routers('/')">
-                    <mat-icon class="subMenuIcon">assignment_ind</mat-icon>
-                    <a class="itemsTitle">Cargos</a>
-                </div>
-                <div class="subMenuOption"  (click)="routers('/')">
-                    <mat-icon class="subMenuIcon">view_in_ar</mat-icon>
-                    <a class="itemsTitle">Áreas</a>
-                </div>
+               
+                
             </div>
 
             <div class="items" (click)="openOptions(2)" [ngStyle]="{'background-color': option == 2 ? '#700000' : '#c70101' }">
@@ -42,9 +28,33 @@
                     <mat-icon class="subMenuIcon">people</mat-icon>
                     <a class="itemsTitle">Usuarios</a>
                 </div>
+                <div class="subMenuOption"  (click)="routers('/')">
+                    <mat-icon class="subMenuIcon">public</mat-icon>
+                    <a class="itemsTitle">Roles</a>
+                </div>
+                <div class="subMenuOption"  (click)="routers('/')">
+                    <mat-icon class="subMenuIcon">key</mat-icon>
+                    <a class="itemsTitle">Permisos</a>
+                </div>
+            </div>
+
+            <div class="items" (click)="openOptions(3)" [ngStyle]="{'background-color': option == 3 ? '#700000' : '#c70101' }">
+                <mat-icon class="itemsIcon">corporate_fare</mat-icon>
+                <a class="itemsTitle">Empresas</a>
+                <mat-icon class="itemsIcon"> {{option == 3 ? 'expand_less' : 'expand_more'}} </mat-icon>
+            </div>
+            <div class="subMenu" *ngIf="option == 3">
                 <div class="subMenuOption"  (click)="routers('/empresas')">
                     <mat-icon class="subMenuIcon">store</mat-icon>
                     <a class="itemsTitle">Empresas</a>
+                </div>
+                <div class="subMenuOption"  (click)="routers('/')">
+                    <mat-icon class="subMenuIcon">assignment_ind</mat-icon>
+                    <a class="itemsTitle">Cargos</a>
+                </div>
+                <div class="subMenuOption"  (click)="routers('/')">
+                    <mat-icon class="subMenuIcon">view_in_ar</mat-icon>
+                    <a class="itemsTitle">Áreas</a>
                 </div>
             </div>
 
