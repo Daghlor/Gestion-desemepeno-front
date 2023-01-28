@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompaniesFormComponent implements OnInit {
 logo?: string = 'assets/img/companies.png';
+changeLogo: boolean = false;
 nit?: string;
 businessName?: string;
 description?: string;
@@ -16,8 +17,7 @@ phone?: number;
 email?: string;
 address?: string;
 city?: string;
-colors?: any = [];
-
+listColors?: any = [];
 
 initialTab: number = 1;
 currentTab: number = 1;
