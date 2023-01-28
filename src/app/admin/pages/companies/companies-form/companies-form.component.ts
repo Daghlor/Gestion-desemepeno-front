@@ -6,10 +6,44 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./companies-form.component.scss']
 })
 export class CompaniesFormComponent implements OnInit {
+logo?: string;
+nit?: string;
+businessName?: string;
+description?: string;
+mission?: string;
+vision?: string;
+phone?: number;
+email?: string;
+address?: string;
+city?: string;
+colors?: any = [];
+
+
+initialTab: number = 1;
+currentTab: number = 1;
+optionsTabs: any = [{
+  code: 1,
+  name: 'Información',
+  show: true,
+  disabled: false,
+  icon: 'store',
+},{
+  code: 2,
+  name: 'Configuración',
+  show: true,
+  disabled: false,
+  icon: 'settings',
+}]
+
 
   constructor() { }
 
   ngOnInit(): void {
+    this.optionsTabs.lenght
+  }
+
+  changeTap(options: any){
+    
   }
 
 }

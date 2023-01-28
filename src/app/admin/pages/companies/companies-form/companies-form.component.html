@@ -1,1 +1,7 @@
-<p>companies-form works!</p>
+<app-my-tabs
+    [optionsTabs]="optionsTabs"
+    [intialTabCode]="initialTab"
+    (getTabActive)="currentTab = $event.code"
+   
+></app-my-tabs>
+

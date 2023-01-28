@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
+import { LocalService } from 'src/app/config/local.service';
 import { SnackbarService } from 'src/app/config/snackbar.service';
 import { UsersService } from 'src/app/services/users.service';
 
@@ -12,7 +13,6 @@ import { UsersService } from 'src/app/services/users.service';
 export class LoginComponent implements OnInit {
 email: string = "";
 pass: string = "";
-deviceInfo = null;
 typePass: string = 'password';
 showPass: boolean = false;
 iconPass: string = 'visibility';
@@ -21,6 +21,7 @@ iconPass: string = 'visibility';
     private userAPI: UsersService,
     private snack: SnackbarService,
     private router: Router,
+    private Local: LocalService
   ) { }
   
   ngOnInit(): void {
@@ -40,7 +41,6 @@ iconPass: string = 'visibility';
   login(){
     let emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
 
-  
     if(!this.email){
       return this.snack.viewsnack('Falta ingresar el correo', 'Error');
     }
@@ -54,33 +54,28 @@ iconPass: string = 'visibility';
     const datos = {
       email: this.email,
       password: this.pass,
-      device: this.deviceInfo,
-      infoDate: {
-        date: moment().format('YYYY-MM-DD'),
-        time: moment().format('HH:mm:ss'),
-      }
     };
 
-    this.userAPI.login(datos).then((res:any)=>{
-      console.log(res)
+    this.userAPI.login(datos).then(async (res:any)=>{
       if(res.loged){
-        
+        await this.Local.createDataLocal('expired', res.expired);
+        await this.Local.createDataLocal('info_user', JSON.stringify(res.data.user));
+        await this.Local.createDataLocal('info_company', JSON.stringify(res.data.company));
+        await this.Local.createDataLocal('info_roles', JSON.stringify(res.data.roles));
+        await this.Local.createDataLocal('token', res.token);
+        this.snack.viewsnack(res.msg, 'Success');
+
+        if(res.data.user.verify == 0){
+          await this.Local.createDataLocal('verify', 'false');
+          //this.router.navigateByUrl('/verificacion');
+        }else{
+          await this.Local.createDataLocal('verify', 'true');
+          this.router.navigateByUrl('/admin');
+        }
       }
       else{
         return this.snack.viewsnack(res.msg,'Error');
       }
-      /*localStorage.setItem('expired', res.expired);
-      localStorage.setItem('userInfo', JSON.stringify(res.data));
-      localStorage.setItem('role', JSON.stringify(res.role));
-      this.snack.viewsnack(res.msg, 'Success');
-
-      if(res.data.usu_verificacion == 0){
-        localStorage.setItem('verify', 'false');
-        this.router.navigateByUrl('/verificacion');
-      }else{
-        localStorage.setItem('verify', 'true');
-        this.router.navigateByUrl('/dashboard');
-      }*/
     })
 
   }

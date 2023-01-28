@@ -23,6 +23,10 @@ const routes: Routes = [
         path: "empresas/edit/:uuid",
         component: Pages.CompaniesFormComponent,
       },
+      {
+        path: "usuarios",
+        component: Pages.UsersTableComponent,
+      },
     ]
   },
 ];
