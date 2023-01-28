@@ -23,7 +23,7 @@ iconPass: string = 'visibility';
     private router: Router,
     private Local: LocalService
   ) { }
-  
+
   ngOnInit(): void {
   }
 

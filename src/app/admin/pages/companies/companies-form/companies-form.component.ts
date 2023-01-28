@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./companies-form.component.scss']
 })
 export class CompaniesFormComponent implements OnInit {
-logo?: string;
+logo?: string = 'assets/img/companies.png';
 nit?: string;
 businessName?: string;
 description?: string;
@@ -42,8 +42,8 @@ optionsTabs: any = [{
     this.optionsTabs.lenght
   }
 
-  changeTap(options: any){
-    
+  changePhoto(photo: any){
+
   }
 
 }

@@ -1,20 +1,12 @@
-<div class="tabs">
-    <div *ngFor="let option of optionsTabs; let i = index"  class="tabsOptions" [ngClass]="{'tab-active': option.active, 'opacity': option.disabled}">
-        <div (click)="onGetTabActive(i)" *ngIf="option.show">
-            <mat-icon class="tabsOptionsIcon">{{option.icon}}</mat-icon>
-            <a class="tabsOptionsTitle">{{option.name}}</a>
-        </div>
-    </div>
-</div>
 
-<!--<mat-grid-list [cols]="optionsTabs.length" rowHeight="20">
+<mat-grid-list [cols]="optionsTabs.length" rowHeight="20">
     <div *ngFor="let option of optionsTabs; let i = index" >
         <mat-grid-tile 
             *ngIf="option.show"
             [colspan]="1" 
-            class="tab-option"
+            class="tabOption"
             (click)="onGetTabActive(i)" 
-            [ngClass]="{'tab-active': option.active, 'opacity': option.disabled}"
+            [ngClass]="{'tabActive': option.active, 'opacity': option.disabled}"
         >{{option.name}}</mat-grid-tile>
     </div>
-</mat-grid-list>-->
+</mat-grid-list>

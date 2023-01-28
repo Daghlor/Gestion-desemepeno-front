@@ -1,97 +1,71 @@
-<div class="content"><br>
-  <h1 style="text-align: center;">{{user}}</h1>
-
-  <div class="center">
+<div class="RegistroClass"><br>
+  <div class="RegistroImg"><div class="center">
     <img [src]="photoPerfil" for="producto_img" class="aggImg" >
     <label for="producto_img" class="selectImg" ><mat-icon>add_a_photo</mat-icon></label>
   </div><br>
-  <input class="ng-hide" style="display: none;" id="producto_img" type="file" accept="image/*" #imageInput/>
+  <input class="ng-hide" style="display: none;" id="producto_img" type="file" accept="image/*" (input)="changePhoto(imageInput)" #imageInput/></div>
 
-
-  <mat-grid-list [cols]="columns" rowHeight="100px">
-<div class="bar">
-<h1>Registro</h1>
-</div>
-    <mat-grid-tile [colspan]="1">
+  <div class="column">
+<div>
       <mat-form-field appearance="outline">
         <mat-label>Nombres</mat-label>
         <input matInput [(ngModel)]="name" autocomplete="off" type="text">
       </mat-form-field>
-    </mat-grid-tile>
 
-    <mat-grid-tile [colspan]="1">
       <mat-form-field appearance="outline">
         <mat-label>Apellidos</mat-label>
         <input matInput [(ngModel)]="lastName" autocomplete="off" type="text">
       </mat-form-field>
-    </mat-grid-tile>
-
-    <mat-grid-tile [colspan]="1">
+      <br>
       <mat-form-field appearance="outline">
         <mat-label>Numero de Identificación</mat-label>
         <input matInput [(ngModel)]="identify" autocomplete="off" type="number">
       </mat-form-field>
-    </mat-grid-tile>
 
-    <mat-grid-tile [colspan]="1">
       <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
         <input matInput [(ngModel)]="email" autocomplete="off" type="text">
       </mat-form-field>
-    </mat-grid-tile>
-
-    <mat-grid-tile [colspan]="1">
+      <br>
       <mat-form-field appearance="outline">
         <mat-label>Contraseña</mat-label>
         <input matInput [(ngModel)]="password" autocomplete="off" [type]="typePass">
-        <mat-icon matSuffix id="iconVisibility" >visibility</mat-icon>
-        <mat-icon matSuffix id="iconVisibilityOff" style="display: none;">visibility_off</mat-icon>
+        <mat-icon matSuffix (click)="passVisible()">{{iconPass}}</mat-icon>
       </mat-form-field>
-    </mat-grid-tile>
 
-    <mat-grid-tile [colspan]="1">
       <mat-form-field appearance="outline">
         <mat-label>Verifique su Contraseña</mat-label>
         <input matInput [(ngModel)]="varifyPassord" autocomplete="off" [type]="typePass1">
-        <mat-icon matSuffix id="iconVisibility1" >visibility</mat-icon>
-        <mat-icon matSuffix id="iconVisibilityOff1" style="display: none;" >visibility_off</mat-icon>
+        <mat-icon matSuffix (click)="passVisible1()">{{iconPass}}</mat-icon>
       </mat-form-field>
-    </mat-grid-tile>
-
-    <mat-grid-tile [colspan]="1">
+      <br>
       <mat-form-field appearance="outline">
         <mat-label>Numero de Telefono</mat-label>
         <input matInput [(ngModel)]="phone" autocomplete="off" type="number" >
       </mat-form-field>
-    </mat-grid-tile>
 
-    <mat-grid-tile [colspan]="1">
       <mat-form-field appearance="outline" (click)="picker.open()">
         <mat-label>Fecha de Nacimiento</mat-label>
         <input matInput [matDatepicker]="picker" autocomplete="off" [(ngModel)]="dateBirth">
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
-    </mat-grid-tile>
-
-    <mat-grid-tile [colspan]="1">
+      <br>
       <mat-form-field appearance="outline">
         <mat-label>Dirección de residencia</mat-label>
         <input matInput [(ngModel)]="address" autocomplete="off" type="text">
         <mat-hint>Esta Información debe ser veridica</mat-hint>
       </mat-form-field>
-    </mat-grid-tile>
 
-    <mat-grid-tile [colspan]="1">
       <mat-form-field appearance="outline">
         <mat-label>Ciudad</mat-label>
         <input matInput [(ngModel)]="city" autocomplete="off" type="text">
       </mat-form-field>
-    </mat-grid-tile>
-
-  </mat-grid-list><br>
-
-  <div class="buttonsForms" style="margin-right: 40px ;">
+    </div>
+  <br>
+  <div class="buttonsForms" style="margin-right: 310px ;">
     <button [disabled]="disableButton"  mat-raised-button color="primary" class="buttons" style="margin-left: 30px;" (click)="guardar()">
       <mat-icon  style="margin-right: 10px;">save</mat-icon>{{titleButton}}
     </button>
   </div>
+</div>
+</div>

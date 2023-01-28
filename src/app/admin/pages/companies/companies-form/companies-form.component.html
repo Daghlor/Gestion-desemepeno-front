@@ -2,6 +2,79 @@
     [optionsTabs]="optionsTabs"
     [intialTabCode]="initialTab"
     (getTabActive)="currentTab = $event.code"
-   
-></app-my-tabs>
+></app-my-tabs><br>
+
+<div *ngIf="currentTab == 1">
+    <div class="center">
+        <img [src]="logo" for="producto_img" class="aggImg" >
+        <label for="producto_img" class="selectImg" ><mat-icon class="icons">add_a_photo</mat-icon></label>
+    </div><br>
+    <input class="ng-hide" style="display: none;" id="producto_img" type="file" accept="image/*" (input)="changePhoto(imageInput)" #imageInput/>
+
+
+    <mat-grid-list cols="3" rowHeight="80px">
+        <mat-grid-tile [colspan]="1">
+            <mat-form-field appearance="outline">
+              <mat-label>NIT</mat-label>
+              <input matInput [(ngModel)]="nit" autocomplete="off" type="text">
+            </mat-form-field>
+        </mat-grid-tile>
+    
+        <mat-grid-tile [colspan]="1">
+            <mat-form-field appearance="outline">
+              <mat-label>Razón Social / Nombre</mat-label>
+              <input matInput [(ngModel)]="businessName" autocomplete="off" type="text">
+            </mat-form-field>
+        </mat-grid-tile>
+    
+        <mat-grid-tile [colspan]="1">
+            <mat-form-field appearance="outline">
+              <mat-label>Descripción</mat-label>
+              <input matInput [(ngModel)]="description" autocomplete="off" type="text">
+            </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile [colspan]="1">
+            <mat-form-field appearance="outline">
+              <mat-label>Misión</mat-label>
+              <input matInput [(ngModel)]="mission" autocomplete="off" type="text">
+            </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile [colspan]="1">
+            <mat-form-field appearance="outline">
+              <mat-label>Visión</mat-label>
+              <input matInput [(ngModel)]="vision" autocomplete="off" type="text">
+            </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile [colspan]="1">
+            <mat-form-field appearance="outline">
+              <mat-label>Teléfono de Contacto</mat-label>
+              <input matInput [(ngModel)]="phone" autocomplete="off" type="text">
+            </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile [colspan]="1">
+            <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input matInput [(ngModel)]="email" autocomplete="off" type="text">
+            </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile [colspan]="1">
+            <mat-form-field appearance="outline">
+              <mat-label>Dirección</mat-label>
+              <input matInput [(ngModel)]="address" autocomplete="off" type="text">
+            </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile [colspan]="1">
+            <mat-form-field appearance="outline">
+              <mat-label>Ciudad</mat-label>
+              <input matInput [(ngModel)]="city" autocomplete="off" type="text">
+            </mat-form-field>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
 

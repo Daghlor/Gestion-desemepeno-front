@@ -1,9 +1,7 @@
 mat-form-field{
     width: 25%;
 }
-bar{
-  background-color: #940000;
-}
+
 mat-grid-list{
     margin-left: 30px;
     margin-right: 20px;
@@ -11,6 +9,29 @@ mat-grid-list{
 
 mat-hint{
     color: #940000;
+}
+
+.RegistroClass{
+  width: 100%;
+  height:100%;
+  display: flex;
+}
+
+.RegistroImg{
+  width: 90%;
+  background-color: #940000;
+}
+
+.RegistroArea{
+  width: 100%;
+}
+
+.topbar{
+  width: 50px;
+  height: 50px;
+  margin-left: 30%;
+  margin-top: -40px;
+  display: flex;
 }
 
 .center{
@@ -23,18 +44,26 @@ mat-hint{
     text-align: center;
     border: 5px solid;
     //padding: 50px;
-    width: 200px;
-    height: 200px;
+    width: 300px;
+    height: 300px;
     border-radius: 50%;
+    margin-top: 300px;
 }
 
 .selectImg{
-    position: relative;
     margin-left: -4%;
-    margin-top: 10%;
-    background-color: #1c1d26;
-    border-radius: 50%;
-    padding: 10px;
+    margin-top: 55%;
+    background-color: #940000;
+    border-radius: 70%;
+    padding: 15px;
     border: 2px solid;
 
 }
+
+.buttonsForms{
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  margin-right: 15px;
+}
+

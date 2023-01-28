@@ -17,8 +17,17 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
 mat-form-field{
-    width: 100%;
+    width: 95%;
+    //max-height: 5px;
 }
+
+
+
+ 
+
+ 
+
+
 
 .buttons{
     background-color: #ff5601;
@@ -30,12 +39,13 @@ mat-form-field{
 .mat-form-field.mat-focused .mat-form-field-label {color: #000000}
 .mat-form-field-appearance-outline .mat-form-field-outline-thick {color: #000000}
 .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {color: #000000}
-.mat-form-field-appearance-outline .mat-form-field-outline {color: #000000}
-.tab-active{border: 2px solid #ff5601}
-.tab-option{border-bottom: 2px solid #ff5601}
+.mat-form-field-appearance-outline .mat-form-field-outline {color: #c70101}
 input::placeholder{color: #000000 !important}
 .inputs{background-color: transparent; color: #000000;}
 .mat-select-value {color: #000000}
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
