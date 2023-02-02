@@ -9,7 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { UsersFormComponent } from './pages/users/users-form/users-form.component';
 import { UsersTableComponent } from './pages/users/users-table/users-table.component';
 
-
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,8 @@ import { UsersTableComponent } from './pages/users/users-table/users-table.compo
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    MatTableModule
   ],
   exports: [
     ...fromContainers.AdminComponents,

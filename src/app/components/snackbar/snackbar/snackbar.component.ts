@@ -12,7 +12,7 @@ export class SnackbarComponent implements OnInit {
   constructor(@Inject(MAT_SNACK_BAR_DATA) public data: any) { }
 
   ngOnInit() {
-    this.getIcon = this.data.snackType;
+    this.getIcon = this.data.snackType.toLowerCase();
     this.message = this.data.message;
   }
 
