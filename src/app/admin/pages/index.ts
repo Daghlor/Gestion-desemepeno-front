@@ -7,11 +7,8 @@ import { CompaniesTableComponent } from "./companies/companies-table/companies-t
 import { UsersFormComponent } from "./users/users-form/users-form.component";
 import { UsersTableComponent } from "./users/users-table/users-table.component";
 import { MyTabsComponent } from "src/app/components/my-tabs/my-tabs.component";
-<<<<<<< HEAD
-import { VerifyComponent } from "./users/verify/verify.component";
-=======
 import { MyTableComponent } from "src/app/components/my-table/my-table.component";
->>>>>>> 18e7733d555dffeda25f592b58e2fb37670cf55f
+import { VerifyComponent } from "./users/verify/verify.component";
 
 export const AdminComponents: any[] = [
     LayoutComponent,
@@ -39,8 +36,5 @@ export * from "./companies/companies-table/companies-table.component";
 export * from "./users/users-form/users-form.component";
 export * from "./users/users-table/users-table.component";
 export * from "src/app/components/my-tabs/my-tabs.component";
-<<<<<<< HEAD
-export * from "./users/verify/verify.component";
-=======
 export * from "src/app/components/my-table/my-table.component";
->>>>>>> 18e7733d555dffeda25f592b58e2fb37670cf55f
+export * from "src/app/admin/pages/users/verify/verify.component"

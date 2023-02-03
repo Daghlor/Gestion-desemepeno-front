@@ -140,7 +140,6 @@ export class RegisterComponent implements OnInit {
       address: this.address,
       city: this.city,
       phone: this.phone,
-      //codigo: bcrypt.hashSync(code, 10),
       view: code,
     }
 

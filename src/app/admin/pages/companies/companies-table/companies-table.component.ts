@@ -24,13 +24,13 @@ export class CompaniesTableComponent implements OnInit {
   }
 
   iconsFunction(event: any){
-   
+
     if(event == 'edit'){
       console.log(event);
     }
-    
+
   }
 
- 
+
 
 }
