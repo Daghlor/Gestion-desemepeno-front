@@ -6,11 +6,11 @@ import * as fromContainers from "./pages/index";
 import { MaterialModule } from 'src/assets/library';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { UsersFormComponent } from './pages/users/users-form/users-form.component';
-import { UsersTableComponent } from './pages/users/users-table/users-table.component';
+import { MatPaginatorIntl } from '@angular/material/paginator';
 import { VerifyComponent } from './pages/users/verify/verify.component';
 
 import {MatTableModule} from '@angular/material/table';
+import { CustomPaginator } from '../config/matPaginador';
 
 @NgModule({
   declarations: [
@@ -29,6 +29,9 @@ import {MatTableModule} from '@angular/material/table';
   ],
   exports: [
     ...fromContainers.AdminComponents,
-  ]
+  ],
+  providers: [
+    { provide: MatPaginatorIntl, useValue: CustomPaginator() }
+  ],
 })
 export class AdminModule { }
