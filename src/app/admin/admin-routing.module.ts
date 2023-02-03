@@ -27,6 +27,10 @@ const routes: Routes = [
         path: "usuarios",
         component: Pages.UsersTableComponent,
       },
+      {
+        path: "verificacion",
+        component: Pages.VerifyComponent,
+      },
     ]
   },
 ];

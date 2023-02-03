@@ -7,6 +7,7 @@ import { CompaniesTableComponent } from "./companies/companies-table/companies-t
 import { UsersFormComponent } from "./users/users-form/users-form.component";
 import { UsersTableComponent } from "./users/users-table/users-table.component";
 import { MyTabsComponent } from "src/app/components/my-tabs/my-tabs.component";
+import { VerifyComponent } from "./users/verify/verify.component";
 
 export const AdminComponents: any[] = [
     LayoutComponent,
@@ -20,7 +21,8 @@ export const AdminPages: any[] = [
     CompaniesFormComponent,
     CompaniesTableComponent,
     UsersFormComponent,
-    UsersTableComponent, 
+    UsersTableComponent,
+    VerifyComponent,
 ];
 
 export * from "../components/layout/layout.component";
@@ -32,3 +34,4 @@ export * from "./companies/companies-table/companies-table.component";
 export * from "./users/users-form/users-form.component";
 export * from "./users/users-table/users-table.component";
 export * from "src/app/components/my-tabs/my-tabs.component";
+export * from "./users/verify/verify.component";

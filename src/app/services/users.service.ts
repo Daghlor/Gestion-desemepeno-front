@@ -1,3 +1,4 @@
+import { LocalService } from './../config/local.service';
 import { Injectable } from '@angular/core';
 import { api } from '../config/axios.config';
 import { SnackbarService } from '../config/snackbar.service';
@@ -10,10 +11,11 @@ export class UsersService {
 
 constructor(
   private snack: SnackbarService,
-  private auth: AuthService
+  private auth: AuthService,
+  private Local: LocalService
 ) { }
 public userUrl: string = 'user'
-  token!: string;
+  token?: string
 
   login(body: any){
     return api.post(`auth/login`, body, {}).then((res:any)=>{
@@ -23,11 +25,10 @@ public userUrl: string = 'user'
         return;
       }
     }).catch((error)=>{throw error})
-
   }
   registerEmpleado(body:any){
     this.token != localStorage.getItem('token');
-    return api.post(`public/register`, body,{
+    return api.post(`/public/register`, body,{
       headers: {Authorization: "Bearer" + this.token}
     })
     .then((res)=> res.data.unique_id)

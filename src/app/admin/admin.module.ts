@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UsersFormComponent } from './pages/users/users-form/users-form.component';
 import { UsersTableComponent } from './pages/users/users-table/users-table.component';
+import { VerifyComponent } from './pages/users/verify/verify.component';
 
 
 
@@ -15,6 +16,7 @@ import { UsersTableComponent } from './pages/users/users-table/users-table.compo
   declarations: [
     ...fromContainers.AdminComponents,
     ...fromContainers.AdminPages,
+    VerifyComponent,
   ],
   imports: [
     CommonModule,

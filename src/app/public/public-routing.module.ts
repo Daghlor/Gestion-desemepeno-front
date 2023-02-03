@@ -11,10 +11,6 @@ const routes: Routes = [
     path:"registrarse",
     component: Pages.RegisterComponent,
   },
-  {
-    path:"verificacion",
-    component: Pages.VerifyComponent,
-  },
 ];
 
 @NgModule({

@@ -1,7 +1,8 @@
+import { LocalService } from 'src/app/config/local.service';
+import { RegisterService } from './../../../services/register.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SnackbarService } from 'src/app/config/snackbar.service';
-import { UsersService } from 'src/app/services/users.service';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { MatTableDataSource } from '@angular/material/table';
 import * as moment from 'moment';
@@ -24,97 +25,26 @@ export class RegisterComponent implements OnInit {
   typePass: string = 'password';
   typePass1: string = 'password';
   validateUrl?: number;
-  user?: string;
   address?: string;
   city?: string;
-  listRoles: any = [];
-  rol!: number;
   columns?:number;
   titleButton!: string;
   photoPerfil!: string;
   messageTxt!: string;
   photoSync: boolean = true;
-  total: any;
-  pageSize: number = 10;
-  readonlyInputs!: boolean;
-  deviceInfo = null;
   showPass: boolean = false;
   iconPass: string = 'visibility';
-  dataSource = new MatTableDataSource();
-  length: any;
-  actualPage: any = 1;
-  filterColumn!: string;
-  filterType!: string;
   disableButton: boolean = false;
-  pageSizeOptions: number[] = [10, 15, 20, 25];
-  columnas = [{
-    columDef: 'name',
-    header: 'Nombres',
-    width: '18%',
-    sort: true,
-    type: 'text',
-    cell:(element:any) => `${element.name}`,
-  },{
-    columnDef : 'lastName',
-    header: 'apellidos',
-    width : '12%',
-    sort: true,
-    type:'text',
-    cell: (element:any)=> `${element.lastName}`,
-  },{
-    colummnDef:'identify',
-    header:'Identificacion',
-    width: '12%',
-    sort: true,
-    type: 'text',
-    cell:(element:any)=> `${element.identify}`,
-  },{
-    columnDef: 'phone',
-    header:'Telefono',
-    width:'10%',
-    sort: true,
-    type: 'text',
-    cell: (element:any) => `${element.phone}`,
-  },{
-    columDef: 'email',
-    header: 'Email',
-    width:'12%',
-    sort: true,
-    type: 'text',
-    cell: (element:any)=> `${element.email}`,
-  },{
-    columDef: 'address',
-    header:'Direccion',
-    width:'12%',
-    sort: true,
-    type: 'text',
-    cell: (element:any)=> `${element.addres}`,
-  },{
-    columDef: 'city',
-    header: 'Ciudad',
-    width: '10%',
-    sort: true,
-    type: 'text',
-    cell:(element:any)=>`${element.city}`,
-  },{
-    columDef: 'dateBirth',
-    header: 'Fecha de nacimiento',
-    width: '10%',
-    sort: true,
-    type: "text",
-    cell: (element:any)=>`${element.dateBirth}`,
-  }
-  ]
+
   constructor(
-    private UsersAPI: UsersService,
+    private registerAPI: RegisterService,
     private snack: SnackbarService,
     private router: Router,
     private routerActive: ActivatedRoute,
-    private deviceService: DeviceDetectorService
+    private Local: LocalService
   ) { }
 
   ngOnInit(): void {
-    this.deviceInfo != this.deviceService.getDeviceInfo();
     this.photoPerfil = 'assets/img/R.png'
   }
 
@@ -214,15 +144,13 @@ export class RegisterComponent implements OnInit {
       view: code,
     }
 
-    this.UsersAPI.registerEmpleado(body).then((res:any)=>{
+    this.registerAPI.Create(body).then((res:any)=>{
       this.snack.viewsnack('Se registro correctamente','Success');
       this.router.navigateByUrl('/src/app/public/pages/login/login.component.html')
     }).catch((err)=>{
       console.log(err);
     })
-
     body.info = JSON.stringify(body)
-    body.device = this.deviceInfo
     body.infoDate = {
       date: moment().format('YYYY-MM-DD'),
       time: moment().format('HH:mm:ss'),

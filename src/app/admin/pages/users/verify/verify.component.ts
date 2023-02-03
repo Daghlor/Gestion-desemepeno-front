@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { SnackbarService } from 'src/app/config/snackbar.service';
-import { UsersService } from 'src/app/services/users.service';
+import { VerifyService } from './../../../services/verify.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -17,18 +17,18 @@ export class VerifyComponent implements OnInit {
   num6: any;
 
   constructor(
-    private usersApi: UsersService,
+    private verifyAPI: VerifyService,
     private snack: SnackbarService,
-    private Router: Router,
+    private router: Router,
   ) { }
 
-  ngOnInit(){
+  ngOnInit(): void {
   }
 
   validateNumbers(number:any):any{
     let validate = /^[0-9]+$/
 
-    switch(number) {
+    switch(number){
       case 1:
         if(!this.num1.match(validate)){
           return this.num1 = null;
@@ -51,8 +51,8 @@ export class VerifyComponent implements OnInit {
       break;
 
       case 4:
-        if(!this.num4.match(validate)){
-          return this.num4 = null;
+        if(!this.num5.match(validate)){
+          return this.num5 = null;
         }
         document.getElementById('input5')?.focus()
       break;
@@ -77,45 +77,45 @@ export class VerifyComponent implements OnInit {
 
   saveVerify(){
     if(!this.num1){
-      return this.snack.viewsnack('Falta Digito 1', 'Error');
+      return this.snack.viewsnack('Falta #1', 'Error');
     }
     if(!this.num2){
-      return this.snack.viewsnack('Falta Digito 2', 'Error');
+      return this.snack.viewsnack('Falta #2', 'Error');
     }
     if(!this.num3){
-      return this.snack.viewsnack('Falta Digito 3', 'Error');
+      return this.snack.viewsnack('Falta #3', 'Error');
     }
     if(!this.num4){
-      return this.snack.viewsnack('Falta Digito 4', 'Error');
+      return this.snack.viewsnack('Falta #4', 'Error');
     }
     if(!this.num5){
-      return this.snack.viewsnack('Falta Digito 5', 'Error');
+      return this.snack.viewsnack('Falta #5', 'Error');
     }
     if(!this.num6){
-      return this.snack.viewsnack('Falta Digito 6', 'Error');
+      return this.snack.viewsnack('Falta #6', 'Error');
     }
 
     const number = this.num1+this.num2+this.num3+this.num4+this.num5+this.num6
 
-    this.usersApi.verifyUser({
+    this.verifyAPI.Create({
       number,
       info: number,
-    }).then((res:any) =>{
-      if(!res.data.user){
+    }).then((res:any)=>{
+      if(!res.data){
         this.num1 = null;
         this.num2 = null;
         this.num3 = null;
         this.num4 = null;
         this.num5 = null;
         this.num6 = null;
-        return this.snack.viewsnack('El codigo es incorrecto o invalido', 'Error');
+        return this.snack.viewsnack('El codigo es incorrecto o invalido','Error');
       }else{
         this.snack.viewsnack('Usuario verificado correctamente', 'Success')
         localStorage.setItem('verify','true');
-        this.Router.navigateByUrl('/dashboard');
+        //this.router.navigateByUrl('/dashboard');
       }
     })
-
   }
+
 
 }
