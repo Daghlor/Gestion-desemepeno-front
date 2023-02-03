@@ -14,17 +14,23 @@ export class MyTableComponent implements OnInit {
   @Input("dataSource") dataSource!: MatTableDataSource<any>;
   selection = new SelectionModel<any>();
   @Input("Columns") columns: any;
+  @Input("length") length!: number;
+  @Input("pageSize") pageSize!: number;
+  @Input("PageSizeOptions") pageSizeOptions: any;
   @Input("loading") loading: boolean = false;
+  @Input("paginator") paginator!: boolean;
   @Output() changeSort = new EventEmitter();
   @Output() eventCheckbox = new EventEmitter();
-  @Output() icons = new EventEmitter();
+  @Output() eventIcons = new EventEmitter();
+  @Output() changePaginator = new EventEmitter();
   displayedColumns: any = [];
 
   constructor() { }
-
+  
   ngOnInit(): void {
     this.displayedColumns = this.columns.map((c:any) => c.columnDef);
-    //console.log(this.displayedColumns);
+
+    console.log(this.displayedColumns);
     
   }
 
@@ -40,9 +46,13 @@ export class MyTableComponent implements OnInit {
     this.eventCheckbox.emit(item);
   }
 
-  eventIcons(row: any){
-    
-    return this.icons.emit(row); 
+  eventPaginator(event:any) {
+    this.changePaginator.emit(event);
+  }
+
+  eventsIcons(item: any, row: any){ 
+    let values = {icon: item, data: row}  
+    return this.eventIcons.emit(values); 
   }
 
 
