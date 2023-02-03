@@ -1,5 +1,14 @@
-<div class="buttonsForms">
+<div class="buttonsForms right">
   <a mat-raised-button class="buttons" href="admin/empresas/form">
     <mat-icon  style="margin-right: 10px;">add</mat-icon>Agregar Empresa
   </a>
-</div>
+</div><br>
+
+<app-my-table
+  [loading]="loading"
+  [dataSource]="dataSource"
+  [Columns]="columns"
+  (eventIcons)="iconsFunction($event)"
+></app-my-table>
+
+

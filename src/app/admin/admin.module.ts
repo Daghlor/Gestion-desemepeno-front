@@ -10,7 +10,7 @@ import { UsersFormComponent } from './pages/users/users-form/users-form.componen
 import { UsersTableComponent } from './pages/users/users-table/users-table.component';
 import { VerifyComponent } from './pages/users/verify/verify.component';
 
-
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,8 @@ import { VerifyComponent } from './pages/users/verify/verify.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    MatTableModule
   ],
   exports: [
     ...fromContainers.AdminComponents,
