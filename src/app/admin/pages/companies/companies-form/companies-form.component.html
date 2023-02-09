@@ -1,3 +1,6 @@
+<div>
+  
+</div>
 <app-my-tabs
     [optionsTabs]="optionsTabs"
     [intialTabCode]="initialTab"
@@ -12,7 +15,7 @@
     <input class="ng-hide" style="display: none;" id="producto_img" type="file" accept="image/*" (input)="changePhoto(imageInput)" #imageInput/>
 
 
-    <mat-grid-list cols="3" rowHeight="80px">
+    <mat-grid-list cols="2" rowHeight="80px">
       <mat-grid-tile [colspan]="1">
           <mat-form-field appearance="outline">
             <mat-label>NIT</mat-label>
@@ -25,55 +28,217 @@
             <input matInput [(ngModel)]="businessName" autocomplete="off" type="text">
           </mat-form-field>
       </mat-grid-tile>
+    </mat-grid-list>
+      
+    <mat-grid-list cols="2" rowHeight="150px">
       <mat-grid-tile [colspan]="1">
-          <mat-form-field appearance="outline">
-            <mat-label>Descripción</mat-label>
-            <input matInput [(ngModel)]="description" autocomplete="off" type="text">
-          </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Misión</mat-label>
+          <textarea matInput [(ngModel)]="mission" name="mensaje" cols="10" rows="5"></textarea>
+        </mat-form-field>
       </mat-grid-tile>
       <mat-grid-tile [colspan]="1">
-          <mat-form-field appearance="outline">
-            <mat-label>Misión</mat-label>
-            <input matInput [(ngModel)]="mission" autocomplete="off" type="text">
-          </mat-form-field>
-      </mat-grid-tile>
-      <mat-grid-tile [colspan]="1">
-          <mat-form-field appearance="outline">
-            <mat-label>Visión</mat-label>
-            <input matInput [(ngModel)]="vision" autocomplete="off" type="text">
-          </mat-form-field>
-      </mat-grid-tile>
-      <mat-grid-tile [colspan]="1">
-          <mat-form-field appearance="outline">
-            <mat-label>Teléfono de Contacto</mat-label>
-            <input matInput [(ngModel)]="phone" autocomplete="off" type="text">
-          </mat-form-field>
-      </mat-grid-tile>
-      <mat-grid-tile [colspan]="1">
-          <mat-form-field appearance="outline">
-            <mat-label>Email</mat-label>
-            <input matInput [(ngModel)]="email" autocomplete="off" type="text">
-          </mat-form-field>
-      </mat-grid-tile>
-      <mat-grid-tile [colspan]="1">
-          <mat-form-field appearance="outline">
-            <mat-label>Dirección</mat-label>
-            <input matInput [(ngModel)]="address" autocomplete="off" type="text">
-          </mat-form-field>
-      </mat-grid-tile>
-      <mat-grid-tile [colspan]="1">
-          <mat-form-field appearance="outline">
-            <mat-label>Ciudad</mat-label>
-            <input matInput [(ngModel)]="city" autocomplete="off" type="text">
-          </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Visión</mat-label>
+          <textarea matInput [(ngModel)]="vision" name="mensaje" cols="10" rows="5"></textarea>
+        </mat-form-field>
       </mat-grid-tile>
     </mat-grid-list>
-
-    <div class="right">
-      <button  mat-raised-button class="buttons">
-          <span class="material-icons" style="margin-right: 10px;" (click)="saveData()">save</span> Registrar
-      </button>
-    </div>  
+    <mat-grid-list cols="2" rowHeight="80px">
+      <mat-grid-tile [colspan]="1">
+        <mat-form-field appearance="outline">
+          <mat-label>Descripción</mat-label>
+          <input matInput [(ngModel)]="description" autocomplete="off" type="text">
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1">
+        <mat-form-field appearance="outline">
+          <mat-label>Teléfono de Contacto</mat-label>
+          <input matInput [(ngModel)]="phone" autocomplete="off" type="number">
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1">
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput [(ngModel)]="email" autocomplete="off" type="text">
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1">
+        <mat-form-field appearance="outline">
+          <mat-label>Dirección</mat-label>
+          <input matInput [(ngModel)]="address" autocomplete="off" type="text">
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1">
+        <mat-form-field appearance="outline">
+          <mat-label>Ciudad</mat-label>
+          <input matInput [(ngModel)]="city" autocomplete="off" type="text">
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1" *ngIf="unique_id">
+        <mat-form-field appearance="outline">
+          <mat-label>Estado</mat-label>
+          <input matInput [(ngModel)]="state" autocomplete="off" type="text" readonly>
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+   
+    
     
 </div>
+
+<div *ngIf="currentTab == 2">
+  <!--<mat-grid-list cols="3" rowHeight="90px">
+    <mat-grid-tile [colspan]="1">
+      <mat-form-field appearance="outline">
+        <mat-label>NIT</mat-label>
+        <input matInput [(ngModel)]="nit" autocomplete="off" type="color">
+      </mat-form-field>
+    </mat-grid-tile>
+  </mat-grid-list>-->
+</div>
+
+<div *ngIf="currentTab == 3">
+  <div class="buttonsForms right">
+    <button  mat-raised-button class="buttons" (click)="addObjetive()">
+      <span class="material-icons" style="margin-right: 10px;" >add</span> Agregar Objetivo
+    </button>
+  </div><br>
+
+  <mat-accordion>    
+    <mat-expansion-panel *ngFor="let item of listStrategics; let i = index">
+      <mat-expansion-panel-header>
+        <mat-panel-title style="display: flex;"> 
+          <div [ngStyle]="{'background-color': item.sync ? '#50FF00' : '#FF0000', 'color': item.sync ? '#50FF00' : '#FF0000' }" style="margin-right: 15px;">.</div> 
+          {{!item.title ? 'Sin Título' : item.title}}
+        </mat-panel-title>
+        <!-- <mat-panel-description>{{item.nameUser}}</mat-panel-description> -->
+      </mat-expansion-panel-header>
+      <mat-grid-list [cols]="item.sync ? 5 : 4" rowHeight="80px">
+        <mat-grid-tile [colspan]="1">
+          <mat-form-field appearance="outline">
+            <mat-label>Título</mat-label>
+            <input matInput [(ngModel)]="item.title" autocomplete="off" type="text" [readonly]="item.sync" (input)="validateInput(item.title, 1)">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1">
+          <mat-form-field appearance="outline">
+            <mat-label>Usuario</mat-label>
+            <input matInput [(ngModel)]="item.nameUser" autocomplete="off" type="text" readonly>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1">
+          <mat-form-field appearance="outline">
+            <mat-label>Puntaje</mat-label>
+            <input matInput [(ngModel)]="item.totalWeight" autocomplete="off" type="number" [readonly]="item.sync">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1">
+          <mat-form-field appearance="outline">
+            <mat-label>Área</mat-label>
+            <mat-select [(ngModel)]="item.areas_id" [value]="item.areas_id" >
+              <div *ngFor="let options of listAreas">
+                <mat-option  [value]="options.id" *ngIf="options.sync">{{options.description}}</mat-option>
+              </div>
+            </mat-select>
+          </mat-form-field>
+        </mat-grid-tile>
+        
+        <mat-grid-tile [colspan]="1" *ngIf="item.sync">
+          <mat-form-field appearance="outline">
+            <mat-label>Estado</mat-label>
+            <input matInput [(ngModel)]="item.state" autocomplete="off" type="text" readonly>
+          </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
+
+      <mat-grid-list cols="2" rowHeight="150px">
+        <mat-grid-tile [colspan]="1">
+          <mat-form-field appearance="outline">
+            <mat-label>Misión</mat-label>
+            <textarea matInput [(ngModel)]="item.mission" name="mensaje" cols="10" rows="5" [readonly]="item.sync"></textarea>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1">
+          <mat-form-field appearance="outline">
+            <mat-label>Visión</mat-label>
+            <textarea matInput [(ngModel)]="item.vision" name="mensaje" cols="10" rows="5" [readonly]="item.sync"></textarea>
+          </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-expansion-panel>
+  </mat-accordion><br>
+</div>
+
+<div *ngIf="currentTab == 4">
+  <div class="buttonsForms right">
+    <button  mat-raised-button class="buttons" (click)="addObjetive()">
+      <span class="material-icons" style="margin-right: 10px;" >add</span> Agregar Usuario
+    </button>
+  </div><br>
+</div>
+
+<div *ngIf="currentTab == 5">
+  <div class="buttonsForms right">
+    <button  mat-raised-button class="buttons" (click)="addEmployment()">
+      <span class="material-icons" style="margin-right: 10px;" >add</span> Agregar Cargo
+    </button>
+  </div><br>
+
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let item of listEmployments; let i = index">
+      <mat-expansion-panel-header>
+        <mat-panel-title style="display: flex;"> 
+          <div [ngStyle]="{'background-color': item.sync ? '#50FF00' : '#FF0000', 'color': item.sync ? '#50FF00' : '#FF0000' }" style="margin-right: 15px;">.</div> 
+          {{!item.description ? 'Sin Descripción' : item.description}}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-grid-list cols="1" rowHeight="80px">
+        <mat-grid-tile [colspan]="1">
+          <mat-form-field appearance="outline">
+            <mat-label>Descripción</mat-label>
+            <input matInput [(ngModel)]="item.description" autocomplete="off" type="text" [readonly]="item.sync" (input)="validateInput(item.description, 2)">
+          </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-expansion-panel>
+  </mat-accordion><br>
+</div>
+
+<div *ngIf="currentTab == 6">
+  <div class="buttonsForms right">
+    <button  mat-raised-button class="buttons" (click)="addAreas()">
+      <span class="material-icons" style="margin-right: 10px;" >add</span> Agregar Área
+    </button>
+  </div><br>
+
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let item of listAreas; let i = index">
+      <mat-expansion-panel-header>
+        <mat-panel-title style="display: flex;"> 
+          <div [ngStyle]="{'background-color': item.sync ? '#50FF00' : '#FF0000', 'color': item.sync ? '#50FF00' : '#FF0000' }" style="margin-right: 15px;">.</div> 
+          {{!item.description ? 'Sin Descripción' : item.description}}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-grid-list cols="1" rowHeight="80px">
+        <mat-grid-tile [colspan]="1">
+          <mat-form-field appearance="outline">
+            <mat-label>Descripción</mat-label>
+            <input matInput [(ngModel)]="item.description" autocomplete="off" type="text" [readonly]="item.sync" (input)="validateInput(item.description, 3)">
+          </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-expansion-panel>
+  </mat-accordion><br>
+</div>
+
+<div class="right">
+  <button  mat-raised-button class="buttons" (click)="saveData()">
+      <span class="material-icons" style="margin-right: 10px;" >save</span> {{titleButton}}
+  </button>
+</div>  
+
+<br><br>
+
+
 
