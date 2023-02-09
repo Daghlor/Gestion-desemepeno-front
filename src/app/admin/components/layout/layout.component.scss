@@ -2,10 +2,12 @@
     width: 100%;
     height: 100%;
     display: flex;
+    overflow-x: hidden !important;
 }
 
 .content{
     width: 80%;
+    overflow-x: hidden;
 }
 
 .navbarUp{
@@ -21,6 +23,7 @@
 	left: 0;
     font-size: 18px;
     background-color: #c70101;
+    overflow-x: hidden !important;
 }
 
 .listItems{
@@ -116,6 +119,7 @@ h1{
  }
 
 .pages{
+    //overflow-y: scroll !important;
     padding-left: 3%;
     padding-right: 3%;
 }

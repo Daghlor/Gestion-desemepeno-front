@@ -9,7 +9,6 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { libraries } from 'src/assets/library';
-import { MyTableComponent } from './components/my-table/my-table.component';
 
 @NgModule({
   declarations: [
