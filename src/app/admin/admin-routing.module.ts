@@ -1,4 +1,4 @@
-import { CargosTableComponent } from './pages/companies/cargos-table/cargos-table.component';
+import { CargosTableComponent } from './pages/cargos/cargos-table/cargos-table.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import * as Pages from "./pages";
@@ -51,6 +51,14 @@ const routes: Routes = [
       {
         path: "usuarios",
         component: Pages.UsersTableComponent,
+      },
+      {
+        path: "usuarios/form",
+        component: Pages.UsersFormComponent,
+      },
+      {
+        path: "usuarios/form/:uuid",
+        component: Pages.UsersFormComponent,
       },
       {
         path: "verificacion",

@@ -1,5 +1,5 @@
-import { CompaniesService } from './../../../services/companies.service';
-import { AreasService } from './../../../services/areas.service';
+import { CompaniesService } from '../../../services/companies.service';
+import { AreasService } from '../../../services/areas.service';
 import { Component, OnInit } from '@angular/core';
 import { SnackbarService } from 'src/app/config/snackbar.service';
 import { ActivatedRoute, Router } from '@angular/router';

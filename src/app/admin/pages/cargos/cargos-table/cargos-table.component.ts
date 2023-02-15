@@ -1,14 +1,14 @@
-import { AreasService } from './../../../services/areas.service';
+import { EmploymentsService } from '../../../services/employments.service';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-areas-table',
-  templateUrl: './areas-table.component.html',
-  styleUrls: ['./areas-table.component.scss']
+  selector: 'app-cargos-table',
+  templateUrl: './cargos-table.component.html',
+  styleUrls: ['./cargos-table.component.scss']
 })
-export class AreasTableComponent implements OnInit {
+export class CargosTableComponent implements OnInit {
   loading: boolean = false;
   paginator: boolean = true;
   length: number = 0;
@@ -20,7 +20,7 @@ export class AreasTableComponent implements OnInit {
   dataSource: any = new MatTableDataSource();
   columns = [{
     columnDef: 'description',
-    header: 'Descripcion Áreas',
+    header: 'Descripcion Cargos',
     width: '10%',
     sort: true,
     type: 'text',
@@ -28,7 +28,7 @@ export class AreasTableComponent implements OnInit {
   }]
 
   constructor(
-    private AreasApi: AreasService,
+    private CargosApi: EmploymentsService,
     private router: Router,
   ) { }
 
@@ -42,39 +42,37 @@ export class AreasTableComponent implements OnInit {
       page: this.actualPage,
       column: this.orderColumn || 'description',
       direction: this.orderType || 'asc',
-      search: {
+      search:{
         description: "",
       }
     }
 
-    this.AreasApi.FindAll(paginate).then((res:any) => {
-      for (let i = 0; i < res.data.areas.length; i++) {
-        res.data.areas[i].icons = ['delete', 'edit']
+    this.CargosApi.FindAll(paginate).then((res:any) =>{
+      for (let i = 0; i < res.data.employments.length; i++) {
+        res.data.employments[i].icons = ['delete', 'edit']
       }
 
-      this.dataSource = new MatTableDataSource(res.data.areas);
+      this.dataSource = new MatTableDataSource(res.data.employments);
       this.length = res.data.total;
     })
   }
 
   changeSort(item:any){
-    this.orderColumn = item.active;
-    this.orderType = item.direction;
+    this.orderColumn=item.active;
+    this.orderType=item.direction;
     this.getData();
   }
 
-  changePaginator(info:any) {
-    this.actualPage = info.pageIndex + 1;
-    this.pageSize = info.pageSize;
+  changePaginator(info:any){
+    this.actualPage=info.pageIndex + 1;
+    this.pageSize=info.pageSize;
     this.getData();
   }
 
-  iconsFunction(event: any){
+  iconsFunction(event:any){
     if(event.icon == 'edit'){
-      this.router.navigate(['admin/areas/edit/' + event.data.unique_id]);
+      this.router.navigate(['admin/cargos/edit/'+event.data.unique_id]);
     }
   }
-
-
 
 }
