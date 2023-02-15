@@ -85,10 +85,16 @@
 }
 
 
-h1{
-    font-size: 180% !important;
+.titleData{
+    font-size: 190% !important;
     font-weight: bold;
     color: #ffffff;
+    text-decoration: none;
+    text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -ms-user-select: none;
 }
 
 .line{

@@ -112,13 +112,15 @@
           <div [ngStyle]="{'background-color': item.sync ? '#50FF00' : '#FF0000', 'color': item.sync ? '#50FF00' : '#FF0000' }" style="margin-right: 15px;">.</div> 
           {{!item.title ? 'Sin Título' : item.title}}
         </mat-panel-title>
-        <!-- <mat-panel-description>{{item.nameUser}}</mat-panel-description> -->
+        <mat-panel-description class="right" *ngIf="!item.sync">
+          <mat-icon style="color: #ff0000" (click)="deleteStrategics(i)">delete</mat-icon>
+        </mat-panel-description>
       </mat-expansion-panel-header>
       <mat-grid-list [cols]="item.sync ? 5 : 4" rowHeight="80px">
         <mat-grid-tile [colspan]="1">
           <mat-form-field appearance="outline">
             <mat-label>Título</mat-label>
-            <input matInput [(ngModel)]="item.title" autocomplete="off" type="text" [readonly]="item.sync" (input)="validateInput(item.title, 1)">
+            <input matInput [(ngModel)]="item.title" autocomplete="off" type="text" [readonly]="item.sync" (input)="validateInput(item.title, 1, i)">
           </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="1">
@@ -130,7 +132,7 @@
         <mat-grid-tile [colspan]="1">
           <mat-form-field appearance="outline">
             <mat-label>Puntaje</mat-label>
-            <input matInput [(ngModel)]="item.totalWeight" autocomplete="off" type="number" [readonly]="item.sync">
+            <input matInput [(ngModel)]="item.totalWeight" autocomplete="off" type="number" readonly>
           </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="1">
@@ -143,7 +145,6 @@
             </mat-select>
           </mat-form-field>
         </mat-grid-tile>
-        
         <mat-grid-tile [colspan]="1" *ngIf="item.sync">
           <mat-form-field appearance="outline">
             <mat-label>Estado</mat-label>
@@ -151,7 +152,6 @@
           </mat-form-field>
         </mat-grid-tile>
       </mat-grid-list>
-
       <mat-grid-list cols="2" rowHeight="150px">
         <mat-grid-tile [colspan]="1">
           <mat-form-field appearance="outline">
@@ -172,10 +172,98 @@
 
 <div *ngIf="currentTab == 4">
   <div class="buttonsForms right">
-    <button  mat-raised-button class="buttons" (click)="addObjetive()">
+    <button  mat-raised-button class="buttons" (click)="addUsers()">
       <span class="material-icons" style="margin-right: 10px;" >add</span> Agregar Usuario
     </button>
   </div><br>
+
+  <mat-accordion >
+    <div *ngFor="let item of listUsers; let i = index">
+    <mat-expansion-panel *ngIf="!item.delete" >
+      <mat-expansion-panel-header >
+        <mat-panel-title style="display: flex;"> 
+          <div [ngStyle]="{'background-color': item.sync ? '#50FF00' : '#FF0000', 'color': item.sync ? '#50FF00' : '#FF0000' }" style="margin-right: 15px;">.</div> 
+          {{!item.name || !item.lastName || !item.identify ?  'Sin Identificación - Sin Nombre' : item.identify + ' - ' + item.name + ' ' + item.lastName}}
+        </mat-panel-title>
+        <mat-panel-description class="right">
+          <mat-icon style="color: #ff0000" (click)="deleteUser(i)">delete</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="center" >
+        <img src="{{!item.photo ? 'assets/img/usuarioPNG.png' : item.photo }}" for="producto_img" class="userImg" >
+      </div><br>
+      <mat-grid-list cols="3" rowHeight="80px">
+        <mat-grid-tile [colspan]="1">
+          <mat-form-field appearance="outline">
+            <mat-label>Nombres</mat-label>
+            <input matInput [(ngModel)]="item.name" autocomplete="off" type="text" (input)="changeUpdate(i, 'users')">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1">
+          <mat-form-field appearance="outline">
+            <mat-label>Apellidos</mat-label>
+            <input matInput [(ngModel)]="item.lastName" autocomplete="off" type="text" (input)="changeUpdate(i, 'users')">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1">
+          <mat-form-field appearance="outline">
+            <mat-label>Identificación</mat-label>
+            <input matInput [(ngModel)]="item.identify" autocomplete="off" type="number"  (input)="validateInput(item.title, 4, i); changeUpdate(i, 'users')">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1">
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput [(ngModel)]="item.email" autocomplete="off" type="text" (input)="validateInput(item.title, 5, i); changeUpdate(i, 'users')">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1">
+          <mat-form-field appearance="outline">
+            <mat-label>Teléfono</mat-label>
+            <input matInput [(ngModel)]="item.phone" autocomplete="off" type="number" (input)="validateInput(item.title, 6, i); changeUpdate(i, 'users')">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1">
+          <mat-form-field appearance="outline" (click)="picker.open()">
+            <mat-label>Fecha de Nacimiento</mat-label>
+            <input matInput [matDatepicker]="picker" [(ngModel)]="item.dateBirth" [value]="item.dateBirth" (input)="changeUpdate(i, 'users')">
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1">
+          <mat-form-field appearance="outline">
+            <mat-label>Dirección</mat-label>
+            <input matInput [(ngModel)]="item.address" autocomplete="off" type="text" (input)="changeUpdate(i, 'users')">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1">
+          <mat-form-field appearance="outline">
+            <mat-label>Ciudad</mat-label>
+            <input matInput [(ngModel)]="item.city" autocomplete="off" type="text" (input)="changeUpdate(i, 'users')">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1">
+          <mat-form-field appearance="outline">
+            <mat-label>Cargo</mat-label>
+            <mat-select [(ngModel)]="item.employment_id" [value]="item.employment_id" (selectionChange)="changeUpdate(i, 'users')">
+              <div *ngFor="let options of listEmployments">
+                <mat-option  [value]="options.id" *ngIf="options.sync">{{options.description}}</mat-option>
+              </div>
+            </mat-select>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" *ngIf="item.sync">
+          <mat-form-field appearance="outline">
+            <mat-label>Estado</mat-label>
+            <input matInput [(ngModel)]="item.state" autocomplete="off" type="text" [readonly]="item.sync" (input)="changeUpdate(i, 'users')">
+          </mat-form-field>
+        </mat-grid-tile>
+
+      </mat-grid-list>
+    </mat-expansion-panel>
+  </div>
+  </mat-accordion><br>
 </div>
 
 <div *ngIf="currentTab == 5">
@@ -192,12 +280,15 @@
           <div [ngStyle]="{'background-color': item.sync ? '#50FF00' : '#FF0000', 'color': item.sync ? '#50FF00' : '#FF0000' }" style="margin-right: 15px;">.</div> 
           {{!item.description ? 'Sin Descripción' : item.description}}
         </mat-panel-title>
+        <mat-panel-description class="right" *ngIf="!item.sync">
+          <mat-icon style="color: #ff0000" (click)="deleteEmployment(i)">delete</mat-icon>
+        </mat-panel-description>
       </mat-expansion-panel-header>
       <mat-grid-list cols="1" rowHeight="80px">
         <mat-grid-tile [colspan]="1">
           <mat-form-field appearance="outline">
             <mat-label>Descripción</mat-label>
-            <input matInput [(ngModel)]="item.description" autocomplete="off" type="text" [readonly]="item.sync" (input)="validateInput(item.description, 2)">
+            <input matInput [(ngModel)]="item.description" autocomplete="off" type="text" (input)="validateInput(item.description, 2, i); changeUpdate(i, 'employment')">
           </mat-form-field>
         </mat-grid-tile>
       </mat-grid-list>
@@ -219,12 +310,15 @@
           <div [ngStyle]="{'background-color': item.sync ? '#50FF00' : '#FF0000', 'color': item.sync ? '#50FF00' : '#FF0000' }" style="margin-right: 15px;">.</div> 
           {{!item.description ? 'Sin Descripción' : item.description}}
         </mat-panel-title>
+        <mat-panel-description class="right" *ngIf="!item.sync">
+          <mat-icon style="color: #ff0000" (click)="deleteAreas(i)">delete</mat-icon>
+        </mat-panel-description>
       </mat-expansion-panel-header>
       <mat-grid-list cols="1" rowHeight="80px">
         <mat-grid-tile [colspan]="1">
           <mat-form-field appearance="outline">
             <mat-label>Descripción</mat-label>
-            <input matInput [(ngModel)]="item.description" autocomplete="off" type="text" [readonly]="item.sync" (input)="validateInput(item.description, 3)">
+            <input matInput [(ngModel)]="item.description" autocomplete="off" type="text" (input)="validateInput(item.description, 3, i); changeUpdate(i, 'areas')">
           </mat-form-field>
         </mat-grid-tile>
       </mat-grid-list>
