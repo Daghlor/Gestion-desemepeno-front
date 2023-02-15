@@ -3,10 +3,7 @@ import { RegisterService } from './../../../services/register.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SnackbarService } from 'src/app/config/snackbar.service';
-import { DeviceDetectorService } from 'ngx-device-detector';
-import { MatTableDataSource } from '@angular/material/table';
 import * as moment from 'moment';
-//import * as bcrypt from 'bcryptjs';
 
 @Component({
   selector: 'app-register',
@@ -129,8 +126,26 @@ export class RegisterComponent implements OnInit {
     this.disableButton = true;
     this.snack.viewsnack(this.messageTxt, 'Loading', 5000);
     let code = String(Math.floor(Math.random() * (999999 - 111111)) + 111111);
+    this.router.navigateByUrl('login');
 
-    const body: any = {
+
+    this.registerAPI.Create({
+      name: this.name,
+      lastName: this.lastName,
+      identify: this.identify,
+      email: this.email,
+      password: this.password,
+      dateBirth: moment(this.dateBirth).format('YYYY-MM-DD'),
+      address: this.address,
+      city:this.city,
+      phone:this.phone
+    }).then((res:any)=>{
+      console.log(res);
+      this.snack.viewsnack('Se registro correctamente','Success');
+    })
+
+
+    /*const body: any = {
       name: this.name,
       lastName: this.lastName,
       identify: this.identify,
@@ -141,9 +156,9 @@ export class RegisterComponent implements OnInit {
       city: this.city,
       phone: this.phone,
       view: code,
-    }
+    }*/
 
-    this.registerAPI.Create(body).then((res:any)=>{
+    /*this.registerAPI.Create(body).then((res:any)=>{
       this.snack.viewsnack('Se registro correctamente','Success');
       this.router.navigateByUrl('/src/app/public/pages/login/login.component.html')
     }).catch((err)=>{
@@ -154,7 +169,7 @@ export class RegisterComponent implements OnInit {
       date: moment().format('YYYY-MM-DD'),
       time: moment().format('HH:mm:ss'),
     }
-    body.UrlImg = this.photoPerfil != 'assets/img/R.png' && !this.photoSync ? this.photoPerfil : null
+    body.UrlImg = this.photoPerfil != 'assets/img/R.png' && !this.photoSync ? this.photoPerfil : null*/
 
     if(this.validateUrl == 1){
 

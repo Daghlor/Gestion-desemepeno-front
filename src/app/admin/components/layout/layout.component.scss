@@ -24,17 +24,21 @@
     font-size: 18px;
     background-color: #c70101;
     overflow-x: hidden !important;
+    background-image: url("../../../../assets/img/Kometa\ logoBlanco.png");
+    background-repeat: no-repeat;
+    background-position:bottom;
+    background-size: 350px 100px;
 }
 
 .listItems{
     //width: 100%;
    //margin-left: 8%;
-    
+
 }
 
 .items{
-    max-width: 100%; 
-    display: flex; 
+    max-width: 100%;
+    display: flex;
     padding-left: 6%;
     padding-top: 3%;
     padding-bottom: 2%;
@@ -44,7 +48,7 @@
     color: #ffffff;
     text-decoration: none;
     text-align: left;
-    width: 70%; 
+    width: 70%;
     padding-top: 1%;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -52,10 +56,10 @@
     -ms-user-select: none;
 }
 
-.itemsIcon{   
+.itemsIcon{
     color: #ffffff;
     width: 10%;
-    
+
 }
 
 .subMenu{
@@ -70,11 +74,11 @@
     display: flex;
 }
 
-.subMenuIcon{   
+.subMenuIcon{
     color: #ffffff;
     transform: scale(0.8);
     width: 15%;
-    
+
 }
 
 
@@ -100,7 +104,7 @@ h1{
 }
 
 
-.perfil{  
+.perfil{
     margin-right: 1%;
     width: 3%;
     max-width: 7%;

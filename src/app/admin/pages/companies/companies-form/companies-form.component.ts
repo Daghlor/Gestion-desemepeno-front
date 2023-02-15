@@ -91,8 +91,8 @@ optionsTabs: any = [{
   }
 
   validateInput(text: string, type: number){
-    clearTimeout(this.validateTime); 
-    this.validateTime = setTimeout(() => {    
+    clearTimeout(this.validateTime);
+    this.validateTime = setTimeout(() => {
       switch (type) {
         case 1:
           for (let i = 0; i < this.listStrategics.length; i++) {
@@ -121,12 +121,11 @@ optionsTabs: any = [{
             }
           }
         break;
-      
+
         default:
         break;
       }
     }, 500);
-        
   }
 
   findData(){
@@ -219,7 +218,7 @@ optionsTabs: any = [{
 
   validateEmployment(){
     let result = true;
-   
+
     for (let i = 0; i < this.listEmployments.length; i++) {
       if(!this.listEmployments[i].description){
         this.snack.viewsnack('Hace falta la descripción de un cargo', 'error');
@@ -230,15 +229,15 @@ optionsTabs: any = [{
     return result;
   }
 
-  
 
-  addObjetive(){  
+
+  addObjetive(){
     if(!this.validateObjetives()){
       return;
     }
 
     console.log(this.id);
-    
+
     let info_user = JSON.parse(this.Local.findDataLocal('info_user'));
     this.listStrategics.unshift({
       id: null,
@@ -280,7 +279,7 @@ optionsTabs: any = [{
         this.snack.viewsnack('Hace falta el titulo de un objetivo', 'error');
         result = false;
       }
-  
+
     }
 
     return result;
@@ -342,7 +341,7 @@ optionsTabs: any = [{
       }).then((res:any) => {
         this.snack.viewsnack(res.data, 'success');
         this.router.navigate(['admin/empresas']);
-        
+
       })
     }else{
       this.companiesApi.Create({
@@ -363,7 +362,7 @@ optionsTabs: any = [{
       });
     }
 
-    
+
   }
 
 

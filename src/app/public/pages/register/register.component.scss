@@ -21,6 +21,10 @@ mat-hint{
 .RegistroImg{
   width: 90%;
   background-color: #940000;
+  background-image: url("../../../../assets/img/Recurso\ 2.png");
+  background-size: 400px 100px;
+  background-repeat: no-repeat;
+  background-position:top
 }
 
 .RegistroArea{
@@ -62,5 +66,15 @@ mat-hint{
   align-items: center;
   justify-content: right;
   margin-left: 80%;
+}
+
+.botoninicia{
+  font-family: 'Courier New', Courier, monospace;
+  color: #940000;
+  border-radius: 80px;
+}
+
+h2{
+  text-align: right;
 }
 
