@@ -1,0 +1,46 @@
+
+    <div class="center">
+        <img for="producto_img" class="aggImg" >
+        <label for="producto_img" class="selectImg" ></label>
+    </div><br>
+    <input class="ng-hide" style="display: none;" id="producto_img" type="file" accept="image/*"/>
+
+
+      <div class="buttonsForms right">
+        <button  mat-raised-button class="buttons" (click)="addEmpresa()">
+          <span class="material-icons" style="margin-right: 10px;" >add</span> Agregar area
+        </button>
+      </div><br>
+
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let item of listEmpresa; let i = index">
+          <mat-expansion-panel-header>
+            <mat-panel-title style="display: flex;">
+              <div [ngStyle]="{'background-color': item.sync ? '#50FF00' : '#FF0000', 'color': item.sync ? '#50FF00' : '#FF0000' }" style="margin-right: 15px;">.</div>
+              {{!item.title ? 'Sin Título' : item.title}}
+            </mat-panel-title>
+            <!-- <mat-panel-description>{{item.nameUser}}</mat-panel-description> -->
+          </mat-expansion-panel-header>
+          <mat-grid-list [cols]="item.sync ? 5 : 4" rowHeight="80px">
+            <mat-grid-tile [colspan]="1">
+              <mat-form-field appearance="outline">
+                <mat-label>Descripcion Area</mat-label>
+                <input matInput [(ngModel)]="description" autocomplete="off" type="text">
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1">
+              <mat-form-field appearance="outline">
+                <mat-label>empresa</mat-label>
+                <mat-select [(ngModel)]="item.company_id" [value]="item.company_id" >
+                  <div *ngFor="let options of listCompany">
+                    <mat-option  [value]="options.id" *ngIf="options.sync">{{options.company_id}}</mat-option>
+                  </div>
+                </mat-select>
+              </mat-form-field>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </mat-expansion-panel>
+      </mat-accordion><br>
+
+
+

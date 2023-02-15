@@ -186,7 +186,6 @@ optionsTabs: any = [{
         break;
       }
     }, 500);
-        
   }
 
   findData(){
@@ -390,7 +389,7 @@ optionsTabs: any = [{
 
   validateEmployment(){
     let result = true;
-   
+
     for (let i = 0; i < this.listEmployments.length; i++) {
       if(!this.listEmployments[i].description){
         this.snack.viewsnack('Hace falta la descripción de un cargo', 'error');
@@ -451,7 +450,7 @@ optionsTabs: any = [{
         this.snack.viewsnack('Hace falta el titulo de un objetivo', 'error');
         result = false;
       }
-  
+
     }
 
     return result;
@@ -532,7 +531,7 @@ optionsTabs: any = [{
       }).then((res:any) => {
         this.snack.viewsnack(res.data, 'success');
         this.router.navigate(['admin/empresas']);
-        
+
       })
     }else{
       this.companiesApi.Create({
@@ -553,7 +552,7 @@ optionsTabs: any = [{
       });
     }
 
-    
+
   }
 
 

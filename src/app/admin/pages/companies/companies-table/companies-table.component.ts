@@ -77,7 +77,7 @@ export class CompaniesTableComponent implements OnInit {
   }];
 
 
-  
+
   constructor(
     private CompaniesApi: CompaniesService,
     private router: Router,
@@ -111,7 +111,7 @@ export class CompaniesTableComponent implements OnInit {
       }
 
       this.dataSource = new MatTableDataSource(res.data.companies);
-      this.length = res.data.total;   
+      this.length = res.data.total;
     })
   }
 
@@ -133,10 +133,10 @@ export class CompaniesTableComponent implements OnInit {
       this.router.navigate(['admin/empresas/edit/' + event.data.unique_id]);
     }
     else if(event.icon == 'delete'){
-      
+
     }
   }
 
- 
+
 
 }

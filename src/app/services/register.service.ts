@@ -14,7 +14,7 @@ export class RegisterService {
 
   Create(body: any){
     this.token = this.Local.findDataLocal('token');
-    return api.post(`public/register`, body,{
+    return api.post(`/public/register`, body,{
       headers: {Authorization: "Bearer"+ this.token}
     })
     .then((res) => res.data)

@@ -1,6 +1,7 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <div class="nav">
     <div class="navbarLeft">
-        
+
         <div class="title">
             <a class="titleData" href="{{'admin/'+title}}">{{title}}</a>
         </div>
@@ -34,7 +35,7 @@
                     <mat-icon class="subMenuIcon">public</mat-icon>
                     <a class="itemsTitle">Roles</a>
                 </div>
-                
+
             </div>
 
             <div class="items" (click)="openOptions(3)" [ngStyle]="{'background-color': option == 3 ? '#700000' : '#c70101' }">
@@ -47,18 +48,18 @@
                     <mat-icon class="subMenuIcon">store</mat-icon>
                     <a class="itemsTitle">Empresas</a>
                 </div>
-                <div class="subMenuOption"  (click)="routers('/')">
+                <div class="subMenuOption"  (click)="routers('/cargos')">
                     <mat-icon class="subMenuIcon">assignment_ind</mat-icon>
                     <a class="itemsTitle">Cargos</a>
                 </div>
-                <div class="subMenuOption"  (click)="routers('/')">
+                <div class="subMenuOption"  (click)="routers('/areas')">
                     <mat-icon class="subMenuIcon">view_in_ar</mat-icon>
                     <a class="itemsTitle">Áreas</a>
                 </div>
             </div>
 
 
-        </div>    
+        </div>
      </div>
 
      <div class="content">
@@ -75,5 +76,5 @@
         </div>
     </div>
 
-   
+
 </div>
