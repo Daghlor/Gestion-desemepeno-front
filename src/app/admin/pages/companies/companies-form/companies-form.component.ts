@@ -93,7 +93,7 @@ optionsTabs: any = [{
 
   async changePhoto(photo: any){
     const file: File = photo.files[0];
-    
+
     if(!file){
       return  this.snack.viewsnack('No ha seleccionado ninguna imagen', 'Error')
     }
@@ -108,7 +108,7 @@ optionsTabs: any = [{
   }
 
   changeUpdate(index: number, type: string){
-    clearTimeout(this.validateTime2); 
+    clearTimeout(this.validateTime2);
     this.validateTime2 = setTimeout(() => {
       if(type == 'users' && !this.listUsers[index].update && this.listUsers[index].sync){
         this.listUsers[index].update = true;
@@ -124,8 +124,8 @@ optionsTabs: any = [{
   }
 
   validateInput(text: string, type: number, index: number){
-    clearTimeout(this.validateTime); 
-    this.validateTime = setTimeout(() => {    
+    clearTimeout(this.validateTime);
+    this.validateTime = setTimeout(() => {
       switch (type) {
         case 1:
           for (let i = 0; i < this.listStrategics.length; i++) {
@@ -181,7 +181,7 @@ optionsTabs: any = [{
             }
           }
         break;
-      
+
         default:
         break;
       }
@@ -245,7 +245,7 @@ optionsTabs: any = [{
     if(!await this.validateUsers()){
       return;
     }
-    
+
     await this.listUsers.unshift({
       id: null,
       unique_id: null,
@@ -400,7 +400,7 @@ optionsTabs: any = [{
     return result;
   }
 
-  addObjetive(){  
+  addObjetive(){
     if(!this.validateObjetives()){
       return;
     }
@@ -504,14 +504,14 @@ optionsTabs: any = [{
     if(!await this.validateAreas()){
       return;
     }
-    
-    
+
+
 
     if(this.unique_id){
       for (let i = 0; i < this.listUsers.length; i++) {
         this.listUsers[i].dateBirth = moment(this.listUsers[i].dateBirth).format('DD/MM/YYYY');
       }
-      
+
       this.companiesApi.Update(this.unique_id, {
         logo: this.changeLogo ? this.logo : "",
         nit: this.nit,
