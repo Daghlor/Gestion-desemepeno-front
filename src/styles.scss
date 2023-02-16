@@ -26,6 +26,24 @@ mat-form-field{
     color: #FFFFFF;
 }
 
+.aggImg{
+    text-align: center;
+    border: 2px solid #c70101;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+}
+
+.selectImg{
+    position: relative;
+    margin-left: -4%;
+    margin-top: 10%;
+    background-color: #ffffff;
+    border-radius: 50%;
+    padding: 10px;
+    border: 2px solid;   
+}
+
 .mat-form-field-label {color: #000000}
 .mat-form-field-label {color: #000000}
 .mat-form-field.mat-focused .mat-form-field-label {color: #000000}
