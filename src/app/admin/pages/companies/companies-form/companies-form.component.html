@@ -1,5 +1,5 @@
 <div>
-  
+
 </div>
 <app-my-tabs
     [optionsTabs]="optionsTabs"
@@ -29,7 +29,7 @@
           </mat-form-field>
       </mat-grid-tile>
     </mat-grid-list>
-      
+
     <mat-grid-list cols="2" rowHeight="150px">
       <mat-grid-tile [colspan]="1">
         <mat-form-field appearance="outline">
@@ -82,9 +82,9 @@
         </mat-form-field>
       </mat-grid-tile>
     </mat-grid-list>
-   
-    
-    
+
+
+
 </div>
 
 <div *ngIf="currentTab == 2">
@@ -105,11 +105,11 @@
     </button>
   </div><br>
 
-  <mat-accordion>    
+  <mat-accordion>
     <mat-expansion-panel *ngFor="let item of listStrategics; let i = index">
       <mat-expansion-panel-header>
-        <mat-panel-title style="display: flex;"> 
-          <div [ngStyle]="{'background-color': item.sync ? '#50FF00' : '#FF0000', 'color': item.sync ? '#50FF00' : '#FF0000' }" style="margin-right: 15px;">.</div> 
+        <mat-panel-title style="display: flex;">
+          <div [ngStyle]="{'background-color': item.sync ? '#50FF00' : '#FF0000', 'color': item.sync ? '#50FF00' : '#FF0000' }" style="margin-right: 15px;">.</div>
           {{!item.title ? 'Sin Título' : item.title}}
         </mat-panel-title>
         <mat-panel-description class="right" *ngIf="!item.sync">
@@ -181,8 +181,8 @@
     <div *ngFor="let item of listUsers; let i = index">
     <mat-expansion-panel *ngIf="!item.delete" >
       <mat-expansion-panel-header >
-        <mat-panel-title style="display: flex;"> 
-          <div [ngStyle]="{'background-color': item.sync ? '#50FF00' : '#FF0000', 'color': item.sync ? '#50FF00' : '#FF0000' }" style="margin-right: 15px;">.</div> 
+        <mat-panel-title style="display: flex;">
+          <div [ngStyle]="{'background-color': item.sync ? '#50FF00' : '#FF0000', 'color': item.sync ? '#50FF00' : '#FF0000' }" style="margin-right: 15px;">.</div>
           {{!item.name || !item.lastName || !item.identify ?  'Sin Identificación - Sin Nombre' : item.identify + ' - ' + item.name + ' ' + item.lastName}}
         </mat-panel-title>
         <mat-panel-description class="right">
@@ -276,8 +276,8 @@
   <mat-accordion>
     <mat-expansion-panel *ngFor="let item of listEmployments; let i = index">
       <mat-expansion-panel-header>
-        <mat-panel-title style="display: flex;"> 
-          <div [ngStyle]="{'background-color': item.sync ? '#50FF00' : '#FF0000', 'color': item.sync ? '#50FF00' : '#FF0000' }" style="margin-right: 15px;">.</div> 
+        <mat-panel-title style="display: flex;">
+          <div [ngStyle]="{'background-color': item.sync ? '#50FF00' : '#FF0000', 'color': item.sync ? '#50FF00' : '#FF0000' }" style="margin-right: 15px;">.</div>
           {{!item.description ? 'Sin Descripción' : item.description}}
         </mat-panel-title>
         <mat-panel-description class="right" *ngIf="!item.sync">
@@ -306,8 +306,8 @@
   <mat-accordion>
     <mat-expansion-panel *ngFor="let item of listAreas; let i = index">
       <mat-expansion-panel-header>
-        <mat-panel-title style="display: flex;"> 
-          <div [ngStyle]="{'background-color': item.sync ? '#50FF00' : '#FF0000', 'color': item.sync ? '#50FF00' : '#FF0000' }" style="margin-right: 15px;">.</div> 
+        <mat-panel-title style="display: flex;">
+          <div [ngStyle]="{'background-color': item.sync ? '#50FF00' : '#FF0000', 'color': item.sync ? '#50FF00' : '#FF0000' }" style="margin-right: 15px;">.</div>
           {{!item.description ? 'Sin Descripción' : item.description}}
         </mat-panel-title>
         <mat-panel-description class="right" *ngIf="!item.sync">
@@ -330,7 +330,7 @@
   <button  mat-raised-button class="buttons" (click)="saveData()">
       <span class="material-icons" style="margin-right: 10px;" >save</span> {{titleButton}}
   </button>
-</div>  
+</div>
 
 <br><br>
 
