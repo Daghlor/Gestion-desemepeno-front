@@ -28,10 +28,7 @@ export class MyTableComponent implements OnInit {
   constructor() { }
   
   ngOnInit(): void {
-    this.displayedColumns = this.columns.map((c:any) => c.columnDef);
-
-    console.log(this.displayedColumns);
-    
+    this.displayedColumns = this.columns.map((c:any) => c.columnDef);  
   }
 
   validate(row: any){
