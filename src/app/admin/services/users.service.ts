@@ -22,7 +22,7 @@ export class UsersService {
       throw err.response
     })
   }
-
+  
   FindAll(body: any){
     this.token = this.Local.findDataLocal('token');
     return api.post(`/users/getAll`, body, {

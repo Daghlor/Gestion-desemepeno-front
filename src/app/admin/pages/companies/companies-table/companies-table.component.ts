@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, EventEmitter } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { CompaniesService } from 'src/app/admin/services/companies.service';
+import {MatDialog,MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import { ConfirmModalComponent } from 'src/app/admin/components/confirm-modal/confirm-modal.component';
+import { SnackbarService } from 'src/app/config/snackbar.service';
 
 @Component({
   selector: 'app-companies-table',
@@ -73,6 +76,8 @@ export class CompaniesTableComponent implements OnInit {
   constructor(
     private CompaniesApi: CompaniesService,
     private router: Router,
+    private dialog: MatDialog,
+    private snack: SnackbarService,
   ) { }
 
   ngOnInit(): void {
@@ -119,16 +124,29 @@ export class CompaniesTableComponent implements OnInit {
     this.getData();
   }
 
-
   iconsFunction(event: any){
     if(event.icon == 'edit'){
       this.router.navigate(['admin/empresas/edit/' + event.data.unique_id]);
     }
     else if(event.icon == 'delete'){
+      const dialogRef = this.dialog.open(ConfirmModalComponent, {
+        width: '250px',
+        data: { message: '¿Estás seguro de que quieres elimina esta empresa?' }
+      });
 
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.CompaniesApi.Delete(event.data.unique_id).then((res:any)=>{
+            this.snack.viewsnack('La empresa se elimino correctamente', 'Success');
+          })
+        }
+      });
     }
   }
 
-
-
 }
+
+
+
+
+

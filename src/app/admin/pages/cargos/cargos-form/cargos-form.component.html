@@ -1,1 +1,52 @@
-<p>cargos-form works!</p>
+<div class="content"><br>
+  <h1 style="text-align: center;">Nuevo Cargo</h1>
+  <app-my-tabs
+    (getTabActive)="currentTab = $event.code"
+></app-my-tabs><br>
+
+  <div *ngIf="currentTab == 1">
+    <div class="buttonsForms right">
+      <button  mat-raised-button class="buttons" (click)="addCargo()">
+        <span class="material-icons" style="margin-right: 10px;" >add</span> Agregar Cargo
+      </button>
+    </div><br>
+
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let item of listCargos; let i = index">
+        <mat-expansion-panel-header>
+          <mat-panel-title style="display: flex;">
+            <div [ngStyle]="{'background-color': item.sync ? '#50FF00' : '#FF0000', 'color': item.sync ? '#50FF00' : '#FF0000' }" style="margin-right: 15px;">.</div>
+          </mat-panel-title>
+          <mat-panel-description class="right" *ngIf="!item.sync">
+            <mat-icon style="color: #ff0000" (click)="deleteCargos(i)">delete</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-grid-list [cols]="item.sync ? 5 : 4" rowHeight="80px">
+          <mat-grid-tile [colspan]="1">
+            <mat-form-field appearance="outline">
+              <mat-label>Descripcion</mat-label>
+              <input matInput [(ngModel)]="description" autocomplete="off" type="text">
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="1">
+            <mat-form-field appearance="outline">
+              <mat-label>Empresa</mat-label>
+              <mat-select [(ngModel)]="company_id" [value]="company_id" (selectionChange)="AddCompany()">
+                <div *ngFor="let options of listCompany">
+                  <mat-option  [value]="options.id">{{options.businessName}}</mat-option>
+                </div>
+              </mat-select>
+            </mat-form-field>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </mat-expansion-panel>
+    </mat-accordion><br>
+  </div>
+
+  <div class="right">
+    <button  mat-raised-button class="buttons" (click)="guardar()">
+        <span class="material-icons" style="margin-right: 10px;" >save</span> {{titleButton}}
+    </button>
+  </div>
+</div>
+

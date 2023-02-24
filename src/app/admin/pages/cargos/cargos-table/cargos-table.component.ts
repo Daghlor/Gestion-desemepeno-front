@@ -42,13 +42,13 @@ export class CargosTableComponent implements OnInit {
       page: this.actualPage,
       column: this.orderColumn || 'description',
       direction: this.orderType || 'asc',
-      search:{
+      search: {
         description: "",
       }
     }
 
-    this.CargosApi.FindAll(paginate).then((res:any) =>{
-      for (let i = 0; i < res.data.employments.length; i++) {
+    this.CargosApi.FindAll(paginate).then((res:any)=>{
+      for (let i = 0; i < res.data.employments.lenght; i ++){
         res.data.employments[i].icons = ['delete', 'edit']
       }
 
@@ -58,21 +58,22 @@ export class CargosTableComponent implements OnInit {
   }
 
   changeSort(item:any){
-    this.orderColumn=item.active;
-    this.orderType=item.direction;
+    this.orderColumn = item.active;
+    this.orderType = item.direction;
     this.getData();
   }
 
   changePaginator(info:any){
-    this.actualPage=info.pageIndex + 1;
-    this.pageSize=info.pageSize;
+    this.actualPage = info.pageIndex + 1;
+    this.pageSize = info.pageSize;
     this.getData();
   }
 
   iconsFunction(event:any){
     if(event.icon == 'edit'){
-      this.router.navigate(['admin/cargos/edit/'+event.data.unique_id]);
+      this.router.navigate(['admin/cargos/edit' + event.data.unique_id]);
     }
   }
+
 
 }

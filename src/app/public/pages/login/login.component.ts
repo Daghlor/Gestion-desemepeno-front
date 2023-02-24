@@ -67,7 +67,7 @@ iconPass: string = 'visibility';
 
         if(res.data.user.verify == 0){
           await this.Local.createDataLocal('verify', 'false');
-          this.router.navigateByUrl('/verificacion');
+          this.router.navigateByUrl('/admin/verificacion');
         }else{
           await this.Local.createDataLocal('verify', 'true');
           this.router.navigateByUrl('/admin');

@@ -95,11 +95,11 @@ export class VerifyComponent implements OnInit {
       return this.snack.viewsnack('Falta #6', 'Error');
     }
 
-    const number = this.num1+this.num2+this.num3+this.num4+this.num5+this.num6
+    const code = this.num1+this.num2+this.num3+this.num4+this.num5+this.num6
 
     this.verifyAPI.Create({
-      number,
-      info: number,
+      code,
+      info: code,
     }).then((res:any)=>{
       if(!res.data){
         this.num1 = null;

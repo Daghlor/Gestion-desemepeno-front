@@ -11,12 +11,14 @@ import { VerifyComponent } from './pages/users/verify/verify.component';
 
 import {MatTableModule} from '@angular/material/table';
 import { CustomPaginator } from '../config/matPaginador';
+import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
 
 @NgModule({
   declarations: [
     ...fromContainers.AdminComponents,
     ...fromContainers.AdminPages,
     VerifyComponent,
+    ConfirmModalComponent,
   ],
   imports: [
     CommonModule,
