@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalService } from 'src/app/config/local.service';
+import { SnackbarService } from 'src/app/config/snackbar.service';
 
 
 @Component({
@@ -10,6 +11,7 @@ import { LocalService } from 'src/app/config/local.service';
 })
 export class LayoutComponent implements OnInit {
   title?: string;
+  validateTitle?: any = [];
   nameUser?: any = '';
   option?: number;
   photo?: string;
@@ -17,7 +19,8 @@ export class LayoutComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private Local: LocalService
+    private Local: LocalService,
+    private snack: SnackbarService,
   ) {}
 
   ngOnInit(): void {
@@ -28,13 +31,18 @@ export class LayoutComponent implements OnInit {
 
   ngAfterViewInit(): void {
     setInterval(() => {
-      this.title = !this.router.url.split('/')[2] ? '¡Bienvenido!' : this.router.url.split('/')[2]; 
+      this.title = !this.router.url.split('/')[2] ? '¡Bienvenido!' : this.router.url.split('/')[2];
+      this.validateTitle = this.title.split('_');
     }, 500);
   } 
 
   routers(url: string){
     this.option = 0;
     this.router.navigateByUrl('/admin'+url);
+  }
+
+  redirectForm(url: string){
+    this.snack.redirect(url);
   }
 
   openOptions(n: number){

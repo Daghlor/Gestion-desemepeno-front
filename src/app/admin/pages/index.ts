@@ -13,11 +13,19 @@ import { VerifyComponent } from "./users/verify/verify.component";
 import { MyTableComponent } from "src/app/components/my-table/my-table.component";
 import { AreasTableComponent } from "./areas/areas-table/areas-table.component";
 import { AreasFormComponent } from "./areas/areas-form/areas-form.component";
+import { ConfirmModalComponent } from '../components/confirm-modal/confirm-modal.component';
+import { StrategicObjectivesListComponent } from './StrategicObjectives/strategic-objectives-list/strategic-objectives-list.component';
+import { StrategicObjectivesFormComponent } from './StrategicObjectives/strategic-objectives-form/strategic-objectives-form.component';
+import { StrategicObjectivesAllComponent } from './StrategicObjectives/strategic-objectives-all/strategic-objectives-all.component';
+import { IndividualesObjectivesListComponent } from './IndividualesObjectives/individuales-objectives-list/individuales-objectives-list.component';
+import { IndividualesObjectivesAllComponent } from './IndividualesObjectives/individuales-objectives-all/individuales-objectives-all.component';
+import { IndividualesObjectivesFormComponent } from './IndividualesObjectives/individuales-objectives-form/individuales-objectives-form.component';
 
 export const AdminComponents: any[] = [
     LayoutComponent,
     MyTabsComponent,
-    MyTableComponent
+    MyTableComponent,
+    ConfirmModalComponent,
 ];
 
 export const AdminPages: any[] = [
@@ -33,6 +41,13 @@ export const AdminPages: any[] = [
     AreasFormComponent,
     CargosFormComponent,
     CargosTableComponent,
+    VerifyComponent,
+    StrategicObjectivesListComponent,
+    StrategicObjectivesFormComponent,
+    StrategicObjectivesAllComponent,
+    IndividualesObjectivesListComponent,
+    IndividualesObjectivesAllComponent,
+    IndividualesObjectivesFormComponent,
 ];
 
 export * from "../components/layout/layout.component";
@@ -50,3 +65,10 @@ export * from "./areas/areas-form/areas-form.component";
 export * from "./areas/areas-table/areas-table.component";
 export * from "src/app/admin/pages/cargos/cargos-form/cargos-form.component";
 export * from "src/app/admin/pages/cargos/cargos-table/cargos-table.component"
+export * from '../components/confirm-modal/confirm-modal.component';
+export * from './StrategicObjectives/strategic-objectives-list/strategic-objectives-list.component';
+export * from './StrategicObjectives/strategic-objectives-form/strategic-objectives-form.component';
+export * from './StrategicObjectives/strategic-objectives-all/strategic-objectives-all.component';
+export * from './IndividualesObjectives/individuales-objectives-list/individuales-objectives-list.component';
+export * from './IndividualesObjectives/individuales-objectives-all/individuales-objectives-all.component';
+export * from './IndividualesObjectives/individuales-objectives-form/individuales-objectives-form.component';

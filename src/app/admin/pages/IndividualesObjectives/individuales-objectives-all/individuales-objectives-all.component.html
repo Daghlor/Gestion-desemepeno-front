@@ -1,9 +1,3 @@
-<div class="buttonsForms right">
-  <a mat-raised-button class="buttons" (click)="redirectForm('admin/areas/form')">
-    <mat-icon  style="margin-right: 10px;">add</mat-icon>Agregar Área
-  </a>
-</div><br>
-
 <app-my-table
   [loading]="loading"
   [dataSource]="dataSource"
@@ -12,9 +6,6 @@
   [pageSize]="pageSize"
   [PageSizeOptions]="pageSizeOptions"
   [paginator]="paginator"
-  (eventIcons)="iconsFunction($event)"
   (changeSort)="changeSort($event)"
   (changePaginator)="changePaginator($event)"
 ></app-my-table>
-
-

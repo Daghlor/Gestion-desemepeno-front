@@ -71,8 +71,6 @@ export class CompaniesTableComponent implements OnInit {
     cell: (element: any) => `${element.icons}`,
   }];
 
-
-
   constructor(
     private CompaniesApi: CompaniesService,
     private router: Router,
@@ -124,6 +122,10 @@ export class CompaniesTableComponent implements OnInit {
     this.getData();
   }
 
+  redirectForm(url: string){
+    this.snack.redirect(url);
+  }
+
   iconsFunction(event: any){
     if(event.icon == 'edit'){
       this.router.navigate(['admin/empresas/edit/' + event.data.unique_id]);
@@ -138,6 +140,7 @@ export class CompaniesTableComponent implements OnInit {
         if (result) {
           this.CompaniesApi.Delete(event.data.unique_id).then((res:any)=>{
             this.snack.viewsnack('La empresa se elimino correctamente', 'Success');
+            this.getData();
           })
         }
       });

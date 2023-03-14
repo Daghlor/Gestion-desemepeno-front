@@ -5,7 +5,7 @@ import { LocalService } from 'src/app/config/local.service';
 @Injectable({
   providedIn: 'root'
 })
-export class CompaniesService {
+export class IndividualService {
   token?: string;
 
   constructor(
@@ -14,7 +14,7 @@ export class CompaniesService {
 
   Create(body: any){
     this.token = this.Local.findDataLocal('token');
-    return api.post(`/company/create`, body, {
+    return api.post(`/individuals/create`, body, {
       headers: {Authorization: "Bearer " + this.token}
     })
     .then((res) => res.data)
@@ -25,7 +25,7 @@ export class CompaniesService {
 
   FindAll(body: any){
     this.token = this.Local.findDataLocal('token');
-    return api.post(`/company/getAll`, body, {
+    return api.post(`/individuals/getAll`, body, {
       headers: {Authorization: "Bearer " + this.token}
     })
     .then((res) => res.data)
@@ -36,7 +36,7 @@ export class CompaniesService {
 
   FindOne(uuid: string){
     this.token = this.Local.findDataLocal('token');
-    return api.get(`/company/getOne/${uuid}`, {
+    return api.get(`/individuals/getOne/${uuid}`, {
       headers: {Authorization: "Bearer " + this.token}
     })
     .then((res) => res.data)
@@ -45,25 +45,4 @@ export class CompaniesService {
     })
   }
 
-  Update(uuid: string, body: any){
-    this.token = this.Local.findDataLocal('token');
-    return api.put(`/company/update/${uuid}`, body, {
-      headers: {Authorization: "Bearer " + this.token}
-    })
-    .then((res) => res.data)
-    .catch((err) => {
-      throw err.response
-    })
-  }
-
-  Delete(uuid: string){
-    this.token = this.Local.findDataLocal('token');
-    return api.delete(`/company/delete/${uuid}`, {
-      headers: {Authorization: "Bearer " + this.token}
-    })
-    .then((res) => res.data)
-    .catch((err) => {
-      throw err.response
-    })
-  }
 }

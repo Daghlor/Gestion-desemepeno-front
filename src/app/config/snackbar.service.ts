@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { SnackbarComponent } from '../admin/pages';
 
 @Injectable({
@@ -8,7 +9,8 @@ import { SnackbarComponent } from '../admin/pages';
 export class SnackbarService {
 
 constructor(
-  public snack: MatSnackBar
+  public snack: MatSnackBar,
+  private router: Router,
 ) { }
 
 
@@ -20,6 +22,10 @@ constructor(
       //verticalPosition: 'top',
       data: { message: message, snackType: action}
     });
+  }
+
+  public redirect(url: string, params?: any) {
+    this.router.navigate([url]);
   }
 
   public async validateEmail(email: string) {

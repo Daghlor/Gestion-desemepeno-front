@@ -2,6 +2,7 @@ import { AreasService } from '../../../services/areas.service';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { SnackbarService } from 'src/app/config/snackbar.service';
 
 @Component({
   selector: 'app-areas-table',
@@ -30,12 +31,18 @@ export class AreasTableComponent implements OnInit {
   constructor(
     private AreasApi: AreasService,
     private router: Router,
+    private snack: SnackbarService,
   ) { }
 
   ngOnInit(): void {
     this.getData();
   }
 
+  redirectForm(url: string){
+    this.snack.redirect(url);
+  }
+
+  
   getData(){
     const paginate = {
       paginate: this.pageSize,
