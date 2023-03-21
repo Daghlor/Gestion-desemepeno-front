@@ -122,6 +122,10 @@ export class CompaniesTableComponent implements OnInit {
     this.getData();
   }
 
+  redirectForm(url: string){
+    this.snack.redirect(url);
+  }
+
   iconsFunction(event: any){
     if(event.icon == 'edit'){
       this.router.navigate(['admin/empresas/edit/' + event.data.unique_id]);

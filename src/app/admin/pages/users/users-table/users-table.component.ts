@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/app/admin/services/users.service';
+import { SnackbarService } from 'src/app/config/snackbar.service';
 
 @Component({
   selector: 'app-users-table',
@@ -77,6 +78,7 @@ export class UsersTableComponent implements OnInit {
   constructor(
     private userApi: UsersService,
     private router: Router,
+    private snack: SnackbarService,
   ) { }
 
   ngOnInit(): void {
@@ -122,6 +124,10 @@ export class UsersTableComponent implements OnInit {
     this.actualPage = info.pageIndex + 1;
     this.pageSize = info.pageSize;
     this.getData();
+  }
+
+  redirectForm(url: string){
+    this.snack.redirect(url);
   }
 
   iconsFunction(event: any){

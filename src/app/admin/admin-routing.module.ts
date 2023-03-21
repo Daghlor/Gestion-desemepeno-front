@@ -61,6 +61,39 @@ const routes: Routes = [
         component: Pages.UsersFormComponent,
       },
       {
+        path: "objetivos_estrategicos/all",
+        component: Pages.StrategicObjectivesAllComponent,
+      },
+      {
+        path: "objetivos_estrategicos/form",
+        component: Pages.StrategicObjectivesFormComponent,
+      },
+      {
+        path: "objetivos_estrategicos/form/:uuid",
+        component: Pages.StrategicObjectivesFormComponent,
+      },
+      {
+        path: "objetivos_estrategicos",
+        component: Pages.StrategicObjectivesListComponent,
+      },
+
+      {
+        path: "objetivos_individuales/all",
+        component: Pages.IndividualesObjectivesAllComponent,
+      },
+      {
+        path: "objetivos_individuales/form",
+        component: Pages.IndividualesObjectivesFormComponent,
+      },
+      {
+        path: "objetivos_individuales/form/:uuid",
+        component: Pages.IndividualesObjectivesFormComponent,
+      },
+      {
+        path: "objetivos_individuales",
+        component: Pages.IndividualesObjectivesListComponent,
+      },
+      {
         path: "verificacion",
         component: Pages.VerifyComponent,
       },

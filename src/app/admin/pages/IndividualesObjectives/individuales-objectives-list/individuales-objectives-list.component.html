@@ -1,0 +1,48 @@
+<div class="buttonsForms right" *ngIf="points > 0">
+    <a mat-raised-button class="buttons" (click)="redirectForm('admin/objetivos_individuales/form')">
+      <mat-icon  style="margin-right: 10px;">add</mat-icon>Agregar Objetivo
+    </a>
+</div>
+<div class="right" style="font-size: 17px; font-weight: bold;">
+  Puntaje Disponible: {{points}}
+</div>
+
+<br>
+
+<mat-accordion>
+    <mat-expansion-panel *ngFor="let item of listObjetives; let i = index">
+      <mat-expansion-panel-header>
+        <mat-panel-title> {{item.weight}} - {{item.title}}  </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-grid-list cols="3" rowHeight="80px">
+        <mat-grid-tile [colspan]="1">
+            <mat-form-field appearance="outline">
+              <mat-label>Titulo</mat-label>
+              <input matInput [(ngModel)]="item.title" autocomplete="off" type="text" readonly>
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1">
+            <mat-form-field appearance="outline">
+              <mat-label>Objetivo Estratégico</mat-label>
+              <input matInput [(ngModel)]="item.title_strategics" autocomplete="off" type="text" readonly>
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1">
+            <mat-form-field appearance="outline">
+              <mat-label>Puntaje</mat-label>
+              <input matInput [(ngModel)]="item.weight" autocomplete="off" type="text" readonly>
+            </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="1" rowHeight="150px">
+        <mat-grid-tile [colspan]="1">
+          <mat-form-field appearance="outline" style="width: 98%;">
+            <mat-label>Objetivo</mat-label>
+            <textarea matInput [(ngModel)]="item.objetive" name="mensaje" cols="10" rows="5" readonly></textarea>
+          </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+

@@ -12,13 +12,17 @@ import { VerifyComponent } from './pages/users/verify/verify.component';
 import {MatTableModule} from '@angular/material/table';
 import { CustomPaginator } from '../config/matPaginador';
 import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
+import { StrategicObjectivesListComponent } from './pages/StrategicObjectives/strategic-objectives-list/strategic-objectives-list.component';
+import { StrategicObjectivesFormComponent } from './pages/StrategicObjectives/strategic-objectives-form/strategic-objectives-form.component';
+import { StrategicObjectivesAllComponent } from './pages/StrategicObjectives/strategic-objectives-all/strategic-objectives-all.component';
+import { IndividualesObjectivesListComponent } from './pages/IndividualesObjectives/individuales-objectives-list/individuales-objectives-list.component';
+import { IndividualesObjectivesAllComponent } from './pages/IndividualesObjectives/individuales-objectives-all/individuales-objectives-all.component';
+import { IndividualesObjectivesFormComponent } from './pages/IndividualesObjectives/individuales-objectives-form/individuales-objectives-form.component';
 
 @NgModule({
   declarations: [
     ...fromContainers.AdminComponents,
     ...fromContainers.AdminPages,
-    VerifyComponent,
-    ConfirmModalComponent,
   ],
   imports: [
     CommonModule,

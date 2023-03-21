@@ -3,7 +3,9 @@
     <div class="navbarLeft">
 
         <div class="title">
-            <a class="titleData" href="{{'admin/'+title}}">{{title}}</a>
+            <a class="titleData" (click)="redirectForm('admin/'+title)" >
+                {{validateTitle.length == 1 ? title : validateTitle[0] + ' ' + validateTitle[1]  }}   
+            </a>
         </div>
         <hr class="line">
 
@@ -44,21 +46,39 @@
                 <mat-icon class="itemsIcon"> {{option == 3 ? 'expand_less' : 'expand_more'}} </mat-icon>
             </div>
             <div class="subMenu" *ngIf="option == 3">
-                <div class="subMenuOption"  (click)="routers('/empresas')">
+                <div class="subMenuOption" (click)="routers('/empresas')">
                     <mat-icon class="subMenuIcon">store</mat-icon>
                     <a class="itemsTitle">Empresas</a>
                 </div>
-                <div class="subMenuOption"  (click)="routers('/cargos')">
+                <div class="subMenuOption" (click)="routers('/cargos')">
                     <mat-icon class="subMenuIcon">assignment_ind</mat-icon>
                     <a class="itemsTitle">Cargos</a>
                 </div>
-                <div class="subMenuOption"  (click)="routers('/areas')">
+                <div class="subMenuOption" (click)="routers('/areas')">
                     <mat-icon class="subMenuIcon">view_in_ar</mat-icon>
                     <a class="itemsTitle">Áreas</a>
                 </div>
             </div>
+            <div class="items" (click)="routers('/objetivos_estrategicos/all')" >
+                <mat-icon class="itemsIcon">analytics</mat-icon>
+                <a class="itemsTitle">Objetivos Estratégicos</a>
+            </div>
 
+            <div class="items" (click)="routers('/objetivos_estrategicos')" >
+                <mat-icon class="itemsIcon">analytics</mat-icon>
+                <a class="itemsTitle">Mis Objetivos Estratégicos</a>
+            </div>
 
+            <div class="items" (click)="routers('/objetivos_individuales/all')" >
+                <mat-icon class="itemsIcon">work</mat-icon>
+                <a class="itemsTitle">Objetivos Individuales</a>
+            </div>
+
+            <div class="items" (click)="routers('/objetivos_individuales')" >
+                <mat-icon class="itemsIcon">work</mat-icon>
+                <a class="itemsTitle">Mis Objetivos Individuales</a>
+            </div>
+           
         </div>
         <div class="center ">
             <img src="assets/img/logoBlanco.png" class="logotype">

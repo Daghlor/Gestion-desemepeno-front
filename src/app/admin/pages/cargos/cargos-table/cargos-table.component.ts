@@ -2,6 +2,7 @@ import { EmploymentsService } from '../../../services/employments.service';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { SnackbarService } from 'src/app/config/snackbar.service';
 
 @Component({
   selector: 'app-cargos-table',
@@ -30,6 +31,7 @@ export class CargosTableComponent implements OnInit {
   constructor(
     private CargosApi: EmploymentsService,
     private router: Router,
+    private snack: SnackbarService,
   ) { }
 
   ngOnInit(): void {
@@ -55,6 +57,10 @@ export class CargosTableComponent implements OnInit {
       this.dataSource = new MatTableDataSource(res.data.employments);
       this.length = res.data.total;
     })
+  }
+
+  redirectForm(url: string){
+    this.snack.redirect(url);
   }
 
   changeSort(item:any){

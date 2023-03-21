@@ -1,0 +1,51 @@
+<div class="buttonsForms right">
+    <a mat-raised-button class="buttons" (click)="redirectForm('admin/objetivos_estrategicos/form')">
+      <mat-icon  style="margin-right: 10px;">add</mat-icon>Agregar Objetivo
+    </a>
+</div>
+<br>
+
+<mat-accordion>
+    <mat-expansion-panel *ngFor="let item of listObjetives; let i = index">
+      <mat-expansion-panel-header style="display: flex;">
+        <mat-panel-title> {{item.title}} </mat-panel-title>
+        <mat-panel-description class="right">
+          <mat-icon style="color: #ff0000" (click)="delete(i)">delete</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-grid-list cols="3" rowHeight="80px">
+        <mat-grid-tile [colspan]="1">
+            <mat-form-field appearance="outline">
+              <mat-label>Titulo</mat-label>
+              <input matInput [(ngModel)]="item.title" autocomplete="off" type="text" readonly>
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1">
+            <mat-form-field appearance="outline">
+              <mat-label>Empresa</mat-label>
+              <input matInput [(ngModel)]="item.company" autocomplete="off" type="text" readonly>
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1">
+            <mat-form-field appearance="outline">
+              <mat-label>Area</mat-label>
+              <input matInput [(ngModel)]="item.area" autocomplete="off" type="text" readonly>
+            </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="2" rowHeight="150px">
+        <mat-grid-tile [colspan]="1">
+          <mat-form-field appearance="outline">
+            <mat-label>Misión</mat-label>
+            <textarea matInput [(ngModel)]="item.mission" name="mensaje" cols="10" rows="5" readonly></textarea>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1">
+          <mat-form-field appearance="outline">
+            <mat-label>Visión</mat-label>
+            <textarea matInput [(ngModel)]="item.vision" name="mensaje" cols="10" rows="5" readonly></textarea>
+          </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-expansion-panel>
+  </mat-accordion>

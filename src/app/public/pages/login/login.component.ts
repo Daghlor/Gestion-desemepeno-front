@@ -63,6 +63,7 @@ iconPass: string = 'visibility';
         await this.Local.createDataLocal('info_company', JSON.stringify(res.data.company));
         await this.Local.createDataLocal('info_roles', JSON.stringify(res.data.roles));
         await this.Local.createDataLocal('token', res.token);
+        await this.Local.createDataLocal('points', JSON.stringify(res.data.user.points));
         this.snack.viewsnack(res.msg, 'Success');
 
         if(res.data.user.verify == 0){

@@ -1,0 +1,48 @@
+
+<br><br>
+<mat-grid-list cols="3" rowHeight="80px">
+    <mat-grid-tile [colspan]="1">
+        <mat-form-field appearance="outline">
+          <mat-label>Titulo</mat-label>
+          <input matInput [(ngModel)]="title" autocomplete="off" type="text">
+        </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1">
+        <mat-form-field appearance="outline">
+          <mat-label>Empresa</mat-label>
+          <mat-select [(ngModel)]="company_id" [value]="company_id" (selectionChange)="changeCompany()">
+            <mat-option *ngFor="let options of listCompany" [value]="options.id">{{options.businessName}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1">
+        <mat-form-field appearance="outline">
+          <mat-label>Area</mat-label>
+          <mat-select [(ngModel)]="areas_id" [value]="areas_id">
+            <mat-option *ngFor="let options of listAreas" [value]="options.id">{{options.description}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+    </mat-grid-tile>
+</mat-grid-list>
+<mat-grid-list cols="2" rowHeight="150px">
+    <mat-grid-tile [colspan]="1">
+      <mat-form-field appearance="outline">
+        <mat-label>Misión</mat-label>
+        <textarea matInput [(ngModel)]="mission" name="mensaje" cols="10" rows="5"></textarea>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1">
+      <mat-form-field appearance="outline">
+        <mat-label>Visión</mat-label>
+        <textarea matInput [(ngModel)]="vision" name="mensaje" cols="10" rows="5"></textarea>
+      </mat-form-field>
+    </mat-grid-tile>
+</mat-grid-list>
+
+
+<div class="right">
+  <button  mat-raised-button class="buttons" (click)="saveData()">
+      <span class="material-icons" style="margin-right: 10px;" >save</span> Crear
+  </button>
+</div><br><br>
+
