@@ -49,12 +49,12 @@ export class CargosTableComponent implements OnInit {
       }
     }
 
-    this.CargosApi.FindAll(paginate).then((res:any)=>{
-      for (let i = 0; i < res.data.employments.lenght; i ++){
-        res.data.employments[i].icons = ['delete', 'edit']
+    this.CargosApi.FindAll(paginate).then((res:any) => {
+      for (let i = 0; i < res.data.employments.length; i++){
+        res.data.employments[i].icons = ['delete','edit']
       }
 
-      this.dataSource = new MatTableDataSource(res.data.employments);
+      this.dataSource= new MatTableDataSource(res.data.employments);
       this.length = res.data.total;
     })
   }
