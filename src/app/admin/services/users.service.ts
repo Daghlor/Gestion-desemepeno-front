@@ -22,7 +22,7 @@ export class UsersService {
       throw err.response
     })
   }
-  
+
   FindAll(body: any){
     this.token = this.Local.findDataLocal('token');
     return api.post(`/users/getAll`, body, {
@@ -58,7 +58,7 @@ export class UsersService {
 
   Delete(uuid: string){
     this.token = this.Local.findDataLocal('token');
-    return api.delete(`/users/${uuid}`, {
+    return api.delete(`/users/delete/${uuid}`, {
       headers: {Authorization: "Bearer " + this.token}
     })
     .then((res) => res.data)

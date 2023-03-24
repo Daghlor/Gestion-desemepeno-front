@@ -38,6 +38,10 @@ export class CargosTableComponent implements OnInit {
     this.getData();
   }
 
+  redirectForm(url: string){
+    this.snack.redirect(url);
+  }
+
   getData(){
     const paginate = {
       paginate: this.pageSize,
@@ -57,10 +61,6 @@ export class CargosTableComponent implements OnInit {
       this.dataSource= new MatTableDataSource(res.data.employments);
       this.length = res.data.total;
     })
-  }
-
-  redirectForm(url: string){
-    this.snack.redirect(url);
   }
 
   changeSort(item:any){

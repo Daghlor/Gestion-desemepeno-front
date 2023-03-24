@@ -1,4 +1,3 @@
-import { CargosTableComponent } from './pages/cargos/cargos-table/cargos-table.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import * as Pages from "./pages";

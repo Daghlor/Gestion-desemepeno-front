@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { SnackbarService } from 'src/app/config/snackbar.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmModalComponent } from 'src/app/admin/components/confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-areas-table',
@@ -26,12 +28,19 @@ export class AreasTableComponent implements OnInit {
     sort: true,
     type: 'text',
     cell: (element: any) => `${element.description}`,
-  }]
+  },{
+    columnDef: 'icons',
+    header: '',
+    sort: true,
+    type: 'icons',
+    cell: (element: any) => `${element.icons}`,
+  }];
 
   constructor(
     private AreasApi: AreasService,
     private router: Router,
     private snack: SnackbarService,
+    private dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -42,7 +51,7 @@ export class AreasTableComponent implements OnInit {
     this.snack.redirect(url);
   }
 
-  
+
   getData(){
     const paginate = {
       paginate: this.pageSize,
@@ -79,6 +88,22 @@ export class AreasTableComponent implements OnInit {
   iconsFunction(event: any){
     if(event.icon == 'edit'){
       this.router.navigate(['admin/areas/edit/' + event.data.unique_id]);
+    }
+    else if(event.icon == 'delete'){
+      const dialogRef = this.dialog.open(ConfirmModalComponent, {
+
+        width: '250px',
+        data: { message: '¿Estás seguro de que quieres eliminar esta área?'}
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        if (result){
+          this.AreasApi.Delete(event.data.unique_id).then((res:any)=>{
+            this.snack.viewsnack('La área se elimino correctamente', 'Success');
+            this.getData();
+          })
+        }
+      });
     }
   }
 

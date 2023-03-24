@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/app/admin/services/users.service';
 import { SnackbarService } from 'src/app/config/snackbar.service';
+import { ConfirmModalComponent } from 'src/app/admin/components/confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-users-table',
@@ -79,6 +81,7 @@ export class UsersTableComponent implements OnInit {
     private userApi: UsersService,
     private router: Router,
     private snack: SnackbarService,
+    private dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -109,7 +112,7 @@ export class UsersTableComponent implements OnInit {
 
       this.dataSource = new MatTableDataSource(res.data.users);
       this.length = res.data.total;
-      
+
     })
 
   }
@@ -135,6 +138,20 @@ export class UsersTableComponent implements OnInit {
       this.router.navigate(['admin/usuarios/form/' + event.data.unique_id]);
     }
     else if(event.icon == 'delete'){
+      const dialogRef = this.dialog.open(ConfirmModalComponent, {
+
+        width: '250px',
+        data: { message: '¿Estás seguro de que quieres eliminar este usuario?'}
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        if (result){
+          this.userApi.Delete(event.data.unique_id).then((res:any)=>{
+            this.snack.viewsnack('El usuario se elimino correctamente', 'Success');
+            this.getData();
+          })
+        }
+      });
 
     }
   }

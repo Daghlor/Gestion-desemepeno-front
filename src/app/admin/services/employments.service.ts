@@ -1,4 +1,4 @@
-import { LocalService } from './../../config/local.service';
+import { LocalService } from 'src/app/config/local.service';
 import { Injectable } from '@angular/core';
 import { api } from 'src/app/config/axios.config';
 
@@ -52,6 +52,17 @@ export class EmploymentsService {
     })
     .then((res) => res.data)
     .catch((err) => {
+      throw err.response
+    })
+  }
+
+  Delete(uuid: string){
+    this.token = this.Local.findDataLocal('token');
+    return api.delete(`/employment/delete/${uuid}`,{
+      headers:{Authorization: "Bearer " + this.token}
+    })
+    .then((res) => res.data)
+    .catch((err)=>{
       throw err.response
     })
   }

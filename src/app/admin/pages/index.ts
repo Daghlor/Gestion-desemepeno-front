@@ -63,8 +63,8 @@ export * from "./users/verify/verify.component";
 export * from "src/app/components/my-table/my-table.component";
 export * from "./areas/areas-form/areas-form.component";
 export * from "./areas/areas-table/areas-table.component";
-export * from "src/app/admin/pages/cargos/cargos-form/cargos-form.component";
-export * from "src/app/admin/pages/cargos/cargos-table/cargos-table.component"
+export * from "./cargos/cargos-form/cargos-form.component";
+export * from "./cargos/cargos-table/cargos-table.component"
 export * from '../components/confirm-modal/confirm-modal.component';
 export * from './StrategicObjectives/strategic-objectives-list/strategic-objectives-list.component';
 export * from './StrategicObjectives/strategic-objectives-form/strategic-objectives-form.component';
