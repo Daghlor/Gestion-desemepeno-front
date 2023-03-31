@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { libraries } from 'src/assets/library';
+import { NgxPermissionsModule } from 'ngx-permissions';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { libraries } from 'src/assets/library';
     ReactiveFormsModule,
     HttpClientModule,
     CommonModule,
+    NgxPermissionsModule.forRoot(),
     libraries,
   ],
   providers: [],

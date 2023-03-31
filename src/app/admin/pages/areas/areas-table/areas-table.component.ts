@@ -29,6 +29,13 @@ export class AreasTableComponent implements OnInit {
     type: 'text',
     cell: (element: any) => `${element.description}`,
   },{
+    columnDef: 'businessName',
+    header: 'Empresa',
+    width: '10%',
+    sort: true,
+    type: 'text',
+    cell: (element: any) => `${element.company}`,
+  },{
     columnDef: 'icons',
     header: '',
     sort: true,
@@ -60,6 +67,7 @@ export class AreasTableComponent implements OnInit {
       direction: this.orderType || 'asc',
       search: {
         description: "",
+        businessName: "",
       }
     }
 
@@ -99,14 +107,11 @@ export class AreasTableComponent implements OnInit {
       dialogRef.afterClosed().subscribe(result => {
         if (result){
           this.AreasApi.Delete(event.data.unique_id).then((res:any)=>{
-            this.snack.viewsnack('La área se elimino correctamente', 'Success');
+            this.snack.viewsnack('El área se elimino correctamente', 'Success');
             this.getData();
           })
         }
       });
     }
   }
-
-
-
 }

@@ -26,10 +26,10 @@ export class EmploymentsService {
   FindAll(body: any){
     this.token = this.Local.findDataLocal('token');
     return api.post(`/employment/getAll`, body, {
-      headers: {Authorization: "Bearer " + this.token}
+      headers:{Authorization: 'Bearer' + this.token}
     })
-    .then((res) => res.data)
-    .catch((err) => {
+    .then((res)=> res.data)
+    .catch((err)=>{
       throw err.response
     })
   }

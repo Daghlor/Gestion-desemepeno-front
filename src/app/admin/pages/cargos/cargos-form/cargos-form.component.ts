@@ -125,7 +125,7 @@ export class CargosFormComponent implements OnInit {
 
     this.CargosApi.Create(body).then((res:any)=>{
       this.snack.viewsnack('Se guardo el cargo correctamente', 'Succes');
-      this.router.navigateByUrl("/cargos")
+      this.router.navigateByUrl("admin/cargos")
     }).catch((err)=>{
       console.log(err);
     })

@@ -42,23 +42,23 @@ export class CargosTableComponent implements OnInit {
     this.snack.redirect(url);
   }
 
-  getData(){
+  getData(): void{
     const paginate = {
       paginate: this.pageSize,
       page: this.actualPage,
       column: this.orderColumn || 'description',
       direction: this.orderType || 'asc',
-      search: {
+      search:{
         description: "",
       }
     }
 
-    this.CargosApi.FindAll(paginate).then((res:any) => {
-      for (let i = 0; i < res.data.employments.length; i++){
+    this.CargosApi.FindAll(paginate).then((res:any)=>{
+      for(let i = 0; i < res.data.employments.length; i++){
         res.data.employments[i].icons = ['delete','edit']
       }
 
-      this.dataSource= new MatTableDataSource(res.data.employments);
+      this.dataSource = new MatTableDataSource(res.data.employments);
       this.length = res.data.total;
     })
   }

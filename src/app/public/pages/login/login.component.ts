@@ -66,6 +66,8 @@ iconPass: string = 'visibility';
         await this.Local.createDataLocal('points', JSON.stringify(res.data.user.points));
         this.snack.viewsnack(res.msg, 'Success');
 
+        //
+
         if(res.data.user.verify == 0){
           await this.Local.createDataLocal('verify', 'false');
           this.router.navigateByUrl('/admin/verificacion');
@@ -73,7 +75,7 @@ iconPass: string = 'visibility';
           await this.Local.createDataLocal('verify', 'true');
           this.router.navigateByUrl('/admin');
         }
-      }
+      } 
       else{
         return this.snack.viewsnack(res.msg,'Error');
       }

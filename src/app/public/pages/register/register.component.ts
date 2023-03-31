@@ -126,7 +126,7 @@ export class RegisterComponent implements OnInit {
     this.disableButton = true;
     this.snack.viewsnack(this.messageTxt, 'Loading', 5000);
     let code = String(Math.floor(Math.random() * (999999 - 111111)) + 111111);
-    this.router.navigateByUrl('login');
+    this.router.navigateByUrl('public/login');
 
 
     this.registerAPI.Create({
@@ -208,4 +208,5 @@ export class RegisterComponent implements OnInit {
   }
   }
 
+  
 }

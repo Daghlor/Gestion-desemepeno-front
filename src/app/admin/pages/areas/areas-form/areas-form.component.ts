@@ -132,7 +132,7 @@ export class AreasFormComponent implements OnInit {
 
   this.AreasApi.Create(body).then((res:any) =>{
     this.snack.viewsnack('Se guardo el area correctamente','Succes');
-    this.router.navigateByUrl("/areas")
+    this.router.navigateByUrl("admin/areas")
   }).catch((err)=>{
     console.log(err);
   })

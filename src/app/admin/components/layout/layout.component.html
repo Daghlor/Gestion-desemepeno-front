@@ -4,7 +4,7 @@
 
         <div class="title">
             <a class="titleData" (click)="redirectForm('admin/'+title)" >
-                {{validateTitle.length == 1 ? title : validateTitle[0] + ' ' + validateTitle[1]  }}   
+                {{validateTitle.length == 1 ? title : validateTitle[0] + ' ' + validateTitle[1]  }}
             </a>
         </div>
         <hr class="line">
@@ -59,6 +59,12 @@
                     <a class="itemsTitle">Áreas</a>
                 </div>
             </div>
+            <div class="items" (click)="openOptions(4)" [ngStyle]="{'background-color': option == 4 ? '#700000' : '#c70101' }">
+              <mat-icon class="itemsIcon">assignment</mat-icon>
+              <a class="itemsTitle">Metas</a>
+              <mat-icon class="itemsIcon"> {{option == 4 ? 'expand_less' : 'expand_more'}} </mat-icon>
+          </div>
+          <div class="subMenu" *ngIf="option == 4">
             <div class="items" (click)="routers('/objetivos_estrategicos/all')" >
                 <mat-icon class="itemsIcon">analytics</mat-icon>
                 <a class="itemsTitle">Objetivos Estratégicos</a>
@@ -78,7 +84,8 @@
                 <mat-icon class="itemsIcon">work</mat-icon>
                 <a class="itemsTitle">Mis Objetivos Individuales</a>
             </div>
-           
+          </div>
+
         </div>
         <div class="center ">
             <img src="assets/img/logoBlanco.png" class="logotype">
