@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LocalService } from 'src/app/config/local.service';
 import {MatAccordion} from '@angular/material/expansion';
 import * as moment from 'moment';
+import { NgxPermissionsService } from 'ngx-permissions';
 @Component({
   selector: 'app-companies-form',
   templateUrl: './companies-form.component.html',
@@ -56,12 +57,14 @@ optionsTabs: any = [{
     private snack: SnackbarService,
     private router: Router,
     private activeRouter: ActivatedRoute,
-    private Local: LocalService
+    private Local: LocalService,
+    private permissionsService: NgxPermissionsService
   ) { }
 
   ngOnInit(): void {
     this.params = this.activeRouter.snapshot.params;
     this.unique_id = this.params.uuid;
+    this.permissionsService.loadPermissions(['Admin']);
 
     if(this.unique_id){
       this.titleButton = 'Actualizar';

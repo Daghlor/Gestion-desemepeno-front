@@ -130,11 +130,21 @@ export class AreasFormComponent implements OnInit {
     company_id: this.company_id
   }
 
+if(!this.unique_id){
   this.AreasApi.Create(body).then((res:any) =>{
-    this.snack.viewsnack('Se guardo el area correctamente','Succes');
+    this.snack.viewsnack('Se guardo el area correctamente','Success');
     this.router.navigateByUrl("admin/areas")
   }).catch((err)=>{
     console.log(err);
   })
+ }else{
+  this.AreasApi.Update(this.unique_id,{
+    description: this.description,
+    company_id: this.company_id
+  }).then((res:any)=>{
+    this.snack.viewsnack('Se actualizo el area correctamente', 'Success');
+    this.router.navigateByUrl("admin/areas")
+  })
  }
+}
 }

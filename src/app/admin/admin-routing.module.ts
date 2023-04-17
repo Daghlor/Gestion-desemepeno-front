@@ -44,7 +44,7 @@ const routes: Routes = [
         component: Pages.CargosFormComponent,
       },
       {
-        path: "cargos/form/:uuid",
+        path: "cargos/edit/:uuid",
         component: Pages.CargosFormComponent,
       },
       {

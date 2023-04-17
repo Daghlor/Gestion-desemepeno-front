@@ -123,12 +123,21 @@ export class CargosFormComponent implements OnInit {
       company_id: this.company_id
     }
 
+    if(!this.unique_id){
     this.CargosApi.Create(body).then((res:any)=>{
-      this.snack.viewsnack('Se guardo el cargo correctamente', 'Succes');
+      this.snack.viewsnack('Se guardo el cargo correctamente', 'Success');
       this.router.navigateByUrl("admin/cargos")
     }).catch((err)=>{
       console.log(err);
     })
+    }else{
+      this.CargosApi.Update(this.unique_id,{
+        description: this.description,
+        company_id: this.company_id
+      }).then((res:any)=>{
+        this.snack.viewsnack('Se actualizo el cargo correctamente','Success');
+        this.router.navigateByUrl("admin/cargos")
+      })
+    }
   }
-
 }

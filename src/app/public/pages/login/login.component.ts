@@ -75,7 +75,7 @@ iconPass: string = 'visibility';
           await this.Local.createDataLocal('verify', 'true');
           this.router.navigateByUrl('/admin');
         }
-      } 
+      }
       else{
         return this.snack.viewsnack(res.msg,'Error');
       }

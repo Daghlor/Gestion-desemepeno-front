@@ -1,8 +1,10 @@
+import { MatDialog } from '@angular/material/dialog';
 import { EmploymentsService } from '../../../services/employments.service';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { SnackbarService } from 'src/app/config/snackbar.service';
+import { ConfirmModalComponent } from '../..';
 
 @Component({
   selector: 'app-cargos-table',
@@ -26,12 +28,27 @@ export class CargosTableComponent implements OnInit {
     sort: true,
     type: 'text',
     cell: (element: any) => `${element.description}`,
-  }]
+  },{
+    columnDef: 'businessName',
+    header: 'Empresa',
+    width: '10%',
+    sort: true,
+    type: 'text',
+    cell: (element: any) => `${element.company_name}`,
+  },{
+    columnDef: 'icons',
+    header:'',
+    sort: true,
+    type: 'icons',
+    cell:(element:any) => `${element.icons}`
+  }
+];
 
   constructor(
     private CargosApi: EmploymentsService,
     private router: Router,
     private snack: SnackbarService,
+    private dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -50,6 +67,7 @@ export class CargosTableComponent implements OnInit {
       direction: this.orderType || 'asc',
       search:{
         description: "",
+        businessName: "",
       }
     }
 
@@ -77,9 +95,22 @@ export class CargosTableComponent implements OnInit {
 
   iconsFunction(event:any){
     if(event.icon == 'edit'){
-      this.router.navigate(['admin/cargos/edit' + event.data.unique_id]);
+      this.router.navigate(['admin/cargos/edit/' + event.data.unique_id]);
+    }
+    else if(event.icon == 'delete'){
+      const dialogRef = this.dialog.open(ConfirmModalComponent, {
+        width: '250px',
+        data:{message:'¿Estás seguro de que quieres eliminar este cargo?'}
+      });
+
+      dialogRef.afterClosed().subscribe(result =>{
+        if(result){
+          this.CargosApi.Delete(event.data.unique_id).then((res:any)=>{
+            this.snack.viewsnack('El cargo se elimino correctamente','Success');
+            this.getData();
+          })
+        }
+      });
     }
   }
-
-
 }

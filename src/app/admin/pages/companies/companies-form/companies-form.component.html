@@ -3,8 +3,10 @@
     [intialTabCode]="initialTab"
     (getTabActive)="currentTab = $event.code"
 ></app-my-tabs><br>
+<div *ngxPermissionsOnly="'Admin'"></div>
 
-<div *ngIf="currentTab == 1">
+
+<div *ngIf="currentTab == 1" >
     <div class="center">
         <img [src]="logo" for="producto_img" class="aggImg" >
         <label for="producto_img" class="selectImg" ><mat-icon class="icons">add_a_photo</mat-icon></label>
