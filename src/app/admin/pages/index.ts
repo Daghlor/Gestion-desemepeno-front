@@ -20,6 +20,8 @@ import { StrategicObjectivesAllComponent } from './StrategicObjectives/strategic
 import { IndividualesObjectivesListComponent } from './IndividualesObjectives/individuales-objectives-list/individuales-objectives-list.component';
 import { IndividualesObjectivesAllComponent } from './IndividualesObjectives/individuales-objectives-all/individuales-objectives-all.component';
 import { IndividualesObjectivesFormComponent } from './IndividualesObjectives/individuales-objectives-form/individuales-objectives-form.component';
+import { TrackingTableComponent } from './tracking/tracking-table/tracking-table.component';
+import { TrackingFormComponent } from './tracking/tracking-form/tracking-form.component';
 
 export const AdminComponents: any[] = [
     LayoutComponent,
@@ -48,6 +50,8 @@ export const AdminPages: any[] = [
     IndividualesObjectivesListComponent,
     IndividualesObjectivesAllComponent,
     IndividualesObjectivesFormComponent,
+    TrackingTableComponent,
+    TrackingFormComponent,
 ];
 
 export * from "../components/layout/layout.component";
@@ -72,3 +76,5 @@ export * from './StrategicObjectives/strategic-objectives-all/strategic-objectiv
 export * from './IndividualesObjectives/individuales-objectives-list/individuales-objectives-list.component';
 export * from './IndividualesObjectives/individuales-objectives-all/individuales-objectives-all.component';
 export * from './IndividualesObjectives/individuales-objectives-form/individuales-objectives-form.component';
+export * from './tracking/tracking-table/tracking-table.component';
+export * from './tracking/tracking-form/tracking-form.component';

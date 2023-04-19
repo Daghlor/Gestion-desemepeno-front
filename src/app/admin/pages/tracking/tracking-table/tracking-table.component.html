@@ -1,0 +1,12 @@
+<app-my-table
+  [loading]="loading"
+  [dataSource]="dataSource"
+  [Columns]="columns"
+  [length]="length"
+  [pageSize]="pageSize"
+  [PageSizeOptions]="pageSizeOptions"
+  [paginator]="paginator"
+  (eventIcons)="iconsFunction($event)"
+  (changeSort)="changeSort($event)"
+  (changePaginator)="changePaginator($event)"
+></app-my-table>

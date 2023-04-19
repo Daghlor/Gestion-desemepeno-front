@@ -93,6 +93,14 @@ const routes: Routes = [
         component: Pages.IndividualesObjectivesListComponent,
       },
       {
+        path: "seguimiento",
+        component: Pages.TrackingTableComponent,
+      },
+      {
+        path: "seguimiento/form/:uuid",
+        component: Pages.TrackingFormComponent,
+      },
+      {
         path: "verificacion",
         component: Pages.VerifyComponent,
       },

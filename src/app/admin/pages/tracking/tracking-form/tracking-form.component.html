@@ -1,0 +1,47 @@
+<mat-accordion>
+    <mat-expansion-panel *ngFor="let item of listObjetives; let i = index">
+        <mat-expansion-panel-header>
+            <mat-panel-title> {{item.weight}} - {{item.title}}  </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-grid-list cols="3" rowHeight="80px">
+            <mat-grid-tile [colspan]="1">
+                <mat-form-field appearance="outline">
+                  <mat-label>Titulo</mat-label>
+                  <input matInput [(ngModel)]="item.title" autocomplete="off" type="text" readonly>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1">
+                <mat-form-field appearance="outline">
+                  <mat-label>Objetivo Estratégico</mat-label>
+                  <input matInput [(ngModel)]="item.title_strategics" autocomplete="off" type="text" readonly>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1">
+                <mat-form-field appearance="outline">
+                  <mat-label>Puntaje</mat-label>
+                  <input matInput [(ngModel)]="item.weight" autocomplete="off" type="text" readonly>
+                </mat-form-field>
+            </mat-grid-tile>
+        </mat-grid-list>
+        <mat-grid-list cols="1" rowHeight="200px">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="2">Historial de Seguimiento</th>
+                    </tr>
+                    <tr>
+                        <th>Descripción</th>
+                        <th>Fecha</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let tracing of item.tracing">
+                        <td>{{tracing.comment}}</td>
+                        <td style="width: 150px;">{{tracing.created_at}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </mat-grid-list>
+
+    </mat-expansion-panel>
+</mat-accordion>
