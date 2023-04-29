@@ -10,7 +10,8 @@ export class AuthService {
 
   constructor(
     private Local: LocalService
-  ) {}
+  ) {
+  }
 
   FindData(){
     this.token = this.Local.findDataLocal('token');

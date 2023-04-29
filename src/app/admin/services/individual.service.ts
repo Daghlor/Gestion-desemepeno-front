@@ -7,11 +7,9 @@ import { LocalService } from 'src/app/config/local.service';
 })
 export class IndividualService {
   token?: string;
-
   constructor(
     private Local: LocalService
   ) {}
-
   Create(body: any){
     this.token = this.Local.findDataLocal('token');
     return api.post(`/individuals/create`, body, {
@@ -22,7 +20,6 @@ export class IndividualService {
       throw err.response
     })
   }
-
   FindAll(body: any){
     this.token = this.Local.findDataLocal('token');
     return api.post(`/individuals/getAll`, body, {
@@ -33,7 +30,6 @@ export class IndividualService {
       throw err.response
     })
   }
-
   FindOne(uuid: string){
     this.token = this.Local.findDataLocal('token');
     return api.get(`/individuals/getOne/${uuid}`, {
@@ -44,5 +40,4 @@ export class IndividualService {
       throw err.response
     })
   }
-
 }

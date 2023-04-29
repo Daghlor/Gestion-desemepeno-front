@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import * as Pages from "./pages";
+import { AuthenticateGuard } from './components/guards/authenticate.guard';
+import { AuthenticateVerifyGuard } from './components/guards/authenticate-verify.guard';
 
 const routes: Routes = [
   {
@@ -10,6 +12,7 @@ const routes: Routes = [
       {
         path: "",
         component: Pages.DashboardComponent,
+        canActivate: [AuthenticateGuard]
       },
       {
         path: "empresas",
@@ -75,7 +78,6 @@ const routes: Routes = [
         path: "objetivos_estrategicos",
         component: Pages.StrategicObjectivesListComponent,
       },
-
       {
         path: "objetivos_individuales/all",
         component: Pages.IndividualesObjectivesAllComponent,
@@ -103,6 +105,7 @@ const routes: Routes = [
       {
         path: "verificacion",
         component: Pages.VerifyComponent,
+        canActivate: [AuthenticateVerifyGuard]
       },
     ]
   },

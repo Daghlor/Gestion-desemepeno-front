@@ -34,7 +34,7 @@ export class LayoutComponent implements OnInit {
       this.title = !this.router.url.split('/')[2] ? '¡Bienvenido!' : this.router.url.split('/')[2];
       this.validateTitle = this.title.split('_');
     }, 500);
-  } 
+  }
 
   routers(url: string){
     this.option = 0;
@@ -52,11 +52,16 @@ export class LayoutComponent implements OnInit {
       this.option = n;
     }
 
-    clearTimeout(this.closeTimeOptions); 
+    clearTimeout(this.closeTimeOptions);
     this.closeTimeOptions = setTimeout(() => {
       this.option = 0;
     }, 5000);
-  
+
+  }
+
+  async logout(){
+    await localStorage.clear();
+    await this.router.navigateByUrl('/');
   }
 
 }

@@ -97,20 +97,7 @@ export class CargosTableComponent implements OnInit {
     if(event.icon == 'edit'){
       this.router.navigate(['admin/cargos/edit/' + event.data.unique_id]);
     }
-    else if(event.icon == 'delete'){
-      const dialogRef = this.dialog.open(ConfirmModalComponent, {
-        width: '250px',
-        data:{message:'¿Estás seguro de que quieres eliminar este cargo?'}
-      });
-
-      dialogRef.afterClosed().subscribe(result =>{
-        if(result){
-          this.CargosApi.Delete(event.data.unique_id).then((res:any)=>{
-            this.snack.viewsnack('El cargo se elimino correctamente','Success');
-            this.getData();
-          })
-        }
-      });
-    }
   }
 }
+
+

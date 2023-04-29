@@ -1,6 +1,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <div class="nav">
+
     <div class="navbarLeft">
+
 
         <div class="title">
             <a class="titleData" (click)="redirectForm('admin/'+title)" >
@@ -22,7 +24,6 @@
                     <a class="itemsTitle">Permisos</a>
                 </div>
             </div>
-
             <div class="items" (click)="openOptions(2)" [ngStyle]="{'background-color': option == 2 ? '#700000' : '#c70101' }">
                 <mat-icon class="itemsIcon">manage_accounts</mat-icon>
                 <a class="itemsTitle">Administración</a>
@@ -37,9 +38,7 @@
                     <mat-icon class="subMenuIcon">public</mat-icon>
                     <a class="itemsTitle">Roles</a>
                 </div>
-
             </div>
-
             <div class="items" (click)="openOptions(3)" [ngStyle]="{'background-color': option == 3 ? '#700000' : '#c70101' }">
                 <mat-icon class="itemsIcon">corporate_fare</mat-icon>
                 <a class="itemsTitle">Empresas</a>
@@ -82,30 +81,26 @@
                 <a class="itemsTitle">Mis Objetivos Individuales</a>
             </div>
             <div class="items" (click)="routers('/seguimiento')" >
-                <mat-icon class="itemsIcon">work</mat-icon>
+                <mat-icon class="itemsIcon">vertical_split</mat-icon>
                 <a class="itemsTitle">Seguimientos</a>
             </div>
           </div>
-
         </div>
         <div class="center ">
             <img src="assets/img/logoBlanco.png" class="logotype">
         </div>
      </div>
-
      <div class="content">
         <div class="navbarUp right">
             <img [src]="photo" class="perfil right">
             <div class="nameProfile"> {{nameUser}} </div>
-            <mat-icon class="openOptionProfile" >arrow_drop_down</mat-icon>
+            <div (click)="logout()">
+            <mat-icon class="openOptionProfile">arrow_drop_down</mat-icon>
+            </div>
         </div>
-
         <hr class="lineContent" color="#ff5601">
-
         <div class="pages">
             <router-outlet ></router-outlet>
         </div>
     </div>
-
-
 </div>
