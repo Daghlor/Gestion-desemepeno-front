@@ -1,3 +1,36 @@
+<mat-grid-list cols="5" rowHeight="80px">
+    <mat-grid-tile [colspan]="1">
+        <mat-form-field appearance="outline">
+          <mat-label>Nombres</mat-label>
+          <input matInput [(ngModel)]="userData.name" autocomplete="off" type="text" readonly>
+        </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1">
+        <mat-form-field appearance="outline">
+          <mat-label>Apellidos</mat-label>
+          <input matInput [(ngModel)]="userData.lastName" autocomplete="off" type="text" readonly>
+        </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1">
+        <mat-form-field appearance="outline">
+          <mat-label>Indentificación</mat-label>
+          <input matInput [(ngModel)]="userData.identify" autocomplete="off" type="text" readonly>
+        </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1">
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput [(ngModel)]="userData.email" autocomplete="off" type="text" readonly>
+        </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1">
+        <mat-form-field appearance="outline">
+          <mat-label>Teléfono</mat-label>
+          <input matInput [(ngModel)]="userData.phone" autocomplete="off" type="text" readonly>
+        </mat-form-field>
+    </mat-grid-tile>
+</mat-grid-list>
+
 <mat-accordion>
     <mat-expansion-panel *ngFor="let item of listObjetives; let i = index">
         <mat-expansion-panel-header>
@@ -23,6 +56,11 @@
                 </mat-form-field>
             </mat-grid-tile>
         </mat-grid-list>
+        <div class="buttonsForms right">
+            <a mat-raised-button class="buttons" (click)="openModalTracing(item)">
+              <mat-icon  style="margin-right: 10px;">add</mat-icon>Agregar Seguimiento
+            </a>
+        </div><br>
         <mat-grid-list cols="1" rowHeight="200px">
             <table>
                 <thead>
@@ -36,7 +74,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let tracing of item.tracing">
-                        <td>{{tracing.comment}}</td>
+                        <td style="text-align: justify;">{{tracing.comment}}</td>
                         <td style="width: 150px;">{{tracing.created_at}}</td>
                     </tr>
                 </tbody>

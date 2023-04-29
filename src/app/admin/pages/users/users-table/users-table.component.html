@@ -1,4 +1,4 @@
-<div class="buttonsForms right">
+<div class="buttonsForms right" *ngIf="validatePermissions('create_users')">
     <a mat-raised-button class="buttons" (click)="redirectForm('admin/usuarios/form')">
       <mat-icon  style="margin-right: 10px;">add</mat-icon>Agregar Usuario
     </a>

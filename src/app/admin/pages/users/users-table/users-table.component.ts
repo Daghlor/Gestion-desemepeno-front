@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { UsersService } from 'src/app/admin/services/users.service';
 import { SnackbarService } from 'src/app/config/snackbar.service';
 import { ConfirmModalComponent } from 'src/app/admin/components/confirm-modal/confirm-modal.component';
+import { LocalService } from 'src/app/config/local.service';
 
 @Component({
   selector: 'app-users-table',
@@ -82,21 +83,26 @@ export class UsersTableComponent implements OnInit {
     private router: Router,
     private snack: SnackbarService,
     private dialog: MatDialog,
+    private Local: LocalService,
   ) { }
 
   ngOnInit(): void {
     this.getData();
   }
 
+  validatePermissions(code: string): Boolean {
+    return this.Local.validatePermission(code) ? true : false;
+  }
+
   getData(){
     const paginate = {
       paginate: this.pageSize,
       page: this.actualPage,
-      column: this.orderColumn || 'businessName',
+      column: this.orderColumn || 'name',
       direction: this.orderType || 'asc',
       search: {
         nit: "",
-        businessName: "",
+        companie_id: this.validatePermissions('get_all_data') ? '' : JSON.parse(this.Local.findDataLocal('info_company')).id,
         phone: "",
         email: "",
         address: "",
@@ -107,7 +113,13 @@ export class UsersTableComponent implements OnInit {
 
     this.userApi.FindAll(paginate).then((res:any)=>{
       for (let i = 0; i < res.data.users.length; i++) {
-        res.data.users[i].icons = ['delete', 'edit']
+        res.data.users[i].icons = [];
+        if(this.validatePermissions('delete_users')){
+          res.data.users[i].icons.push('delete');
+        }
+        if(this.validatePermissions('update_users')){
+          res.data.users[i].icons.push('edit');
+        }
       }
 
       this.dataSource = new MatTableDataSource(res.data.users);

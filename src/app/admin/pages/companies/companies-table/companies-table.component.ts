@@ -6,6 +6,7 @@ import {MatDialog} from '@angular/material/dialog';
 import { ConfirmModalComponent } from 'src/app/admin/components/confirm-modal/confirm-modal.component';
 import { SnackbarService } from 'src/app/config/snackbar.service';
 import { identity } from 'rxjs';
+import { LocalService } from 'src/app/config/local.service';
 
 @Component({
   selector: 'app-companies-table',
@@ -78,11 +79,15 @@ export class CompaniesTableComponent implements OnInit {
     private router: Router,
     private dialog: MatDialog,
     private snack: SnackbarService,
+    private Local: LocalService,
   ) { }
 
   ngOnInit(): void {
     this.getData();
-    //this.dataSource = new MatTableDataSource([ {icons: ['delete', 'edit']} ])
+  }
+
+  validatePermissions(code: string): Boolean {
+    return this.Local.validatePermission(code) ? true : false;
   }
 
   getData(){

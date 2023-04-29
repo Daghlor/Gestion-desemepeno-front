@@ -16,6 +16,7 @@ export class LayoutComponent implements OnInit {
   option?: number;
   photo?: string;
   closeTimeOptions: any;
+  permission: any;
 
   constructor(
     private router: Router,
@@ -27,6 +28,14 @@ export class LayoutComponent implements OnInit {
     let userInfo = JSON.parse(this.Local.findDataLocal('info_user'));
     this.nameUser = userInfo.name +' '+ userInfo.lastName;
     this.photo = !userInfo.photo ? 'assets/img/usuarioPNG.png' : userInfo.photo;
+  }
+
+  validatePermissions(code: string): Boolean {
+    return this.Local.validatePermission(code) ? true : false;
+  }
+
+  validateArrayPermissions(array: any): Boolean {
+    return this.Local.validateArrayPermission(array) ? true : false;
   }
 
   ngAfterViewInit(): void {
@@ -60,7 +69,7 @@ export class LayoutComponent implements OnInit {
   }
 
   async logout(){
-    await localStorage.clear();
+    await this.Local.clearAllDataLocal();
     await this.router.navigateByUrl('/');
   }
 

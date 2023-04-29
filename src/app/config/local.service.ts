@@ -25,6 +25,32 @@ export class LocalService {
     localStorage.clear();
   }
 
+  public validatePermission(code: string): boolean {    
+    let value = false;
+    let permissions =  JSON.parse(this.findDataLocal('permissions'));
+    for (let i = 0; i < permissions.length; i++) {
+      if (permissions[i].code == code) {
+        value = true;
+        break;
+      }
+    }
+    return value;
+  }
+
+  public validateArrayPermission(codeArray: any): boolean {    
+    let value = false;
+    let permissions =  JSON.parse(this.findDataLocal('permissions'));
+    for (let i = 0; i < permissions.length; i++) {
+      for (let k = 0; k < codeArray.length; k++) {
+        if (permissions[i].code == codeArray[k]) {
+          value = true;
+          break;
+        }
+      }
+    }
+    return value;
+  }
+
 
   private encrypt(txt: string): string {
     return CryptoJS.AES.encrypt(txt, this.key).toString();

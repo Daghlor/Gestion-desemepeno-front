@@ -22,12 +22,14 @@ import { IndividualesObjectivesAllComponent } from './IndividualesObjectives/ind
 import { IndividualesObjectivesFormComponent } from './IndividualesObjectives/individuales-objectives-form/individuales-objectives-form.component';
 import { TrackingTableComponent } from './tracking/tracking-table/tracking-table.component';
 import { TrackingFormComponent } from './tracking/tracking-form/tracking-form.component';
+import { TracingsComponent } from '../components/tracings/tracings.component';
 
 export const AdminComponents: any[] = [
     LayoutComponent,
     MyTabsComponent,
     MyTableComponent,
     ConfirmModalComponent,
+    TracingsComponent,
 ];
 
 export const AdminPages: any[] = [
@@ -54,6 +56,7 @@ export const AdminPages: any[] = [
     TrackingFormComponent,
 ];
 
+export * from '../components/tracings/tracings.component';
 export * from "../components/layout/layout.component";
 export * from "./crear-pdd/crear-pdd.component";
 export * from "./dashboard/dashboard.component";
