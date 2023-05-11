@@ -33,13 +33,13 @@ export class TrackingFormComponent implements OnInit {
 
   findData(){
     this.listObjetives = [];
-    this.trackingAPI.FindOne(this.unique_id || '').then((res:any)=>{    
+    this.trackingAPI.FindOne(this.unique_id || '').then((res:any)=>{
       for (let i = 0; i < res.data.length; i++) {
         for (let o = 0; o < res.data[i].tracing.length; o++) {
           res.data[i].tracing[o].created_at = moment(res.data[i].tracing[o].created_at).format('YYYY/MM/DD HH:mm:ss');
         }
       }
-        
+
       this.userData = res.user;
       this.listObjetives = res.data;
     });

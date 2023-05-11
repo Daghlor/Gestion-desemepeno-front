@@ -119,20 +119,8 @@
       <mat-grid-list [cols]="item.sync ? 5 : 4" rowHeight="80px">
         <mat-grid-tile [colspan]="1">
           <mat-form-field appearance="outline">
-            <mat-label>Título</mat-label>
+            <mat-label>Objetivo Estrategico</mat-label>
             <input matInput [(ngModel)]="item.title" autocomplete="off" type="text" [readonly]="item.sync" (input)="validateInput(item.title, 1, i)">
-          </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile [colspan]="1">
-          <mat-form-field appearance="outline">
-            <mat-label>Usuario</mat-label>
-            <input matInput [(ngModel)]="item.nameUser" autocomplete="off" type="text" readonly>
-          </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile [colspan]="1">
-          <mat-form-field appearance="outline">
-            <mat-label>Puntaje</mat-label>
-            <input matInput [(ngModel)]="item.totalWeight" autocomplete="off" type="number" readonly>
           </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="1">

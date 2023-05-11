@@ -1,4 +1,5 @@
-import {AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,14 +8,14 @@ import {AfterViewInit, Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit{
 
+  currentDate!: string;
 
   constructor(
-
   ) { }
 
-  ngOnInit(){
-
-
+  ngOnInit():void{
+    this.currentDate = moment().format('DD/MM/YYYY');
   }
+
 
 }

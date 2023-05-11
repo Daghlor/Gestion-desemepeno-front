@@ -92,10 +92,18 @@
      </div>
      <div class="content">
         <div class="navbarUp right">
+          <div class="homeOption" (click)="routers('')">
+            <mat-icon class="homeiconOption">home</mat-icon>
+            <a class="textOption">Inicio</a>
+          </div>
             <img [src]="photo" class="perfil right">
             <div class="nameProfile"> {{nameUser}} </div>
-            <div (click)="logout()">
-            <mat-icon class="openOptionProfile">arrow_drop_down</mat-icon>
+            <div class="dropdown">
+              <mat-icon class="dropbtn">arrow_drop_down</mat-icon>
+              <div class="dropdown-content">
+              <a (click)="routers('/usuarios/form/{{uuid}}')"><mat-icon>people</mat-icon>Mi perfil</a>
+              <a (click)="logout()"><mat-icon>arrow_back</mat-icon> Cerrar sesión</a>
+              </div>
             </div>
         </div>
         <hr class="lineContent" color="#ff5601">

@@ -67,7 +67,7 @@ export class UsersFormComponent implements OnInit {
 
   async changePhoto(photo: any){
     const file: File = photo.files[0];
-    
+
     if(!file){
       return  this.snack.viewsnack('No ha seleccionado ninguna imagen', 'Error')
     }
@@ -83,7 +83,7 @@ export class UsersFormComponent implements OnInit {
 
   deleteRoles(index: number){
     console.log(this.rolesView[index]);
-    
+
     if(this.rolesView[index].sync){
       this.rolesView[index].delete = true;
     }else{
@@ -118,7 +118,7 @@ export class UsersFormComponent implements OnInit {
   changeCompany(){
     this.listEmployments = [];
     this.employment_id = 0;
- 
+
     for (let i = 0; i < this.allEmployments.length; i++) {
       if(this.allEmployments[i].company_id == this.company_id){
         this.listEmployments.push(this.allEmployments[i]);
@@ -136,7 +136,7 @@ export class UsersFormComponent implements OnInit {
           this.listEmployments.push(this.allEmployments[i]);
         }
       }
-      
+
       this.photo = res.data.photo;
       this.changeLogo = false;
       this.name = res.data.name;
@@ -148,7 +148,7 @@ export class UsersFormComponent implements OnInit {
       this.city = res.data.city;
       this.dateBirth = new Date( moment( res.data.dateBirth, 'DD/MM/YYYY').format('MM/DD/YYYY') );
       this.employment_id = res.data.employment_id;
-      
+
       for (let i = 0; i < res.data.roles.length; i++) {
         res.data.roles[i].sync = true;
         res.data.roles[i].delete = false;
@@ -221,7 +221,7 @@ export class UsersFormComponent implements OnInit {
         }else{
           this.snack.viewsnack(res.data.msg, 'success');
           this.router.navigate(['admin/usuarios']);
-        } 
+        }
       })
     }else{
       this.userApi.Update(this.unique_id, {
@@ -243,10 +243,10 @@ export class UsersFormComponent implements OnInit {
         }else{
           this.snack.viewsnack(res.data, 'success');
           this.router.navigate(['admin/usuarios']);
-        } 
+        }
       })
     }
-    
+
 
 
   }

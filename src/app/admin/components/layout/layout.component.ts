@@ -2,6 +2,8 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalService } from 'src/app/config/local.service';
 import { SnackbarService } from 'src/app/config/snackbar.service';
+import { UsersService } from 'src/app/admin/services/users.service';
+import * as moment from 'moment';
 
 
 @Component({
@@ -18,10 +20,27 @@ export class LayoutComponent implements OnInit {
   closeTimeOptions: any;
   permission: any;
 
+  unique_id?: string;
+  listEmployments: any = [];
+  company_id?: number;
+  allEmployments: any = [];
+  changeLogo: boolean = false;
+  name?: string;
+  lastName?: string;
+  identify?: number;
+  phone?: number;
+  email?: string;
+  address?: string;
+  city?: string;
+  dateBirth?: any;
+  employment_id?: number;
+  rolesView: any = [];
+
   constructor(
     private router: Router,
     private Local: LocalService,
     private snack: SnackbarService,
+    private userApi: UsersService,
   ) {}
 
   ngOnInit(): void {
@@ -71,6 +90,44 @@ export class LayoutComponent implements OnInit {
   async logout(){
     await this.Local.clearAllDataLocal();
     await this.router.navigateByUrl('/');
+  }
+
+  findData(){
+    this.userApi.FindOne(this.unique_id || '').then((res:any)=>{
+      this.listEmployments = [];
+      this.company_id = res.data.company_id;
+
+      for (let i = 0; i < this.allEmployments.length; i++) {
+        if(this.allEmployments[i].company_id == this.company_id){
+          this.listEmployments.push(this.allEmployments[i]);
+        }
+      }
+
+      this.photo = res.data.photo;
+      this.changeLogo = false;
+      this.name = res.data.name;
+      this.lastName = res.data.lastName;
+      this.identify = res.data.identify;
+      this.phone = res.data.phone;
+      this.email = res.data.email;
+      this.address = res.data.address;
+      this.city = res.data.city;
+      this.dateBirth = new Date( moment( res.data.dateBirth, 'DD/MM/YYYY').format('MM/DD/YYYY') );
+      this.employment_id = res.data.employment_id;
+
+      for (let i = 0; i < res.data.roles.length; i++) {
+        res.data.roles[i].sync = true;
+        res.data.roles[i].delete = false;
+        this.rolesView.push(res.data.roles[i]);
+      }
+
+    });
+  }
+
+  iconsFunction(event: any){
+    if(event.icon == 'people'){
+      this.router.navigate(['admin/usuarios/form/' + event.data.unique_id]);
+    }
   }
 
 }
