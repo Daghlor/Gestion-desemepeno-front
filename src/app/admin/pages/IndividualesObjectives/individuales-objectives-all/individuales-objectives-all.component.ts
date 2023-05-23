@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { IndividualService } from 'src/app/admin/services/individual.service';
 import { LocalService } from 'src/app/config/local.service';
 import { SnackbarService } from 'src/app/config/snackbar.service';
+import { ConfirmModalComponent } from 'src/app/admin/components/confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-individuales-objectives-all',
@@ -23,7 +24,7 @@ export class IndividualesObjectivesAllComponent implements OnInit {
   dataSource: any = new MatTableDataSource();
   columns = [{
     columnDef: 'title',
-    header: 'Titulo',
+    header: 'Objetivo Individual',
     sort: true,
     type: 'text',
     cell: (element: any) => `${element.title}`,
@@ -51,6 +52,12 @@ export class IndividualesObjectivesAllComponent implements OnInit {
     sort: true,
     type: 'text',
     cell: (element: any) => `${element.state}`,
+  },{
+    columnDef: 'icons',
+    header: '',
+    sort: true,
+    type: 'icons',
+    cell: (element: any) => `${element.icons}`,
   }];
   constructor(
     private individualAPI: IndividualService,
@@ -74,11 +81,14 @@ export class IndividualesObjectivesAllComponent implements OnInit {
         user_id: null,
         company_id: null,
         state_id: 1,
-        areas_id: null 
+        areas_id: null
       }
     }
 
     this.individualAPI.FindAll(paginate).then((res:any)=>{
+      for (let i = 0; i < res.data.objetives.length; i++){
+        res.data.objetives[i].icons = ['delete'];
+      }
       this.dataSource = res.data.objetives;
       this.length = res.data.total;
     });
@@ -96,6 +106,23 @@ export class IndividualesObjectivesAllComponent implements OnInit {
     this.findData();
   }
 
+  iconsFunction(event:any){
 
+    if(event.icon == 'delete'){
+      const dialogRef = this.dialog.open(ConfirmModalComponent, {
+        width: '250px',
+        data: { message: '¿Estás seguro de que quieres eliminar este objetivo?'}
+      });
+
+      dialogRef.afterClosed().subscribe((result: any) => {
+        if(result) {
+          this.individualAPI.Delete(event.data.unique_id).then((res:any)=>{
+            this.snack.viewsnack('El objetivo se elimino correctamente','Succes');
+            this.findData();
+          })
+        }
+      });
+    }
+  }
 
 }

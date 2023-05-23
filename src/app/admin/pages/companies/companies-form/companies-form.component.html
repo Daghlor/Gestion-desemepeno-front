@@ -6,7 +6,7 @@
 <div *ngxPermissionsOnly="'Admin'"></div>
 
 
-<div *ngIf="currentTab == 1" >
+<div *ngIf="currentTab == 1">
     <div class="center">
         <img [src]="logo" for="producto_img" class="aggImg" >
         <label for="producto_img" class="selectImg" ><mat-icon class="icons">add_a_photo</mat-icon></label>
@@ -117,13 +117,19 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
       <mat-grid-list [cols]="item.sync ? 5 : 4" rowHeight="80px">
-        <mat-grid-tile [colspan]="1">
+        <mat-grid-tile [colspan]="2">
           <mat-form-field appearance="outline">
             <mat-label>Objetivo Estrategico</mat-label>
             <input matInput [(ngModel)]="item.title" autocomplete="off" type="text" [readonly]="item.sync" (input)="validateInput(item.title, 1, i)">
           </mat-form-field>
         </mat-grid-tile>
-        <mat-grid-tile [colspan]="1">
+        <mat-grid-tile [colspan]="1" *ngIf="item.sync">
+          <mat-form-field appearance="outline">
+            <mat-label>Estado</mat-label>
+            <input matInput [(ngModel)]="item.state" autocomplete="off" type="text" readonly>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2">
           <mat-form-field appearance="outline">
             <mat-label>Área</mat-label>
             <mat-select [(ngModel)]="item.areas_id" [value]="item.areas_id" >
@@ -131,12 +137,6 @@
                 <mat-option  [value]="options.id" *ngIf="options.sync">{{options.description}}</mat-option>
               </div>
             </mat-select>
-          </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile [colspan]="1" *ngIf="item.sync">
-          <mat-form-field appearance="outline">
-            <mat-label>Estado</mat-label>
-            <input matInput [(ngModel)]="item.state" autocomplete="off" type="text" readonly>
           </mat-form-field>
         </mat-grid-tile>
       </mat-grid-list>
@@ -247,7 +247,6 @@
             <input matInput [(ngModel)]="item.state" autocomplete="off" type="text" [readonly]="item.sync" (input)="changeUpdate(i, 'users')">
           </mat-form-field>
         </mat-grid-tile>
-
       </mat-grid-list>
     </mat-expansion-panel>
   </div>

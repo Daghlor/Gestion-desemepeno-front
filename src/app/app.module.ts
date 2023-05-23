@@ -10,10 +10,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { libraries } from 'src/assets/library';
 import { NgxPermissionsModule } from 'ngx-permissions';
+import { NgChartsModule } from 'ng2-charts';
+
+
+
+// import { NgxChartsModule } from '@swimlane/ngx-charts';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -22,6 +28,8 @@ import { NgxPermissionsModule } from 'ngx-permissions';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgChartsModule,
+    // NgxChartsModule,
     CommonModule,
     NgxPermissionsModule.forRoot(),
     libraries,

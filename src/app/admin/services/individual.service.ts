@@ -40,4 +40,16 @@ export class IndividualService {
       throw err.response
     })
   }
+
+  Delete(uuid: string){
+    this.token = this.Local.findDataLocal('token');
+    return api.delete(`/individuals/delete/${uuid}`,{
+      headers: {Authorization: "Bearer " + this.token}
+    })
+    .then((res)=>res.data)
+    .catch((err)=>{
+      throw err.response
+    })
+  }
+
 }

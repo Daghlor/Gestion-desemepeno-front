@@ -5,26 +5,28 @@
 }
 
 .LoginImg{
-    width: 60%;
-    background-color: #940000;
+    width: 55%;
+    background-color: #1560BD;
     background-image: url("../../../../assets/img/equipo.jpg");
     background-size: 1200px 1000px;
     background-position: center;
     background-repeat: no-repeat;
 
+
 }
 
 .LoginArea{
-    width: 40%;
-    background-image: url("../../../../assets/img/Recurso\ 2.png");
-    background-size: 400px 100px;
+    width: 50%;
+    background-image: url("../../../../assets/img/Recurso_2.png");
+    background-size:500px 100px;
     background-repeat: no-repeat;
     background-position: top;
+
     //padding-top: 3%;
-}
+  }
 
 .LoginButton{
-    background-color: #940000;
+    background-color: #1560BD;
     width: 100% !important;
     border-radius: 20px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -33,7 +35,7 @@
 
 h2{
   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  color: #940000;
+  color: #1560BD;
   font-size: x-large;
 }
 
@@ -47,6 +49,7 @@ mat-label{
 font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 font-size: larger;
 }
+
 
 
 .site-footer
@@ -80,7 +83,7 @@ font-size: larger;
 }
 .site-footer a:hover
 {
-  color:#3366cc;
+  color:#1560BD;
   text-decoration:none;
 }
 .footer-links
@@ -98,17 +101,10 @@ font-size: larger;
 }
 .footer-links a:active,.footer-links a:focus,.footer-links a:hover
 {
-  color:#3366cc;
+  color:#1560BD;
   text-decoration:none;
 }
 .footer-links.inline li
 {
   display:inline-block
 }
-
-
-
-
-
-
-

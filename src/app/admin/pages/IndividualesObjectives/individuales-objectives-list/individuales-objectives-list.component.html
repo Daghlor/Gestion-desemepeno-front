@@ -13,11 +13,14 @@
     <mat-expansion-panel *ngFor="let item of listObjetives; let i = index">
       <mat-expansion-panel-header>
         <mat-panel-title> {{item.weight}} - {{item.title}}  </mat-panel-title>
+        <mat-panel-description class="right">
+          <mat-icon style="color: #ff0000" (click)="delete(i)">delete</mat-icon>
+        </mat-panel-description>
       </mat-expansion-panel-header>
       <mat-grid-list cols="3" rowHeight="80px">
         <mat-grid-tile [colspan]="1">
             <mat-form-field appearance="outline">
-              <mat-label>Titulo</mat-label>
+              <mat-label>Objetivo Individual</mat-label>
               <input matInput [(ngModel)]="item.title" autocomplete="off" type="text" readonly>
             </mat-form-field>
         </mat-grid-tile>

@@ -24,7 +24,7 @@ export class StrategicObjectivesAllComponent implements OnInit {
   dataSource: any = new MatTableDataSource();
   columns = [{
     columnDef: 'title',
-    header: 'Titulo',
+    header: 'Objetivo Estratégico',
     sort: true,
     type: 'text',
     cell: (element: any) => `${element.title}`,
@@ -81,7 +81,7 @@ export class StrategicObjectivesAllComponent implements OnInit {
         user_id: null,
         company_id: null,
         state_id: 1,
-        areas_id: null 
+        areas_id: null
       }
     }
 
@@ -112,7 +112,7 @@ export class StrategicObjectivesAllComponent implements OnInit {
     if(event.icon == 'delete'){
       const dialogRef = this.dialog.open(ConfirmModalComponent, {
         width: '250px',
-        data: { message: '¿Estás seguro de que quieres elimina este objetivo?' }
+        data: { message: '¿Estás seguro de que quieres eliminar este objetivo?' }
       });
 
       dialogRef.afterClosed().subscribe((result: any) => {

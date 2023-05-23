@@ -1,5 +1,5 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<div class="nav">
+<div class="nav css-gr">
 
     <div class="navbarLeft">
 
@@ -9,11 +9,12 @@
                 {{validateTitle.length == 1 ? title : validateTitle[0] + ' ' + validateTitle[1]  }}
             </a>
         </div>
+         <!-- cambiar tituto por boton inicio -->
         <hr class="line">
 
         <div class="listItems" >
 
-            <div class="items" (click)="openOptions(1)" *ngIf="validateArrayPermissions(['list_permissions'])" [ngStyle]="{'background-color': option == 1 ? '#700000' : '#c70101' }">
+            <div class="items" (click)="openOptions(1)" *ngIf="validateArrayPermissions(['list_permissions'])" [ngStyle]="{'background-color': option == 1 ? '#1560BD' : '#1560BD' }">
                 <mat-icon class="itemsIcon">tune</mat-icon>
                 <a class="itemsTitle">Parametrización</a>
                 <mat-icon class="itemsIcon"> {{option == 1 ? 'expand_less' : 'expand_more'}} </mat-icon>
@@ -24,7 +25,7 @@
                     <a class="itemsTitle">Permisos</a>
                 </div>
             </div>
-            <div class="items" (click)="openOptions(2)" *ngIf="validateArrayPermissions(['list_users', 'list_roles'])" [ngStyle]="{'background-color': option == 2 ? '#700000' : '#c70101' }">
+            <div class="items" (click)="openOptions(2)" *ngIf="validateArrayPermissions(['list_users', 'list_roles'])" [ngStyle]="{'background-color': option == 2 ? '#1560BD' : '#1560BD' }">
                 <mat-icon class="itemsIcon">manage_accounts</mat-icon>
                 <a class="itemsTitle">Administración</a>
                 <mat-icon class="itemsIcon"> {{option == 2 ? 'expand_less' : 'expand_more'}} </mat-icon>
@@ -39,7 +40,7 @@
                     <a class="itemsTitle">Roles</a>
                 </div>
             </div>
-            <div class="items" (click)="openOptions(3)" *ngIf="validateArrayPermissions(['list_companies', 'list_employments', 'list_areas'])" [ngStyle]="{'background-color': option == 3 ? '#700000' : '#c70101' }">
+            <div class="items" (click)="openOptions(3)" *ngIf="validateArrayPermissions(['list_companies', 'list_employments', 'list_areas'])" [ngStyle]="{'background-color': option == 3 ? '#1560BD' : '#1560BD' }">
                 <mat-icon class="itemsIcon">corporate_fare</mat-icon>
                 <a class="itemsTitle">Empresas</a>
                 <mat-icon class="itemsIcon"> {{option == 3 ? 'expand_less' : 'expand_more'}} </mat-icon>
@@ -58,7 +59,7 @@
                     <a class="itemsTitle">Áreas</a>
                 </div>
             </div>
-            <div class="items" (click)="openOptions(4)" *ngIf="validateArrayPermissions(['list_objectives_strategics', 'list_my_objectives_strategics', 'list_objectives_individuals', 'list_my_objectives_individuals', 'list_tracings'])" [ngStyle]="{'background-color': option == 4 ? '#700000' : '#c70101' }">
+            <div class="items" (click)="openOptions(4)" *ngIf="validateArrayPermissions(['list_objectives_strategics', 'list_my_objectives_strategics', 'list_objectives_individuals', 'list_my_objectives_individuals', 'list_tracings'])" [ngStyle]="{'background-color': option == 4 ? '#1560BD' : '#1560BD' }">
               <mat-icon class="itemsIcon">assignment</mat-icon>
               <a class="itemsTitle">Metas</a>
               <mat-icon class="itemsIcon"> {{option == 4 ? 'expand_less' : 'expand_more'}} </mat-icon>
@@ -101,12 +102,13 @@
             <div class="dropdown">
               <mat-icon class="dropbtn">arrow_drop_down</mat-icon>
               <div class="dropdown-content">
-              <a (click)="routers('/usuarios/form/{{uuid}}')"><mat-icon>people</mat-icon>Mi perfil</a>
+              <a (click)="mostrarPerfil()"><mat-icon>people</mat-icon>Mi perfil</a>
+
               <a (click)="logout()"><mat-icon>arrow_back</mat-icon> Cerrar sesión</a>
               </div>
             </div>
         </div>
-        <hr class="lineContent" color="#ff5601">
+        <hr class="lineContent" color="#29ABE2">
         <div class="pages">
             <router-outlet ></router-outlet>
         </div>

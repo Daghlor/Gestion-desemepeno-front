@@ -35,6 +35,10 @@ export class LayoutComponent implements OnInit {
   dateBirth?: any;
   employment_id?: number;
   rolesView: any = [];
+  uuid?: any;
+  userProfile: any;
+
+
 
   constructor(
     private router: Router,
@@ -47,6 +51,7 @@ export class LayoutComponent implements OnInit {
     let userInfo = JSON.parse(this.Local.findDataLocal('info_user'));
     this.nameUser = userInfo.name +' '+ userInfo.lastName;
     this.photo = !userInfo.photo ? 'assets/img/usuarioPNG.png' : userInfo.photo;
+
   }
 
   validatePermissions(code: string): Boolean {
@@ -92,6 +97,7 @@ export class LayoutComponent implements OnInit {
     await this.router.navigateByUrl('/');
   }
 
+
   findData(){
     this.userApi.FindOne(this.unique_id || '').then((res:any)=>{
       this.listEmployments = [];
@@ -124,10 +130,27 @@ export class LayoutComponent implements OnInit {
     });
   }
 
-  iconsFunction(event: any){
-    if(event.icon == 'people'){
-      this.router.navigate(['admin/usuarios/form/' + event.data.unique_id]);
+    mostrarPerfil() {
+      this.userApi.FindOne(this.unique_id||'').then((res:any) => {
+        this.userProfile = res.data;
+      });
     }
+
+   goToProfile(event:any){ // Reemplaza esto con la forma en que recuperas el Unique ID de tu usuario actual desde tu base de datos
+      this.userApi.FindOne(this.unique_id || '').then((res:any)=>{
+        this.router.navigate(['admin/usuarios/form/' + event.data.this.unique_id])
+      });
+    }
+
+    iconsFunction(event: any){
+      if(event.icon == 'edit'){
+        this.router.navigate(['admin/usuarios/form/' + event.data.unique_id]);
+      }
+    }
+
   }
 
-}
+
+
+
+

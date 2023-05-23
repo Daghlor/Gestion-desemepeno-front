@@ -42,7 +42,7 @@ export class StrategicObjectivesListComponent implements OnInit {
         user_id: userInfo.id,
         company_id: userInfo.employment_id,
         state_id: 1,
-        areas_id: null 
+        areas_id: null
       }
     }
 

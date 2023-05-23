@@ -38,7 +38,7 @@
         <mat-grid-list cols="3" rowHeight="80px">
             <mat-grid-tile [colspan]="1">
                 <mat-form-field appearance="outline">
-                  <mat-label>Titulo</mat-label>
+                  <mat-label>Objetivo Individual</mat-label>
                   <input matInput [(ngModel)]="item.title" autocomplete="off" type="text" readonly>
                 </mat-form-field>
             </mat-grid-tile>
@@ -61,20 +61,17 @@
             </a>
         </div><br>
         <mat-grid-list cols="1" rowHeight="200px">
-            <table>
+            <table style="font-size:16px;">
                 <thead>
                     <tr>
-                        <th colspan="2">Historial de Seguimiento</th>
-                    </tr>
-                    <tr>
-                        <th>Descripción</th>
+                        <th>Seguimiento</th>
                         <th>Fecha</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let tracing of item.tracing">
                         <td style="text-align: justify;">{{tracing.comment}}</td>
-                        <td style="width: 150px;">{{tracing.created_at}}</td>
+                        <td style="text-align:center; width: 210px;">{{tracing.created_at}}</td>
                     </tr>
                 </tbody>
             </table>

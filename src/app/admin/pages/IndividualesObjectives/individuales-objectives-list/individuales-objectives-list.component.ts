@@ -41,7 +41,7 @@ export class IndividualesObjectivesListComponent implements OnInit {
         user_id: userInfo.id,
         company_id: userInfo.employment_id,
         state_id: 1,
-        areas_id: null 
+        areas_id: null
       }
     }
 
@@ -52,6 +52,13 @@ export class IndividualesObjectivesListComponent implements OnInit {
 
   redirectForm(url: string){
     this.snack.redirect(url);
+  }
+
+  delete(index: number){
+    this.individualAPI.Delete(this.listObjetives[index].unique_id).then((res:any)=>{
+      this.snack.viewsnack(res.data, 'success');
+      this.findData();
+    })
   }
 
 }
