@@ -103,6 +103,14 @@ const routes: Routes = [
         component: Pages.TrackingFormComponent,
       },
       {
+        path: "informes",
+        component: Pages.InformesTableComponent,
+      },
+      {
+        path: "informes/form",
+        component: Pages.InformesFormComponent,
+      },
+      {
         path: "verificacion",
         component: Pages.VerifyComponent,
         canActivate: [AuthenticateVerifyGuard]

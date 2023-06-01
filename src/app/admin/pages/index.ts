@@ -23,6 +23,9 @@ import { IndividualesObjectivesFormComponent } from './IndividualesObjectives/in
 import { TrackingTableComponent } from './tracking/tracking-table/tracking-table.component';
 import { TrackingFormComponent } from './tracking/tracking-form/tracking-form.component';
 import { TracingsComponent } from '../components/tracings/tracings.component';
+import { InformesFormComponent } from './informes/informes-form/informes-form.component';
+import { InformesTableComponent } from './informes/informes-table/informes-table.component';
+
 
 export const AdminComponents: any[] = [
     LayoutComponent,
@@ -54,6 +57,8 @@ export const AdminPages: any[] = [
     IndividualesObjectivesFormComponent,
     TrackingTableComponent,
     TrackingFormComponent,
+    InformesFormComponent,
+    InformesTableComponent,
 ];
 
 export * from '../components/tracings/tracings.component';
@@ -81,3 +86,6 @@ export * from './IndividualesObjectives/individuales-objectives-all/individuales
 export * from './IndividualesObjectives/individuales-objectives-form/individuales-objectives-form.component';
 export * from './tracking/tracking-table/tracking-table.component';
 export * from './tracking/tracking-form/tracking-form.component';
+export * from './informes/informes-form/informes-form.component';
+export * from './informes/informes-table/informes-table.component';
+

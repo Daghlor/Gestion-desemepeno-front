@@ -85,7 +85,12 @@
                 <mat-icon class="itemsIcon">vertical_split</mat-icon>
                 <a class="itemsTitle">Seguimientos</a>
             </div>
+            <div class="items" (click)="routers('/informes')" *ngIf="validatePermissions('list_tracings')">
+              <mat-icon class="itemsIcon">widgets</mat-icon>
+              <a class="itemsTitle">Informes</a>
+            </div>
           </div>
+
         </div>
         <div class="center ">
             <img src="assets/img/logoBlanco.png" class="logotype">
