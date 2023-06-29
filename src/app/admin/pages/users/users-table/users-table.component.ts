@@ -7,12 +7,14 @@ import { SnackbarService } from 'src/app/config/snackbar.service';
 import { ConfirmModalComponent } from 'src/app/admin/components/confirm-modal/confirm-modal.component';
 import { LocalService } from 'src/app/config/local.service';
 
+// ESTE ES EL TS DONDE ESTA LA PARTE LOGICA DE LA VISTA TABLA DE USUARIOS
 @Component({
   selector: 'app-users-table',
   templateUrl: './users-table.component.html',
   styleUrls: ['./users-table.component.scss']
 })
 export class UsersTableComponent implements OnInit {
+  // SE DEFINE VARIABLES LOCALES CON MAQUETADO DE LA TABLA
   loading: boolean = false;
   paginator: boolean = true;
   length: number = 0;
@@ -79,6 +81,7 @@ export class UsersTableComponent implements OnInit {
   }];
 
   constructor(
+    // SE DEFINE VARIBALES CON SERVICIOS ASIGNADOS
     private userApi: UsersService,
     private router: Router,
     private snack: SnackbarService,
@@ -90,6 +93,7 @@ export class UsersTableComponent implements OnInit {
     this.getData();
   }
 
+  // FUNCION PARA VALIDAR LOS PEMISOS SI ES O NO ES ADMIN
   validatePermissions(code: string): Boolean {
     return this.Local.validatePermission(code) ? true : false;
   }
@@ -111,6 +115,7 @@ export class UsersTableComponent implements OnInit {
       }
     }
 
+    // FUNCION QUE ENCUENTRA TODOS LOS USUARIOS Y LOS ORGANIZA EN LA TABLA
     this.userApi.FindAll(paginate).then((res:any)=>{
       for (let i = 0; i < res.data.users.length; i++) {
         res.data.users[i].icons = [];
@@ -145,6 +150,7 @@ export class UsersTableComponent implements OnInit {
     this.snack.redirect(url);
   }
 
+  // FUNCION DE ICONOS PARA EDITAR O ELIMINAR
   iconsFunction(event: any){
     if(event.icon == 'edit'){
       this.router.navigate(['admin/usuarios/form/' + event.data.unique_id]);

@@ -1,163 +1,129 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Chart, ChartConfiguration, ChartEvent, ChartType } from 'chart.js';
-import { BaseChartDirective } from 'ng2-charts';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
+import { StrategicsService } from 'src/app/admin/services/strategics.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
+import { SnackbarService } from 'src/app/config/snackbar.service';
+import { LocalService } from 'src/app/config/local.service';
+import { MatDialog } from '@angular/material/dialog';
 
-import { default as Annotation } from 'chartjs-plugin-annotation';
 
 @Component({
   selector: 'app-informes-table',
   templateUrl: './informes-table.component.html',
   styleUrls: ['./informes-table.component.scss']
 })
-export class InformesTableComponent {
- private newLabel? = 'New label';
+export class InformesTableComponent implements OnInit{
+@ViewChild('chartCanvas', { static: false }) chartCanvas!: ElementRef<HTMLCanvasElement>;
 
-  constructor() {
-    Chart.register(Annotation)
+  objetivos: any[] = [];
+  loading: boolean = false;
+  paginator: boolean = true;
+  length: number = 0;
+  orderColumn?: string;
+  orderType?: string;
+  actualPage: number = 1;
+  pageSize: number = 10;
+  pageSizeOptions: number[] = [10, 15, 20, 25, 50];
+  dataSource: any = new MatTableDataSource();
+  columns = [
+    {
+      columnDef: 'title',
+      header: 'Objetivo Estratégico',
+      sort: true,
+      type: 'text',
+      cell: (element: any) => `${element.title}`,
+    },
+    {
+      columnDef: 'nameUser',
+      header: 'Usuario',
+      sort: true,
+      type: 'text',
+      cell: (element: any) => `${element.nameUser}`,
+    },
+    {
+      columnDef: 'company',
+      header: 'Empresa',
+      sort: true,
+      type: 'text',
+      cell: (element: any) => `${element.company}`,
+    },
+    {
+      columnDef: 'area',
+      header: 'Área',
+      sort: true,
+      type: 'text',
+      cell: (element: any) => `${element.area}`,
+    },
+    {
+      columnDef: 'state',
+      header: 'Estado',
+      sort: true,
+      type: 'text',
+      cell: (element: any) => `${element.state}`,
+    },
+    {
+      columnDef: 'icons',
+      header: '',
+      sort: true,
+      type: 'icons',
+      cell: (element: any) => `${element.icons}`,
+    }
+  ];
+
+  porcentaje: number = 0;
+  chart: any;
+
+  constructor(
+    private strategicAPI: StrategicsService,
+    private router: Router,
+    private snack: SnackbarService,
+    private Local: LocalService,
+    private dialog: MatDialog,
+
+  ) { }
+
+  ngOnInit(): void {
+    this.findData();
   }
 
-  public lineChartData: ChartConfiguration['data'] = {
-    datasets: [
-      {
-        data: [ 65, 59, 80, 81, 56, 55, 40 ],
-        label: 'Series A',
-        backgroundColor: 'rgba(148,159,177,0.2)',
-        borderColor: 'rgba(148,159,177,1)',
-        pointBackgroundColor: 'rgba(148,159,177,1)',
-        pointBorderColor: '#fff',
-        pointHoverBackgroundColor: '#fff',
-        pointHoverBorderColor: 'rgba(148,159,177,0.8)',
-        fill: 'origin',
-      },
-      {
-        data: [ 28, 48, 40, 19, 86, 27, 90 ],
-        label: 'Series B',
-        backgroundColor: 'rgba(77,83,96,0.2)',
-        borderColor: 'rgba(77,83,96,1)',
-        pointBackgroundColor: 'rgba(77,83,96,1)',
-        pointBorderColor: '#fff',
-        pointHoverBackgroundColor: '#fff',
-        pointHoverBorderColor: 'rgba(77,83,96,1)',
-        fill: 'origin',
-      },
-      {
-        data: [ 180, 480, 770, 90, 1000, 270, 400 ],
-        label: 'Series C',
-        yAxisID: 'y1',
-        backgroundColor: 'rgba(255,0,0,0.3)',
-        borderColor: 'red',
-        pointBackgroundColor: 'rgba(148,159,177,1)',
-        pointBorderColor: '#fff',
-        pointHoverBackgroundColor: '#fff',
-        pointHoverBorderColor: 'rgba(148,159,177,0.8)',
-        fill: 'origin',
-      }
-    ],
-    labels: [ 'January', 'February', 'March', 'April', 'May', 'June', 'July' ]
-  };
+  findData() {
+    this.loading = true;
 
-  public lineChartOptions: ChartConfiguration['options'] = {
-    elements: {
-      line: {
-        tension: 0.5
+    const paginate = {
+      paginate: this.pageSize,
+      page: this.actualPage,
+      column: this.orderColumn || 'title',
+      direction: this.orderType || 'asc',
+      search: {
+        user_id: null,
+        company_id: null,
+        state_id: 1,
+        areas_id: null
       }
-    },
-    scales: {
-      // We use this empty structure as a placeholder for dynamic theming.
-      y:
-        {
-          position: 'left',
-        },
-      y1: {
-        position: 'right',
-        grid: {
-          color: 'rgba(255,0,0,0.3)',
-        },
-        ticks: {
-          color: 'red'
+    };
+
+    this.strategicAPI.FindAll(paginate)
+      .then((res: any) => {
+        for (let i = 0; i < res.data.objetives.length; i++) {
+          res.data.objetives[i].icons = ['edit'];
         }
-      }
-    },
 
-    plugins: {
-      legend: { display: true },
-      annotation: {
-        annotations: [
-          {
-            type: 'line',
-            scaleID: 'x',
-            value: 'March',
-            borderColor: 'orange',
-            borderWidth: 2,
-            label: {
-              display: true,
-              position: 'center',
-              color: 'orange',
-              content: 'LineAnno',
-              font: {
-                weight: 'bold'
-              }
-            }
-          },
-        ],
-      }
-    }
-  };
-
-  public lineChartType: ChartType = 'line';
-
-  @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
-
-  private static generateNumber(i: number): number {
-    return Math.floor((Math.random() * (i < 2 ? 100 : 1000)) + 1);
+        this.dataSource = res.data.objetives;
+        this.length = res.data.total;
+        this.loading = false;
+      })
+      .catch((error: any) => {
+        console.error(error);
+        this.loading = false;
+      });
   }
 
-  public randomize(): void {
-    for (let i = 0; i < this.lineChartData.datasets.length; i++) {
-      for (let j = 0; j < this.lineChartData.datasets[i].data.length; j++) {
-        this.lineChartData.datasets[i].data[j] = InformesTableComponent.generateNumber(i);
-      }
-    }
-    this.chart?.update();
+   iconsFunction(event: any) {
+  if (event.icon === 'edit') {
+    const objetivoUniqueId = event.data.unique_id;
+    this.router.navigate(['admin/informes/chart/' + objetivoUniqueId]);
   }
+}
 
-  // events
-  public chartClicked({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
-    console.log(event, active);
-  }
-
-  public chartHovered({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
-    console.log(event, active);
-  }
-
-  public hideOne(): void {
-    const isHidden = this.chart?.isDatasetHidden(1);
-    this.chart?.hideDataset(1, !isHidden);
-  }
-
-  public pushOne(): void {
-    this.lineChartData.datasets.forEach((x, i) => {
-      const num = InformesTableComponent.generateNumber(i);
-      x.data.push(num);
-    });
-    this.lineChartData?.labels?.push(`Label ${ this.lineChartData.labels.length }`);
-
-    this.chart?.update();
-  }
-
-  public changeColor(): void {
-    this.lineChartData.datasets[2].borderColor = 'green';
-    this.lineChartData.datasets[2].backgroundColor = `rgba(0, 255, 0, 0.3)`;
-
-    this.chart?.update();
-  }
-
-  public changeLabel(): void {
-    const tmp = this.newLabel;
-    this.newLabel = this.lineChartData.datasets[2].label;
-    this.lineChartData.datasets[2].label = tmp;
-
-    this.chart?.update();
-  }
 }

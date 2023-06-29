@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './pages/register/register.component';
 
+// AQUI SE IMPORTAN LIBRERIAS Y LAS RUTAS PUBLICAS
 @NgModule({
     declarations: [
         PublicComponents,

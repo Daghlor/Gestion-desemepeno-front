@@ -2,6 +2,7 @@ import { LocalService } from './../../config/local.service';
 import { Injectable } from '@angular/core';
 import { api } from 'src/app/config/axios.config';
 
+// SERVICIO DE VERIFICACION QUE MANDA SOLICITUDES AL BACK
 @Injectable({
   providedIn: 'root'
 })
@@ -12,6 +13,7 @@ export class VerifyService {
     private Local: LocalService
   ) { }
 
+  // METODO POST QUE VERIFICA AL USUARIO SI SUS DATOS SON REALES
   Create(body: any){
     this.token = this.Local.findDataLocal('token');
     return api.post(`/users/verify`, body, {

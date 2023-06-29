@@ -3,6 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { SnackbarComponent } from '../admin/pages';
 
+// ESTE ES EL SERVICIO DEL SNACKBAR PARA QUE SEA APLICABLE O INYECTABLE A TODOS LOS COMPONENTES DEL SISTEMA
 @Injectable({
   providedIn: 'root'
 })

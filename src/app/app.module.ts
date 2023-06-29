@@ -13,11 +13,7 @@ import { NgxPermissionsModule } from 'ngx-permissions';
 import { NgChartsConfiguration, NgChartsModule } from 'ng2-charts';
 
 
-
-
-// import { NgxChartsModule } from '@swimlane/ngx-charts';
-
-
+// ESTE ES EL MODULO DEL PROYECTO DONDE SE IMPORTAN MODULOS TALES COMO GRAFICAS, FORMS, SERVICIOS HTTP ETC
 
 @NgModule({
   declarations: [
@@ -26,12 +22,11 @@ import { NgChartsConfiguration, NgChartsModule } from 'ng2-charts';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    NgChartsModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgChartsModule,
-    // NgxChartsModule,
     CommonModule,
     NgxPermissionsModule.forRoot(),
     libraries,

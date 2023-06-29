@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { api } from "src/app/config/axios.config";
 import { LocalService } from 'src/app/config/local.service';
 
+// SERVICIO DE EMPRESAS QUE MANDA SOLICITUDES AL BACK
 @Injectable({
   providedIn: 'root'
 })
@@ -12,6 +13,7 @@ export class CompaniesService {
     private Local: LocalService
   ) {}
 
+  // METODO POST PARA CREAR UNA EMPRESA
   Create(body: any){
     this.token = this.Local.findDataLocal('token');
     return api.post(`/company/create`, body, {
@@ -23,6 +25,7 @@ export class CompaniesService {
     })
   }
 
+  // METODO POST PARA TRAER O BUSCAR LAS EMPRESAS
   FindAll(body: any){
     this.token = this.Local.findDataLocal('token');
     return api.post(`/company/getAll`, body, {
@@ -34,6 +37,7 @@ export class CompaniesService {
     })
   }
 
+  // METOD GET PARA BUSCAR O TRAER UNA SOLA EMPRESA
   FindOne(uuid: string){
     this.token = this.Local.findDataLocal('token');
     return api.get(`/company/getOne/${uuid}`, {
@@ -45,6 +49,7 @@ export class CompaniesService {
     })
   }
 
+  // METODO PUT PARA ACTUALIZAR UNA EMPRESA
   Update(uuid: string, body: any){
     this.token = this.Local.findDataLocal('token');
     return api.put(`/company/update/${uuid}`, body, {

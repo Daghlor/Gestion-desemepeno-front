@@ -6,18 +6,21 @@ import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog
 import { TracingsComponent } from "src/app/admin/components/tracings/tracings.component";
 import * as moment from 'moment';
 
+// ESTE ES EL .TS DONDE ESTA LA PARTE LOGICA DE LA VISTA FORMULARIO DE SEGUIMIENTO
 @Component({
   selector: 'app-tracking-form',
   templateUrl: './tracking-form.component.html',
   styleUrls: ['./tracking-form.component.scss']
 })
 export class TrackingFormComponent implements OnInit {
+  // SE DEFINE VARIABLES LOCALES
   params: any;
   unique_id?: string;
   listObjetives: any = [];
   userData: any;
 
   constructor(
+    // SE DEFINE VARIABLES CON SERVICIOS ASIGNADOS
     private trackingAPI: TrackingService,
     private snack: SnackbarService,
     private activeRouter: ActivatedRoute,
@@ -31,6 +34,7 @@ export class TrackingFormComponent implements OnInit {
     this.findData();
   }
 
+  // FUNCION PARA BUSCAR UN SOLO SEGUIMIENTO
   findData(){
     this.listObjetives = [];
     this.trackingAPI.FindOne(this.unique_id || '').then((res:any)=>{
@@ -45,6 +49,7 @@ export class TrackingFormComponent implements OnInit {
     });
   }
 
+  // FUNCION QUE ABRE UN MODAL QUE VERIFICA LOS CAMPOS Y LOS GUARDA
   openModalTracing(item: any){
     const dialogRef = this.dialog.open(TracingsComponent, {
       width: '600px',

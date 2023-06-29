@@ -5,12 +5,14 @@ import { StrategicsService } from 'src/app/admin/services/strategics.service';
 import { LocalService } from 'src/app/config/local.service';
 import { SnackbarService } from 'src/app/config/snackbar.service';
 
+// ESTE ES EL .TS DONDE ESTA LA PARTE LOGICA DE LA VISTA LISTA DE OBJETIVOS ESTRATEGICOS
 @Component({
   selector: 'app-strategic-objectives-list',
   templateUrl: './strategic-objectives-list.component.html',
   styleUrls: ['./strategic-objectives-list.component.scss']
 })
 export class StrategicObjectivesListComponent implements OnInit {
+  // SE DEFINE VARIABLES LOCALES
   loading: boolean = false;
   orderColumn?: string;
   orderType?: string;
@@ -20,6 +22,7 @@ export class StrategicObjectivesListComponent implements OnInit {
   listObjetives: any = [];
 
   constructor(
+    // SE DEFINE VARIABLES CON SERVICIOS ASIGNADOS
     private strategicAPI: StrategicsService,
     private router: Router,
     private snack: SnackbarService,
@@ -30,6 +33,7 @@ export class StrategicObjectivesListComponent implements OnInit {
     this.findData();
   }
 
+  // FUNCION QUE BUSCA TODOS LOS OBEJTIVOS ESTRATEGICOS Y LOS PONE EN UNA LISTA
   findData(){
     let userInfo = JSON.parse(this.Local.findDataLocal('info_user'));
 
@@ -55,6 +59,7 @@ export class StrategicObjectivesListComponent implements OnInit {
     this.snack.redirect(url);
   }
 
+  // FUNCION PARA ELIMINAR OBJETIVOS ESTRATEGICOS
   delete(index: number){
     this.strategicAPI.Delete(this.listObjetives[index].unique_id).then((res:any)=>{
       this.snack.viewsnack(res.data, 'success');

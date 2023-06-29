@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { api } from "src/app/config/axios.config";
 import { LocalService } from 'src/app/config/local.service';
 
+// SERVICIO DE AUTENTIFICACION QUE MANDA SOLICITUDES AL BACK
 @Injectable({
   providedIn: 'root'
 })
@@ -13,6 +14,7 @@ export class AuthService {
   ) {
   }
 
+  // METODO GET PARA ENCONTRAR LOS DATOS VALIDOS
   FindData(){
     this.token = this.Local.findDataLocal('token');
     return api.get(`/auth/findData`, {

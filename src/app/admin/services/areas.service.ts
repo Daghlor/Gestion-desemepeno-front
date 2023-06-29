@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { api } from 'src/app/config/axios.config';
 import { LocalService } from 'src/app/config/local.service';
 
+// SERVICIO DE AREAS QUE MANDA SOLICITUDES AL BACK
 @Injectable({
   providedIn: 'root'
 })
@@ -12,6 +13,7 @@ export class AreasService {
     private Local: LocalService
   ) { }
 
+  // METODO POST PARA CREAR AREA
   Create(body: any){
     this.token = this.Local.findDataLocal('token');
     return api.post(`/area/create`, body, {
@@ -23,6 +25,7 @@ export class AreasService {
     })
   }
 
+  // METODO POST PARA BUSCAR O TRAER LAS AREAS
   FindAll(body: any){
     this.token = this.Local.findDataLocal('token');
     return api.post(`/area/getAll`, body, {
@@ -34,6 +37,7 @@ export class AreasService {
     })
   }
 
+  // METODO GET PARA BUSCAR UNA SOLA AREA
   FindOne(uuid: string){
     this.token = this.Local.findDataLocal('token');
     return api.get(`/area/getOne/${uuid}`, {
@@ -45,6 +49,7 @@ export class AreasService {
     })
   }
 
+  // METODO PUT PARA ACTUALIZAR UNA AREA
   Update(uuid: string, body: any){
     this.token = this.Local.findDataLocal('token');
     return api.put(`/area/update/${uuid}`, body, {
@@ -56,6 +61,7 @@ export class AreasService {
     })
   }
 
+  // METODO DELETE PARA ELIMINAR UNA AREA
   Delete(uuid: string){
     this.token = this.Local.findDataLocal('token');
     return api.delete(`/area/delete/${uuid}`, {

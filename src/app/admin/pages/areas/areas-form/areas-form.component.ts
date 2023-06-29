@@ -6,12 +6,14 @@ import { LocalService } from 'src/app/config/local.service';
 import {MatAccordion} from '@angular/material/expansion';
 import { AuthService } from 'src/app/admin/services/auth.service';
 
+// ESTE ES EL .TS DE FORMULARIO DE VISTAS DONDE ESTA LA PARTE LOGICA
 @Component({
   selector: 'app-areas-form',
   templateUrl: './areas-form.component.html',
   styleUrls: ['./areas-form.component.scss']
 })
 export class AreasFormComponent implements OnInit {
+  // SE DEFINE VARIABLES LOCALES
   @ViewChild(MatAccordion) accordion?: MatAccordion;
   description?: string;
   company_id?: string;
@@ -30,6 +32,7 @@ export class AreasFormComponent implements OnInit {
   allEmployments: any = [];
 
   constructor(
+    // SE DEFINE VARIABLES CON SERVICIOS ASIGNADOS
     private AreasApi: AreasService,
     private snack: SnackbarService,
     private router: Router,
@@ -50,11 +53,13 @@ export class AreasFormComponent implements OnInit {
     }
   }
 
+
   getAllList(){
     this.authApi.FindData().then((res:any)=>{
       this.listCompany = res.companies;
     })
   }
+
 
   AddCompany(){
     this.listEmployments = [];
@@ -67,6 +72,7 @@ export class AreasFormComponent implements OnInit {
     }
   }
 
+  // FUNCION PARA BUSCAR UNA AREA
   findData(){
     this.AreasApi.FindOne(this.unique_id || '').then((res:any)=>{
       this.listEmployments = [];
@@ -83,6 +89,7 @@ export class AreasFormComponent implements OnInit {
     });
   }
 
+  // FUNCION PARA AGREGAR UN AREA
   addArea(){
     if(!this.validateAreas()){
       return;
@@ -100,10 +107,12 @@ export class AreasFormComponent implements OnInit {
     });
   }
 
+  // FUNCION PARA ELIMINAR UN AREA
   deleteAreas(index: number){
     this.listAreas.splice(index, 1);
   }
 
+  // FUNCION QUE VALIDA SI LA AREA YA EXISTE
   validateAreas(){
     let result = true;
     for (let i = 0; i < this.listAreas.length; i++) {
@@ -117,6 +126,7 @@ export class AreasFormComponent implements OnInit {
     return result;
   }
 
+  // FUNCION QUE VERIFICA LOS CAMPOS Y REGISTRA EN LA BASE DE DATOS
  async guardar(){
   if(!this.description){
     return this.snack.viewsnack("La descripcion es obligatoria", 'Error');

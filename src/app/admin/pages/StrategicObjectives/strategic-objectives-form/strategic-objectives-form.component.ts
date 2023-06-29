@@ -4,12 +4,14 @@ import { StrategicsService } from 'src/app/admin/services/strategics.service';
 import { SnackbarService } from 'src/app/config/snackbar.service';
 import { AuthService } from 'src/app/admin/services/auth.service';
 
+// ESTE ES EL .TS DONDE ESTA LA PARTE LOGICA DE LA VISTA FORMULARIOS DE OBJETIVOS ESTRATEGICOS
 @Component({
   selector: 'app-strategic-objectives-form',
   templateUrl: './strategic-objectives-form.component.html',
   styleUrls: ['./strategic-objectives-form.component.scss']
 })
 export class StrategicObjectivesFormComponent implements OnInit {
+  // SE DEFINE VARIABLES LOCALES
   title?: string;
   company_id?: number;
   areas_id?: number;
@@ -21,6 +23,7 @@ export class StrategicObjectivesFormComponent implements OnInit {
   listCompany: any = [];
 
   constructor(
+    // SE DEFINE VARIABLES CON SERVICIOS ASIGNADOS
     private authApi: AuthService,
     private strategicAPI: StrategicsService,
     private router: Router,
@@ -41,7 +44,7 @@ export class StrategicObjectivesFormComponent implements OnInit {
   changeCompany(){
     this.listAreas = [];
     this.areas_id = 0;
- 
+
     for (let i = 0; i < this.allAreas.length; i++) {
       if(this.allAreas[i].company_id == this.company_id){
         this.listAreas.push(this.allAreas[i]);
@@ -49,6 +52,7 @@ export class StrategicObjectivesFormComponent implements OnInit {
     }
   }
 
+  // FUNCION QUE VERIFICA LOS CAMPOS Y GUARDA EN LA BASE DE DATOS
   async saveData(){
     if(!this.title){
       return this.snack.viewsnack('Hace Falta el Titulo', 'ERROR');
@@ -65,7 +69,7 @@ export class StrategicObjectivesFormComponent implements OnInit {
     if(!this.vision){
       return this.snack.viewsnack('Hace Falta la Visión', 'ERROR');
     }
-    
+
     const data = {
       title: this.title,
       mission: this.mission,

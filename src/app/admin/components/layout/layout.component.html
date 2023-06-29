@@ -1,3 +1,4 @@
+<!-- HTML DE LA VISTA LAYOUT O NAVBAR DE LA PARTE IZQUIERDA Y DE ARRIBA -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <div class="nav css-gr">
 
@@ -35,10 +36,13 @@
                     <mat-icon class="subMenuIcon">people</mat-icon>
                     <a class="itemsTitle">Usuarios</a>
                 </div>
-                <div class="subMenuOption"  (click)="routers('/')"  *ngIf="validatePermissions('list_roles')">
+
+               <!-- BOTON ROLES -->
+
+                <!-- <div class="subMenuOption"  (click)="routers('/')"  *ngIf="validatePermissions('list_roles')">
                     <mat-icon class="subMenuIcon">public</mat-icon>
                     <a class="itemsTitle">Roles</a>
-                </div>
+                </div> -->
             </div>
             <div class="items" (click)="openOptions(3)" *ngIf="validateArrayPermissions(['list_companies', 'list_employments', 'list_areas'])" [ngStyle]="{'background-color': option == 3 ? '#1560BD' : '#1560BD' }">
                 <mat-icon class="itemsIcon">corporate_fare</mat-icon>
@@ -107,8 +111,7 @@
             <div class="dropdown">
               <mat-icon class="dropbtn">arrow_drop_down</mat-icon>
               <div class="dropdown-content">
-              <a (click)="mostrarPerfil()"><mat-icon>people</mat-icon>Mi perfil</a>
-
+              <a (click)="goToProfile($event)"><mat-icon>people</mat-icon>Mi perfil</a>
               <a (click)="logout()"><mat-icon>arrow_back</mat-icon> Cerrar sesión</a>
               </div>
             </div>

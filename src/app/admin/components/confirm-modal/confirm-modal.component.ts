@@ -7,16 +7,19 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./confirm-modal.component.scss']
 })
 export class ConfirmModalComponent implements OnInit {
+  // SE DEFINE VARIABLES LOCALES
   type: any;
   info: any;
 
   constructor(
+    // SE DEFINE EL CUADRO EMERGENTE Y QUE SEA INYECTABLE
     public dialogRef: MatDialogRef<ConfirmModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data:any
   ) { }
 
   ngOnInit(): void {}
 
+  // FUNCION QUE CUANDO DE CLICK CONFIRMA TODO Y SE CIERRA
   confirms(res:any) {
     this.dialogRef.close(res);
   }

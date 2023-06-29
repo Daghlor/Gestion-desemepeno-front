@@ -4,6 +4,7 @@ import * as Pages from "./pages";
 import { AuthenticateGuard } from './components/guards/authenticate.guard';
 import { AuthenticateVerifyGuard } from './components/guards/authenticate-verify.guard';
 
+// ESTAS SONS LAS RUTAS DE ADMIN O GENERALES DE TODO EL PROYECTO, QUE YA CON SE MANEJAN CON PERMISOS POR SU ROL ESPECIFICO
 const routes: Routes = [
   {
     path: "",
@@ -107,8 +108,8 @@ const routes: Routes = [
         component: Pages.InformesTableComponent,
       },
       {
-        path: "informes/form",
-        component: Pages.InformesFormComponent,
+        path: "informes/chart/:unique_id",
+        component: Pages.InformesChartsComponent,
       },
       {
         path: "verificacion",

@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
 
+// ESTE ES EL TS DONDE SE VALDIA QUE MENSAJE DEBE MOSTRAR SEGUN LA VALIDACION QUE HAGA O PROCESO QUE SE ESTE HACIENDO
 @Component({
   selector: 'app-snackbar',
   templateUrl: './snackbar.component.html',

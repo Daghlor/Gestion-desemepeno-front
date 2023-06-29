@@ -4,12 +4,14 @@ import { IndividualService } from 'src/app/admin/services/individual.service';
 import { LocalService } from 'src/app/config/local.service';
 import { SnackbarService } from 'src/app/config/snackbar.service';
 
+// ESTE ES EL .TS DONDE ESTA LA PARTE LOGICA DE LA VISTA LISTA DE OBEJTIVOS INDIVIDUALES
 @Component({
   selector: 'app-individuales-objectives-list',
   templateUrl: './individuales-objectives-list.component.html',
   styleUrls: ['./individuales-objectives-list.component.scss']
 })
 export class IndividualesObjectivesListComponent implements OnInit {
+  // SE DEFINE VARIABLES LOCALES
   orderColumn?: string;
   orderType?: string;
   actualPage: number = 1;
@@ -19,6 +21,7 @@ export class IndividualesObjectivesListComponent implements OnInit {
   points: number = 0;
 
   constructor(
+    // SE DEFINE VARIABLES CON SERVICIOS ASIGNADOS
     private individualAPI: IndividualService,
     private snack: SnackbarService,
     private Local: LocalService
@@ -29,6 +32,7 @@ export class IndividualesObjectivesListComponent implements OnInit {
     this.findData();
   }
 
+  // FUNCION QUE BUSCA TODOS LOS OBJETIVOS INDIVIDUALES Y LOS PONE EN UNA LISTA ORGANIZADA
   findData(){
     let userInfo = JSON.parse(this.Local.findDataLocal('info_user'));
 
@@ -54,6 +58,7 @@ export class IndividualesObjectivesListComponent implements OnInit {
     this.snack.redirect(url);
   }
 
+  // FUNCION QUE ELIMINA LOS OBJETIVOS INDIVIDUALES
   delete(index: number){
     this.individualAPI.Delete(this.listObjetives[index].unique_id).then((res:any)=>{
       this.snack.viewsnack(res.data, 'success');

@@ -6,12 +6,14 @@ import { Router } from '@angular/router';
 import { SnackbarService } from 'src/app/config/snackbar.service';
 import { ConfirmModalComponent } from '../..';
 
+// ESTE ES EL .TS DE LA TABLA DE CARGOS DONDE ESTA LA PARTE LOGICA
 @Component({
   selector: 'app-cargos-table',
   templateUrl: './cargos-table.component.html',
   styleUrls: ['./cargos-table.component.scss']
 })
 export class CargosTableComponent implements OnInit {
+  // SE DEFINE VARIABLES LOCALES Y EL MAQUETADO DE LA TABLA
   loading: boolean = false;
   paginator: boolean = true;
   length: number = 0;
@@ -45,6 +47,7 @@ export class CargosTableComponent implements OnInit {
 ];
 
   constructor(
+    // SE DEFINE VARIABLES CON SERVICIOS ASIGNADOS
     private CargosApi: EmploymentsService,
     private router: Router,
     private snack: SnackbarService,
@@ -59,6 +62,7 @@ export class CargosTableComponent implements OnInit {
     this.snack.redirect(url);
   }
 
+  // FUNCION QUE OBTIENE TODOS LOS CARGOS REGISTRADOS Y LOS ORGANIZA EN LA TABLA
   getData(): void{
     const paginate = {
       paginate: this.pageSize,

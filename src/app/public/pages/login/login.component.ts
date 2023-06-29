@@ -5,12 +5,14 @@ import { LocalService } from 'src/app/config/local.service';
 import { SnackbarService } from 'src/app/config/snackbar.service';
 import { UsersService } from 'src/app/services/users.service';
 
+// ESTE ES EL .TS DE LOGIN DONDE ESTA TODA LA PARTE LOGICA
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  // SE DEFINE VARIABLES LOCALES
 email: string = "";
 pass: string = "";
 typePass: string = 'password';
@@ -18,6 +20,7 @@ showPass: boolean = false;
 iconPass: string = 'visibility';
 
   constructor(
+    // SE DEFINE VARIABLES CON SERVICIOS ASIGNADOS
     private userAPI: UsersService,
     private snack: SnackbarService,
     private router: Router,
@@ -27,6 +30,7 @@ iconPass: string = 'visibility';
   ngOnInit(): void {
   }
 
+  // FUNCION PARA MOSTRAR Y OCULTAR LA PASSWORD
   passVisible(){
     this.showPass = !this.showPass;
     if(this.showPass){
@@ -38,6 +42,7 @@ iconPass: string = 'visibility';
     }
   }
 
+  // FUNCION QUE VERIFICA SI HAY DATOS Y SI LOS HAY LOS VERIFICA Y LO REDIRECCION A UNA VISTA
   login(){
     let emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
 

@@ -3,12 +3,14 @@ import { SnackbarService } from 'src/app/config/snackbar.service';
 import { VerifyService } from './../../../services/verify.service';
 import { Component, OnInit } from '@angular/core';
 
+// ESTE ES EL .TS DONDE ESTA LA PARTE LOGICA DE LA VISTA VERIFICACION
 @Component({
   selector: 'app-verify',
   templateUrl: './verify.component.html',
   styleUrls: ['./verify.component.scss']
 })
 export class VerifyComponent implements OnInit {
+  // SE DEFINE VARIABLES LOCALES
   num1: any;
   num2: any;
   num3: any;
@@ -17,6 +19,7 @@ export class VerifyComponent implements OnInit {
   num6: any;
 
   constructor(
+    // SE DEFINE VARIABLES CON SERVICIOS ASIGNADOS
     private verifyAPI: VerifyService,
     private snack: SnackbarService,
     private router: Router,
@@ -25,6 +28,7 @@ export class VerifyComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // FUNCION QUE VALIDA LOS NUMEROS DE TODOS LOS CAMPOS Y QUE SEAN CORRECTOS
   validateNumbers(number:any):any{
     let validate = /^[0-9]+$/
 
@@ -75,6 +79,7 @@ export class VerifyComponent implements OnInit {
     }
   }
 
+  // FUNCION QUE VERIFICA QUE TODOS LOS CAMPOS ESTEN LLENOS Y MANDA EL CODIGO AL BACK PARA QUE LO VERIFIQUE
   saveVerify(){
     if(!this.num1){
       return this.snack.viewsnack('Falta #1', 'Error');

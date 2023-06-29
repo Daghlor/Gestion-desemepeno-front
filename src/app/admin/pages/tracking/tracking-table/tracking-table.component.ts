@@ -5,12 +5,14 @@ import { SnackbarService } from 'src/app/config/snackbar.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 
+// ESTE ES EL .TS DONDE ESTA LA PARTE LOGICA DE LA VISTA TABLA DE SEGUIMIENTOS
 @Component({
   selector: 'app-tracking-table',
   templateUrl: './tracking-table.component.html',
   styleUrls: ['./tracking-table.component.scss']
 })
 export class TrackingTableComponent implements OnInit {
+  // SE DEFINE VARIABLES LOCALES Y MAQUETADO DE LA TABLA
   loading: boolean = false;
   paginator: boolean = true;
   length: number = 0;
@@ -47,6 +49,7 @@ export class TrackingTableComponent implements OnInit {
   }];
 
   constructor(
+    // SE DEFINE VARIABLES CON SERVICIOS ASIGNADOS
     private trackingAPI: TrackingService,
     private snack: SnackbarService,
     private Local: LocalService,
@@ -57,6 +60,7 @@ export class TrackingTableComponent implements OnInit {
     this.getData();
   }
 
+  // FUNCION QUE OBTIENE EL SEGUIMIENTO DE UN USUARIO Y LO PONE EN LA TABLA
   getData(){
     const paginate = {
       paginate: this.pageSize,

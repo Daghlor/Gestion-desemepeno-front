@@ -6,12 +6,14 @@ import { SnackbarService } from 'src/app/config/snackbar.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmModalComponent } from 'src/app/admin/components/confirm-modal/confirm-modal.component';
 
+// ESTE ES EL .TS DE TABLAS DE AREAS DONDE ESTA LA PARTE LOGICA
 @Component({
   selector: 'app-areas-table',
   templateUrl: './areas-table.component.html',
   styleUrls: ['./areas-table.component.scss']
 })
 export class AreasTableComponent implements OnInit {
+  // SE DEFINE VARIABLES LOCALES Y MAQUETADO DE LA TABLA
   loading: boolean = false;
   paginator: boolean = true;
   length: number = 0;
@@ -44,6 +46,7 @@ export class AreasTableComponent implements OnInit {
   }];
 
   constructor(
+    // SE DEFINE VARIABLES CON SERVICIOS ASIGNADOS
     private AreasApi: AreasService,
     private router: Router,
     private snack: SnackbarService,
@@ -58,7 +61,7 @@ export class AreasTableComponent implements OnInit {
     this.snack.redirect(url);
   }
 
-
+  // FUNCION PARA OBTENER LAS AREAS Y ORGANIZALES EN LA TABLA
   getData(){
     const paginate = {
       paginate: this.pageSize,

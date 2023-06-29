@@ -1,248 +1,78 @@
-<!--<div class="RegistroClass"><br>
-  <div class="RegistroImg"><div class="center">
-    <img [src]="photoPerfil" for="producto_img" class="aggImg" >
-    <label for="producto_img" class="selectImg" ><mat-icon>add_a_photo</mat-icon></label>
-  </div><br>
-  <input class="ng-hide" style="display: none;" id="producto_img" type="file" accept="image/*" (input)="changePhoto(imageInput)" #imageInput/></div>
-
-  <div class="column">
-<div>
-      <mat-form-field appearance="outline">
-        <mat-label>Nombres</mat-label>
-        <input matInput [(ngModel)]="name" autocomplete="off" type="text">
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Apellidos</mat-label>
-        <input matInput [(ngModel)]="lastName" autocomplete="off" type="text">
-      </mat-form-field>
-      <br>
-      <mat-form-field appearance="outline">
-        <mat-label>Numero de Identificación</mat-label>
-        <input matInput [(ngModel)]="identify" autocomplete="off" type="number">
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Email</mat-label>
-        <input matInput [(ngModel)]="email" autocomplete="off" type="text">
-      </mat-form-field>
-      <br>
-      <mat-form-field appearance="outline">
-        <mat-label>Contraseña</mat-label>
-        <input matInput [(ngModel)]="password" autocomplete="off" [type]="typePass">
-        <mat-icon matSuffix (click)="passVisible()">{{iconPass}}</mat-icon>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Verifique su Contraseña</mat-label>
-        <input matInput [(ngModel)]="varifyPassord" autocomplete="off" [type]="typePass1">
-        <mat-icon matSuffix (click)="passVisible1()">{{iconPass}}</mat-icon>
-      </mat-form-field>
-      <br>
-      <mat-form-field appearance="outline">
-        <mat-label>Numero de Telefono</mat-label>
-        <input matInput [(ngModel)]="phone" autocomplete="off" type="number" >
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" (click)="picker.open()">
-        <mat-label>Fecha de Nacimiento</mat-label>
-        <input matInput [matDatepicker]="picker" autocomplete="off" [(ngModel)]="dateBirth">
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-      <br>
-      <mat-form-field appearance="outline">
-        <mat-label>Dirección de residencia</mat-label>
-        <input matInput [(ngModel)]="address" autocomplete="off" type="text">
-        <mat-hint>Esta Información debe ser veridica</mat-hint>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Ciudad</mat-label>
-        <input matInput [(ngModel)]="city" autocomplete="off" type="text">
-      </mat-form-field>
-    </div>
-  <br>
-  <div class="buttonsForms" style="margin-right: 310px ;">
-    <button [disabled]="disableButton"  mat-raised-button color="primary" class="buttons" style="margin-left: 30px;" (click)="guardar()">
-      <mat-icon  style="margin-right: 10px;">save</mat-icon>{{titleButton}}
-    </button>
-  </div>
-</div>
-</div>
-
-
-
+<!-- ESTE ES EL HTML DE LA VISTA REGISTRAR  -->
 <div class="container">
-  <div class="left">
-    <div class="header">
-      <h2 class="animation a1">Bienvenido a GDD - Kometa</h2>
-      <h4 class="animation a2">Rellene los campos para completar el registro.</h4>
+  <div class="left-section">
+    <div class="profile-pic">
+      <div class="top_link"><a href="#">Volver a
+          Login</a></div>
+      <img [src]="photoPerfil" for="producto_img" class="aggImg">
+      <label for="producto_img" class="selectImg2">
+      <mat-icon class="icons">add_a_photo</mat-icon></label>
+      <input class="ng-hide" style="display: none;" id="producto_img" type="file" accept="image/*"
+        (input)="changePhoto(imageInput)" #imageInput />
     </div>
-    <div class="center">
-      <img [src]="photoPerfil" for="producto_img" class="aggImg" >
-      <label for="producto_img" class="selectImg" ><mat-icon class="icons">add_a_photo</mat-icon></label>
   </div>
-  <input class="ng-hide" style="display: none;" id="producto_img" type="file" accept="image/*" (input)="changePhoto(imageInput)" #imageInput/>
+  <div class="right-section">
+    <div class="form-fields">
+      <h1>Crear Cuenta</h1>
 
-    <div class="form">
-
-      <mat-form-field appearance="outline">
-        <mat-label>Nombres</mat-label>
-        <input matInput [(ngModel)]="name" autocomplete="off" type="text">
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Apellidos</mat-label>
-        <input matInput [(ngModel)]="lastName" autocomplete="off" type="text">
-      </mat-form-field>
-      <br>
-      <mat-form-field appearance="outline">
-        <mat-label>Numero de Identificación</mat-label>
-        <input matInput [(ngModel)]="identify" autocomplete="off" type="number">
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Email</mat-label>
-        <input matInput [(ngModel)]="email" autocomplete="off" type="text">
-      </mat-form-field>
-      <br>
-      <mat-form-field appearance="outline">
-        <mat-label>Contraseña</mat-label>
-        <input matInput [(ngModel)]="password" autocomplete="off" [type]="typePass">
-        <mat-icon matSuffix (click)="passVisible()">{{iconPass}}</mat-icon>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Verifique su Contraseña</mat-label>
-        <input matInput [(ngModel)]="varifyPassord" autocomplete="off" [type]="typePass1">
-        <mat-icon matSuffix (click)="passVisible1()">{{iconPass}}</mat-icon>
-      </mat-form-field>
-      <br>
-      <mat-form-field appearance="outline">
-        <mat-label>Numero de Telefono</mat-label>
-        <input matInput [(ngModel)]="phone" autocomplete="off" type="number" >
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" (click)="picker.open()">
-        <mat-label>Fecha de Nacimiento</mat-label>
-        <input matInput [matDatepicker]="picker" autocomplete="off" [(ngModel)]="dateBirth">
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-      <br>
-      <mat-form-field appearance="outline">
-        <mat-label>Dirección de residencia</mat-label>
-        <input matInput [(ngModel)]="address" autocomplete="off" type="text">
-        <mat-hint>Esta Información debe ser veridica</mat-hint>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Ciudad</mat-label>
-        <input matInput [(ngModel)]="city" autocomplete="off" type="text">
-      </mat-form-field>
-
-      <div class="buttonsForms" style="margin-right: 310px ;">
-        <button [disabled]="disableButton"  mat-raised-button color="primary" class="buttons" style="margin-left: 30px;" (click)="guardar()">
-          <mat-icon  style="margin-right: 10px;">save</mat-icon>Registrarse
-        </button>
+      <div class="form-row">
+        <mat-form-field  class="custom-form-field">
+          <mat-label class="custom-label">Nombres</mat-label>
+          <input matInput [(ngModel)]="name" autocomplete="off" type="text">
+        </mat-form-field>
+        <mat-form-field class="custom-form-field">
+          <mat-label class="custom-label">Apellidos</mat-label>
+          <input matInput [(ngModel)]="lastName" autocomplete="off" type="text" class="custom-input">
+        </mat-form-field>
+      </div>
+      <div class="form-row">
+        <mat-form-field class="custom-form-field">
+          <mat-label class="custom-label">Numero de Identificación</mat-label>
+          <input matInput [(ngModel)]="identify" autocomplete="off" type="number">
+        </mat-form-field>
+        <mat-form-field class="custom-form-field">
+          <mat-label class="custom-label">Email</mat-label>
+          <input matInput [(ngModel)]="email" autocomplete="off" type="text">
+        </mat-form-field>
+      </div>
+      <div class="form-row">
+        <mat-form-field class="custom-form-field">
+          <mat-label class="custom-label">Contraseña</mat-label>
+          <input matInput [(ngModel)]="password" autocomplete="off" [type]="typePass">
+          <mat-icon matSuffix (click)="passVisible()">{{iconPass}}</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="custom-form-field">
+          <mat-label class="custom-label">Verifique su Contraseña</mat-label>
+          <input matInput [(ngModel)]="varifyPassord" autocomplete="off" [type]="typePass1">
+          <mat-icon matSuffix (click)="passVisible1()">{{iconPass}}</mat-icon>
+        </mat-form-field>
+      </div>
+      <div class="form-row">
+        <mat-form-field class="custom-form-field">
+          <mat-label class="custom-label">Numero de Telefono</mat-label>
+          <input matInput [(ngModel)]="phone" autocomplete="off" type="number">
+        </mat-form-field>
+        <mat-form-field class="custom-form-field" (click)="picker.open()">
+          <mat-label class="custom-label">Fecha de Nacimiento</mat-label>
+          <input matInput [matDatepicker]="picker" autocomplete="off" [(ngModel)]="dateBirth">
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="form-row">
+        <mat-form-field class="custom-form-field">
+          <mat-label class="custom-label">Dirección de residencia</mat-label>
+          <input matInput [(ngModel)]="address" autocomplete="off" type="text">
+          <mat-hint>Esta Información debe ser verídica</mat-hint>
+        </mat-form-field>
+        <mat-form-field class="custom-form-field">
+          <mat-label class="custom-label">Ciudad</mat-label>
+          <input matInput [(ngModel)]="city" autocomplete="off" type="text">
+        </mat-form-field>
       </div>
 
+        <br>
+        <input type="submit" value="Crear" (click)="guardar()">
+
     </div>
   </div>
-  <div class="right">></div>
 </div>
--->
-
-
-
-
-
-
-
-
-
-
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-<body>
-	<section class="login">
-		<div class="login_box">
-			<div class="left">
-				<div class="top_link"><a href="#"><img src="https://drive.google.com/u/0/uc?id=16U__U5dJdaTfNGobB_OpwAJ73vM50rPV&export=download" alt="">Volver a Login</a></div>
-				<div >
-
-						<h1>Crear Cuenta</h1>
-            <mat-form-field appearance="outline">
-              <mat-label>Nombres</mat-label>
-              <input matInput [(ngModel)]="name" autocomplete="off" type="text">
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-              <mat-label>Apellidos</mat-label>
-              <input matInput [(ngModel)]="lastName" autocomplete="off" type="text">
-            </mat-form-field>
-            <br>
-            <mat-form-field appearance="outline">
-              <mat-label>Numero de Identificación</mat-label>
-              <input matInput [(ngModel)]="identify" autocomplete="off" type="number">
-            </mat-form-field>
-
-            <mat-form-field appearance="outline">
-              <mat-label>Email</mat-label>
-              <input matInput [(ngModel)]="email" autocomplete="off" type="text">
-            </mat-form-field>
-            <br>
-            <mat-form-field appearance="outline">
-              <mat-label>Contraseña</mat-label>
-              <input matInput [(ngModel)]="password" autocomplete="off" [type]="typePass">
-              <mat-icon matSuffix (click)="passVisible()">{{iconPass}}</mat-icon>
-            </mat-form-field>
-
-            <mat-form-field appearance="outline">
-              <mat-label>Verifique su Contraseña</mat-label>
-              <input matInput [(ngModel)]="varifyPassord" autocomplete="off" [type]="typePass1">
-              <mat-icon matSuffix (click)="passVisible1()">{{iconPass}}</mat-icon>
-            </mat-form-field>
-            <br>
-            <mat-form-field appearance="outline">
-              <mat-label>Numero de Telefono</mat-label>
-              <input matInput [(ngModel)]="phone" autocomplete="off" type="number" >
-            </mat-form-field>
-
-            <mat-form-field appearance="outline" (click)="picker.open()">
-              <mat-label>Fecha de Nacimiento</mat-label>
-              <input matInput [matDatepicker]="picker" autocomplete="off" [(ngModel)]="dateBirth">
-              <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
-            <br>
-            <mat-form-field appearance="outline">
-              <mat-label>Dirección de residencia</mat-label>
-              <input matInput [(ngModel)]="address" autocomplete="off" type="text">
-              <mat-hint>Esta Información debe ser veridica</mat-hint>
-            </mat-form-field>
-
-            <mat-form-field appearance="outline">
-              <mat-label>Ciudad</mat-label>
-              <input matInput [(ngModel)]="city" autocomplete="off" type="text">
-            </mat-form-field>
-
-						<div class="buttonsForms">
-        <button [disabled]="disableButton"  mat-raised-button color="primary" class="buttons" style="margin-left: 530px;" (click)="guardar()">
-          <mat-icon  style="margin-right: 10px;">save</mat-icon>Registrarse
-        </button>
-      </div>
-
-				</div>
-			</div>
-			<div class="right">
-
-          <img [src]="photoPerfil" for="producto_img" class="aggImg" >
-          <label for="producto_img" class="selectImg" ><mat-icon class="icons">add_a_photo</mat-icon></label>
-      <input class="ng-hide" style="display: none;" id="producto_img" type="file" accept="image/*" (input)="changePhoto(imageInput)" #imageInput/>
-
-				<div class="right-text">
-				</div>
-				<div class="right-inductor"><img src="/src/assets/img/equipo.jpg" alt=""></div>
-			</div>
-		</div>
-	</section>
-</body>
-

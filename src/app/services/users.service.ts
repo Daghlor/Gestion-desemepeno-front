@@ -4,12 +4,14 @@ import { api } from '../config/axios.config';
 import { SnackbarService } from '../config/snackbar.service';
 import { AuthService } from './auth.service';
 
+// SERVICIO DEL USUARIO QUE SE PUEDE INYECTAR A LOS COMPONENTES
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
 
-constructor(
+  constructor(
+  // SE DEFINE VARIABLES CON SERVICIOS ASIGNADOS
   private snack: SnackbarService,
   private auth: AuthService,
   private Local: LocalService
@@ -17,6 +19,7 @@ constructor(
 public userUrl: string = 'user'
   token?: string
 
+  // METODO POST QUE AUTENTIFICA AL USUARIO CON EL LOGIN
   login(body: any){
     return api.post(`auth/login`, body, {}).then((res:any)=>{
       if (res.data) {return res.data}
@@ -26,6 +29,8 @@ public userUrl: string = 'user'
       }
     }).catch((error)=>{throw error})
   }
+
+  // METODO POST DE REGISTRO DE UN USUARIO
   registerEmpleado(body:any){
     this.token != localStorage.getItem('token');
     return api.post(`/public/register`, body,{
@@ -36,6 +41,8 @@ public userUrl: string = 'user'
       throw err.response
     })
   }
+
+  // METODO POST DE REGISTRO DE UN USUARIO POR EL LADO DEL ADMIN
   registerUserAdmin(body:any){
     this.token != localStorage.getItem('token');
     return api.post(`users/register`, body,{
@@ -46,6 +53,8 @@ public userUrl: string = 'user'
       throw err.response
     })
   }
+
+  // METODO POST PARA OBTENER A TODOS LOS USUARIOS
   getAllUsers(body: any){
     this.token != localStorage.getItem('token');
     return api.post(`/users/getAll`, body, {
@@ -57,6 +66,7 @@ public userUrl: string = 'user'
     })
   }
 
+  // METODO GET PARA BORRAR A UN USUARIO POR SU UNIQUE_ID
   deleteUser(unique_id:any){
     this.token != localStorage.getItem('token');
     return api.get(`delete/${unique_id}`, {
@@ -68,6 +78,7 @@ public userUrl: string = 'user'
     })
   }
 
+  // METODO POST PAR ACTUALIZAR A UN USUARIO POR SU UNIQUE_ID
   updateUser(unique_id:any){
     this.token != localStorage.getItem('token');
     return api.post(`/users/update/${unique_id}`,{
@@ -79,6 +90,7 @@ public userUrl: string = 'user'
     })
   }
 
+  // METODO GET PARA ENCONTRAR UN SOLO USUARIO POR SU UNIQUE_ID
   findOne(unique_id:any){
     this.token != localStorage.getItem('token');
     return api.get(`getOne/${unique_id}`,{
@@ -90,6 +102,7 @@ public userUrl: string = 'user'
     })
   }
 
+  // METODO POST PARA VERIFICAR EL USUARIO
   verifyUser(body:any){
     this.token != localStorage.getItem('token');
     return api.post(`verify`, body, {

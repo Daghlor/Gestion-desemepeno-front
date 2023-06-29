@@ -5,13 +5,14 @@ import { SnackbarService } from 'src/app/config/snackbar.service';
 import { UsersService } from 'src/app/admin/services/users.service';
 import * as moment from 'moment';
 
-
+// ESTE ES EL TS DE LA PARTDE LOGICA DE LA VISTA LAYOUT
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent implements OnInit {
+  // SE DEFINE VARIABLES LOCALES
   title?: string;
   validateTitle?: any = [];
   nameUser?: any = '';
@@ -41,6 +42,7 @@ export class LayoutComponent implements OnInit {
 
 
   constructor(
+    // SE DEFINE VARIABLES CON SERVICIOS ASIGNADOS
     private router: Router,
     private Local: LocalService,
     private snack: SnackbarService,
@@ -54,10 +56,12 @@ export class LayoutComponent implements OnInit {
 
   }
 
+  // FUNCION QUE VALIDA PERMISOS CON LOS SERVICIOS LOCALES
   validatePermissions(code: string): Boolean {
     return this.Local.validatePermission(code) ? true : false;
   }
 
+  // FUNCION QUE VALIDA EN TODO EL ARRAY DE PERMISOS DE LOS SERVICIOS LOCALES
   validateArrayPermissions(array: any): Boolean {
     return this.Local.validateArrayPermission(array) ? true : false;
   }
@@ -78,6 +82,7 @@ export class LayoutComponent implements OnInit {
     this.snack.redirect(url);
   }
 
+  // FUNCION QUE REDIRIGE AL USUARIO A UNA VISTA SEGUN EL NUMERO QUE ESTE EN LA VISTA LAYOUT
   openOptions(n: number){
     if(n === this.option){
       this.option = 0;
@@ -92,11 +97,11 @@ export class LayoutComponent implements OnInit {
 
   }
 
+  // FUNCION PARA DESLOGEARSE DEL SISTEMA
   async logout(){
     await this.Local.clearAllDataLocal();
     await this.router.navigateByUrl('/');
   }
-
 
   findData(){
     this.userApi.FindOne(this.unique_id || '').then((res:any)=>{
@@ -130,15 +135,10 @@ export class LayoutComponent implements OnInit {
     });
   }
 
-    mostrarPerfil() {
-      this.userApi.FindOne(this.unique_id||'').then((res:any) => {
-        this.userProfile = res.data;
-      });
-    }
 
-   goToProfile(event:any){ // Reemplaza esto con la forma en que recuperas el Unique ID de tu usuario actual desde tu base de datos
+   goToProfile(event:any){
       this.userApi.FindOne(this.unique_id || '').then((res:any)=>{
-        this.router.navigate(['admin/usuarios/form/' + event.data.this.unique_id])
+        this.router.navigate(['admin/usuarios/form/' + this.unique_id])
       });
     }
 

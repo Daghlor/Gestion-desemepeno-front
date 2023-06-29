@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import  *  as CryptoJS from  'crypto-js';
 
+// SERVICIO LOCAL QUE CONTIENE VARIAS FUNCIONES LOGICAS DEL SISTEMA QUE LAS GUARDA LOCALMENTE EN EL EQUIPO
 @Injectable({
   providedIn: 'root'
 })
@@ -25,7 +26,7 @@ export class LocalService {
     localStorage.clear();
   }
 
-  public validatePermission(code: string): boolean {    
+  public validatePermission(code: string): boolean {
     let value = false;
     let permissions =  JSON.parse(this.findDataLocal('permissions'));
     for (let i = 0; i < permissions.length; i++) {
@@ -37,7 +38,7 @@ export class LocalService {
     return value;
   }
 
-  public validateArrayPermission(codeArray: any): boolean {    
+  public validateArrayPermission(codeArray: any): boolean {
     let value = false;
     let permissions =  JSON.parse(this.findDataLocal('permissions'));
     for (let i = 0; i < permissions.length; i++) {

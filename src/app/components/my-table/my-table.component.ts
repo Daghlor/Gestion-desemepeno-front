@@ -3,14 +3,14 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import {SelectionModel} from '@angular/cdk/collections';
 
-
-
+// ESTE ES EL TS DONDE ESTA LA PARTE LOGICA DE LA VISTA TABLA
 @Component({
   selector: 'app-my-table',
   templateUrl: './my-table.component.html',
   styleUrls: ['./my-table.component.scss']
 })
 export class MyTableComponent implements OnInit {
+  // SE DEFINE VARIABLES DONDE SON EXPORTABLES A LOS COMPONENTES DE LAS VISTAS
   @Input("dataSource") dataSource!: MatTableDataSource<any>;
   selection = new SelectionModel<any>();
   @Input("Columns") columns: any;
@@ -26,14 +26,14 @@ export class MyTableComponent implements OnInit {
   displayedColumns: any = [];
 
   constructor() { }
-  
+
   ngOnInit(): void {
-    this.displayedColumns = this.columns.map((c:any) => c.columnDef);  
+    this.displayedColumns = this.columns.map((c:any) => c.columnDef);
   }
 
   validate(row: any){
     console.log(row);
-    
+
   }
   sortData(value: any) {
     this.changeSort.emit(value);
@@ -47,9 +47,9 @@ export class MyTableComponent implements OnInit {
     this.changePaginator.emit(event);
   }
 
-  eventsIcons(item: any, row: any){ 
-    let values = {icon: item, data: row}  
-    return this.eventIcons.emit(values); 
+  eventsIcons(item: any, row: any){
+    let values = {icon: item, data: row}
+    return this.eventIcons.emit(values);
   }
 
 

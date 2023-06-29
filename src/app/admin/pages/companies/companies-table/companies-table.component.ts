@@ -8,12 +8,14 @@ import { SnackbarService } from 'src/app/config/snackbar.service';
 import { identity } from 'rxjs';
 import { LocalService } from 'src/app/config/local.service';
 
+// ESTE ES EL .TS DE LA TABLA DE LAS EMPRESAS DONDE ESTA LA PARTE LOGICA
 @Component({
   selector: 'app-companies-table',
   templateUrl: './companies-table.component.html',
   styleUrls: ['./companies-table.component.scss']
 })
 export class CompaniesTableComponent implements OnInit {
+  // SE DEFINE VARIABLES LOCALES Y MAQUETADO DE LA TABLA
   loading: boolean = false;
   paginator: boolean = true;
   uuid: any
@@ -75,6 +77,7 @@ export class CompaniesTableComponent implements OnInit {
   }];
 
   constructor(
+    // SE DEFINE VARIBLAES CON SERVICIOS ASIGNADOS
     private CompaniesApi: CompaniesService,
     private router: Router,
     private dialog: MatDialog,
@@ -90,6 +93,7 @@ export class CompaniesTableComponent implements OnInit {
     return this.Local.validatePermission(code) ? true : false;
   }
 
+  // FUNCION QUE OBTIENE TODAS LAS EMPRESAS Y LAS PONE EN LA TABLA
   getData(){
     const paginate = {
       paginate: this.pageSize,

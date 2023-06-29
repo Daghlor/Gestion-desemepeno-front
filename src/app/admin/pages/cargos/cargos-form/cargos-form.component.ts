@@ -5,12 +5,14 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatAccordion } from '@angular/material/expansion';
 import { Router, ActivatedRoute } from '@angular/router';
 
+// ESTE ES EL .TS DE FORMULARIOS DE CARGO DONDE ESTA LA PARTE LOGICA
 @Component({
   selector: 'app-cargos-form',
   templateUrl: './cargos-form.component.html',
   styleUrls: ['./cargos-form.component.scss']
 })
 export class CargosFormComponent implements OnInit {
+  // SE DEFINE VARIABLES LOCALES
   @ViewChild(MatAccordion) accordion?: MatAccordion;
   description?: string;
   unique_id?: string;
@@ -26,6 +28,7 @@ export class CargosFormComponent implements OnInit {
   currentTab: number = 1;
 
   constructor(
+    // SE DEFINE VARIABLES CON SERVICIOS ASIGNADOS
     private CargosApi: EmploymentsService,
     private snack: SnackbarService,
     private router: Router,
@@ -62,6 +65,7 @@ export class CargosFormComponent implements OnInit {
     }
   }
 
+  // FUCION QUE BUSCAR UNA SOLA AREA
   findData(){
     this.CargosApi.FinOne(this.unique_id || '').then((res:any)=>{
       this.listEmployments = [];
@@ -78,6 +82,7 @@ export class CargosFormComponent implements OnInit {
     });
   }
 
+  // FUNCION PARA AGREGAR UN CARGO
   addCargo(){
     if(!this.validateCargos()){
       return;
@@ -95,10 +100,12 @@ export class CargosFormComponent implements OnInit {
     });
   }
 
+  // FUNCION PARA BORRAR UN CARGO
   deleteCargos(index: number){
   this.listCargos.splice(index, 1);
   }
 
+  // FUNCION QUE VALIDA SI LOS CARGOS CREADOS EXISTEN
   validateCargos(){
     let result = true;
     for (let i = 0; i < this.listCargos.length; i++){
@@ -110,6 +117,7 @@ export class CargosFormComponent implements OnInit {
     return result;
   }
 
+  // FUNCION QUE VERIFICA LOS CAMPOS Y GUARDA EN LA BASE DE DATOS
   async guardar(){
     if(!this.description){
       return this.snack.viewsnack("la descripcion es obligatoria", 'Error');

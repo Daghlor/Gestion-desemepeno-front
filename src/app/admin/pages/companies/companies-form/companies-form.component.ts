@@ -6,12 +6,15 @@ import { LocalService } from 'src/app/config/local.service';
 import {MatAccordion} from '@angular/material/expansion';
 import * as moment from 'moment';
 import { NgxPermissionsService } from 'ngx-permissions';
+
+// ESTE ES EL .TS DE FORMULARIOS DE EMPRESA DONDE ESTA LA PARTE LOGICA
 @Component({
   selector: 'app-companies-form',
   templateUrl: './companies-form.component.html',
   styleUrls: ['./companies-form.component.scss']
 })
 export class CompaniesFormComponent implements OnInit {
+  // SE DEFINE VARIABLES LOCALES
 @ViewChild(MatAccordion) accordion?: MatAccordion;
 logo?: string = 'assets/img/companies.png';
 titleButton: string = 'Registrar';
@@ -53,6 +56,7 @@ optionsTabs: any = [{
 
 
   constructor(
+    // SE DEFINE VARIABLES CON SERVICIOS ASIGNADOS
     private companiesApi: CompaniesService,
     private snack: SnackbarService,
     private router: Router,
@@ -93,7 +97,7 @@ optionsTabs: any = [{
     }
   }
 
-
+  // FUNCION PARA CAMBIAR FOTO DE LA EMPRESA
   async changePhoto(photo: any){
     const file: File = photo.files[0];
 
@@ -110,6 +114,7 @@ optionsTabs: any = [{
     await reader.readAsDataURL(file);
   }
 
+  // FUNCION PARA VERIFICAR EN QUE MODULO SE HICO UN CAMBIO Y LO EJECUTA
   changeUpdate(index: number, type: string){
     clearTimeout(this.validateTime2);
     this.validateTime2 = setTimeout(() => {
@@ -126,6 +131,7 @@ optionsTabs: any = [{
     }, 1500);
   }
 
+  // FUNCION QUE VALIDA TODOS LOS INPUTS AL EDITAR UNA EMPRESA
   validateInput(text: string, type: number, index: number){
     clearTimeout(this.validateTime);
     this.validateTime = setTimeout(() => {
@@ -191,6 +197,7 @@ optionsTabs: any = [{
     }, 500);
   }
 
+  // FUNCION PARA ENCONTRAR LOS DATOS DE UNA SOLA EMPRESA
   findData(){
     this.companiesApi.FindOne(this.unique_id || '').then((res:any)=>{
       this.nit = res.data.nit;
@@ -244,6 +251,7 @@ optionsTabs: any = [{
     });
   }
 
+  // FUNCION PARA AGREGAR USUARIOS A LA EMPRESA
   async addUsers(){
     if(!await this.validateUsers()){
       return;
@@ -273,6 +281,7 @@ optionsTabs: any = [{
     })
   }
 
+  // FUNCION PARA ELIMINAR USUARIOS DE LA EMPRESA
   deleteUser(index: number){
     if(this.listUsers[index].sync){
       this.listUsers[index].delete = true;
@@ -281,6 +290,7 @@ optionsTabs: any = [{
     }
   }
 
+  // FUNCION QUE VALIDA LOS CAMPOS DE LOS USUARIOS
   async validateUsers(){
     let result = true;
 
@@ -335,6 +345,7 @@ optionsTabs: any = [{
     return await result;
   }
 
+  // FUNCION QUE AGREGA AREAS PARA LA EMPRESA
   addAreas(){
     if(!this.validateAreas()){
       return;
@@ -352,10 +363,12 @@ optionsTabs: any = [{
     });
   }
 
+  // FUNCION PARA ELIMINAR AREAS
   deleteAreas(index: number){
     this.listAreas.splice(index, 1);
   }
 
+  // FUNCION QUE VALIDA EL CAMPO DE LAS AREAS
   validateAreas(){
     let result = true;
 
@@ -369,6 +382,7 @@ optionsTabs: any = [{
     return result;
   }
 
+  // FUNCION PARA AGREGAR CARGOS PARA LA EMPRESA
   addEmployment(){
     if(!this.validateEmployment()){
       return;
@@ -386,10 +400,12 @@ optionsTabs: any = [{
     });
   }
 
+  // FUNCION PARA ELIMINAR CARGOS
   deleteEmployment(index: number){
     this.listEmployments.splice(index, 1);
   }
 
+  // FUNCION QUE VALIDA EL CAMPO DE LOS CARGOS
   validateEmployment(){
     let result = true;
 
@@ -403,6 +419,7 @@ optionsTabs: any = [{
     return result;
   }
 
+  // FUNCION QUE AGREGA EL OBJETIVO A ESTRATEGICO A TRAVES DE LA EMPRESA
   addObjetive(){
     if(!this.validateObjetives()){
       return;
@@ -429,10 +446,12 @@ optionsTabs: any = [{
     });
   }
 
+  // FUNCION QUE ELIMINAR EL OBJETIVO ESTRATEGICO
   deleteStrategics(index: number){
     this.listStrategics.splice(index, 1);
   }
 
+  // FUNCION QUE VALIDA LOS CAMPOS DE LOS OBEJTIVOS ESTRATEGICOS
   validateObjetives(){
     let result = true;
     for (let i = 0; i < this.listStrategics.length; i++) {
@@ -459,7 +478,7 @@ optionsTabs: any = [{
     return result;
   }
 
-
+  // FUNCION QUE VERIFICA LOS CAMPOS DE LA EMPRESA Y VERIFICA LAS VALIDACIONES DE LAS OTRAS FUNCIONES PARA DESPUES O CREARLA O ACTUALIZARLA
   async saveData(){
     if(!this.nit){
       return this.snack.viewsnack('Hace Falta NIT', 'ERROR');

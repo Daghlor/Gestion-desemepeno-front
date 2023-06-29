@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import * as Pages from "./pages";
 
+// ESTAS SON LAS RUTAS PUBLICAS QUE EL USUARIO PUEDE VER QUE NO REQUIERE UN LOGEO
 const routes: Routes = [
   {
     path: "",

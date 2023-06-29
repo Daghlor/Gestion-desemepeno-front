@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { api } from "src/app/config/axios.config";
 import { LocalService } from 'src/app/config/local.service';
 
+// SERVICIO DE USUARIOS QUE MANDA SOLICITUDES AL BACK
 @Injectable({
   providedIn: 'root'
 })
@@ -12,6 +13,7 @@ export class UsersService {
     private Local: LocalService
   ) { }
 
+  // METODO POST PARA CREAR UN USUARIO
   Create(body: any){
     this.token = this.Local.findDataLocal('token');
     return api.post(`/users/register`, body, {
@@ -23,6 +25,7 @@ export class UsersService {
     })
   }
 
+  // METODO POST PARA BUSCAR O TRAER TODOS LOS USUARIOS
   FindAll(body: any){
     this.token = this.Local.findDataLocal('token');
     return api.post(`/users/getAll`, body, {
@@ -34,6 +37,7 @@ export class UsersService {
     })
   }
 
+  // METODO GET PARA BUSCAR O TRAER UN SOLO USUARIO
   FindOne(uuid: string){
     this.token = this.Local.findDataLocal('token');
     return api.get(`/users/getOne/${uuid}`, {
@@ -45,6 +49,7 @@ export class UsersService {
     })
   }
 
+  // METODO PUT PARA ACTUALIZAR UN USUARIO
   Update(uuid: string, body: any){
     this.token = this.Local.findDataLocal('token');
     return api.put(`/users/update/${uuid}`, body, {
@@ -56,6 +61,7 @@ export class UsersService {
     })
   }
 
+  // METODO DELETE PARA ELIMINAR UN USUARIO
   Delete(uuid: string){
     this.token = this.Local.findDataLocal('token');
     return api.delete(`/users/delete/${uuid}`, {

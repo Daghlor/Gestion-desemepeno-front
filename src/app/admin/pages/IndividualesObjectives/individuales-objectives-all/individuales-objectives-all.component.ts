@@ -7,12 +7,14 @@ import { LocalService } from 'src/app/config/local.service';
 import { SnackbarService } from 'src/app/config/snackbar.service';
 import { ConfirmModalComponent } from 'src/app/admin/components/confirm-modal/confirm-modal.component';
 
+// ESTE ES EL .TS DONDE ESTA LA PARTE LOGICA DE LA VISTA TODOS LOS OBJETIVOS INDIVIDUALES
 @Component({
   selector: 'app-individuales-objectives-all',
   templateUrl: './individuales-objectives-all.component.html',
   styleUrls: ['./individuales-objectives-all.component.scss']
 })
 export class IndividualesObjectivesAllComponent implements OnInit {
+  // SE DEFINE VARIABLES LOCALES Y EL MAQUETADO DE LA TABLA
   loading: boolean = false;
   paginator: boolean = true;
   length: number = 0;
@@ -60,6 +62,7 @@ export class IndividualesObjectivesAllComponent implements OnInit {
     cell: (element: any) => `${element.icons}`,
   }];
   constructor(
+    // SE DEFINE VARIABLES CON SERVICIOS ASIGNADOS
     private individualAPI: IndividualService,
     private router: Router,
     private snack: SnackbarService,
@@ -71,6 +74,7 @@ export class IndividualesObjectivesAllComponent implements OnInit {
     this.findData();
   }
 
+  // FUNCION QUE BUSCA TODOS LOS OBJETIVOS INDIVIDUALES Y LOS PONE EN LA TABLA
   findData(){
     const paginate = {
       paginate: this.pageSize,

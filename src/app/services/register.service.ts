@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { LocalService } from '../config/local.service';
 import { api } from "src/app/config/axios.config";
 
+// ESTE SERVICIO SE ENCARGA DE REGISTRAR PUBLICAMENTE OSEA QUE NO SE NECESITA LOGEAR PRIMERO
 @Injectable({
   providedIn: 'root'
 })

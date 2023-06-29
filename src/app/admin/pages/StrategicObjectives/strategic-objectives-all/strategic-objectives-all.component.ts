@@ -7,12 +7,14 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmModalComponent } from 'src/app/admin/components/confirm-modal/confirm-modal.component';
 
+// ESTE ES EL .TS DONDE ESTA LA PARTE LOGICA DE LA VISTA TODOS LOS OBEJTIVOS ESTRATEGICOS
 @Component({
   selector: 'app-strategic-objectives-all',
   templateUrl: './strategic-objectives-all.component.html',
   styleUrls: ['./strategic-objectives-all.component.scss']
 })
 export class StrategicObjectivesAllComponent implements OnInit {
+  // SE DEFINE VARIABLES LOCALES Y EL MAQUETADO DE LA TABLA
   loading: boolean = false;
   paginator: boolean = true;
   length: number = 0;
@@ -60,6 +62,7 @@ export class StrategicObjectivesAllComponent implements OnInit {
     cell: (element: any) => `${element.icons}`,
   }];
   constructor(
+    // SE DEFINE VARIABLES CON SERVICIOS ASIGNADOS
     private strategicAPI: StrategicsService,
     private router: Router,
     private snack: SnackbarService,
@@ -71,6 +74,7 @@ export class StrategicObjectivesAllComponent implements OnInit {
     this.findData();
   }
 
+  // FUCION QUE BUSCA TODOS LOS OBEJTIVOS ESTRATEGICOS Y LOS PONE EN LA TABLA
   findData(){
     const paginate = {
       paginate: this.pageSize,
@@ -107,9 +111,11 @@ export class StrategicObjectivesAllComponent implements OnInit {
     this.findData();
   }
 
-  iconsFunction(event: any){
-
-    if(event.icon == 'delete'){
+  iconsFunction(event: any) {
+    if (event.icon == 'edit') {
+      this.router.navigate(['admin/informes/' + event.data.unique_id]);
+    }
+    else if(event.icon == 'delete'){
       const dialogRef = this.dialog.open(ConfirmModalComponent, {
         width: '250px',
         data: { message: '¿Estás seguro de que quieres eliminar este objetivo?' }

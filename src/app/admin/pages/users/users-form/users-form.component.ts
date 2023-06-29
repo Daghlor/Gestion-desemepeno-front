@@ -5,12 +5,15 @@ import { UsersService } from 'src/app/admin/services/users.service';
 import { LocalService } from 'src/app/config/local.service';
 import { SnackbarService } from 'src/app/config/snackbar.service';
 import * as moment from 'moment';
+
+// ESTE ES EL TS DONDE ES LA PARTE LOGICA DE LA VISTA FORMULARIOS DE USUARIO
 @Component({
   selector: 'app-users-form',
   templateUrl: './users-form.component.html',
   styleUrls: ['./users-form.component.scss']
 })
 export class UsersFormComponent implements OnInit {
+  // SE DEFINE VARIABLES LOCALES
   titleButton: string = 'Registrar';
   photo?: string;
   name?: string;
@@ -45,6 +48,7 @@ export class UsersFormComponent implements OnInit {
   iconPassword: string = 'visibility';
 
   constructor(
+    // SE DEFINE VARIABLES CON SERVICIOS ASIGNADOS
     private authApi: AuthService,
     private userApi: UsersService,
     private snack: SnackbarService,
@@ -65,6 +69,7 @@ export class UsersFormComponent implements OnInit {
     }
   }
 
+  // FUNCION PARA CAMBIAR FOTO DE PERFIL
   async changePhoto(photo: any){
     const file: File = photo.files[0];
 
@@ -81,6 +86,7 @@ export class UsersFormComponent implements OnInit {
     await reader.readAsDataURL(file);
   }
 
+  // FUNCION PARA ELIMINAR UN ROL DE UN USUARIO
   deleteRoles(index: number){
     console.log(this.rolesView[index]);
 
@@ -91,6 +97,7 @@ export class UsersFormComponent implements OnInit {
     }
   }
 
+  // FUNCION PARA OBETENER EL ROL, LA EMPRESA Y EL CARGO ASOCIADO AL USUARIO
   getAllList(){
     this.authApi.FindData().then((res:any)=>{
       this.listRoles = res.roles;
@@ -99,6 +106,7 @@ export class UsersFormComponent implements OnInit {
     })
   }
 
+  // FUNCION PARA AGREGAR ROL A UN USUARIO CON VERIFICACION
   async addRoles(){
     let data: any = this.role_id;
     for (let i = 0; i < this.rolesView.length; i++) {
@@ -115,6 +123,7 @@ export class UsersFormComponent implements OnInit {
     this.role_id = 0;
   }
 
+  // FUNCION PARA CAMBIAR LA EMPRESA ASOCIADA DE UN USUARIO
   changeCompany(){
     this.listEmployments = [];
     this.employment_id = 0;
@@ -126,6 +135,7 @@ export class UsersFormComponent implements OnInit {
     }
   }
 
+  // FUNCION PARA ENCONTRAR UN SOLO USUARIO CON TODOS SUS DATOS
   findData(){
     this.userApi.FindOne(this.unique_id || '').then((res:any)=>{
       this.listEmployments = [];
@@ -158,6 +168,7 @@ export class UsersFormComponent implements OnInit {
     });
   }
 
+  // FUNCION PARA CREAR O ACTUALIZAR UN USUARIO CON VERIFICACION EN LOS CAMPOS
   async saveData(){
     if(!this.name){
       return this.snack.viewsnack('Hace Falta los Nombres', 'ERROR');

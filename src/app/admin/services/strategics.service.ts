@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { api } from "src/app/config/axios.config";
 import { LocalService } from 'src/app/config/local.service';
 
+// SERVICIO DE OBJETIVOS ESTRATEGICOS QUE MANDA SOLICITUDES AL BACK
 @Injectable({
   providedIn: 'root'
 })
@@ -12,6 +13,7 @@ export class StrategicsService {
     private Local: LocalService
   ) {}
 
+  // METODO POST PARA CREAR LOS OBEJTIVOS ESTRATEGICOS
   Create(body: any){
     this.token = this.Local.findDataLocal('token');
     return api.post(`/strategics/create`, body, {
@@ -23,6 +25,7 @@ export class StrategicsService {
     })
   }
 
+  // METODO POST PARA BUSCAR O TRAER TODOS LOS OBJETIVOS ESTRATEGICOS
   FindAll(body: any){
     this.token = this.Local.findDataLocal('token');
     return api.post(`/strategics/getAll`, body, {
@@ -34,6 +37,7 @@ export class StrategicsService {
     })
   }
 
+  // METODO GET PARA BUSCAR O TRAER UN SOLO OBJETIVO ESTRATEGIC
   FindOne(uuid: string){
     this.token = this.Local.findDataLocal('token');
     return api.get(`/strategics/getOne/${uuid}`, {
@@ -45,6 +49,7 @@ export class StrategicsService {
     })
   }
 
+  // METODO DELETE PARA ELIMINAR LOS OBJETIVOS ESTRATEGICOS
   Delete(uuid: string){
     this.token = this.Local.findDataLocal('token');
     return api.delete(`/strategics/delete/${uuid}`, {
