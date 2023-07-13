@@ -63,7 +63,7 @@
             </div>
             <div class="items" (click)="openOptions(4)" *ngIf="validateArrayPermissions(['list_objectives_strategics', 'list_my_objectives_strategics', 'list_objectives_individuals', 'list_my_objectives_individuals', 'list_tracings'])" [ngStyle]="{'background-color': option == 4 ? '#1560BD' : '#1560BD' }">
               <mat-icon class="itemsIcon">assignment</mat-icon>
-              <a class="itemsTitle">Metas</a>
+              <a class="itemsTitle">Plan de desempeño</a>
               <mat-icon class="itemsIcon"> {{option == 4 ? 'expand_less' : 'expand_more'}} </mat-icon>
           </div>
           <div class="subMenu" *ngIf="option == 4">
@@ -92,7 +92,6 @@
               <a class="itemsTitle">Informes</a>
             </div>
           </div>
-
         </div>
         <div class="center ">
             <img src="assets/img/logoBlanco.png" class="logotype">

@@ -2,12 +2,6 @@
 <br /><br />
 <mat-grid-list cols="3" rowHeight="80px">
   <mat-grid-tile [colspan]="1">
-    <mat-form-field appearance="outline">
-      <mat-label>Objetivo Individual</mat-label>
-      <input matInput [(ngModel)]="title" autocomplete="off" type="text" />
-    </mat-form-field>
-  </mat-grid-tile>
-  <mat-grid-tile [colspan]="1">
     <mat-form-field appearance="outline" >
       <mat-label>Objetivos Estratégicos</mat-label>
       <mat-select [(ngModel)]="strategic_id" [value]="strategic_id" class="mat-select-long-text">
@@ -21,6 +15,12 @@
   </mat-grid-tile>
   <mat-grid-tile [colspan]="1">
     <mat-form-field appearance="outline">
+      <mat-label>Objetivo Individual</mat-label>
+      <input matInput [(ngModel)]="title" autocomplete="off" type="text" />
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="1">
+    <mat-form-field appearance="outline">
       <mat-label>Peso %</mat-label>
       <input matInput [(ngModel)]="weight" autocomplete="off" type="number" />
     </mat-form-field>
@@ -29,7 +29,7 @@
 <mat-grid-list cols="1" rowHeight="150px">
   <mat-grid-tile [colspan]="1">
     <mat-form-field appearance="outline" style="width: 98%">
-      <mat-label>Metas</mat-label>
+      <mat-label>Meta</mat-label>
       <textarea
         matInput
         [(ngModel)]="objetive"
