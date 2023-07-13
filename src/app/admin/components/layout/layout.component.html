@@ -106,19 +106,21 @@
           </div>
           <div class="profileContainer">
             <img [src]="photo" class="perfil">
-            <div class="profileInfo">
-              <div class="nameProfile">{{nameUser}}</div>
-              <div class="dropdown">
-                <mat-icon class="dropbtn">arrow_drop_down</mat-icon>
-                <div class="dropdown-content">
-                  <a (click)="goToProfile()"><mat-icon>people</mat-icon>Mi perfil</a>
-                  <a (click)="logout()"><mat-icon>arrow_back</mat-icon> Cerrar sesión</a>
-                </div>
-              </div>
-            </div>
+          <div class="profileInfo">
+            <div class="nameProfile">{{nameUser}}</div>
+            <mat-menu #dropdownMenu="matMenu" class="dropdown-menu">
+              <button mat-menu-item (click)="goToProfile()" class="dropdown-item">
+                <mat-icon>people</mat-icon> Mi perfil
+              </button>
+              <button mat-menu-item (click)="logout()" class="dropdown-item">
+                <mat-icon>arrow_back</mat-icon> Cerrar sesión
+              </button>
+            </mat-menu>
+            <button mat-icon-button [matMenuTriggerFor]="dropdownMenu" aria-label="Dropdown" class="dropdown-button">
+              <mat-icon class="dropbtn">arrow_drop_down</mat-icon>
+            </button>
           </div>
-
-
+          </div>
         </div>
         <hr class="lineContent" color="#29ABE2">
         <div class="pages">
