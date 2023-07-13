@@ -1,10 +1,8 @@
 <!-- HTML DE LA VISTA LAYOUT O NAVBAR DE LA PARTE IZQUIERDA Y DE ARRIBA -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<div class="nav css-gr">
+<div class="container">
 
     <div class="navbarLeft">
-
-
         <div class="title">
             <a class="titleData" (click)="redirectForm('admin/'+title)" >
                 {{validateTitle.length == 1 ? title : validateTitle[0] + ' ' + validateTitle[1]  }}
@@ -106,15 +104,21 @@
             <mat-icon class="homeiconOption">home</mat-icon>
             <a class="textOption">Inicio</a>
           </div>
-            <img [src]="photo" class="perfil right">
-            <div class="nameProfile"> {{nameUser}} </div>
-            <div class="dropdown">
-              <mat-icon class="dropbtn">arrow_drop_down</mat-icon>
-              <div class="dropdown-content">
-              <a (click)="goToProfile($event)"><mat-icon>people</mat-icon>Mi perfil</a>
-              <a (click)="logout()"><mat-icon>arrow_back</mat-icon> Cerrar sesión</a>
+          <div class="profileContainer">
+            <img [src]="photo" class="perfil">
+            <div class="profileInfo">
+              <div class="nameProfile">{{nameUser}}</div>
+              <div class="dropdown">
+                <mat-icon class="dropbtn">arrow_drop_down</mat-icon>
+                <div class="dropdown-content">
+                  <a (click)="goToProfile()"><mat-icon>people</mat-icon>Mi perfil</a>
+                  <a (click)="logout()"><mat-icon>arrow_back</mat-icon> Cerrar sesión</a>
+                </div>
               </div>
             </div>
+          </div>
+
+
         </div>
         <hr class="lineContent" color="#29ABE2">
         <div class="pages">

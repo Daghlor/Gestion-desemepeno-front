@@ -119,6 +119,18 @@ export class InformesTableComponent implements OnInit{
       });
   }
 
+  changeSort(item: any) {
+    this.orderColumn = item.active;
+    this.orderType = item.direction;
+    this.findData();
+  }
+
+  changePaginator(info: any) {
+    this.actualPage = info.pageIndex + 1;
+    this.pageSize = info.pageSize;
+    this.findData();
+  }
+
    iconsFunction(event: any) {
   if (event.icon === 'edit') {
     const objetivoUniqueId = event.data.unique_id;

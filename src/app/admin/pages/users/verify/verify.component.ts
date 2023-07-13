@@ -1,126 +1,156 @@
 import { Router } from '@angular/router';
 import { SnackbarService } from 'src/app/config/snackbar.service';
 import { VerifyService } from './../../../services/verify.service';
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+} from '@angular/core';
+import { NgForm } from '@angular/forms';
 
-// ESTE ES EL .TS DONDE ESTA LA PARTE LOGICA DE LA VISTA VERIFICACION
 @Component({
   selector: 'app-verify',
   templateUrl: './verify.component.html',
-  styleUrls: ['./verify.component.scss']
+  styleUrls: ['./verify.component.scss'],
 })
 export class VerifyComponent implements OnInit {
-  // SE DEFINE VARIABLES LOCALES
+  @ViewChildren('inputs') inputs!: QueryList<ElementRef<HTMLInputElement>>;
+  @ViewChild('submitBtn') submitBtn!: ElementRef<HTMLInputElement>;
+  @ViewChild('verifyForm') verifyForm!: NgForm;
   num1: any;
   num2: any;
   num3: any;
   num4: any;
   num5: any;
   num6: any;
+  option?: number;
 
   constructor(
-    // SE DEFINE VARIABLES CON SERVICIOS ASIGNADOS
     private verifyAPI: VerifyService,
     private snack: SnackbarService,
-    private router: Router,
-  ) { }
+    private router: Router
+  ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit() {}
 
-  // FUNCION QUE VALIDA LOS NUMEROS DE TODOS LOS CAMPOS Y QUE SEAN CORRECTOS
-  validateNumbers(number:any):any{
-    let validate = /^[0-9]+$/
+  validateNumbers(number: any): any {
+    let validate = /^[0-9]+$/;
 
-    switch(number){
+    switch (number) {
       case 1:
-        if(!this.num1.match(validate)){
-          return this.num1 = null;
+        if (!this.num1.match(validate)) {
+          return (this.num1 = null);
         }
-        document.getElementById('input2')?.focus()
-      break;
+        document.getElementById('input2')?.focus();
+        break;
 
       case 2:
-        if(!this.num2.match(validate)){
-          return this.num2 = null;
+        if (!this.num2.match(validate)) {
+          return (this.num2 = null);
         }
-        document.getElementById('input3')?.focus()
-      break;
+        document.getElementById('input3')?.focus();
+        break;
 
       case 3:
-        if(!this.num3.match(validate)){
-          return this.num3 = null;
+        if (!this.num3.match(validate)) {
+          return (this.num3 = null);
         }
-        document.getElementById('input4')?.focus()
-      break;
+        document.getElementById('input4')?.focus();
+        break;
 
       case 4:
-        if(!this.num5.match(validate)){
-          return this.num5 = null;
+        if (!this.num5.match(validate)) {
+          return (this.num5 = null);
         }
-        document.getElementById('input5')?.focus()
-      break;
+        document.getElementById('input5')?.focus();
+        break;
 
       case 5:
-        if(!this.num5.match(validate)){
-          return this.num5 = null;
+        if (!this.num5.match(validate)) {
+          return (this.num5 = null);
         }
-        document.getElementById('input6')?.focus()
-      break;
+        document.getElementById('input6')?.focus();
+        break;
 
       case 6:
-        if(!this.num6.match(validate)){
-          return this.num6 = null;
+        if (!this.num6.match(validate)) {
+          return (this.num6 = null);
         }
-      break;
+        break;
 
       default:
         break;
     }
   }
 
-  // FUNCION QUE VERIFICA QUE TODOS LOS CAMPOS ESTEN LLENOS Y MANDA EL CODIGO AL BACK PARA QUE LO VERIFIQUE
-  saveVerify(){
-    if(!this.num1){
+  saveVerify() {
+    if (!this.num1) {
       return this.snack.viewsnack('Falta #1', 'Error');
     }
-    if(!this.num2){
+    if (!this.num2) {
       return this.snack.viewsnack('Falta #2', 'Error');
     }
-    if(!this.num3){
+    if (!this.num3) {
       return this.snack.viewsnack('Falta #3', 'Error');
     }
-    if(!this.num4){
+    if (!this.num4) {
       return this.snack.viewsnack('Falta #4', 'Error');
     }
-    if(!this.num5){
+    if (!this.num5) {
       return this.snack.viewsnack('Falta #5', 'Error');
     }
-    if(!this.num6){
+    if (!this.num6) {
       return this.snack.viewsnack('Falta #6', 'Error');
     }
 
-    const code = this.num1+this.num2+this.num3+this.num4+this.num5+this.num6
+    const code =
+      this.num1 + this.num2 + this.num3 + this.num4 + this.num5 + this.num6;
 
-    this.verifyAPI.Create({
-      code,
-      info: code,
-    }).then((res:any)=>{
-      if(!res.data){
-        this.num1 = null;
-        this.num2 = null;
-        this.num3 = null;
-        this.num4 = null;
-        this.num5 = null;
-        this.num6 = null;
-        return this.snack.viewsnack('El codigo es incorrecto o invalido','Error');
-      }else{
-        this.snack.viewsnack('Usuario verificado correctamente', 'Success')
-        localStorage.setItem('verify','true');
-        //this.router.navigateByUrl('/dashboard');
-      }
-    })
+    this.verifyAPI
+      .Create({
+        code,
+        info: code,
+      })
+      .then((res: any) => {
+        if (!res.data) {
+          this.num1 = null;
+          this.num2 = null;
+          this.num3 = null;
+          this.num4 = null;
+          this.num5 = null;
+          this.num6 = null;
+          return this.snack.viewsnack(
+            'El codigo es incorrecto o invalido',
+            'Error'
+          );
+        } else {
+          this.snack.viewsnack('Usuario verificado correctamente', 'Success');
+          localStorage.setItem('verify', 'true');
+          this.router.navigateByUrl('/admin/dashboard');
+        }
+      });
   }
 
+  routers(url: string) {
+    this.option = 0;
+    this.router.navigateByUrl('/admin' + url);
+  }
 
+  pasteCode(event: ClipboardEvent): void {
+    const pastedText = event.clipboardData?.getData('text');
+    if (pastedText) {
+      const numbers = pastedText.match(/\d/g);
+      if (numbers && numbers.length === 6) {
+        this.num1 = numbers[0];
+        this.num2 = numbers[1];
+        this.num3 = numbers[2];
+        this.num4 = numbers[3];
+        this.num5 = numbers[4];
+        this.num6 = numbers[5];
+      }
+    }
+  }
 }

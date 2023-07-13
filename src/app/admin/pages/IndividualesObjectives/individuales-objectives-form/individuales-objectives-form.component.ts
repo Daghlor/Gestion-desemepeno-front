@@ -17,7 +17,6 @@ export class IndividualesObjectivesFormComponent implements OnInit {
   weight: number = 0;
   strategic_id?: number;
   objetive?: string;
-
   listStrategics: any = [];
   points: number = 0;
 

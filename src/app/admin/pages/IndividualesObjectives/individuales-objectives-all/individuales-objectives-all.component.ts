@@ -44,7 +44,7 @@ export class IndividualesObjectivesAllComponent implements OnInit {
     cell: (element: any) => `${element.title_strategics}`,
   },{
     columnDef: 'weight',
-    header: 'Puntaje',
+    header: 'Peso',
     sort: true,
     type: 'text',
     cell: (element: any) => `${element.weight}`,
