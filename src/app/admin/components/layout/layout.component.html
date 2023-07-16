@@ -1,10 +1,8 @@
 <!-- HTML DE LA VISTA LAYOUT O NAVBAR DE LA PARTE IZQUIERDA Y DE ARRIBA -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<div class="nav css-gr">
+<div class="container">
 
     <div class="navbarLeft">
-
-
         <div class="title">
             <a class="titleData" (click)="redirectForm('admin/'+title)" >
                 {{validateTitle.length == 1 ? title : validateTitle[0] + ' ' + validateTitle[1]  }}
@@ -69,7 +67,7 @@
             </div>
             <div class="items" (click)="openOptions(4)" *ngIf="validateArrayPermissions(['list_objectives_strategics', 'list_my_objectives_strategics', 'list_objectives_individuals', 'list_my_objectives_individuals', 'list_tracings'])" [ngStyle]="{'background-color': option == 4 ? '#1560BD' : '#1560BD' }">
               <mat-icon class="itemsIcon">assignment</mat-icon>
-              <a class="itemsTitle">Metas</a>
+              <a class="itemsTitle">Plan de desempeño</a>
               <mat-icon class="itemsIcon"> {{option == 4 ? 'expand_less' : 'expand_more'}} </mat-icon>
           </div>
           <div class="subMenu" *ngIf="option == 4">
@@ -98,7 +96,6 @@
               <a class="itemsTitle">Informes</a>
             </div>
           </div>
-
         </div>
         <div class="center ">
             <img src="assets/img/logoBlanco.png" class="logotype">
@@ -110,15 +107,23 @@
             <mat-icon class="homeiconOption">home</mat-icon>
             <a class="textOption">Inicio</a>
           </div>
-            <img [src]="photo" class="perfil right">
-            <div class="nameProfile"> {{nameUser}} </div>
-            <div class="dropdown">
+          <div class="profileContainer">
+            <img [src]="photo" class="perfil">
+          <div class="profileInfo">
+            <div class="nameProfile">{{nameUser}}</div>
+            <mat-menu #dropdownMenu="matMenu" class="dropdown-menu">
+              <button mat-menu-item (click)="goToProfile()" class="dropdown-item">
+                <mat-icon>people</mat-icon> Mi perfil
+              </button>
+              <button mat-menu-item (click)="logout()" class="dropdown-item">
+                <mat-icon>arrow_back</mat-icon> Cerrar sesión
+              </button>
+            </mat-menu>
+            <button mat-icon-button [matMenuTriggerFor]="dropdownMenu" aria-label="Dropdown" class="dropdown-button">
               <mat-icon class="dropbtn">arrow_drop_down</mat-icon>
-              <div class="dropdown-content">
-              <a (click)="goToProfile($event)"><mat-icon>people</mat-icon>Mi perfil</a>
-              <a (click)="logout()"><mat-icon>arrow_back</mat-icon> Cerrar sesión</a>
-              </div>
-            </div>
+            </button>
+          </div>
+          </div>
         </div>
         <hr class="lineContent" color="#29ABE2">
         <div class="pages">

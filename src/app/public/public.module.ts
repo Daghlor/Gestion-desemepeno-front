@@ -7,12 +7,12 @@ import { libraries } from 'src/assets/library';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './pages/register/register.component';
+import * as fromContainers from "./pages/index";
 
 // AQUI SE IMPORTAN LIBRERIAS Y LAS RUTAS PUBLICAS
 @NgModule({
     declarations: [
-        PublicComponents,
-        PublicPages, RegisterComponent,
+       ...fromContainers.PublicPages,
     ],
     imports: [
         CommonModule,
@@ -21,6 +21,9 @@ import { RegisterComponent } from './pages/register/register.component';
         ReactiveFormsModule,
         PublicRoutingModule,
         libraries,
+  ],
+  exports: [
+      ...fromContainers.PublicPages
     ]
 })
 export class PublicModule { }

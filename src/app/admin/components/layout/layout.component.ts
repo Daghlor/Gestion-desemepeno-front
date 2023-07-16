@@ -4,6 +4,9 @@ import { LocalService } from 'src/app/config/local.service';
 import { SnackbarService } from 'src/app/config/snackbar.service';
 import { UsersService } from 'src/app/admin/services/users.service';
 import * as moment from 'moment';
+import { AuthService } from '../../services/auth.service';
+import { UsersFormComponent } from '../../pages';
+
 
 // ESTE ES EL TS DE LA PARTDE LOGICA DE LA VISTA LAYOUT
 @Component({
@@ -24,7 +27,11 @@ export class LayoutComponent implements OnInit {
   unique_id?: string;
   listEmployments: any = [];
   company_id?: number;
+
   allEmployments: any = [];
+  listRoles: any = [];
+  listCompany: any = [];
+
   changeLogo: boolean = false;
   name?: string;
   lastName?: string;
@@ -47,6 +54,7 @@ export class LayoutComponent implements OnInit {
     private Local: LocalService,
     private snack: SnackbarService,
     private userApi: UsersService,
+    private authApi: AuthService,
   ) {}
 
   ngOnInit(): void {
@@ -103,6 +111,14 @@ export class LayoutComponent implements OnInit {
     await this.router.navigateByUrl('/');
   }
 
+   getAllList(){
+    this.authApi.FindData().then((res:any)=>{
+      this.listRoles = res.roles;
+      this.listCompany = res.companies;
+      this.allEmployments = res.employments;
+    })
+  }
+
   findData(){
     this.userApi.FindOne(this.unique_id || '').then((res:any)=>{
       this.listEmployments = [];
@@ -135,18 +151,10 @@ export class LayoutComponent implements OnInit {
     });
   }
 
+goToProfile(): void {
 
-   goToProfile(event:any){
-      this.userApi.FindOne(this.unique_id || '').then((res:any)=>{
-        this.router.navigate(['admin/usuarios/form/' + this.unique_id])
-      });
-    }
-
-    iconsFunction(event: any){
-      if(event.icon == 'edit'){
-        this.router.navigate(['admin/usuarios/form/' + event.data.unique_id]);
-      }
-    }
+  this.router.navigateByUrl('admin/usuarios/form/' + this.unique_id);
+}
 
   }
 

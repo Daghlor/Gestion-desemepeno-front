@@ -4,7 +4,10 @@
       <mat-icon  style="margin-right: 10px;">add</mat-icon>Agregar Objetivo
     </a>
 </div>
-
+<br>
+<div class="right" style="font-size: 17px; font-weight: bold;">
+  Porcentaje sin asignar {{points}}%
+</div>
 
 <br>
 
@@ -19,19 +22,19 @@
       <mat-grid-list cols="3" rowHeight="80px">
         <mat-grid-tile [colspan]="1">
             <mat-form-field appearance="outline">
-              <mat-label>Objetivo Individual</mat-label>
-              <input matInput [(ngModel)]="item.title" autocomplete="off" type="text" readonly>
-            </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile [colspan]="1">
-            <mat-form-field appearance="outline">
               <mat-label>Objetivo Estratégico</mat-label>
               <input matInput [(ngModel)]="item.title_strategics" autocomplete="off" type="text" readonly>
             </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="1">
+          <mat-form-field appearance="outline">
+            <mat-label>Objetivo Individual</mat-label>
+            <input matInput [(ngModel)]="item.title" autocomplete="off" type="text" readonly>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1">
             <mat-form-field appearance="outline">
-              <mat-label>Puntaje</mat-label>
+              <mat-label>Peso</mat-label>
               <input matInput [(ngModel)]="item.weight" autocomplete="off" type="text" readonly>
             </mat-form-field>
         </mat-grid-tile>
