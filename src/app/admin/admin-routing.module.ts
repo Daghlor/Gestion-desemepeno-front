@@ -96,6 +96,14 @@ const routes: Routes = [
         component: Pages.IndividualesObjectivesListComponent,
       },
       {
+        path: "performance_plans",
+        component: Pages.PerformancePlansListComponent,
+      },
+      {
+        path: "performance_plans/form",
+        component: Pages.PerformancePlansFormComponent,
+      },
+      {
         path: "seguimiento",
         component: Pages.TrackingTableComponent,
       },

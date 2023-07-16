@@ -25,6 +25,8 @@ import { TrackingFormComponent } from './tracking/tracking-form/tracking-form.co
 import { TracingsComponent } from '../components/tracings/tracings.component';
 import { InformesTableComponent } from './informes/informes-table/informes-table.component';
 import { InformesChartsComponent } from './informes/informes-charts/informes-charts.component';
+import { PerformancePlansListComponent } from './performancePlans/performance-plans-list/performance-plans-list.component';
+import { PerformancePlansFormComponent } from './performancePlans/performance-plans-form/performance-plans-form.component';
 
 // AQUI SE IMPORTAN LOS COMPONENTES DE TODOS LAS VISTAS DEL SISTEMA Y SE EXPORTAN
 export const AdminComponents: any[] = [
@@ -57,10 +59,14 @@ export const AdminPages: any[] = [
     IndividualesObjectivesFormComponent,
     TrackingTableComponent,
     TrackingFormComponent,
-  InformesTableComponent,
+    InformesTableComponent,
     InformesChartsComponent,
+    PerformancePlansListComponent,
+    PerformancePlansFormComponent,
 ];
 
+export * from './performancePlans/performance-plans-list/performance-plans-list.component';
+export * from './performancePlans/performance-plans-form/performance-plans-form.component';
 export * from '../components/tracings/tracings.component';
 export * from "../components/layout/layout.component";
 export * from "./crear-pdd/crear-pdd.component";

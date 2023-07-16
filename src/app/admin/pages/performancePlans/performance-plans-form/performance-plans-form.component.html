@@ -1,0 +1,41 @@
+<!-- HTML DE LA VISTA FORMULARIO DE SEGUIMIENTOS -->
+<div class="content">
+    <br />
+    <h1 style="text-align: center">Nuevo Plan</h1>
+
+    <mat-grid-list cols="3" rowHeight="80px">
+        <mat-grid-tile [colspan]="1">
+            <mat-form-field appearance="outline">
+                <mat-label>Nombres</mat-label>
+                <input matInput [(ngModel)]="name" autocomplete="off" type="text" />
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1">
+            <mat-form-field appearance="outline">
+                <mat-label>Plazo</mat-label>
+                <mat-select [(ngModel)]="term" [value]="term">
+                    <div *ngFor="let options of listTerms">
+                        <mat-option [value]="options">{{ options }} Meses</mat-option>
+                    </div>
+                </mat-select>
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1">
+            <mat-form-field appearance="outline">
+                <mat-label>Empresa</mat-label>
+                <mat-select [(ngModel)]="company_id" [value]="company_id">
+                    <div *ngFor="let options of listCompany">
+                        <mat-option [value]="options.id">{{options.businessName}}</mat-option>
+                    </div>
+                </mat-select>
+            </mat-form-field>
+        </mat-grid-tile>
+    </mat-grid-list>
+    <div class="right">
+        <button mat-raised-button class="buttons" (click)="saveData()">
+            <span class="material-icons" style="margin-right: 10px">save</span>
+            Guardar
+        </button>
+    </div>
+    <br /><br />
+</div>
