@@ -15,6 +15,9 @@ import { ConfirmModalComponent } from 'src/app/admin/components/confirm-modal/co
 })
 export class IndividualesObjectivesAllComponent implements OnInit {
   // SE DEFINE VARIABLES LOCALES Y EL MAQUETADO DE LA TABLA
+  name: string = '';
+  selectedCompany: number | null = null;
+  companies: any[] = [];
   loading: boolean = false;
   paginator: boolean = true;
   length: number = 0;
@@ -44,7 +47,7 @@ export class IndividualesObjectivesAllComponent implements OnInit {
     cell: (element: any) => `${element.title_strategics}`,
   },{
     columnDef: 'weight',
-    header: 'Peso',
+    header: 'Peso%',
     sort: true,
     type: 'text',
     cell: (element: any) => `${element.weight}`,
@@ -60,7 +63,8 @@ export class IndividualesObjectivesAllComponent implements OnInit {
     sort: true,
     type: 'icons',
     cell: (element: any) => `${element.icons}`,
-  }];
+    }];
+
   constructor(
     // SE DEFINE VARIABLES CON SERVICIOS ASIGNADOS
     private individualAPI: IndividualService,
@@ -82,6 +86,7 @@ export class IndividualesObjectivesAllComponent implements OnInit {
       column: this.orderColumn || 'title',
       direction: this.orderType || 'asc',
       search: {
+        nameUser: this.name,
         user_id: null,
         company_id: null,
         state_id: 1,
@@ -110,12 +115,14 @@ export class IndividualesObjectivesAllComponent implements OnInit {
     this.findData();
   }
 
-  iconsFunction(event:any){
-
-    if(event.icon == 'delete'){
+  iconsFunction(event: any){
+    if(event.icon == 'edit'){
+      this.router.navigate(['admin/usuarios/objetives/' + event.data.unique_id]);
+    }
+    else if(event.icon == 'delete'){
       const dialogRef = this.dialog.open(ConfirmModalComponent, {
         width: '250px',
-        data: { message: '¿Estás seguro de que quieres eliminar este objetivo?'}
+        data: { message: '¿Estás seguro de que quieres eliminar este plan de desempeño a este usuario?'}
       });
 
       dialogRef.afterClosed().subscribe((result: any) => {

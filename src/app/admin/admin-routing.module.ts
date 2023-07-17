@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import * as Pages from "./pages";
 import { AuthenticateGuard } from './components/guards/authenticate.guard';
 import { AuthenticateVerifyGuard } from './components/guards/authenticate-verify.guard';
+import { UserObjetivesComponent } from './pages/users/user-objetives/user-objetives.component';
 
 // ESTAS SONS LAS RUTAS DE ADMIN O GENERALES DE TODO EL PROYECTO, QUE YA CON SE MANEJAN CON PERMISOS POR SU ROL ESPECIFICO
 const routes: Routes = [
@@ -61,6 +62,10 @@ const routes: Routes = [
       {
         path: "usuarios/form/:uuid",
         component: Pages.UsersFormComponent,
+      },
+      {
+        path: "usuarios/objetives/:uuid",
+        component: Pages.UserObjetivesComponent,
       },
       {
         path: "objetivos_estrategicos/all",

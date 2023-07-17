@@ -1,4 +1,40 @@
 <!-- ESTE ES EL HTML DE LA VISTA TODOS LOS OBJETIVOS INDIVIDUALES  -->
+<!-- <div class="scroll-container"> -->
+<div class="content-v2">
+  <h1 style="text-align: center;">Consultar Planes de desempeño</h1>
+
+  <mat-grid-list cols="5" rowHeight="75px">
+
+    <mat-grid-tile [colspan]="1">
+      <mat-form-field appearance="outline">
+        <mat-label>Usuario</mat-label>
+        <input matInput autocomplete="off" type="text" [(ngModel)]="name">
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="1">
+      <mat-form-field appearance="outline">
+        <mat-label>Empresa</mat-label>
+        <mat-select [(ngModel)]="selectedCompany">
+            <mat-option *ngFor="let company of companies" [value]="company.id">{{company.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="1">
+      <mat-form-field appearance="outline">
+        <mat-label></mat-label>
+        <input matInput autocomplete="off" type="text">
+      </mat-form-field>
+    </mat-grid-tile>
+
+  </mat-grid-list>
+  <div class="center">
+    <button mat-raised-button color="primary" (click)="findData()">
+      <mat-icon style="margin-right: 10px;">search</mat-icon>Consultar
+    </button>
+  </div>
+
 <app-my-table
   [loading]="loading"
   [dataSource]="dataSource"
@@ -7,7 +43,8 @@
   [pageSize]="pageSize"
   [PageSizeOptions]="pageSizeOptions"
   [paginator]="paginator"
+  (eventIcons)="iconsFunction($event)"
   (changeSort)="changeSort($event)"
   (changePaginator)="changePaginator($event)"
-  (eventIcons)="iconsFunction($event)"
 ></app-my-table>
+</div>
