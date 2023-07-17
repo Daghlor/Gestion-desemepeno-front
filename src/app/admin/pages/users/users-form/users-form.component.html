@@ -1,104 +1,115 @@
 <!-- HTML DE LA VISTA FORMULARIOS DE USUARIO -->
 <div class="center">
-    <img src="{{!photo ? 'assets/img/usuarioPNG.png' : photo}}" for="producto_img" class="aggImg" >
-    <label for="producto_img" class="selectImg" ><mat-icon class="icons">add_a_photo</mat-icon></label>
+    <img src="{{!photo ? 'assets/img/usuarioPNG.png' : photo}}" for="producto_img" class="aggImg">
+    <label for="producto_img" class="selectImg"><mat-icon class="icons">add_a_photo</mat-icon></label>
 </div><br>
-<input class="ng-hide" style="display: none;" id="producto_img" type="file" accept="image/*" (input)="changePhoto(imageInput)" #imageInput/>
+<input class="ng-hide" style="display: none;" id="producto_img" type="file" accept="image/*"
+    (input)="changePhoto(imageInput)" #imageInput />
 
 
 <mat-grid-list cols="3" rowHeight="80px">
     <mat-grid-tile [colspan]="1">
         <mat-form-field appearance="outline">
-          <mat-label>Nombres</mat-label>
-          <input matInput [(ngModel)]="name" autocomplete="off" type="text">
+            <mat-label>Nombres</mat-label>
+            <input matInput [(ngModel)]="name" autocomplete="off" type="text">
         </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="1">
         <mat-form-field appearance="outline">
-          <mat-label>Apellidos</mat-label>
-          <input matInput [(ngModel)]="lastName" autocomplete="off" type="text">
+            <mat-label>Apellidos</mat-label>
+            <input matInput [(ngModel)]="lastName" autocomplete="off" type="text">
         </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="1">
         <mat-form-field appearance="outline">
-          <mat-label>Identificación</mat-label>
-          <input matInput [(ngModel)]="identify" autocomplete="off" type="number">
+            <mat-label>Identificación</mat-label>
+            <input matInput [(ngModel)]="identify" autocomplete="off" type="number">
         </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="1">
-      <mat-form-field appearance="outline" (click)="picker.open()">
-        <mat-label>Fecha de Nacimiento</mat-label>
-        <input matInput [matDatepicker]="picker" [(ngModel)]="dateBirth" [value]="dateBirth">
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-    </mat-grid-tile>
-    <mat-grid-tile [colspan]="1">
-        <mat-form-field appearance="outline">
-          <mat-label>Email</mat-label>
-          <input matInput [(ngModel)]="email" autocomplete="off" type="text">
+        <mat-form-field appearance="outline" (click)="picker.open()">
+            <mat-label>Fecha de Nacimiento</mat-label>
+            <input matInput [matDatepicker]="picker" [(ngModel)]="dateBirth" [value]="dateBirth">
+            <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="1">
         <mat-form-field appearance="outline">
-          <mat-label>Teléfono</mat-label>
-          <input matInput [(ngModel)]="phone" autocomplete="off" type="number">
+            <mat-label>Email</mat-label>
+            <input matInput [(ngModel)]="email" autocomplete="off" type="text">
+        </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" *ngIf="type">
+        <mat-form-field appearance="outline">
+            <mat-label class="custom-label">Contraseña</mat-label>
+            <input matInput [(ngModel)]="password" autocomplete="off" [type]="typePassword">
+            <mat-icon matSuffix (click)="passVisible()">{{iconPassword}}</mat-icon>
         </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="1">
         <mat-form-field appearance="outline">
-          <mat-label>Direccion</mat-label>
-          <input matInput [(ngModel)]="address" autocomplete="off" type="text">
+            <mat-label>Teléfono</mat-label>
+            <input matInput [(ngModel)]="phone" autocomplete="off" type="number">
         </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="1">
-      <mat-form-field appearance="outline">
-        <mat-label>Ciudad</mat-label>
-        <input matInput [(ngModel)]="city" autocomplete="off" type="text">
-      </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Direccion</mat-label>
+            <input matInput [(ngModel)]="address" autocomplete="off" type="text">
+        </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="1">
-      <mat-form-field appearance="outline">
-        <mat-label>Empresa</mat-label>
-        <mat-select [(ngModel)]="company_id" [value]="company_id" (selectionChange)="changeCompany()">
-          <mat-option *ngFor="let options of listCompany" [value]="options.id">{{options.businessName}}</mat-option>
-        </mat-select>
-      </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Ciudad</mat-label>
+            <input matInput [(ngModel)]="city" autocomplete="off" type="text">
+        </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="1">
-      <mat-form-field appearance="outline">
-        <mat-label>Cargo</mat-label>
-        <mat-select [(ngModel)]="employment_id" [value]="employment_id">
-          <mat-option *ngFor="let options of listEmployments" [value]="options.id">{{options.description}}</mat-option>
-        </mat-select>
-      </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Empresa</mat-label>
+            <mat-select [(ngModel)]="company_id" [value]="company_id" (selectionChange)="changeCompany()">
+                <mat-option *ngFor="let options of listCompany"
+                    [value]="options.id">{{options.businessName}}</mat-option>
+            </mat-select>
+        </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="1">
-      <mat-form-field appearance="outline">
-        <mat-label>Asignar Roles</mat-label>
-        <mat-select [(ngModel)]="role_id" [value]="role_id" (selectionChange)="addRoles()">
-          <mat-option *ngFor="let options of listRoles" [value]="options">{{options.description}}</mat-option>
-        </mat-select>
-      </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Cargo</mat-label>
+            <mat-select [(ngModel)]="employment_id" [value]="employment_id">
+                <mat-option *ngFor="let options of listEmployments"
+                    [value]="options.id">{{options.description}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1">
+        <mat-form-field appearance="outline">
+            <mat-label>Asignar Roles</mat-label>
+            <mat-select [(ngModel)]="role_id" [value]="role_id" (selectionChange)="addRoles()">
+                <mat-option *ngFor="let options of listRoles" [value]="options">{{options.description}}</mat-option>
+            </mat-select>
+        </mat-form-field>
     </mat-grid-tile>
 </mat-grid-list>
 
 <div class="center">
-  <table border="1" class="tableRoles" *ngIf="rolesView.length > 0">
-    <thead>
-      <tr><th colspan="2" class="TableRolesTitle">Roles Asignados</th></tr>
-    </thead>
-    <tbody *ngFor="let item of rolesView; let i = index;">
-      <tr *ngIf="!item.delete">
-        <td > <mat-icon style="color: #ff0000" (click)="deleteRoles(i)">delete</mat-icon></td>
-        <td class="TableRolesTitle"> {{item.description}}</td>
-      </tr>
-    </tbody>
-  </table>
+    <table border="1" class="tableRoles" *ngIf="rolesView.length > 0">
+        <thead>
+            <tr>
+                <th colspan="2" class="TableRolesTitle">Roles Asignados</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let item of rolesView; let i = index;">
+            <tr *ngIf="!item.delete">
+                <td> <mat-icon style="color: #ff0000" (click)="deleteRoles(i)">delete</mat-icon></td>
+                <td class="TableRolesTitle"> {{item.description}}</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
 <div class="right">
-  <button  mat-raised-button class="buttons" (click)="saveData()">
-      <span class="material-icons" style="margin-right: 10px;" >save</span> {{titleButton}}
-  </button>
+    <button mat-raised-button class="buttons" (click)="saveData()">
+        <span class="material-icons" style="margin-right: 10px;">save</span> {{titleButton}}
+    </button>
 </div><br><br>
-

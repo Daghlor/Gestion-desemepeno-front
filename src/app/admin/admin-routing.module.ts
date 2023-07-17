@@ -64,8 +64,13 @@ const routes: Routes = [
         component: Pages.UsersFormComponent,
       },
       {
+<<<<<<< HEAD
         path: "usuarios/objetives/:uuid",
         component: Pages.UserObjetivesComponent,
+=======
+        path: "usuarios/form/:uuid/:type",
+        component: Pages.UsersFormComponent,
+>>>>>>> 7bc3cd423ae2f038cbcff279266ef65c1f572b24
       },
       {
         path: "objetivos_estrategicos/all",
@@ -98,6 +103,14 @@ const routes: Routes = [
       {
         path: "objetivos_individuales",
         component: Pages.IndividualesObjectivesListComponent,
+      },
+      {
+        path: "performance_plans",
+        component: Pages.PerformancePlansListComponent,
+      },
+      {
+        path: "performance_plans/form",
+        component: Pages.PerformancePlansFormComponent,
       },
       {
         path: "seguimiento",
