@@ -6,7 +6,7 @@
     <mat-grid-list cols="3" rowHeight="80px">
         <mat-grid-tile [colspan]="1">
             <mat-form-field appearance="outline">
-                <mat-label>Nombres</mat-label>
+                <mat-label>Titulo</mat-label>
                 <input matInput [(ngModel)]="name" autocomplete="off" type="text" />
             </mat-form-field>
         </mat-grid-tile>
@@ -20,7 +20,7 @@
                 </mat-select>
             </mat-form-field>
         </mat-grid-tile>
-        <mat-grid-tile [colspan]="1">
+        <mat-grid-tile [colspan]="1" *ngIf="validateAllPermission">
             <mat-form-field appearance="outline">
                 <mat-label>Empresa</mat-label>
                 <mat-select [(ngModel)]="company_id" [value]="company_id">

@@ -1,18 +1,9 @@
 <div class="buttonsForms right" *ngIf="validatePermissions('create_users')">
-    <a mat-raised-button class="buttons" (click)="redirectForm('admin/performance_plans/form')">
-      <mat-icon  style="margin-right: 10px;">add</mat-icon>Agregar Plan
-    </a>
+	<a mat-raised-button class="buttons" (click)="redirectForm('admin/performance_plans/form')">
+		<mat-icon style="margin-right: 10px;">add</mat-icon>Agregar Plan
+	</a>
 </div><br>
 
-<!-- <app-my-table
-  [loading]="loading"
-  [dataSource]="dataSource"
-  [Columns]="columns"
-  [length]="length"
-  [pageSize]="pageSize"
-  [PageSizeOptions]="pageSizeOptions"
-  [paginator]="paginator"
-  (eventIcons)="iconsFunction($event)"
-  (changeSort)="changeSort($event)"
-  (changePaginator)="changePaginator($event)"
-></app-my-table> -->
+<app-my-table [loading]="loading" [dataSource]="dataSource" [Columns]="columns" [length]="length" [pageSize]="pageSize"
+	[PageSizeOptions]="pageSizeOptions" [paginator]="paginator" (eventIcons)="iconsFunction($event)"
+	(changeSort)="changeSort($event)" (changePaginator)="changePaginator($event)"></app-my-table>

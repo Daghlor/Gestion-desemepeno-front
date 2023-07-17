@@ -23,4 +23,16 @@ export class PerfomancePlansService {
 				throw err.response
 			})
 	}
+
+	// METODO POST PARA BUSCAR O TRAER TODOS LOS PLANES
+	FindAll(body: any) {
+		this.token = this.Local.findDataLocal('token');
+		return api.post(`/plans/getAll`, body, {
+			headers: { Authorization: "Bearer " + this.token }
+		})
+			.then((res) => res.data)
+			.catch((err) => {
+				throw err.response
+			})
+	}
 }

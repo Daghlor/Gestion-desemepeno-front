@@ -17,7 +17,9 @@ export class TrackingFormComponent implements OnInit {
   params: any;
   unique_id?: string;
   listObjetives: any = [];
-  userData: any;
+  userData: any = {
+    name: ''
+  };
 
   constructor(
     // SE DEFINE VARIABLES CON SERVICIOS ASIGNADOS
@@ -51,6 +53,8 @@ export class TrackingFormComponent implements OnInit {
 
   // FUNCION QUE ABRE UN MODAL QUE VERIFICA LOS CAMPOS Y LOS GUARDA
   openModalTracing(item: any){
+    console.log(item);
+    
     const dialogRef = this.dialog.open(TracingsComponent, {
       width: '600px',
       data: item,
@@ -63,7 +67,8 @@ export class TrackingFormComponent implements OnInit {
       }else{
         const body = {
           individual_id: item.id,
-          comment: result
+          comment: result,
+          plans_id: item.plans_id,
         }
         this.trackingAPI.Create(body).then((res)=>{
           this.snack.viewsnack(res.data.msg, 'success');

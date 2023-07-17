@@ -63,6 +63,10 @@ const routes: Routes = [
         component: Pages.UsersFormComponent,
       },
       {
+        path: "usuarios/form/:uuid/:type",
+        component: Pages.UsersFormComponent,
+      },
+      {
         path: "objetivos_estrategicos/all",
         component: Pages.StrategicObjectivesAllComponent,
       },
