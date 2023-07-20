@@ -34,6 +34,10 @@
                     <mat-icon class="subMenuIcon">people</mat-icon>
                     <a class="itemsTitle">Usuarios</a>
                 </div>
+                <div class="subMenuOption"  (click)="routers('/performance_plans')"  *ngIf="validatePermissions('list_users')">
+                    <mat-icon class="subMenuIcon">people</mat-icon>
+                    <a class="itemsTitle">Planes</a>
+                </div>
 
                <!-- BOTON ROLES -->
 

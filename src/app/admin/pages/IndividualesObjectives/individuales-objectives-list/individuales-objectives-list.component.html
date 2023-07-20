@@ -34,7 +34,7 @@
         </mat-grid-tile>
         <mat-grid-tile [colspan]="1">
             <mat-form-field appearance="outline">
-              <mat-label>Peso</mat-label>
+              <mat-label>Peso %</mat-label>
               <input matInput [(ngModel)]="item.weight" autocomplete="off" type="text" readonly>
             </mat-form-field>
         </mat-grid-tile>
@@ -42,7 +42,7 @@
       <mat-grid-list cols="1" rowHeight="150px">
         <mat-grid-tile [colspan]="1">
           <mat-form-field appearance="outline" style="width: 98%;">
-            <mat-label>Objetivo</mat-label>
+            <mat-label>Meta</mat-label>
             <textarea matInput [(ngModel)]="item.objetive" name="mensaje" cols="10" rows="5" readonly></textarea>
           </mat-form-field>
         </mat-grid-tile>

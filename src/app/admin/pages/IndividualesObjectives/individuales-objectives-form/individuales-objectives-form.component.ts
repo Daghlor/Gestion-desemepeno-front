@@ -17,6 +17,7 @@ export class IndividualesObjectivesFormComponent implements OnInit {
   weight: number = 0;
   strategic_id?: number;
   objetive?: string;
+  plans_id?: number;
   listStrategics: any = [];
   points: number = 0;
 
@@ -39,6 +40,10 @@ export class IndividualesObjectivesFormComponent implements OnInit {
     this.authApi.FindData().then((res:any)=>{
       this.listStrategics = res.strategics;
     });
+  }
+
+  changeStrategics(){
+    this.plans_id = this.listStrategics.find((data: any) => data.id === this.strategic_id).plans_id;    
   }
 
   // FUNCION QUE VERIFICA LOS CAMPOS Y GUARDA EL OBJETIVO INDIVIDUAL
@@ -68,7 +73,8 @@ export class IndividualesObjectivesFormComponent implements OnInit {
       title: this.title,
       strategic_id: this.strategic_id,
       weight: this.weight,
-      objetive: this.objetive
+      objetive: this.objetive,
+      plans_id: this.plans_id,
     }
 
     this.individualAPI.Create(data).then((res: any) => {
