@@ -27,6 +27,7 @@ export class VerifyComponent implements OnInit {
   num5: any;
   num6: any;
   option?: number;
+  unique_id?: string;
 
   constructor(
     private verifyAPI: VerifyService,
@@ -129,7 +130,7 @@ export class VerifyComponent implements OnInit {
         } else {
           this.snack.viewsnack('Usuario verificado correctamente', 'Success');
           localStorage.setItem('verify', 'true');
-          this.router.navigateByUrl('/admin/dashboard');
+          this.router.navigateByUrl('admin/usuarios/form/' + this.unique_id + '/perfil');
         }
       });
   }
