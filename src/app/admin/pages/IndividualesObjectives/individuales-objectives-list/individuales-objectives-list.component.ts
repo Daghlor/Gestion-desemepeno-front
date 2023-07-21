@@ -24,7 +24,8 @@ export class IndividualesObjectivesListComponent implements OnInit {
     // SE DEFINE VARIABLES CON SERVICIOS ASIGNADOS
     private individualAPI: IndividualService,
     private snack: SnackbarService,
-    private Local: LocalService
+    private Local: LocalService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -57,6 +58,7 @@ export class IndividualesObjectivesListComponent implements OnInit {
   redirectForm(url: string){
     this.snack.redirect(url);
   }
+
 
   // FUNCION QUE ELIMINA LOS OBJETIVOS INDIVIDUALES
   delete(index: number){

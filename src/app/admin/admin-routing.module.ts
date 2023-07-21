@@ -124,6 +124,14 @@ const routes: Routes = [
         component: Pages.InformesChartsComponent,
       },
       {
+        path: "objetivos_individuales/feeback_actions",
+        component: Pages.FeebackActionsComponent,
+      },
+      {
+        path: "objetivos_individuales/training_actions",
+        component: Pages.TrainingActionsComponent,
+      },
+      {
         path: "verificacion",
         component: Pages.VerifyComponent,
         canActivate: [AuthenticateVerifyGuard]

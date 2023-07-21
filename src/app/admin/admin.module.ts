@@ -11,6 +11,7 @@ import {MatTableModule} from '@angular/material/table';
 import { CustomPaginator } from '../config/matPaginador';
 
 
+
 // MODULO DONDE SE IMPORTAN LAS LIBRERIAS Y LAS RUTAS
 @NgModule({
   declarations: [
