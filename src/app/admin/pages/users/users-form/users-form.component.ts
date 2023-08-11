@@ -84,7 +84,6 @@ export class UsersFormComponent implements OnInit {
   individualsData: any[] = [];
   feedbackData: any[] = [];
   trainingData: any[] = [];
-  combinedData: any[] = [];
 
   orderColumn?: string;
   orderType?: string;
@@ -149,42 +148,15 @@ optionsTabs: any = [{
     }
    };
 
-
-
-    const individualsDataResponse: any = await this.individualAPI.FindAll(paginate);
-  const individualsData: ObjectiveIndividual[] = individualsDataResponse.data.objetives;
-    console.log('individualsData:', individualsData);
-
+   const individualsDataResponse: any = await this.individualAPI.FindAll(paginate);
+  this.individualsData = individualsDataResponse.data.objetives;
 
   const feedbackDataResponse: any = await this.FeebackAPI.FindAll(paginate);
-  const feedbackData: FeedbackAction[] = feedbackDataResponse.data.titles;
-
-  console.log('feedbackData:', feedbackData);
+  this.feedbackData = feedbackDataResponse.data.titles;
 
   const trainingDataResponse: any = await this.TrainingAPI.FindAll(paginate);
-  const trainingData: TrainingAction[] = trainingDataResponse.data.titles;
-    console.log('trainingData:', trainingData);
+  this.trainingData = trainingDataResponse.data.titles;
 
-    this.combinedData = [];
-
-for (let index = 0; index < individualsData.length; index++) {
-  const individual = individualsData[index];
-  const feedback = feedbackData[index];
-  const training = trainingData[index];
-
-  if (individual && feedback && training) {
-    this.combinedData.push({
-      individuals: individual,
-      feedback: feedback,
-      training: training
-    });
-  }
-}
-
-
-    this.individualsData = individualsData;
-    this.feedbackData = feedbackData;
-    this.trainingData = trainingData;
   }
 
 

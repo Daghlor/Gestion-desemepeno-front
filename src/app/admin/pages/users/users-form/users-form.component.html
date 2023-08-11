@@ -122,67 +122,75 @@
 </div><br><br>
 </div>
 
+
+<mat-dialog-content style="max-height: 400px;">
 <div *ngIf="currentTab == 2">
-  <div *ngIf="combinedData.length > 0">
-    <!-- Tabla de Objetivos Individuales -->
-    <h2>Objetivos Individuales</h2>
-    <table id="objetivos-table">
-      <thead>
-        <tr>
-          <th>Objetivo Estratégico</th>
-          <th>Objetivo Individual</th>
-          <th>Meta</th>
-          <th>Peso %</th>
-          <!-- Otras columnas si es necesario -->
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let data of combinedData">
-          <td>{{ data.individuals.title_strategics}}</td>
-          <td>{{ data.individuals.title }}</td>
-          <td>{{ data.individuals.objetive }}</td>
-          <td>{{ data.individuals.weight }}</td>
-          <!-- Otras celdas si es necesario -->
-        </tr>
-      </tbody>
-    </table>
-
-    <!-- Tabla de Acciones de Retroalimentación -->
-    <h2>Acciones de Retroalimentación</h2>
-    <table id="retroalimentacion-table">
-      <thead>
-        <tr>
-          <th>Descripción</th>
-          <!-- Otras columnas si es necesario -->
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let data of combinedData">
-          <td>{{ data.feedback.title }}</td>
-          <!-- Otras celdas si es necesario -->
-        </tr>
-      </tbody>
-    </table>
-
-    <!-- Tabla de Acciones de Formación -->
-    <h2>Acciones de Formación</h2>
-    <table id="formacion-table">
-      <thead>
-        <tr>
-          <th>Descripción</th>
-          <!-- Otras columnas si es necesario -->
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let data of combinedData">
-          <td>{{ data.training.title }}</td>
-          <!-- Otras celdas si es necesario -->
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div *ngIf="combinedData.length === 0">
-    No se encontraron datos.
-  </div>
+<div *ngIf="individualsData.length > 0">
+  <!-- Tabla de Objetivos Individuales -->
+  <h2>Objetivos Individuales</h2>
+  <table id="objetivos-table">
+    <thead>
+      <tr>
+        <th>Objetivo Estratégico</th>
+        <th>Objetivo Individual</th>
+        <th>Meta</th>
+        <th>Peso %</th>
+        <!-- Otras columnas si es necesario -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of individualsData">
+        <td>{{ data.title_strategics }}</td>
+        <td>{{ data.title }}</td>
+        <td>{{ data.objetive }}</td>
+        <td>{{ data.weight }}</td>
+        <!-- Otras celdas si es necesario -->
+      </tr>
+    </tbody>
+  </table>
 </div>
 
+<div *ngIf="feedbackData.length > 0">
+  <!-- Tabla de Acciones de Retroalimentación -->
+  <h2>Acciones de Retroalimentación</h2>
+  <table id="retroalimentacion-table">
+    <thead>
+      <tr>
+        <th>Descripción</th>
+        <!-- Otras columnas si es necesario -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of feedbackData">
+        <td>{{ data.title }}</td>
+        <!-- Otras celdas si es necesario -->
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="trainingData.length > 0">
+  <!-- Tabla de Acciones de Formación -->
+  <h2>Acciones de Formación</h2>
+  <table id="formacion-table">
+    <thead>
+      <tr>
+        <th>Descripción</th>
+        <!-- Otras columnas si es necesario -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of trainingData">
+        <td>{{ data.title }}</td>
+        <!-- Otras celdas si es necesario -->
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div
+  *ngIf="individualsData.length === 0 && feedbackData.length === 0 && trainingData.length === 0">
+  No se encontraron datos.
+</div>
+</div>
+</mat-dialog-content>
