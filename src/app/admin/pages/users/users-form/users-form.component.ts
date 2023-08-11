@@ -5,6 +5,39 @@ import { UsersService } from 'src/app/admin/services/users.service';
 import { LocalService } from 'src/app/config/local.service';
 import { SnackbarService } from 'src/app/config/snackbar.service';
 import * as moment from 'moment';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { IndividualService } from 'src/app/admin/services/individual.service';
+import { ConfirmModalComponent } from '../..';
+import { FeedbackActionsService } from 'src/app/admin/services/feedback-actions.service';
+import { TrainingActionsService } from 'src/app/admin/services/training-actions.service';
+
+interface ObjectiveIndividual {
+  id: number;
+  unique_id: string;
+  title: string;
+  objetive: string;
+  weight: number;
+  user_id: number;
+  state_id: number;
+  strategic_id: number;
+  plans_id: number;
+}
+
+interface FeedbackAction {
+  id: number;
+  unique_id: string;
+  title: string;
+  user_id: number;
+}
+
+interface TrainingAction {
+  id: number;
+  unique_id: string;
+  title: string;
+  user_id: number;
+}
+
 
 // ESTE ES EL TS DONDE ES LA PARTE LOGICA DE LA VISTA FORMULARIOS DE USUARIO
 @Component({
@@ -46,7 +79,32 @@ export class UsersFormComponent implements OnInit {
 	iconPasswordVerify: string = 'visibility';
 	typePassword: string = 'password';
 	showPassword: boolean = false;
-	iconPassword: string = 'visibility';
+  iconPassword: string = 'visibility';
+
+  individualsData: any[] = [];
+  feedbackData: any[] = [];
+  trainingData: any[] = [];
+  combinedData: any[] = [];
+
+  orderColumn?: string;
+  orderType?: string;
+  actualPage: number = 1;
+  pageSize: number = 10;
+
+  initialTab: number = 1;
+currentTab: number = 1;
+optionsTabs: any = [{
+  code: 1,
+  name: 'Información',
+  show: true,
+  disabled: false,
+},{
+  code: 2,
+  name: 'Mis planes',
+  show: true,
+  disabled: false,
+    }]
+
 
 	constructor(
 		// SE DEFINE VARIABLES CON SERVICIOS ASIGNADOS
@@ -55,21 +113,81 @@ export class UsersFormComponent implements OnInit {
 		private snack: SnackbarService,
 		private activeRouter: ActivatedRoute,
 		private router: Router,
-		private Local: LocalService
-	) { }
+    private Local: LocalService,
+    private individualAPI: IndividualService,
+    private FeebackAPI: FeedbackActionsService,
+    private TrainingAPI: TrainingActionsService,
 
-	async ngOnInit() {
+  ) { }
+
+
+	async ngOnInit(){
 		await this.getAllList();
 
 		this.params = this.activeRouter.snapshot.params;
 		this.unique_id = this.params.uuid;
 		this.type = !this.params.type ? null : this.params.type;
-		
+
 		if (this.unique_id) {
 			this.titleButton = 'Actualizar';
 			await this.findData();
-		}
-	}
+    }
+
+    const userInfo = JSON.parse(this.Local.findDataLocal('info_user'));
+
+    const paginate = {
+    paginate: this.pageSize,
+      page: this.actualPage,
+      column: this.orderColumn || 'title',
+      direction: this.orderType || 'asc',
+      search: {
+        nameUser: this.name,
+        user_id: userInfo.id,
+        company_id: null,
+        state_id: 1,
+        areas_id: null
+    }
+   };
+
+
+
+    const individualsDataResponse: any = await this.individualAPI.FindAll(paginate);
+  const individualsData: ObjectiveIndividual[] = individualsDataResponse.data.objetives;
+    console.log('individualsData:', individualsData);
+
+
+  const feedbackDataResponse: any = await this.FeebackAPI.FindAll(paginate);
+  const feedbackData: FeedbackAction[] = feedbackDataResponse.data.titles;
+
+  console.log('feedbackData:', feedbackData);
+
+  const trainingDataResponse: any = await this.TrainingAPI.FindAll(paginate);
+  const trainingData: TrainingAction[] = trainingDataResponse.data.titles;
+    console.log('trainingData:', trainingData);
+
+    this.combinedData = [];
+
+for (let index = 0; index < individualsData.length; index++) {
+  const individual = individualsData[index];
+  const feedback = feedbackData[index];
+  const training = trainingData[index];
+
+  if (individual && feedback && training) {
+    this.combinedData.push({
+      individuals: individual,
+      feedback: feedback,
+      training: training
+    });
+  }
+}
+
+
+    this.individualsData = individualsData;
+    this.feedbackData = feedbackData;
+    this.trainingData = trainingData;
+  }
+
+
 
 	// FUNCION PARA CAMBIAR FOTO DE PERFIL
 	async changePhoto(photo: any) {
@@ -272,10 +390,11 @@ export class UsersFormComponent implements OnInit {
 				}
 			})
 		}
+  }
 
 
 
-	}
+
 
 
 

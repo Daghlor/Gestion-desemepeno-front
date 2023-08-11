@@ -1,4 +1,5 @@
 <!-- HTML DE LA VISTA LAYOUT O NAVBAR DE LA PARTE IZQUIERDA Y DE ARRIBA -->
+<!-- <div class="scroll-container"> -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <div class="container">
 
@@ -34,10 +35,10 @@
                     <mat-icon class="subMenuIcon">people</mat-icon>
                     <a class="itemsTitle">Usuarios</a>
                 </div>
-                <div class="subMenuOption"  (click)="routers('/performance_plans')"  *ngIf="validatePermissions('list_users')">
+                <!-- <div class="subMenuOption"  (click)="routers('/performance_plans')"  *ngIf="validatePermissions('list_users')">
                     <mat-icon class="subMenuIcon">people</mat-icon>
                     <a class="itemsTitle">Planes</a>
-                </div>
+                </div> -->
 
                <!-- BOTON ROLES -->
 
@@ -131,3 +132,4 @@
         </div>
     </div>
 </div>
+

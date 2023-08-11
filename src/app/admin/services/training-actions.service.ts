@@ -13,8 +13,41 @@ export class TrainingActionsService {
 
   Create(body: any) {
     this.token = this.Local.findDataLocal('token');
-    return api.post(`/feedback/create`, body, {
-      headers:{Authorization: "Bearer" + this.token}
+    return api.post(`/training/create`, body, {
+      headers: { Authorization: "Bearer" + this.token }
+    })
+      .then((res) => res.data)
+      .catch((err) => {
+        throw err.response
+      })
+  }
+
+  FindAll(body: any) {
+    this.token = this.Local.findDataLocal('token');
+    return api.post(`/training/getAll`, body, {
+      headers: { Authorization: "Bearer " + this.token }
+    })
+      .then((res) => res.data)
+      .catch((err) => {
+        throw err.response
+      })
+  }
+
+  Update(uuid: string, body: any) {
+    this.token = this.Local.findDataLocal('token');
+    return api.put(`/training/update/${uuid}`, body, {
+      headers: {Authorization: "Bearer " + this.token}
+    })
+      .then((res) => res.data)
+      .catch((err) => {
+      throw err.response
+    })
+  }
+
+  Delete(uuid: string) {
+    this.token = this.Local.findDataLocal('token');
+    return api.delete(`/training/delete/${uuid}`, {
+      headers: {Authorization: "Bearer " + this.token}
     })
       .then((res) => res.data)
       .catch((err) => {

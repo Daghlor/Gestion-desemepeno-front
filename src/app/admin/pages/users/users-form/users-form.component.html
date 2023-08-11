@@ -1,4 +1,11 @@
 <!-- HTML DE LA VISTA FORMULARIOS DE USUARIO -->
+<app-my-tabs
+    [optionsTabs]="optionsTabs"
+    [intialTabCode]="initialTab"
+    (getTabActive)="currentTab = $event.code"
+></app-my-tabs><br>
+
+<div *ngIf="currentTab == 1">
 <div class="center">
     <img src="{{!photo ? 'assets/img/usuarioPNG.png' : photo}}" for="producto_img" class="aggImg">
     <label for="producto_img" class="selectImg"><mat-icon class="icons">add_a_photo</mat-icon></label>
@@ -113,3 +120,69 @@
         <span class="material-icons" style="margin-right: 10px;">save</span> {{titleButton}}
     </button>
 </div><br><br>
+</div>
+
+<div *ngIf="currentTab == 2">
+  <div *ngIf="combinedData.length > 0">
+    <!-- Tabla de Objetivos Individuales -->
+    <h2>Objetivos Individuales</h2>
+    <table id="objetivos-table">
+      <thead>
+        <tr>
+          <th>Objetivo Estratégico</th>
+          <th>Objetivo Individual</th>
+          <th>Meta</th>
+          <th>Peso %</th>
+          <!-- Otras columnas si es necesario -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of combinedData">
+          <td>{{ data.individuals.title_strategics}}</td>
+          <td>{{ data.individuals.title }}</td>
+          <td>{{ data.individuals.objetive }}</td>
+          <td>{{ data.individuals.weight }}</td>
+          <!-- Otras celdas si es necesario -->
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Tabla de Acciones de Retroalimentación -->
+    <h2>Acciones de Retroalimentación</h2>
+    <table id="retroalimentacion-table">
+      <thead>
+        <tr>
+          <th>Descripción</th>
+          <!-- Otras columnas si es necesario -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of combinedData">
+          <td>{{ data.feedback.title }}</td>
+          <!-- Otras celdas si es necesario -->
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Tabla de Acciones de Formación -->
+    <h2>Acciones de Formación</h2>
+    <table id="formacion-table">
+      <thead>
+        <tr>
+          <th>Descripción</th>
+          <!-- Otras columnas si es necesario -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of combinedData">
+          <td>{{ data.training.title }}</td>
+          <!-- Otras celdas si es necesario -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="combinedData.length === 0">
+    No se encontraron datos.
+  </div>
+</div>
+

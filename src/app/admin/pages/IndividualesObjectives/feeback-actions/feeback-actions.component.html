@@ -1,38 +1,18 @@
+<!-- Formulario para agregar una Acción de Retroalimentación -->
 <div>
-  <div class="buttonsForms right">
-    <button mat-raised-button class="buttons" (click)="addFeedback()">
-      <span class="material-icons" style="margin-right: 10px;">add</span> Agregar Accion de Retroalimentación
-    </button>
-  </div><br>
-
-  <mat-accordion>
-    <mat-expansion-panel *ngFor="let item of listFeedback; let i = index">
-      <mat-expansion-panel-header>
-        <mat-panel-title style="display: flex;">
-          <div
-            [ngStyle]="{'background-color': item.sync ? '#50FF00' : '#FF0000', 'color': item.sync ? '#50FF00' : '#FF0000' }"
-            style="margin-right: 15px;">.</div>
-          {{!item.title ? 'Sin Accion de Retroalimentación' : item.title}}
-        </mat-panel-title>
-        <mat-panel-description class="right">
-          <mat-icon style="color: #ff0000" (click)="deleteFeedback(i)">delete</mat-icon>
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <mat-grid-list cols="1" rowHeight="80px">
-        <mat-grid-tile [colspan]="1">
-          <mat-form-field appearance="outline">
-            <mat-label>Descripción</mat-label>
-            <input matInput [(ngModel)]="title" name="title" autocomplete="off" type="text"
-              (input)="changeUpdate(i, 'title')">
-          </mat-form-field>
-        </mat-grid-tile>
-      </mat-grid-list>
-    </mat-expansion-panel>
-  </mat-accordion><br>
+  <mat-form-field appearance="outline">
+    <mat-label>Accion de Retroalimentación</mat-label>
+    <input matInput [(ngModel)]="title" name="title" autocomplete="off" type="text">
+  </mat-form-field>
 
   <div class="right">
     <button mat-raised-button class="buttons" (click)="saveData()">
-      <span class="material-icons" style="margin-right: 10px;">save</span> {{titleButton}}
+      <span class="material-icons" style="margin-right: 10px;">save</span> Guardar
     </button>
   </div>
 </div>
+
+<app-my-table *ngIf="dataSource" [loading]="loading" [dataSource]="dataSource" [Columns]="columns" [length]="length"
+  [pageSize]="pageSize" [PageSizeOptions]="pageSizeOptions" [paginator]="paginator" (eventIcons)="iconsFunction($event)"
+  (changeSort)="changeSort($event)" (changePaginator)="changePaginator($event)">
+</app-my-table>

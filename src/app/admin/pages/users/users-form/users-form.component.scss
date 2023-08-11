@@ -1,8 +1,41 @@
 // ESTILOS DE LA VISTA FORMULARIOS DE USUARIO
-.tableRoles{
-    border-collapse: collapse;
+.tableRoles {
+  border-collapse: collapse;
 }
 
-.TableRolesTitle{
-    padding: 10px;
+.TableRolesTitle {
+  padding: 10px;
+}
+
+/* TuComponente.component.css */
+
+/* Estilos generales para las tablas */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+/* Estilos específicos para cada tabla */
+#objetivos-table th {
+  background-color: #c0e6f4;
+}
+
+#retroalimentacion-table th {
+  background-color: #f5eac0;
+}
+
+#formacion-table th {
+  background-color: #d0f0c0;
 }

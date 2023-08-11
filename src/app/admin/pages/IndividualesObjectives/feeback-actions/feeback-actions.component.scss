@@ -1,0 +1,15 @@
+/* En tu archivo .scss */
+.mat-icon-button.delete-button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.mat-icon-button.delete-button:hover {
+  background-color: transparent;
+}
+
+.mat-icon-button.delete-button .mat-icon {
+  color: black; /* Cambia el color del icono según tus necesidades */
+}

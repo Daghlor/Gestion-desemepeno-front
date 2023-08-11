@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
 import { CustomPaginator } from '../config/matPaginador';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 
 
@@ -25,7 +26,8 @@ import { CustomPaginator } from '../config/matPaginador';
     HttpClientModule,
     ReactiveFormsModule,
     AdminRoutingModule,
-    MatTableModule
+    MatTableModule,
+    ScrollingModule,
   ],
   exports: [
     ...fromContainers.AdminComponents,

@@ -16,6 +16,7 @@ import { ConfirmModalComponent } from 'src/app/admin/components/confirm-modal/co
 export class IndividualesObjectivesAllComponent implements OnInit {
   // SE DEFINE VARIABLES LOCALES Y EL MAQUETADO DE LA TABLA
   name: string = '';
+  unique_id?: string;
   selectedCompany: number | null = null;
   companies: any[] = [];
   loading: boolean = false;
@@ -28,11 +29,23 @@ export class IndividualesObjectivesAllComponent implements OnInit {
   pageSizeOptions: number[] = [10, 15, 20, 25, 50];
   dataSource: any = new MatTableDataSource();
   columns = [{
+    columnDef: 'title_strategics',
+    header: 'Objetivo Estratégico',
+    sort: true,
+    type: 'text',
+    cell: (element: any) => `${element.title_strategics}`,
+  },{
     columnDef: 'title',
     header: 'Objetivo Individual',
     sort: true,
     type: 'text',
     cell: (element: any) => `${element.title}`,
+  },{
+    columnDef: 'weight',
+    header: 'Peso %',
+    sort: true,
+    type: 'text',
+    cell: (element: any) => `${element.weight}`,
   },{
     columnDef: 'nameUser',
     header: 'Usuario',
@@ -40,30 +53,18 @@ export class IndividualesObjectivesAllComponent implements OnInit {
     type: 'text',
     cell: (element: any) => `${element.nameUser}`,
   },{
-    columnDef: 'title_strategics',
-    header: 'Objetivo Estratégico',
-    sort: true,
-    type: 'text',
-    cell: (element: any) => `${element.title_strategics}`,
-  },{
-    columnDef: 'weight',
-    header: 'Peso%',
-    sort: true,
-    type: 'text',
-    cell: (element: any) => `${element.weight}`,
-  },{
     columnDef: 'state',
     header: 'Estado',
     sort: true,
     type: 'text',
     cell: (element: any) => `${element.state}`,
-  },{
+    },{
     columnDef: 'icons',
     header: '',
     sort: true,
     type: 'icons',
     cell: (element: any) => `${element.icons}`,
-    }];
+  }];
 
   constructor(
     // SE DEFINE VARIABLES CON SERVICIOS ASIGNADOS
@@ -96,7 +97,7 @@ export class IndividualesObjectivesAllComponent implements OnInit {
 
     this.individualAPI.FindAll(paginate).then((res:any)=>{
       for (let i = 0; i < res.data.objetives.length; i++){
-        res.data.objetives[i].icons = ['delete'];
+        res.data.objetives[i].icons = ['delete', 'edit'];
       }
       this.dataSource = res.data.objetives;
       this.length = res.data.total;
@@ -115,24 +116,24 @@ export class IndividualesObjectivesAllComponent implements OnInit {
     this.findData();
   }
 
-  iconsFunction(event: any){
-    if(event.icon == 'edit'){
-      this.router.navigate(['admin/usuarios/objetives/' + event.data.unique_id]);
+  iconsFunction(event: any) {
+    if (event.icon == 'edit') {
+      this.router.navigateByUrl('admin/usuarios/form/' + this.unique_id + '/perfil');
     }
-    else if(event.icon == 'delete'){
+    else if (event.icon == 'delete') {
       const dialogRef = this.dialog.open(ConfirmModalComponent, {
         width: '250px',
-        data: { message: '¿Estás seguro de que quieres eliminar este plan de desempeño a este usuario?'}
+        data: { message: '¿Estás seguro de que quieres eliminar este objetivo?' }
       });
 
-      dialogRef.afterClosed().subscribe((result: any) => {
-        if(result) {
-          this.individualAPI.Delete(event.data.unique_id).then((res:any)=>{
-            this.snack.viewsnack('El objetivo se elimino correctamente','Succes');
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.individualAPI.Delete(event.data.unique_id).then((res: any) => {
+            this.snack.viewsnack('El objetivo se elimino correctamente', 'Success');
             this.findData();
           })
         }
-      });
+      })
     }
   }
 

@@ -35,7 +35,9 @@ export class VerifyComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+
+  }
 
   validateNumbers(number: any): any {
     let validate = /^[0-9]+$/;
