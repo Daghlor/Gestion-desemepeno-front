@@ -94,7 +94,7 @@ export class UsersFormComponent implements OnInit {
 currentTab: number = 1;
 optionsTabs: any = [{
   code: 1,
-  name: 'Información',
+  name: 'Mi perfil',
   show: true,
   disabled: false,
 },{

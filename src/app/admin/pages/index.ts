@@ -24,7 +24,6 @@ import { TrackingTableComponent } from './tracking/tracking-table/tracking-table
 import { TrackingFormComponent } from './tracking/tracking-form/tracking-form.component';
 import { TracingsComponent } from '../components/tracings/tracings.component';
 import { InformesTableComponent } from './informes/informes-table/informes-table.component';
-import { InformesChartsComponent } from './informes/informes-charts/informes-charts.component';
 import { UserObjetivesComponent } from './users/user-objetives/user-objetives.component';
 
 import { PerformancePlansListComponent } from './performancePlans/performance-plans-list/performance-plans-list.component';
@@ -65,7 +64,6 @@ export const AdminPages: any[] = [
     TrackingFormComponent,
     UserObjetivesComponent,
     InformesTableComponent,
-    InformesChartsComponent,
     PerformancePlansListComponent,
   PerformancePlansFormComponent,
   FeebackActionsComponent,
@@ -100,7 +98,6 @@ export * from './IndividualesObjectives/individuales-objectives-form/individuale
 export * from './tracking/tracking-table/tracking-table.component';
 export * from './tracking/tracking-form/tracking-form.component';
 export * from './informes/informes-table/informes-table.component';
-export * from './informes/informes-charts/informes-charts.component';
 export * from './users/user-objetives/user-objetives.component';
 export * from './IndividualesObjectives/feeback-actions/feeback-actions.component';
 export * from './IndividualesObjectives/training-actions/training-actions.component';

@@ -1,12 +1,14 @@
-<app-my-table
-[loading]="loading"
-[dataSource]="dataSource"
-[Columns]="columns"
-[length]="length"
-[pageSize]="pageSize"
-[PageSizeOptions]="pageSizeOptions"
-[paginator]="paginator"
-(changeSort)="changeSort($event)"
-(changePaginator)="changePaginator($event)"
-(eventIcons)="iconsFunction($event)"
-></app-my-table>
+<app-my-tabs [optionsTabs]="optionsTabs" [intialTabCode]="initialTab"
+  (getTabActive)="changeTab($event.code)"></app-my-tabs><br>
+
+<div *ngIf="activeTab == 1">
+  <div class="chart-container">
+    <canvas id="canvas"></canvas>
+  </div>
+</div>
+
+<div *ngIf="activeTab == 2">
+  <div class="chart-container">
+    <canvas id="canvas2"></canvas>
+  </div>
+</div>

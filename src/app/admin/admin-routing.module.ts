@@ -120,10 +120,6 @@ const routes: Routes = [
         component: Pages.InformesTableComponent,
       },
       {
-        path: "informes/chart/:unique_id",
-        component: Pages.InformesChartsComponent,
-      },
-      {
         path: "objetivos_individuales/feeback_actions",
         component: Pages.FeebackActionsComponent,
       },
