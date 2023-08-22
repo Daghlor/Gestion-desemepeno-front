@@ -39,3 +39,12 @@ th {
 #formacion-table th {
   background-color: #d0f0c0;
 }
+
+body {
+  overflow: auto;
+}
+
+.scrollable-section {
+  overflow: auto;
+  max-height: 400px; /* Ajusta según tus necesidades */
+}
