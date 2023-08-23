@@ -12,33 +12,6 @@ import { ConfirmModalComponent } from '../..';
 import { FeedbackActionsService } from 'src/app/admin/services/feedback-actions.service';
 import { TrainingActionsService } from 'src/app/admin/services/training-actions.service';
 
-interface ObjectiveIndividual {
-  id: number;
-  unique_id: string;
-  title: string;
-  objetive: string;
-  weight: number;
-  user_id: number;
-  state_id: number;
-  strategic_id: number;
-  plans_id: number;
-}
-
-interface FeedbackAction {
-  id: number;
-  unique_id: string;
-  title: string;
-  user_id: number;
-}
-
-interface TrainingAction {
-  id: number;
-  unique_id: string;
-  title: string;
-  user_id: number;
-}
-
-
 // ESTE ES EL TS DONDE ES LA PARTE LOGICA DE LA VISTA FORMULARIOS DE USUARIO
 @Component({
 	selector: 'app-users-form',
@@ -120,45 +93,95 @@ optionsTabs: any = [{
   ) { }
 
 
-	async ngOnInit(){
-		await this.getAllList();
+  async ngOnInit() {
+    await this.getAllList();
 
-		this.params = this.activeRouter.snapshot.params;
-		this.unique_id = this.params.uuid;
-		this.type = !this.params.type ? null : this.params.type;
+    this.params = this.activeRouter.snapshot.params;
+    this.unique_id = this.params.uuid;
+    this.type = !this.params.type ? null : this.params.type;
 
-		if (this.unique_id) {
-			this.titleButton = 'Actualizar';
-			await this.findData();
+    if (this.unique_id) {
+      this.titleButton = 'Actualizar';
+      await this.findData();
     }
 
     const userInfo = JSON.parse(this.Local.findDataLocal('info_user'));
 
+
+    const requiredPermissions = ['list_my_objectives_strategics', 'list_my_objectives_individuals'];
+
+    const hasRequiredPermissions = this.Local.validateArrayPermission(requiredPermissions);
+
+    if (hasRequiredPermissions) {
+    // El usuario tiene los permisos necesarios, puedes cargar los datos y habilitar las funcionalidades.
+
+    // Cargar objetivos individuales del usuario actual sin paginación
+    if (this.unique_id) {
+      this.loadIndividualsData(this.unique_id);
+      this.loadTrainingData(this.unique_id);
+      this.loadFeedbackData(this.unique_id);
+    }
+
+
     const paginate = {
-    paginate: this.pageSize,
+      paginate: this.pageSize, // Deja la paginación si la necesitas en otros lugares de tu componente
       page: this.actualPage,
       column: this.orderColumn || 'title',
       direction: this.orderType || 'asc',
       search: {
         nameUser: this.name,
-        user_id: userInfo.id,
+        user_id: null,
         company_id: null,
         state_id: 1,
         areas_id: null
-    }
-   };
+      }
+    };
 
-   const individualsDataResponse: any = await this.individualAPI.FindAll(paginate);
-  this.individualsData = individualsDataResponse.data.objetives;
+  } else {
+    // El usuario no tiene los permisos necesarios, puedes mostrar un mensaje de error o redirigirlo a otra página.
+    console.log('El usuario no tiene los permisos necesarios para acceder a esta funcionalidad.');
+    // Puedes redirigir al usuario a una página de acceso denegado o tomar otra acción apropiada.
+  }
+}
 
-  const feedbackDataResponse: any = await this.FeebackAPI.FindAll(paginate);
-  this.feedbackData = feedbackDataResponse.data.titles;
+  async loadIndividualsData(unique_id: string) {
+  try {
+    // Llama al servicio para obtener los objetivos individuales del usuario actual sin paginación
+    const individualsDataResponse: any = await this.individualAPI.FindAllByUserId(unique_id);
 
-  const trainingDataResponse: any = await this.TrainingAPI.FindAll(paginate);
-  this.trainingData = trainingDataResponse.data.titles;
-
+    // individualsDataResponse debería contener todos los objetivos individuales del usuario
+    this.individualsData = individualsDataResponse.data;
+  } catch (error) {
+    console.error('Error al cargar objetivos individuales:', error);
+    // Manejo de errores
+  }
   }
 
+  async loadTrainingData(unique_id: string) {
+  try {
+    // Llama al servicio para obtener los objetivos individuales del usuario actual sin paginación
+    const trainingDataResponse: any = await this.TrainingAPI.FindAllByUserId(unique_id);
+
+    // individualsDataResponse debería contener todos los objetivos individuales del usuario
+    this.trainingData = trainingDataResponse.data;
+  } catch (error) {
+    console.error('Error al cargar objetivos individuales:', error);
+    // Manejo de errores
+  }
+  }
+
+  async loadFeedbackData(unique_id: string) {
+  try {
+    // Llama al servicio para obtener los objetivos individuales del usuario actual sin paginación
+    const feedbackDataResponse: any = await this.FeebackAPI.FindAllByUserId(unique_id);
+
+    // individualsDataResponse debería contener todos los objetivos individuales del usuario
+    this.feedbackData = feedbackDataResponse.data;
+  } catch (error) {
+    console.error('Error al cargar objetivos individuales:', error);
+    // Manejo de errores
+  }
+}
 
 
 	// FUNCION PARA CAMBIAR FOTO DE PERFIL

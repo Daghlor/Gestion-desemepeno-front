@@ -48,6 +48,17 @@ export class IndividualService {
     })
   }
 
+  FindAllByUserId(uuid: string) {
+    this.token = this.Local.findDataLocal('token');
+    return api.get(`/individuals/FindAllByUserUniqueId/${uuid}`, {
+      headers: {Authorization: "Bearer " + this.token}
+    })
+    .then((res) => res.data)
+    .catch((err) => {
+      throw err.response
+    })
+  }
+
   // METODO DELETE PARA ELIMINAR LOS OBJETIVOS INDIVIDUALES
   Delete(uuid: string){
     this.token = this.Local.findDataLocal('token');
@@ -56,6 +67,17 @@ export class IndividualService {
     })
     .then((res)=>res.data)
     .catch((err)=>{
+      throw err.response
+    })
+  }
+
+  UpdateState(uuid: string, body: any) {
+    this.token = this.Local.findDataLocal('token');
+    return api.put(`/individuals/UpdateState/${uuid}`, body,{
+      headers: {Authorization: "Bearer " + this.token}
+    })
+    .then((res) => res.data)
+      .catch((err) => {
       throw err.response
     })
   }

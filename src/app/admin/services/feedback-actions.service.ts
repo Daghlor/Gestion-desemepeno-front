@@ -33,6 +33,17 @@ export class FeedbackActionsService {
     })
   }
 
+  FindAllByUserId(uuid: string) {
+    this.token = this.Local.findDataLocal('token');
+    return api.get(`/feedback/FindAllByUserUniqueId/${uuid}`, {
+      headers: {Authorization: "Bearer " + this.token}
+    })
+    .then((res) => res.data)
+    .catch((err) => {
+      throw err.response
+    })
+  }
+
   Update(uuid: string, body: any) {
     this.token = this.Local.findDataLocal('token');
     return api.put(`/feedback/update/${uuid}`, body, {

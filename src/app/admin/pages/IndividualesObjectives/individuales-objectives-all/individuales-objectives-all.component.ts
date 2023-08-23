@@ -6,6 +6,8 @@ import { IndividualService } from 'src/app/admin/services/individual.service';
 import { LocalService } from 'src/app/config/local.service';
 import { SnackbarService } from 'src/app/config/snackbar.service';
 import { ConfirmModalComponent } from 'src/app/admin/components/confirm-modal/confirm-modal.component';
+import { ChangeStateDialogComponentComponent } from '../..';
+
 
 // ESTE ES EL .TS DONDE ESTA LA PARTE LOGICA DE LA VISTA TODOS LOS OBJETIVOS INDIVIDUALES
 @Component({
@@ -97,7 +99,7 @@ export class IndividualesObjectivesAllComponent implements OnInit {
 
     this.individualAPI.FindAll(paginate).then((res:any)=>{
       for (let i = 0; i < res.data.objetives.length; i++){
-        res.data.objetives[i].icons = ['delete', 'edit'];
+        res.data.objetives[i].icons = ['delete', 'edit','done'];
       }
       this.dataSource = res.data.objetives;
       this.length = res.data.total;
@@ -134,7 +136,27 @@ export class IndividualesObjectivesAllComponent implements OnInit {
           })
         }
       })
-    }
+    } else if (event.icon == 'done') {
+  // Obtén el estado actual del objetivo individual usando el servicio FindOne
+  this.individualAPI.FindOne(event.data.unique_id).then((individualData: any) => {
+    const currentState = individualData.data.state_id; // Supongamos que el estado se encuentra en individualData.data.state_id
+
+    // Abre el diálogo para cambiar el estado y pasa el estado actual como parte de los datos
+    const dialogRef = this.dialog.open(ChangeStateDialogComponentComponent, {
+      width: '250px',
+      data: { objectiveId: event.data.unique_id, currentState: currentState }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.snack.viewsnack('Estado cambiado correctamente', 'Success');
+        this.findData();
+      }
+    });
+  });
+}
+
   }
+
 
 }
