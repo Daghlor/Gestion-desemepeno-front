@@ -29,6 +29,12 @@ export class InformesTableComponent implements OnInit{
  totalObjectives2: number = 0;
   totalUsers2: number = 0;
 
+  chart3: any;
+  closedCount: number = 0;
+  approvedCount: number = 0;
+
+  chart4: any;
+
   activeTab: number = 1;
   initialTab: number = 1;
 currentTab: number = 1;
@@ -45,6 +51,11 @@ optionsTabs: any = [{
     },{
   code: 3,
   name: 'Grafica 3',
+  show: true,
+  disabled: false,
+},{
+  code: 4,
+  name: 'Grafica 4',
   show: true,
   disabled: false,
 },]
@@ -82,7 +93,9 @@ optionsTabs: any = [{
 
   }, (error: any) => {
     console.error(error);
-  });
+    });
+
+    this.fetchChartData3();
 
   }
 
@@ -95,6 +108,13 @@ optionsTabs: any = [{
     } else if (tab === 2) {
       this.initializeChart2();
     }
+    else if (tab === 3) {
+      this.initializeChart3();
+    }
+    else if (tab === 4) {
+      this.initializeChart4();
+    }
+
   }
 
 
@@ -137,14 +157,78 @@ optionsTabs: any = [{
   }
 
   initializeChart2(): void {
-    // Configura el gráfico
-    this.chart2 = new Chart('canvas2', {
+  // Configura el gráfico
+  this.chart2 = new Chart('canvas2', {
+    type: 'bar',
+    data: {
+      labels: ['Total Planes iniciados', 'Total de Usuarios'],
+      datasets: [{
+        label: 'Total Planes iniciados vs Total de usuarios',
+        data: [this.totalObjectives2, this.totalUsers2],
+        backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(255, 99, 132, 0.2)'],
+        borderColor: ['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)'],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            stepSize: 1,
+            callback: function (value) {
+              if (typeof value === 'number') {
+                return value.toFixed(0);
+              }
+              return value;
+            }
+          }
+        }
+      },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const labelIndex = context.dataIndex; // Índice de la barra actual
+              if (labelIndex === 0) {
+                return 'Total Planes: ' + context.parsed.y;
+              } else if (labelIndex === 1) {
+                return 'Total de Usuarios: ' + context.parsed.y;
+              } else {
+                return 'Otro Label: ' + context.parsed.y; // Cambia 'Otro Label' según tus necesidades
+              }
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+  fetchChartData3(): void {
+    this.chartService.FindChart3().subscribe((data: any) => {
+      // Asume que el servicio devuelve los datos en la forma { closed_count: number, approved_count: number }
+      this.closedCount = data.closed_count;
+      this.approvedCount = data.approved_count;
+
+      // Inicializa la tercera gráfica después de obtener los datos
+      this.initializeChart3();
+    }, (error: any) => {
+      console.error(error);
+    });
+  }
+
+  initializeChart3(): void {
+    // Configura el gráfico 3 aquí similar a como lo hiciste para las gráficas anteriores
+    // Utiliza this.closedCount y this.approvedCount para los datos
+    // Asegúrate de tener un elemento canvas en tu HTML para esta gráfica (por ejemplo, <canvas id="canvas3"></canvas>)
+    this.chart3 = new Chart('canvas3', {
       type: 'bar',
       data: {
-        labels: ['Total Objetivos Individuales', 'Total de usuarios'],
+        labels: ['Aprobados', 'Cerrados'],
         datasets: [{
-          label: 'Total planes iniciados vs Total de usuarios',
-          data: [this.totalObjectives2, this.totalUsers2],
+          label: 'Planes Aprobados vs Cerrados ',
+          data: [this.approvedCount, this.closedCount],
           backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(255, 99, 132, 0.2)'],
           borderColor: ['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)'],
           borderWidth: 1
@@ -164,10 +248,88 @@ optionsTabs: any = [{
               }
             }
           }
+        },plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const labelIndex = context.dataIndex; // Índice de la barra actual
+              if (labelIndex === 0) {
+                return 'Planes Aprobados: ' + context.parsed.y;
+              } else if (labelIndex === 1) {
+                return 'Planes Cerrados: ' + context.parsed.y;
+              } else {
+                return 'Otro Label: ' + context.parsed.y; // Cambia 'Otro Label' según tus necesidades
+              }
+            }
+          }
         }
+      }
       }
     });
   }
+
+  initializeChart4(): void {
+  // Configura el gráfico
+  if (this.chart4) {
+    this.chart4.destroy();
+  }
+
+  this.chartService.FindChart4().subscribe((data) => {
+    const pendingCount = data.pending_count;
+    const approvedCount = data.approved_count;
+    const totalUsers = data.total_users;
+
+    this.chart4 = new Chart('canvas4', {
+      type: 'bar',
+      data: {
+        labels: ['Planes Pendientes de Aprobación', 'Planes Aprobados', 'Total de Usuarios'],
+        datasets: [{
+          label: 'Planes Pendientes de aprobacion vs Planes Aprobados vs Total Usuarios',
+          data: [pendingCount, approvedCount, totalUsers],
+          backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(255, 99, 132, 0.2)', 'rgba(255, 205, 86, 0.2)'],
+          borderColor: ['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)', 'rgba(255, 205, 86, 1)'],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              stepSize: 1,
+              callback: function (value) {
+                if (typeof value === 'number') {
+                  return value.toFixed(0);
+                }
+                return value;
+              }
+            }
+          }
+        },plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const labelIndex = context.dataIndex; // Índice de la barra actual
+              if (labelIndex === 0) {
+                return 'Planes Pendientes de Aprobación: ' + context.parsed.y;
+              } else if (labelIndex === 1) {
+                return 'Planes Aprobados: ' + context.parsed.y;
+              } else if (labelIndex === 2) {
+                return 'Total de usuarios: ' + context.parsed.y;
+              }else {
+                return 'Otro Label: ' + context.parsed.y; // Cambia 'Otro Label' según tus necesidades
+              }
+            }
+          }
+        }
+      }
+      }
+    });
+  }, (error: any) => {
+    console.error(error);
+  });
+}
+
 
 
 

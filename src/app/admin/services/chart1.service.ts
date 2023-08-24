@@ -58,5 +58,51 @@ export class Chart1Service {
         })
     );
   }
+
+  FindChart3(): Observable<any> {
+    this.token = this.Local.findDataLocal('token');
+    return from( // Convertimos la Promesa a un Observable
+      api.post(`/percentage/countClosedVsApprovedIndividuals`, {
+        "paginate": 10,
+        "page": 1,
+        "column": "mission",
+        "direction": "desc",
+        "search": {
+          "description": "",
+          "company_id": ""
+        }
+      },
+        {
+          headers: { Authorization: "Bearer " + this.token } // Añadido espacio después de "Bearer"
+        })
+        .then((res) => res.data)
+        .catch((err) => {
+          throw err.response
+        })
+    );
+  }
+
+  FindChart4(): Observable<any> {
+    this.token = this.Local.findDataLocal('token');
+    return from( // Convertimos la Promesa a un Observable
+      api.post(`/percentage/countPendingVsApprovedVsUsers`, {
+        "paginate": 10,
+        "page": 1,
+        "column": "mission",
+        "direction": "desc",
+        "search": {
+          "description": "",
+          "company_id": ""
+        }
+      },
+        {
+          headers: { Authorization: "Bearer " + this.token } // Añadido espacio después de "Bearer"
+        })
+        .then((res) => res.data)
+        .catch((err) => {
+          throw err.response
+        })
+    );
+  }
 }
 
