@@ -14,6 +14,8 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class FeebackActionsComponent implements OnInit {
 
+  @ViewChild('titleInput') titleInput: any;
+
   @ViewChild(MatAccordion) accordion?: MatAccordion;
   title: string = '';
   validateTime: any;
@@ -122,8 +124,10 @@ export class FeebackActionsComponent implements OnInit {
 
    this.FeebackAPI.Create(data).then((res: any) => {
      this.snack.viewsnack(res.data.msg, 'success');
-    })
-     // Limpiar el campo de título después de guardar los datos
+     this.findData();
+      this.title = ''; // Establece el valor en una cadena vacía
+      this.titleInput.nativeElement.value = '';
+   });     // Limpiar el campo de título después de guardar los datos
   }
 
 

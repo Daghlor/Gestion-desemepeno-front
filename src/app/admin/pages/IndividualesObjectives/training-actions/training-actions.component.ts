@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { TrainingActionsService } from 'src/app/admin/services/training-actions.service';
@@ -12,6 +12,8 @@ import { LocalService } from 'src/app/config/local.service';
   styleUrls: ['./training-actions.component.scss']
 })
 export class TrainingActionsComponent implements OnInit {
+
+  @ViewChild('titleInput') titleInput: any;
 
   title: string = '';
   loading: boolean = false;
@@ -112,7 +114,10 @@ export class TrainingActionsComponent implements OnInit {
 
     this.TrainingAPI.Create(data).then((res: any) => {
       this.snack.viewsnack(res.data.msg, 'success');
-    })
+      this.findData();
+      this.title = '';
+      this.titleInput.nativeElement.value = '';
+    });
   }
 
 }

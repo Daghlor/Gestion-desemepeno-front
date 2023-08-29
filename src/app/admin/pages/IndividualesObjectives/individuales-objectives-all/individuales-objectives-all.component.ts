@@ -18,6 +18,7 @@ import { ChangeStateDialogComponentComponent } from '../..';
 export class IndividualesObjectivesAllComponent implements OnInit {
   // SE DEFINE VARIABLES LOCALES Y EL MAQUETADO DE LA TABLA
   name: string = '';
+  state: string = '';
   unique_id?: string;
   selectedCompany: number | null = null;
   companies: any[] = [];

@@ -165,7 +165,7 @@ optionsTabs: any = [{
     // individualsDataResponse debería contener todos los objetivos individuales del usuario
     this.trainingData = trainingDataResponse.data;
   } catch (error) {
-    console.error('Error al cargar objetivos individuales:', error);
+    console.error('Error al cargar las acciones de formacion:', error);
     // Manejo de errores
   }
   }
@@ -178,7 +178,7 @@ optionsTabs: any = [{
     // individualsDataResponse debería contener todos los objetivos individuales del usuario
     this.feedbackData = feedbackDataResponse.data;
   } catch (error) {
-    console.error('Error al cargar objetivos individuales:', error);
+    console.error('Error al cargar las acciones de retroalimentacion:', error);
     // Manejo de errores
   }
 }

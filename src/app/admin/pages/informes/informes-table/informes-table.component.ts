@@ -151,7 +151,22 @@ optionsTabs: any = [{
               // Configura otras opciones de la escala si es necesario
             }
           },
-          // Configura otras opciones del gráfico si es necesario
+          plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const labelIndex = context.dataIndex; // Índice de la barra actual
+              if (labelIndex === 0) {
+                return 'Objetivos individuales alineados: ' + context.parsed.y;
+              } else if (labelIndex === 1) {
+                return 'Objetivos individuales alineados: ' + context.parsed.y;
+              } else {
+                return 'Otro Label: ' + context.parsed.y; // Cambia 'Otro Label' según tus necesidades
+              }
+            }
+          }
+        }
+      }
         }
       });
   }
