@@ -10,7 +10,6 @@ import { MatPaginatorIntl } from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
 import { CustomPaginator } from '../config/matPaginador';
 import { ScrollingModule } from '@angular/cdk/scrolling';
-import { MyTrackingsComponent } from './pages/tracking/my-trackings/my-trackings.component';
 
 
 
@@ -19,7 +18,6 @@ import { MyTrackingsComponent } from './pages/tracking/my-trackings/my-trackings
   declarations: [
     ...fromContainers.AdminComponents,
     ...fromContainers.AdminPages,
-    MyTrackingsComponent,
   ],
   imports: [
     CommonModule,

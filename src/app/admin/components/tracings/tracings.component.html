@@ -1,5 +1,6 @@
 <!-- ESTE ES EL HTML DE CUADRO DE DIALOGO PARA EL COMENTARIO DE SEGUIMIENTOS -->
-<h1 mat-dialog-title>{{data.title}}</h1>
+
+<!-- <h1 mat-dialog-title>{{data.title}}</h1>
 <div mat-dialog-content>
     <mat-form-field appearance="outline" style="width: 100%;">
         <mat-label>Comentario</mat-label>
@@ -9,6 +10,24 @@
 <div mat-dialog-actions>
   <button mat-button (click)="closeModal()">Cerrar</button>
   <button mat-button [mat-dialog-close]="comment" cdkFocusInitial>Guardar</button>
+</div> -->
+
+
+<h1 mat-dialog-title>{{ data.title }}</h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-label>Comentario</mat-label>
+    <textarea matInput [(ngModel)]="comment" name="mensaje" cols="10" rows="5"></textarea>
+  </mat-form-field>
+  <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-label>Peso (Puntaje)</mat-label>
+    <input matInput type="number" [(ngModel)]="weight" name="weight">
+  </mat-form-field>
 </div>
+<div mat-dialog-actions>
+  <button mat-button (click)="closeModal()">Cerrar</button>
+  <button mat-button [mat-dialog-close]="{ comment: comment, weight: weight }" cdkFocusInitial>Guardar</button>
+</div>
+
 
 

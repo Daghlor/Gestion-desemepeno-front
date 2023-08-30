@@ -103,7 +103,6 @@ optionsTabs: any = [{
     return this.Local.validatePermission(code) ? true : false;
   }
 
-
   changeTab(tab: number): void {
     this.activeTab = tab;
 
