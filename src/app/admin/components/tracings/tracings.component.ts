@@ -10,7 +10,6 @@ import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog
 export class TracingsComponent implements OnInit {
   // SE DEFINE VARIABLE
   comment: string = '';
-  weight: number = 0;
 
   constructor(
     // SE INYECTA LIBRERIA DE MATDIALOG O CUADROS DE DIALOGO
@@ -20,13 +19,11 @@ export class TracingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.comment = '';
-    this.weight = 0;
   }
 
   // FUNCION QUE OBTINE EL COMENTARIO Y LO GUARDA
   closeModal(): void {
     this.comment = '';
-    this.weight = 0;
     this.dialogRef.close();
   }
 

@@ -35,14 +35,9 @@
   <mat-expansion-panel *ngFor="let item of listObjetives; let i = index">
     <mat-expansion-panel-header>
       <mat-panel-title> {{item.weight}} - {{item.title}} </mat-panel-title>
+      <span class="points-badge">Total de Peso sin asignar: {{item.totalPoints}}</span>
     </mat-expansion-panel-header>
     <mat-grid-list cols="3" rowHeight="80px">
-      <mat-grid-tile [colspan]="1">
-        <mat-form-field appearance="outline">
-          <mat-label>Objetivo Individual</mat-label>
-          <input matInput [(ngModel)]="item.title" autocomplete="off" type="text" readonly>
-        </mat-form-field>
-      </mat-grid-tile>
       <mat-grid-tile [colspan]="1">
         <mat-form-field appearance="outline">
           <mat-label>Objetivo Estratégico</mat-label>
@@ -51,7 +46,13 @@
       </mat-grid-tile>
       <mat-grid-tile [colspan]="1">
         <mat-form-field appearance="outline">
-          <mat-label>Peso</mat-label>
+          <mat-label>Objetivo Individual</mat-label>
+          <input matInput [(ngModel)]="item.title" autocomplete="off" type="text" readonly>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1">
+        <mat-form-field appearance="outline">
+          <mat-label>Peso %</mat-label>
           <input matInput [(ngModel)]="item.weight" autocomplete="off" type="text" readonly>
         </mat-form-field>
       </mat-grid-tile>
@@ -60,9 +61,9 @@
       <table style="font-size:16px;">
         <thead>
           <tr>
-            <th>Seguimiento</th>
-            <th>Seguimiento del Empleado</th>
-            <th>Puntaje del Empleado</th>
+            <th>Seguimiento del Jefe</th>
+            <th>Seguimiento del Colaborador</th>
+            <th>Peso %</th>
             <th>Fecha</th>
           </tr>
         </thead>

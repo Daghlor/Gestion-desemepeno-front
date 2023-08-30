@@ -13,3 +13,11 @@ table {
     border: 1px solid #fb794b;
   }
 }
+
+.points-badge {
+  background-color: #007bff; /* Cambia el color de fondo según tus preferencias */
+  color: white; /* Cambia el color del texto según tus preferencias */
+  padding: 5px 10px; /* Añade espaciado alrededor del texto */
+  border-radius: 5px; /* Agrega esquinas redondeadas */
+  margin-left: 10px; /* Añade margen izquierdo para separar del título */
+}

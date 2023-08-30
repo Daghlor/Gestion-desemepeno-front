@@ -52,40 +52,35 @@ export class TrackingFormComponent implements OnInit {
   }
 
   // FUNCION QUE ABRE UN DIALOG QUE VERIFICA LOS CAMPOS Y LOS GUARDA
-  openModalTracing(item: any) {
-  console.log(item);
+  openModalTracing(item: any){
+    console.log(item);
 
-  const dialogRef = this.dialog.open(TracingsComponent, {
-    width: '600px',
-    data: item,
-  });
+    const dialogRef = this.dialog.open(TracingsComponent, {
+      width: '600px',
+      data: item,
+    });
 
-  dialogRef.afterClosed().subscribe(result => {
-    if (!result) {
-      this.snack.viewsnack('Hace falta el comentario', 'error');
-      return;
-    } else if (!result.comment || !result.weight) {
-      this.snack.viewsnack('Debes ingresar un comentario y un puntaje (weight)', 'error');
-      return;
-    } else {
-      const body = {
-        individual_id: item.id,
-        comment: result.comment,
-        plans_id: item.plans_id,
-        weight: result.weight, // Agrega el peso (weight) al cuerpo del seguimiento
-      };
-
-      this.trackingAPI.Create(body)
+    dialogRef.afterClosed().subscribe(result => {
+      if(!result){
+        this.snack.viewsnack('Hace falta el comentario', 'error');
+        return;
+      }else{
+        const body = {
+          individual_id: item.id,
+          comment: result,
+          plans_id: item.plans_id,
+        }
+        this.trackingAPI.Create(body)
         .then((res) => {
           this.snack.viewsnack(res.data.msg, 'success');
           this.findData();
         })
         .catch((error) => {
           console.error('Error al realizar la solicitud POST:', error);
-          // Aquí puedes mostrar un mensaje de error al usuario si lo deseas
+            // Aquí puedes mostrar un mensaje de error al usuario si lo deseas
         });
-    }
-  });
-}
 
+      }
+    });
+  }
 }

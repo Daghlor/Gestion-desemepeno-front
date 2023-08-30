@@ -74,36 +74,41 @@ export class MyTrackingsComponent implements OnInit {
 
   dialogRef.afterClosed().subscribe(result => {
     if (result) {
-      // Llama al servicio addEmployComment con el uniqueId y el comentario del empleado
-      this.trackingAPI.addEmployComment(uniqueId, { comment_employee: result }) // Pasa el comentario en el cuerpo de la solicitud
-        .then((res) => {
-          if (res && res.data && res.data.msg) {
-            this.snack.viewsnack(res.data.msg, 'success');
-            this.findData();
-          } else {
-            console.error('Respuesta del servidor inesperada:', res);
-            // Manejo de errores personalizado si es necesario
-            this.snack.viewsnack('Error inesperado en el servidor', 'error');
-          }
-        })
-        .catch((error) => {
-          console.error('Error al realizar la solicitud PUT:', error);
+      // Llama al servicio addEmployComment con el uniqueId, comentario y peso del empleado
+      this.trackingAPI.addEmployComment(uniqueId, {
+        comment_employee: result.comment,
+        weight: result.weight
+      })
+      .then((res) => {
+        if (res && res.data && res.data.msg) {
+          this.snack.viewsnack(res.data.msg, 'success');
+          this.findData();
+        } else {
+          console.error('Respuesta del servidor inesperada:', res);
+          // Manejo de errores personalizado si es necesario
+          this.snack.viewsnack('Error inesperado en el servidor', 'error');
+        }
+      })
+      .catch((error) => {
+        console.error('Error al realizar la solicitud PUT:', error);
 
-          if (error.response && error.response.status === 403) {
-            // El usuario no tiene permiso
-            this.snack.viewsnack('No tienes permisos para realizar esta acción', 'error');
-            // Puedes redirigir al usuario a la página de inicio de sesión u otra página adecuada aquí
-          } else if (error.response && error.response.data && error.response.data.msg) {
-            // Manejo de otros errores específicos del servidor
-            this.snack.viewsnack(error.response.data.msg, 'error');
-          } else {
-            // Manejo de otros errores inesperados
-            this.snack.viewsnack('Error inesperado', 'error');
-          }
-        });
+        if (error.response && error.response.status === 403) {
+          // El usuario no tiene permiso
+          this.snack.viewsnack('No tienes permisos para realizar esta acción', 'error');
+          // Puedes redirigir al usuario a la página de inicio de sesión u otra página adecuada aquí
+        } else if (error.response && error.response.data && error.response.data.msg) {
+          // Manejo de otros errores específicos del servidor
+          this.snack.viewsnack(error.response.data.msg, 'error');
+        } else {
+          // Manejo de otros errores inesperados
+          this.snack.viewsnack('Error inesperado', 'error');
+        }
+      });
     }
   });
 }
+
+
 
 
 }
