@@ -31,6 +31,8 @@ import { PerformancePlansFormComponent } from './performancePlans/performance-pl
 import { FeebackActionsComponent } from './IndividualesObjectives/feeback-actions/feeback-actions.component';
 import { TrainingActionsComponent } from './IndividualesObjectives/training-actions/training-actions.component';
 import { ChangeStateDialogComponentComponent } from '../components/change-state-dialog-component/change-state-dialog-component.component';
+import { MyTrackingsComponent } from './tracking/my-trackings/my-trackings.component';
+import { TracingsEmployeComponent } from '../components/tracings-employe/tracings-employe.component';
 
 // AQUI SE IMPORTAN LOS COMPONENTES DE TODOS LAS VISTAS DEL SISTEMA Y SE EXPORTAN
 export const AdminComponents: any[] = [
@@ -69,7 +71,10 @@ export const AdminPages: any[] = [
   PerformancePlansFormComponent,
   FeebackActionsComponent,
   TrainingActionsComponent,
-    ChangeStateDialogComponentComponent,
+  ChangeStateDialogComponentComponent,
+  MyTrackingsComponent,
+    TracingsEmployeComponent,
+
 ];
 
 export * from './performancePlans/performance-plans-list/performance-plans-list.component';
@@ -104,3 +109,5 @@ export * from './users/user-objetives/user-objetives.component';
 export * from './IndividualesObjectives/feeback-actions/feeback-actions.component';
 export * from './IndividualesObjectives/training-actions/training-actions.component';
 export * from '../components/change-state-dialog-component/change-state-dialog-component.component';
+export * from '../pages/tracking/my-trackings/my-trackings.component';
+export * from '../components/tracings-employe/tracings-employe.component';

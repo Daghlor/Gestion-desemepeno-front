@@ -61,6 +61,15 @@ export class TrackingService {
     })
   }
 
-
+  addEmployComment(uuid: string, body: any){
+    this.token = this.Local.findDataLocal('token');
+    return api.put(`/tracing/addEmployeeComment/${uuid}`, body, {
+      headers: {Authorization: "Bearer " + this.token}
+    })
+      .then((res) => res.data)
+      .catch((err) => {
+      throw err.response
+    })
+  }
 
 }

@@ -66,12 +66,16 @@
                 <thead>
                     <tr>
                         <th>Seguimiento</th>
+                        <th>Seguimiento del Empleado</th>
+                        <th>Puntaje del Empleado</th>
                         <th>Fecha</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let tracing of item.tracing">
                         <td style="text-align: justify;">{{tracing.comment}}</td>
+                        <td style="text-align: justify;">{{tracing.comment_employee}}</td>
+                        <td style="text-align: center;">{{tracing.weight}}</td>
                         <td style="text-align:center; width: 210px;">{{tracing.created_at}}</td>
                     </tr>
                 </tbody>

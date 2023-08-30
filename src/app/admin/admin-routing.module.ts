@@ -116,6 +116,10 @@ const routes: Routes = [
         component: Pages.TrackingFormComponent,
       },
       {
+        path: "mis_seguimientos/:uuid",
+        component: Pages.MyTrackingsComponent,
+      },
+      {
         path: "informes",
         component: Pages.InformesTableComponent,
       },

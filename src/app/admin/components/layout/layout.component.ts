@@ -153,6 +153,10 @@ export class LayoutComponent implements OnInit {
 
     goToProfile(): void {
         this.router.navigateByUrl('admin/usuarios/form/' + this.unique_id + '/perfil');
+  }
+
+    goToTrackinsg(): void {
+        this.router.navigateByUrl('admin/mis_seguimientos/' + this.unique_id);
     }
 
 }
