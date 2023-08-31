@@ -35,7 +35,7 @@
   <mat-expansion-panel *ngFor="let item of listObjetives; let i = index">
     <mat-expansion-panel-header>
       <mat-panel-title> {{item.weight}} - {{item.title}} </mat-panel-title>
-      <span class="points-badge">Total de Peso sin asignar: {{item.totalPoints}}</span>
+      <span class="points-badge">Total de Peso sin asignar: {{item.totalPointsAvailable}}</span>
     </mat-expansion-panel-header>
     <mat-grid-list cols="3" rowHeight="80px">
       <mat-grid-tile [colspan]="1">

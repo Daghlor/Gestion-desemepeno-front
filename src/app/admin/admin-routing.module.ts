@@ -124,6 +124,10 @@ const routes: Routes = [
         component: Pages.InformesTableComponent,
       },
       {
+        path: "informes_chart5/:uuid",
+        component: Pages.InformeChart5Component,
+      },
+      {
         path: "objetivos_individuales/feeback_actions",
         component: Pages.FeebackActionsComponent,
       },

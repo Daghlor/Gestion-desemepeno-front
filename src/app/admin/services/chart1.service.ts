@@ -104,5 +104,20 @@ export class Chart1Service {
         })
     );
   }
+
+  FindChart5(uuid: string): Observable<any> {
+    this.token = this.Local.findDataLocal('token');
+    return from(
+    api.get(`/percentage/FindOne/${uuid}`, {
+      headers: { Authorization: "Bearer " + this.token }
+    })
+    .then((res) => res.data)
+    .catch((err) => {
+      throw err.response
+    })
+  );
+  }
+
+
 }
 

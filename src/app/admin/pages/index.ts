@@ -33,6 +33,7 @@ import { TrainingActionsComponent } from './IndividualesObjectives/training-acti
 import { ChangeStateDialogComponentComponent } from '../components/change-state-dialog-component/change-state-dialog-component.component';
 import { MyTrackingsComponent } from './tracking/my-trackings/my-trackings.component';
 import { TracingsEmployeComponent } from '../components/tracings-employe/tracings-employe.component';
+import { InformeChart5Component } from './informes/informe-chart5/informe-chart5.component';
 
 // AQUI SE IMPORTAN LOS COMPONENTES DE TODOS LAS VISTAS DEL SISTEMA Y SE EXPORTAN
 export const AdminComponents: any[] = [
@@ -73,7 +74,8 @@ export const AdminPages: any[] = [
   TrainingActionsComponent,
   ChangeStateDialogComponentComponent,
   MyTrackingsComponent,
-    TracingsEmployeComponent,
+  TracingsEmployeComponent,
+    InformeChart5Component,
 
 ];
 
@@ -111,3 +113,4 @@ export * from './IndividualesObjectives/training-actions/training-actions.compon
 export * from '../components/change-state-dialog-component/change-state-dialog-component.component';
 export * from '../pages/tracking/my-trackings/my-trackings.component';
 export * from '../components/tracings-employe/tracings-employe.component';
+export * from '../pages/informes/informe-chart5/informe-chart5.component';

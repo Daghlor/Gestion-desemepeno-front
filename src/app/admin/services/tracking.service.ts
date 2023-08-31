@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { api } from "src/app/config/axios.config";
 import { LocalService } from 'src/app/config/local.service';
+import { from } from 'rxjs';
 
 // SERVICIO DE SEGUIMIENTOS QUE MANDA SOLICITUDES AL BACK
 @Injectable({

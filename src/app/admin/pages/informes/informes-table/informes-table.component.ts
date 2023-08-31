@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Chart1Service } from 'src/app/admin/services/chart1.service';
 import { Chart, ChartConfiguration, ChartEvent, ChartType } from 'chart.js';
 import { ActivatedRoute } from '@angular/router';
+import { TrackingService } from 'src/app/admin/services/tracking.service';
 
 
 @Component({
@@ -18,6 +19,41 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class InformesTableComponent implements OnInit{
   @ViewChild('chartCanvas', { static: false }) chartCanvas!: ElementRef<HTMLCanvasElement>;
+
+   loading: boolean = false;
+  paginator: boolean = true;
+  length: number = 0;
+  orderColumn?: string;
+  orderType?: string;
+  actualPage: number = 1;
+  pageSize: number = 10;
+  pageSizeOptions: number[] = [10, 15, 20, 25, 50];
+  dataSource: any = new MatTableDataSource();
+  columns = [{
+    columnDef: 'name',
+    header: 'Nombres',
+    sort: true,
+    type: 'text',
+    cell: (element: any) => `${element.name}`,
+  },{
+    columnDef: 'identify',
+    header: 'Indentificación',
+    sort: true,
+    type: 'text',
+    cell: (element: any) => `${element.identify}`,
+  },{
+    columnDef: 'email',
+    header: 'Email',
+    sort: true,
+    type: 'text',
+    cell: (element: any) => `${element.email}`,
+  },{
+    columnDef: 'icons',
+    header: '',
+    sort: true,
+    type: 'icons',
+    cell: (element: any) => `${element.icons}`,
+  }];
 
   chart1: any;
   data1: any; // Aquí almacenaremos los datos del gráfico
@@ -58,6 +94,11 @@ optionsTabs: any = [{
   name: 'Grafica 4',
   show: true,
   disabled: false,
+},{
+  code: 5,
+  name: 'Grafica 5',
+  show: true,
+  disabled: false,
 },]
 
 
@@ -69,6 +110,7 @@ optionsTabs: any = [{
     private dialog: MatDialog,
     private chartService: Chart1Service,
     private activatedRoute: ActivatedRoute,
+    private trackingAPI: TrackingService,
 
   ) { }
 
@@ -96,7 +138,56 @@ optionsTabs: any = [{
     });
 
     this.fetchChartData3();
+    this.getData();
+  }
 
+  getData(){
+    const paginate = {
+      paginate: this.pageSize,
+      page: this.actualPage,
+      column: this.orderColumn || 'name',
+      direction: this.orderType || 'asc',
+      search: {
+        nit: "",
+        businessName: "",
+        phone: "",
+        email: "",
+        address: "",
+        city: "",
+        state_id: 1
+      }
+    }
+
+    this.trackingAPI.FindAllUser(paginate).then((res:any)=>{
+      for (let i = 0; i < res.data.users.length; i++) {
+        res.data.users[i].icons = ['add']
+      }
+
+      this.dataSource = new MatTableDataSource(res.data.users);
+      this.length = res.data.total;
+    });
+  }
+
+  changeSort(item:any){
+    this.orderColumn = item.active;
+    this.orderType = item.direction;
+    this.getData();
+  }
+
+  changePaginator(info:any) {
+    this.actualPage = info.pageIndex + 1;
+    this.pageSize = info.pageSize;
+    this.getData();
+  }
+
+  redirectForm(url: string){
+    this.snack.redirect(url);
+  }
+
+  iconsFunction(event: any){
+    if(event.icon == 'add'){
+      this.router.navigate(['admin/informes_chart5/' + event.data.unique_id]);
+    }
   }
 
   validatePermissions(code: string): Boolean {
@@ -116,6 +207,9 @@ optionsTabs: any = [{
       this.initializeChart3();
     }
     else if (tab === 4) {
+      this.initializeChart4();
+    }
+    else if (tab === 5) {
       this.initializeChart4();
     }
 
