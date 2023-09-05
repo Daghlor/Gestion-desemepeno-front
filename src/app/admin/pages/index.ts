@@ -34,6 +34,11 @@ import { ChangeStateDialogComponentComponent } from '../components/change-state-
 import { MyTrackingsComponent } from './tracking/my-trackings/my-trackings.component';
 import { TracingsEmployeComponent } from '../components/tracings-employe/tracings-employe.component';
 import { InformeChart5Component } from './informes/informe-chart5/informe-chart5.component';
+import { InformeChart6Component } from './informes/informe-chart6/informe-chart6.component';
+import { InformesChart1Component } from './informes/informes-chart1/informes-chart1.component';
+import { InformesChart2Component } from './informes/informes-chart2/informes-chart2.component';
+import { InformesChart3Component } from './informes/informes-chart3/informes-chart3.component';
+import { InformesChart4Component } from './informes/informes-chart4/informes-chart4.component';
 
 // AQUI SE IMPORTAN LOS COMPONENTES DE TODOS LAS VISTAS DEL SISTEMA Y SE EXPORTAN
 export const AdminComponents: any[] = [
@@ -75,8 +80,12 @@ export const AdminPages: any[] = [
   ChangeStateDialogComponentComponent,
   MyTrackingsComponent,
   TracingsEmployeComponent,
-    InformeChart5Component,
-
+  InformeChart5Component,
+  InformeChart6Component,
+        InformesChart1Component,
+    InformesChart2Component,
+    InformesChart3Component,
+    InformesChart4Component,
 ];
 
 export * from './performancePlans/performance-plans-list/performance-plans-list.component';
@@ -114,3 +123,8 @@ export * from '../components/change-state-dialog-component/change-state-dialog-c
 export * from '../pages/tracking/my-trackings/my-trackings.component';
 export * from '../components/tracings-employe/tracings-employe.component';
 export * from '../pages/informes/informe-chart5/informe-chart5.component';
+export * from '../pages/informes/informe-chart6/informe-chart6.component';
+export * from '../pages/informes/informes-chart1/informes-chart1.component';
+export * from '../pages/informes/informes-chart2/informes-chart2.component';
+export * from '../pages/informes/informes-chart3/informes-chart3.component';
+export * from '../pages/informes/informes-chart4/informes-chart4.component';

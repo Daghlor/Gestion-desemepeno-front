@@ -124,8 +124,28 @@ const routes: Routes = [
         component: Pages.InformesTableComponent,
       },
       {
-        path: "informes_chart5/:uuid",
+        path: "informes_Grafica_5/:uuid",
         component: Pages.InformeChart5Component,
+      },
+      {
+        path: "informes_Estrategicos/:uuid",
+        component: Pages.InformeChart6Component,
+      },
+      {
+        path: "informes_Grafica_1/:uuid",
+        component: Pages.InformesChart1Component,
+      },
+      {
+        path: "informes_Grafica_2/:uuid",
+        component: Pages.InformesChart2Component,
+      },
+      {
+        path: "informes_Grafica_3/:uuid",
+        component: Pages.InformesChart3Component,
+      },
+      {
+        path: "informes_Grafica_4/:uuid",
+        component: Pages.InformesChart4Component,
       },
       {
         path: "objetivos_individuales/feeback_actions",

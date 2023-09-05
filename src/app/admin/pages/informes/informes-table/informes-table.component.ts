@@ -10,6 +10,7 @@ import { Chart1Service } from 'src/app/admin/services/chart1.service';
 import { Chart, ChartConfiguration, ChartEvent, ChartType } from 'chart.js';
 import { ActivatedRoute } from '@angular/router';
 import { TrackingService } from 'src/app/admin/services/tracking.service';
+import { CompaniesService } from 'src/app/admin/services/companies.service';
 
 
 @Component({
@@ -20,13 +21,16 @@ import { TrackingService } from 'src/app/admin/services/tracking.service';
 export class InformesTableComponent implements OnInit{
   @ViewChild('chartCanvas', { static: false }) chartCanvas!: ElementRef<HTMLCanvasElement>;
 
+  users: any[] = [];
+  companies: any[] = [];
+  objetivosEstrategicos: any[] = [];
    loading: boolean = false;
   paginator: boolean = true;
   length: number = 0;
   orderColumn?: string;
   orderType?: string;
   actualPage: number = 1;
-  pageSize: number = 10;
+  pageSize: number = 20;
   pageSizeOptions: number[] = [10, 15, 20, 25, 50];
   dataSource: any = new MatTableDataSource();
   columns = [{
@@ -99,6 +103,11 @@ optionsTabs: any = [{
   name: 'Grafica 5',
   show: true,
   disabled: false,
+},{
+  code: 6,
+  name: 'Grafica 6',
+  show: true,
+  disabled: false,
 },]
 
 
@@ -111,21 +120,11 @@ optionsTabs: any = [{
     private chartService: Chart1Service,
     private activatedRoute: ActivatedRoute,
     private trackingAPI: TrackingService,
+    private CompaniesApi: CompaniesService,
 
   ) { }
 
   ngOnInit(): void {
-    this.chartService.FindChart1().subscribe((data) => {
-      // Procesa los datos recibidos y actualiza los arrays labels y counts
-      this.data1 = data.data;
-      this.labels1 = this.data1.map((item: any) => item.title_strategics);
-      this.counts1 = this.data1.map((item: any) => item.count);
-
-      // Inicializa el gráfico después de obtener los datos
-      this.initializeChart1();
-    }, (error: any) => {
-      console.error(error);
-    });
 
     this.chartService.FindChart2().subscribe((data) => {
     this.totalObjectives2 = data.total_objectives;
@@ -139,34 +138,151 @@ optionsTabs: any = [{
 
     this.fetchChartData3();
     this.getData();
+    this.cargarObjetivosEstrategicos();
+    this.getCompanyData();
   }
 
-  getData(){
-    const paginate = {
-      paginate: this.pageSize,
-      page: this.actualPage,
-      column: this.orderColumn || 'name',
-      direction: this.orderType || 'asc',
-      search: {
-        nit: "",
-        businessName: "",
-        phone: "",
-        email: "",
-        address: "",
-        city: "",
-        state_id: 1
-      }
+  cargarObjetivosEstrategicos() {
+  const paginate = {
+    paginate: this.pageSize,
+    page: this.actualPage,
+    column: this.orderColumn || 'title',
+    direction: this.orderType || 'asc',
+    search: {
+      user_id: null,
+      company_id: null,
+      state_id: 1,
+      areas_id: null
+    }
+  }
+
+  this.strategicAPI.FindAll(paginate).then((res: any) => {
+    if (res.data && res.data.objetives) {
+      this.objetivosEstrategicos = res.data.objetives;
+      this.length = res.data.total;
     }
 
-    this.trackingAPI.FindAllUser(paginate).then((res:any)=>{
-      for (let i = 0; i < res.data.users.length; i++) {
-        res.data.users[i].icons = ['add']
-      }
+    this.objetivosEstrategicos.forEach((objetivo: any) => {
+      objetivo.icon = 'edit'; // Agrega el icono (puedes personalizarlo aquí)
+      objetivo.url = `/detalles-objetivo/${objetivo.unique_id}`; // URL con el unique_id
+    });
 
-      this.dataSource = new MatTableDataSource(res.data.users);
-      this.length = res.data.total;
+    this.dataSource = this.objetivosEstrategicos;
+    this.length = res.data.total;
+  });
+  }
+
+ navigateToEdit(uniqueId: string) {
+  this.router.navigate(['/admin/informes_Estrategicos', uniqueId]);
+  }
+
+ getCompanyData() {
+  const paginate = {
+    paginate: this.pageSize,
+    page: this.actualPage,
+    column: this.orderColumn || 'businessName',
+    direction: this.orderType || 'asc',
+    search: {
+      nit: '',
+      businessName: '',
+      phone: '',
+      email: '',
+      address: '',
+      city: '',
+      state_id: 1,
+    },
+  };
+
+  this.CompaniesApi.FindAll(paginate)
+    .then((res: any) => {
+      if (res.data && res.data.companies) {
+        // Asigna los datos a this.companies
+        this.companies = res.data.companies;
+        this.length = res.data.total;
+
+        // Agrega el icono y la URL a cada empresa
+        this.companies.forEach((empresa: any) => {
+          empresa.icon = 'edit'; // Agrega el icono (puedes personalizarlo aquí)
+          empresa.url = `/detalles-objetivo/${empresa.unique_id}`; // URL con el unique_id
+        });
+
+        // Asigna los datos a dataSource.data
+        this.dataSource.data = this.companies;
+      }
+    })
+    .catch((error: any) => {
+      console.error(error);
+    });
+}
+
+
+
+  getData() {
+  const paginate = {
+    paginate: this.pageSize,
+    page: this.actualPage,
+    column: this.orderColumn || 'name',
+    direction: this.orderType || 'asc',
+    search: {
+      nit: '',
+      businessName: '',
+      phone: '',
+      email: '',
+      address: '',
+      city: '',
+      state_id: 1,
+    },
+  };
+
+  this.trackingAPI.FindAllUser(paginate)
+    .then((res: any) => {
+      if (res.data && res.data.users) {
+        // Asigna los datos a this.companies
+        this.users = res.data.users;
+        this.length = res.data.total;
+
+        // Agrega el icono y la URL a cada empresa
+        this.users.forEach((users: any) => {
+          users.icon = 'edit'; // Agrega el icono (puedes personalizarlo aquí)
+          users.url = `/detalles-objetivo/${users.unique_id}`; // URL con el unique_id
+        });
+
+        // Asigna los datos a dataSource.data
+        this.dataSource.data = this.users;
+      }
+    })
+    .catch((error: any) => {
+      console.error(error);
     });
   }
+
+
+  // getData(){
+  //   const paginate = {
+  //     paginate: this.pageSize,
+  //     page: this.actualPage,
+  //     column: this.orderColumn || 'name',
+  //     direction: this.orderType || 'asc',
+  //     search: {
+  //       nit: "",
+  //       businessName: "",
+  //       phone: "",
+  //       email: "",
+  //       address: "",
+  //       city: "",
+  //       state_id: 1
+  //     }
+  //   }
+
+  //   this.trackingAPI.FindAllUser(paginate).then((res:any)=>{
+  //     for (let i = 0; i < res.data.users.length; i++) {
+  //       res.data.users[i].icons = ['add']
+  //     }
+
+  //     this.dataSource = new MatTableDataSource(res.data.users);
+  //     this.length = res.data.total;
+  //   });
+  // }
 
   changeSort(item:any){
     this.orderColumn = item.active;
@@ -186,7 +302,7 @@ optionsTabs: any = [{
 
   iconsFunction(event: any){
     if(event.icon == 'add'){
-      this.router.navigate(['admin/informes_chart5/' + event.data.unique_id]);
+      this.router.navigate(['admin/informes_Grafica_5/' + event.data.unique_id]);
     }
   }
 
@@ -211,6 +327,9 @@ optionsTabs: any = [{
     }
     else if (tab === 5) {
       this.initializeChart4();
+    }
+    else if (tab === 6) {
+
     }
 
   }

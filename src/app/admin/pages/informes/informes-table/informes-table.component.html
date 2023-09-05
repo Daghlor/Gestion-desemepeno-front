@@ -3,10 +3,39 @@
   (getTabActive)="changeTab($event.code)"></app-my-tabs><br>
 
 <div *ngIf="activeTab == 1">
-  <div class="chart-container">
-    <canvas id="canvas"></canvas>
-  </div>
+  <table class="custom-table">
+    <thead>
+      <tr>
+        <th>Nombre de la Empresa</th>
+        <th>NIT</th>
+        <th>Teléfono</th>
+        <th>Correo Electrónico</th>
+        <th>Dirección</th>
+        <th>Ciudad</th>
+        <th>Estado</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let empresa of companies">
+        <td>{{ empresa.businessName }}</td>
+        <td>{{ empresa.nit }}</td>
+        <td>{{ empresa.phone }}</td>
+        <td>{{ empresa.email }}</td>
+        <td>{{ empresa.address }}</td>
+        <td>{{ empresa.city }}</td>
+        <td>{{ empresa.state_id }}</td>
+        <td>
+          <a [routerLink]="['/admin/informes_Grafica_1', empresa.unique_id]">
+            <mat-icon>timeline</mat-icon>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
+
+
 
 <div *ngIf="activeTab == 2">
   <div class="chart-container">
@@ -27,10 +56,57 @@
 </div>
 
 <div *ngIf="activeTab == 5">
-  <app-my-table [loading]="loading" [dataSource]="dataSource" [Columns]="columns" [length]="length" [pageSize]="pageSize"
-    [PageSizeOptions]="pageSizeOptions" [paginator]="paginator" (eventIcons)="iconsFunction($event)"
-    (changeSort)="changeSort($event)" (changePaginator)="changePaginator($event)"></app-my-table>
+  <table class="custom-table">
+    <thead>
+      <tr>
+        <th>Nombres</th>
+        <th>Identificación</th>
+        <th>Email</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of users">
+        <td>{{ item.name }}</td>
+        <td>{{ item.identify }}</td>
+        <td>{{ item.email }}</td>
+        <td>
+          <a [routerLink]="['/admin/informes_Grafica_5', item.unique_id]">
+            <mat-icon>timeline</mat-icon>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
+
+
+<div *ngIf="activeTab == 6">
+  <table class="custom-table">
+    <thead>
+      <tr>
+        <th>Objetivo estratégico</th>
+        <th>Empresa</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let objetivo of objetivosEstrategicos">
+        <td>{{ objetivo.title }}</td>
+        <td>{{ objetivo.company }}</td>
+        <td>{{ objetivo.state }}</td>
+        <td>
+          <a [routerLink]="['/admin/informes_Estrategicos', objetivo.unique_id]">
+            <mat-icon>timeline</mat-icon>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
 
 </div>
 

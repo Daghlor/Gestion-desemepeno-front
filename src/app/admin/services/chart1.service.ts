@@ -13,27 +13,40 @@ export class Chart1Service {
     private Local: LocalService
   ) { }
 
-  FindChart1(): Observable<any> { // Cambiado el tipo de retorno a Observable<any>
+  // FindChart1(uuid: string): Observable<any> { // Cambiado el tipo de retorno a Observable<any>
+  //   this.token = this.Local.findDataLocal('token');
+  //   return from( // Convertimos la Promesa a un Observable
+  //     api.get(`/percentage/countIndividualsAlignedWithStrategics/${uuid}`, {
+  //       "paginate": 10,
+  //       "page": 1,
+  //       "column": "mission",
+  //       "direction": "desc",
+  //       "search": {
+  //         "description": "",
+  //         "company_id": ""
+  //       }
+  //     },
+  //       {
+  //         headers: { Authorization: "Bearer " + this.token } // Añadido espacio después de "Bearer"
+  //       })
+  //       .then((res) => res.data)
+  //       .catch((err) => {
+  //         throw err.response
+  //       })
+  //   );
+  // }
+
+  FindChart1(uuid: string): Observable<any> {
     this.token = this.Local.findDataLocal('token');
-    return from( // Convertimos la Promesa a un Observable
-      api.post(`/percentage/countIndividualsAlignedWithStrategics`, {
-        "paginate": 10,
-        "page": 1,
-        "column": "mission",
-        "direction": "desc",
-        "search": {
-          "description": "",
-          "company_id": ""
-        }
-      },
-        {
-          headers: { Authorization: "Bearer " + this.token } // Añadido espacio después de "Bearer"
-        })
-        .then((res) => res.data)
-        .catch((err) => {
-          throw err.response
-        })
-    );
+    return from(
+    api.get(`/percentage/countIndividualsAlignedWithStrategics/${uuid}`, {
+      headers: { Authorization: "Bearer " + this.token }
+    })
+    .then((res) => res.data)
+    .catch((err) => {
+      throw err.response
+    })
+  );
   }
 
   FindChart2(): Observable<any> {
@@ -109,6 +122,19 @@ export class Chart1Service {
     this.token = this.Local.findDataLocal('token');
     return from(
     api.get(`/percentage/FindOne/${uuid}`, {
+      headers: { Authorization: "Bearer " + this.token }
+    })
+    .then((res) => res.data)
+    .catch((err) => {
+      throw err.response
+    })
+  );
+  }
+
+  FindChart6(uuid: string): Observable<any> {
+    this.token = this.Local.findDataLocal('token');
+    return from(
+    api.get(`/percentage/calculateResultsForStrategicObjective/${uuid}`, {
       headers: { Authorization: "Bearer " + this.token }
     })
     .then((res) => res.data)
