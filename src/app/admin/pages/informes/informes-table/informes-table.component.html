@@ -1,3 +1,4 @@
+<!-- ESTE ES EL COMPONENTE DE INFORMES DONDE SE SEPARAN POR PESTAÑANAS A LAS 6 GRAFICAS EXISTENTES -->
 <div *ngIf="validatePermissions('View reports')">
 <app-my-tabs [optionsTabs]="optionsTabs" [intialTabCode]="initialTab"
   (getTabActive)="changeTab($event.code)"></app-my-tabs><br>
@@ -104,9 +105,11 @@
     </tbody>
   </table>
 </div>
-
-
-
-
 </div>
+
+<!-- Copyright (c) Engagement
+https://www.engagement.com.co/
+Año: 2023
+Sistema: Gestion de desempeño (GDD)
+Programador: David Tuta -->
 

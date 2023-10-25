@@ -7,6 +7,7 @@ import { TracingsComponent, TracingsEmployeComponent } from '../..';
 import * as moment from 'moment';
 import { LocalService } from 'src/app/config/local.service';
 
+// ESTA ES LA LOGICA DEL FORMULARIO DE SEGUIMIENTOS AQUI TRAE A TODOS LOS USUARIOS QUE YA INICIARON UN PLAN
 @Component({
   selector: 'app-my-trackings',
   templateUrl: './my-trackings.component.html',
@@ -14,6 +15,7 @@ import { LocalService } from 'src/app/config/local.service';
 })
 export class MyTrackingsComponent implements OnInit {
 
+  // SE DEFINE VARIABLES
   params: any;
   unique_id?: string;
   listObjetives: any = [];
@@ -21,7 +23,7 @@ export class MyTrackingsComponent implements OnInit {
     name: ''
   };
 
-
+  // SE INYECTAN LOS SERVICIOS QUE SE NECESITAN
   constructor(
     private trackingAPI: TrackingService,
     private snack: SnackbarService,
@@ -107,12 +109,13 @@ export class MyTrackingsComponent implements OnInit {
     }
   });
 }
-
-
-
-
 }
 
+// Copyright (c) Engagement
+// https://www.engagement.com.co/
+// Año: 2023
+// Sistema: Gestion de desempeño (GDD)
+// Programador: David Tuta
 
 
 

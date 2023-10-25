@@ -1,3 +1,4 @@
+// ESTA ES LA LOGICA DEL CUADRO DE CONFIRMACION GLOBAL
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -25,3 +26,9 @@ export class ConfirmModalComponent implements OnInit {
   }
 
 }
+
+// Copyright (c) Engagement
+// https://www.engagement.com.co/
+// Año: 2023
+// Sistema: Gestion de desempeño (GDD)
+// Programador: David Tuta

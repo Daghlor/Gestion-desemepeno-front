@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ObjectivesStatesService } from '../../services/objectives-states.service';
 import { IndividualService } from '../../services/individual.service';
 
+// LOGICA DEL CUADRO DE DIALOGO DE LOS ESTADOS DE LOS OBJETIVOS
 @Component({
   selector: 'app-change-state-dialog-component',
   templateUrl: './change-state-dialog-component.component.html',
@@ -34,7 +35,7 @@ constructor(
   console.log('Unique ID del objetivo individual:', this.objectiveId); // Obtén el ID del objetivo desde los datos
 }
 
-
+// FUNCION PARA CARGAR LOS ESTADOS REGISTRADOS DE TODOS LOS OBJETIVOS INDIVIDUALES
 loadStates() {
     this.objectivesStatesService.FindAll({}).then((res: any) => {
       if (res.success) {
@@ -51,8 +52,7 @@ loadStates() {
     this.dialogRef.close();
   }
 
-
-
+// FUNCION PARA HACER EL GUARDADO DEL CAMBIO DE ESTADO CUANDO SE LE DA CLICK AL BOTON
 onSaveClick(): void {
     console.log('Botón Guardar clickeado');
 
@@ -83,3 +83,8 @@ onSaveClick(): void {
   }
 }
 
+// Copyright (c) Engagement
+// https://www.engagement.com.co/
+// Año: 2023
+// Sistema: Gestion de desempeño (GDD)
+// Programador: David Tuta

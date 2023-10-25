@@ -85,7 +85,11 @@ iconPass: string = 'visibility';
         return this.snack.viewsnack(res.msg,'Error');
       }
     })
-
   }
-
 }
+
+// Copyright (c) Engagement
+// https://www.engagement.com.co/
+// Año: 2023
+// Sistema: Gestion de desempeño (GDD)
+// Programador: David Tuta

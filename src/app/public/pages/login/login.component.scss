@@ -6,7 +6,7 @@
 }
 
 .LoginImg {
-  background-color: #1560BD;
+  background-color: #1560bd;
   background-image: url("../../../../assets/img/iniciar\ sesión.png");
   background-size: 1200px 1000px;
   background-position: center;
@@ -21,27 +21,31 @@
 }
 
 .LoginButton {
-  background-color: #1560BD;
+  background-color: #1560bd;
   width: 100% !important;
   border-radius: 20px;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   font-size: large;
 }
 
 h2 {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  color: #1560BD;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  color: #1560bd;
   font-size: x-large;
 }
 
 mat-label {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   color: darkgray;
   font-size: larger;
 }
 
 .textsLogin {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   font-size: larger;
 }
 
@@ -75,7 +79,7 @@ mat-label {
 }
 
 .site-footer a:hover {
-  color: #1560BD;
+  color: #1560bd;
   text-decoration: none;
 }
 
@@ -95,10 +99,16 @@ mat-label {
 .footer-links a:active,
 .footer-links a:focus,
 .footer-links a:hover {
-  color: #1560BD;
+  color: #1560bd;
   text-decoration: none;
 }
 
 .footer-links.inline li {
   display: inline-block;
 }
+
+// Copyright (c) Engagement
+// https://www.engagement.com.co/
+// Año: 2023
+// Sistema: Gestion de desempeño (GDD)
+// Programador: David Tuta

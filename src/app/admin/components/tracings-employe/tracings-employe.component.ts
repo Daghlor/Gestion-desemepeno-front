@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
+// ESTA ES LA LOGICA DEL CUADRO DE DIALOGO DE SEGUIMIENTOS DESDE EL ROL DE EMPLEADO
 @Component({
   selector: 'app-tracings-employe',
   templateUrl: './tracings-employe.component.html',
@@ -29,3 +30,9 @@ export class TracingsEmployeComponent implements OnInit {
   }
 
 }
+
+// Copyright (c) Engagement
+// https://www.engagement.com.co/
+// Año: 2023
+// Sistema: Gestion de desempeño (GDD)
+// Programador: David Tuta

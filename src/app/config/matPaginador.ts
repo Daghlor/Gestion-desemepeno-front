@@ -6,3 +6,9 @@ export function CustomPaginator() {
   customPaginatorIntl.itemsPerPageLabel = 'Paginado:';
   return customPaginatorIntl;
 }
+
+// Copyright (c) Engagement
+// https://www.engagement.com.co/
+// Año: 2023
+// Sistema: Gestion de desempeño (GDD)
+// Programador: David Tuta

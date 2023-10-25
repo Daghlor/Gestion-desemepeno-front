@@ -17,3 +17,9 @@ export const PublicPages: any[] = [
 export * from "./login/login.component";
 export * from "./register/register.component";
 export * from 'src/app/components/snackbar/snackbar/snackbar.component';
+
+// Copyright (c) Engagement
+// https://www.engagement.com.co/
+// Año: 2023
+// Sistema: Gestion de desempeño (GDD)
+// Programador: David Tuta

@@ -4,6 +4,7 @@ import { Chart1Service } from 'src/app/admin/services/chart1.service';
 import { TrackingService } from 'src/app/admin/services/tracking.service';
 import { ActivatedRoute } from '@angular/router';
 
+// ESTA ES LA LOGICA DEL COMPONENTE DE LA GRAFICA 5
 @Component({
   selector: 'app-informe-chart5',
   templateUrl: './informe-chart5.component.html',
@@ -11,9 +12,11 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class InformeChart5Component implements OnInit {
 
+  // SE DEFINE VARIABLES A UTILIZAR PARA LA DATA
   @ViewChild('chartCanvas', { static: false }) chartCanvas!: ElementRef<HTMLCanvasElement>;
   objetivos: any[] = [];
 
+  // SE INYECTAN SERVICIOS NECESARIOS
   constructor(
     private trackingAPI: TrackingService,
     private chartService: Chart1Service,
@@ -24,6 +27,7 @@ export class InformeChart5Component implements OnInit {
     this.loadDataAndGenerateChart();
   }
 
+  // FUNCION DE CARGUE DE LA GRAFICA APENAS INICIA EL COMPONENTE
 loadDataAndGenerateChart() {
   const uuid = this.route.snapshot.paramMap.get('uuid');
 
@@ -41,7 +45,7 @@ loadDataAndGenerateChart() {
 }
 
 
-
+// FUNCION DE OBTENCION DE LOS DATOS Y CREACION DE LA GRAFICA
  generateChart() {
     const labels = this.objetivos.map((objetivo) => objetivo.title);
     const totalPointsAssigned = this.objetivos.map((objetivo) => objetivo.totalPointsAssigned);
@@ -50,33 +54,46 @@ loadDataAndGenerateChart() {
 
     if (ctx) {
       new Chart(ctx, {
-        type: 'bar', // Tipo de gráfico (puedes cambiarlo según tus necesidades)
+        type: 'polarArea', // Tipo de gráfico (puedes cambiarlo según tus necesidades)
         data: {
           labels: labels,
           datasets: [
             {
               label: 'Porcentaje de completado',
               data: totalPointsAssigned,
-              backgroundColor: 'rgba(75, 192, 192, 0.2)', // Color de fondo de las barras
-              borderColor: 'rgba(75, 192, 192, 1)', // Color del borde de las barras
-              borderWidth: 1
+              backgroundColor: [
+              'rgba(255, 99, 132, 0.5)',
+              'rgba(255, 159, 64, 0.5)', // Color de fondo para la primera parte // Color de fondo para la segunda parte
+              'rgba(255, 206, 86, 0.5)',
+              'rgba(54, 162, 235, 0.5)',
+              'rgba(75, 192, 192, 0.5)',
+              'rgba(153, 102, 255, 0.5)', // Color de fondo para la tercera parte
+              // Puedes agregar más colores de fondo si tienes más partes
+            ],
+            borderColor: [
+              'rgba(255, 99, 132, 1)',
+              'rgba(255, 159, 64, 1)', // Color del borde para la primera parte // Color del borde para la segunda parte
+              'rgba(255, 206, 86, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)', // Color del borde para la tercera parte
+              // Puedes agregar más colores de borde si tienes más partes
+            ],
+            borderWidth: 1,
             }
           ]
         },
         options: {
           responsive: true,
-          scales: {
-            x: {
-              beginAtZero: true
-            },
-            y: {
-              beginAtZero: true,
-              max: 100
-            }
-          }
+          maintainAspectRatio: false,
         }
       });
     }
   }
-
 }
+
+// Copyright (c) Engagement
+// https://www.engagement.com.co/
+// Año: 2023
+// Sistema: Gestion de desempeño (GDD)
+// Programador: David Tuta

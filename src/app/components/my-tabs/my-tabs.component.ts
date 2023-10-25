@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
+// ESTA ES LA LOGICA DEL COMPONENTE DE LAS TABS
 @Component({
   selector: 'app-my-tabs',
   templateUrl: './my-tabs.component.html',
@@ -14,9 +15,10 @@ export class MyTabsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.onGetTabActive();  
+    this.onGetTabActive();
   }
 
+  // FUNCION QUE ORGANIZA LAS TABS Y VERIFICA SI ESTA ACTIVA MUESTRA EL COTENIDO, SI NO MUESTRA OTRO CONTENIDO
   onGetTabActive(index?: number){
     if(!index){
       this.optionsTabs.map((option: any) => {
@@ -32,6 +34,10 @@ export class MyTabsComponent implements OnInit {
     }
     this.getTabActive.emit(this.optionsTabs.filter((o:any) => o.active == true)[0]);
   }
-
-
 }
+
+// Copyright (c) Engagement
+// https://www.engagement.com.co/
+// Año: 2023
+// Sistema: Gestion de desempeño (GDD)
+// Programador: David Tuta

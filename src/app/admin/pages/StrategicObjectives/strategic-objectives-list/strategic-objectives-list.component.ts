@@ -66,5 +66,10 @@ export class StrategicObjectivesListComponent implements OnInit {
       this.findData();
     });
   }
-
 }
+
+// Copyright (c) Engagement
+// https://www.engagement.com.co/
+// Año: 2023
+// Sistema: Gestion de desempeño (GDD)
+// Programador: David Tuta

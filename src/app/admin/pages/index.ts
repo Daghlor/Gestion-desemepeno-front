@@ -1,3 +1,4 @@
+// AQUI SE DEFINEN LOS COMPONENTE .TS PARA SU ENRUTAMIENTO
 import { CargosTableComponent } from './cargos/cargos-table/cargos-table.component';
 import { CargosFormComponent } from './cargos/cargos-form/cargos-form.component';
 import { LayoutComponent } from "../components/layout/layout.component";
@@ -128,3 +129,9 @@ export * from '../pages/informes/informes-chart1/informes-chart1.component';
 export * from '../pages/informes/informes-chart2/informes-chart2.component';
 export * from '../pages/informes/informes-chart3/informes-chart3.component';
 export * from '../pages/informes/informes-chart4/informes-chart4.component';
+
+// Copyright (c) Engagement
+// https://www.engagement.com.co/
+// Año: 2023
+// Sistema: Gestion de desempeño (GDD)
+// Programador: David Tuta

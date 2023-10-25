@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
 
-// ESTE ES EL TS DONDE SE VALDIA QUE MENSAJE DEBE MOSTRAR SEGUN LA VALIDACION QUE HAGA O PROCESO QUE SE ESTE HACIENDO
+// ESTE ES EL TS DONDE SE VALIDA QUE MENSAJE DEBE MOSTRAR SEGUN LA VALIDACION QUE HAGA O PROCESO QUE SE ESTE HACIENDO
 @Component({
   selector: 'app-snackbar',
   templateUrl: './snackbar.component.html',
@@ -16,7 +16,10 @@ export class SnackbarComponent implements OnInit {
     this.getIcon = this.data.snackType.toLowerCase();
     this.message = this.data.message;
   }
-
-
-
 }
+
+// Copyright (c) Engagement
+// https://www.engagement.com.co/
+// Año: 2023
+// Sistema: Gestion de desempeño (GDD)
+// Programador: David Tuta

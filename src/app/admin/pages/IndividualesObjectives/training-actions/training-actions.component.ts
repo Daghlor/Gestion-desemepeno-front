@@ -6,6 +6,7 @@ import { SnackbarService } from 'src/app/config/snackbar.service';
 import { ConfirmModalComponent } from '../..';
 import { LocalService } from 'src/app/config/local.service';
 
+// ESTA ES LA LOGICA DEL COMPONENTE DE ACCIONES DE FORMACION
 @Component({
   selector: 'app-training-actions',
   templateUrl: './training-actions.component.html',
@@ -13,6 +14,7 @@ import { LocalService } from 'src/app/config/local.service';
 })
 export class TrainingActionsComponent implements OnInit {
 
+  // SE DEFINE VARIABLES A UTILIZAR
   @ViewChild('titleInput') titleInput: any;
 
   title: string = '';
@@ -39,6 +41,7 @@ export class TrainingActionsComponent implements OnInit {
     cell: (element: any) => element.icons,
   },];
 
+  // SE INYECTAN LOS SERVICIOS NECESARIOS
   constructor(
     private TrainingAPI: TrainingActionsService,
     private snack: SnackbarService,
@@ -50,6 +53,7 @@ export class TrainingActionsComponent implements OnInit {
     this.findData();
   }
 
+  // FUNCION PARA BUSCAR LA DATAL LOCAL DEL USUARIO LOGEADO
   findData() {
     let userInfo = JSON.parse(this.Local.findDataLocal('info_user'));
     const paginate = {
@@ -85,6 +89,7 @@ export class TrainingActionsComponent implements OnInit {
     this.findData();
   }
 
+  // FUNCION DE LOGICA DE LOS ICONOS PARA CADA USO
   iconsFunction(event: any) {
     if (event.icon === 'delete') {
       const dialogRef = this.dialog.open(ConfirmModalComponent, {
@@ -119,5 +124,10 @@ export class TrainingActionsComponent implements OnInit {
       this.titleInput.nativeElement.value = '';
     });
   }
-
 }
+
+// Copyright (c) Engagement
+// https://www.engagement.com.co/
+// Año: 2023
+// Sistema: Gestion de desempeño (GDD)
+// Programador: David Tuta

@@ -61,6 +61,7 @@ export class CompaniesService {
     })
   }
 
+  // METODO DELETE PARA ELIMINAR UNA EMPRESA
   Delete(uuid: string){
     this.token = this.Local.findDataLocal('token');
     return api.delete(`/company/delete/${uuid}`, {
@@ -72,3 +73,9 @@ export class CompaniesService {
     })
   }
 }
+
+// Copyright (c) Engagement
+// https://www.engagement.com.co/
+// Año: 2023
+// Sistema: Gestion de desempeño (GDD)
+// Programador: David Tuta

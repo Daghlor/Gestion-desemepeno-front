@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { api } from 'src/app/config/axios.config';
 import { LocalService } from 'src/app/config/local.service';
 
+// SERVICIO DE ACCIONES DE FORMACION QUE MANDA SOLICITUDES AL BACK
 @Injectable({
   providedIn: 'root'
 })
@@ -11,6 +12,7 @@ export class TrainingActionsService {
     private Local: LocalService
   ) { }
 
+  // METODO POST PARA CREAR UNA ACCION DE FORMACION
   Create(body: any) {
     this.token = this.Local.findDataLocal('token');
     return api.post(`/training/create`, body, {
@@ -22,6 +24,7 @@ export class TrainingActionsService {
       })
   }
 
+  // METODO POST PARA TRAER TODAS LAS ACCIONES DE FORMACION
   FindAll(body: any) {
     this.token = this.Local.findDataLocal('token');
     return api.post(`/training/getAll`, body, {
@@ -33,6 +36,7 @@ export class TrainingActionsService {
       })
   }
 
+  // METODO GET PARA ENCONTRARA TODOAS LAS ACCIONES DE FORMACION DE UN USUARIO POR SU UNIQUE_ID
   FindAllByUserId(uuid: string) {
     this.token = this.Local.findDataLocal('token');
     return api.get(`/training/FindAllByUserUniqueId/${uuid}`, {
@@ -44,6 +48,7 @@ export class TrainingActionsService {
     })
   }
 
+  // METODO PUT PARA ACTUALIZAR UNA ACCION DE FORMACION
   Update(uuid: string, body: any) {
     this.token = this.Local.findDataLocal('token');
     return api.put(`/training/update/${uuid}`, body, {
@@ -55,6 +60,7 @@ export class TrainingActionsService {
     })
   }
 
+  // METODO DELETE PARA ELIMINAR UNA ACCION DE FORMACION
   Delete(uuid: string) {
     this.token = this.Local.findDataLocal('token');
     return api.delete(`/training/delete/${uuid}`, {
@@ -66,3 +72,9 @@ export class TrainingActionsService {
     })
   }
 }
+
+// Copyright (c) Engagement
+// https://www.engagement.com.co/
+// Año: 2023
+// Sistema: Gestion de desempeño (GDD)
+// Programador: David Tuta

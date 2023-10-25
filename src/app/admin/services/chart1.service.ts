@@ -3,6 +3,7 @@ import { api } from 'src/app/config/axios.config';
 import { LocalService } from 'src/app/config/local.service';
 import { Observable, from } from 'rxjs';
 
+// SERVICIO QUE CREA LAS 6 GRAFICAS MANDANDO SOLICITUDES AL BACK
 @Injectable({
   providedIn: 'root'
 })
@@ -13,29 +14,7 @@ export class Chart1Service {
     private Local: LocalService
   ) { }
 
-  // FindChart1(uuid: string): Observable<any> { // Cambiado el tipo de retorno a Observable<any>
-  //   this.token = this.Local.findDataLocal('token');
-  //   return from( // Convertimos la Promesa a un Observable
-  //     api.get(`/percentage/countIndividualsAlignedWithStrategics/${uuid}`, {
-  //       "paginate": 10,
-  //       "page": 1,
-  //       "column": "mission",
-  //       "direction": "desc",
-  //       "search": {
-  //         "description": "",
-  //         "company_id": ""
-  //       }
-  //     },
-  //       {
-  //         headers: { Authorization: "Bearer " + this.token } // Añadido espacio después de "Bearer"
-  //       })
-  //       .then((res) => res.data)
-  //       .catch((err) => {
-  //         throw err.response
-  //       })
-  //   );
-  // }
-
+  // METODO GET PARA OBTENER LOS DATOS DE LA GRAFICA 1
   FindChart1(uuid: string): Observable<any> {
     this.token = this.Local.findDataLocal('token');
     return from(
@@ -49,6 +28,7 @@ export class Chart1Service {
   );
   }
 
+  // METODO POST PARA OBTENER LOS DATOS DE LA GRAFICA 2
   FindChart2(): Observable<any> {
     this.token = this.Local.findDataLocal('token');
     return from( // Convertimos la Promesa a un Observable
@@ -72,6 +52,7 @@ export class Chart1Service {
     );
   }
 
+  // METODO POST PARA OBTENER LOS DATOS DE LA GRAFICA 3
   FindChart3(): Observable<any> {
     this.token = this.Local.findDataLocal('token');
     return from( // Convertimos la Promesa a un Observable
@@ -95,6 +76,7 @@ export class Chart1Service {
     );
   }
 
+  // METODO POST PARA OBTENER LOS DATOS DE LA GRAFICA 4
   FindChart4(): Observable<any> {
     this.token = this.Local.findDataLocal('token');
     return from( // Convertimos la Promesa a un Observable
@@ -118,6 +100,7 @@ export class Chart1Service {
     );
   }
 
+  // METODO GET PARA OBTENER LOS DATOS DE LA GRAFICA 5
   FindChart5(uuid: string): Observable<any> {
     this.token = this.Local.findDataLocal('token');
     return from(
@@ -131,6 +114,7 @@ export class Chart1Service {
   );
   }
 
+  // METODO GET PARA OBTENER LOS DATOS DE LA GRAFICA 6
   FindChart6(uuid: string): Observable<any> {
     this.token = this.Local.findDataLocal('token');
     return from(
@@ -143,7 +127,11 @@ export class Chart1Service {
     })
   );
   }
-
-
 }
+
+// Copyright (c) Engagement
+// https://www.engagement.com.co/
+// Año: 2023
+// Sistema: Gestion de desempeño (GDD)
+// Programador: David Tuta
 

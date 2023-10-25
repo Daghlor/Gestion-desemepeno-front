@@ -37,6 +37,18 @@ export class StrategicsService {
     })
   }
 
+  // METODO POST PARA ENCONTRAR OBJETIVOS ESTRATEGICOS QUE CONTENGAN AL MENOS 1 OBJETIVO INDIVIDUAL
+  FindAllWithIndv(body: any){
+    this.token = this.Local.findDataLocal('token');
+    return api.post(`/strategics/findAllWithIndividualObjectives`, body, {
+      headers: {Authorization: "Bearer " + this.token}
+    })
+    .then((res) => res.data)
+    .catch((err) => {
+      throw err.response
+    })
+  }
+
   // METODO GET PARA BUSCAR O TRAER UN SOLO OBJETIVO ESTRATEGIC
   FindOne(uuid: string){
     this.token = this.Local.findDataLocal('token');
@@ -61,3 +73,9 @@ export class StrategicsService {
     })
   }
 }
+
+// Copyright (c) Engagement
+// https://www.engagement.com.co/
+// Año: 2023
+// Sistema: Gestion de desempeño (GDD)
+// Programador: David Tuta

@@ -14,6 +14,8 @@ import { NgChartsConfiguration, NgChartsModule } from 'ng2-charts';
 
 
 
+
+
 // ESTE ES EL MODULO DEL PROYECTO DONDE SE IMPORTAN MODULOS TALES COMO GRAFICAS, FORMS, SERVICIOS HTTP ETC
 
 @NgModule({
@@ -38,3 +40,9 @@ import { NgChartsConfiguration, NgChartsModule } from 'ng2-charts';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+// Copyright (c) Engagement
+// https://www.engagement.com.co/
+// Año: 2023
+// Sistema: Gestion de desempeño (GDD)
+// Programador: David Tuta
