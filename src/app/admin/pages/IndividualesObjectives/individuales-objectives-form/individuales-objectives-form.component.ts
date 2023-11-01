@@ -43,7 +43,7 @@ export class IndividualesObjectivesFormComponent implements OnInit {
   }
 
   changeStrategics(){
-    this.plans_id = this.listStrategics.find((data: any) => data.id === this.strategic_id).plans_id;    
+    this.plans_id = this.listStrategics.find((data: any) => data.id === this.strategic_id).plans_id;
   }
 
   // FUNCION QUE VERIFICA LOS CAMPOS Y GUARDA EL OBJETIVO INDIVIDUAL
@@ -85,3 +85,9 @@ export class IndividualesObjectivesFormComponent implements OnInit {
   }
 
 }
+
+// Copyright (c) Engagement
+// https://www.engagement.com.co/
+// Año: 2023
+// Sistema: Gestion de desempeño (GDD)
+// Programador: David Tuta

@@ -10,7 +10,4 @@ export class AuthService {
   isLogged() {
     return 'Bearer '+localStorage.getItem('token');
   }
-
-
-
 }

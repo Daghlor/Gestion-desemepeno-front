@@ -11,12 +11,14 @@ import {
 } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
+// ESTA ES LA LOGICA DEL COMPONENTE DE VERIFICACION
 @Component({
   selector: 'app-verify',
   templateUrl: './verify.component.html',
   styleUrls: ['./verify.component.scss'],
 })
 export class VerifyComponent implements OnInit {
+  // SE DEFINE VARIABLES
   @ViewChildren('inputs') inputs!: QueryList<ElementRef<HTMLInputElement>>;
   @ViewChild('submitBtn') submitBtn!: ElementRef<HTMLInputElement>;
   @ViewChild('verifyForm') verifyForm!: NgForm;
@@ -29,6 +31,7 @@ export class VerifyComponent implements OnInit {
   option?: number;
   unique_id?: string;
 
+  // SE INYECTAN LOS SERVICIOS NECESARIOS
   constructor(
     private verifyAPI: VerifyService,
     private snack: SnackbarService,
@@ -39,6 +42,7 @@ export class VerifyComponent implements OnInit {
 
   }
 
+  // FUNCION QUE VALIDA LOS CAMPOS DE LOS NUMEROS Y QUE NO HAYA ESPACIOS
   validateNumbers(number: any): any {
     let validate = /^[0-9]+$/;
 
@@ -89,6 +93,7 @@ export class VerifyComponent implements OnInit {
     }
   }
 
+  // FUNCION QUE GUARDA Y VALIDA LOS NUMEROS CON LAS BASE DE DATOS
   saveVerify() {
     if (!this.num1) {
       return this.snack.viewsnack('Falta #1', 'Error');
@@ -142,6 +147,7 @@ export class VerifyComponent implements OnInit {
     this.router.navigateByUrl('/admin' + url);
   }
 
+  // FUNCION PARA QUE SE PUEDA COPIAR Y PEGAR EL CODIGO EN LOS CAMPOS
   pasteCode(event: ClipboardEvent): void {
     const pastedText = event.clipboardData?.getData('text');
     if (pastedText) {
@@ -157,3 +163,9 @@ export class VerifyComponent implements OnInit {
     }
   }
 }
+
+// Copyright (c) Engagement
+// https://www.engagement.com.co/
+// Año: 2023
+// Sistema: Gestion de desempeño (GDD)
+// Programador: David Tuta

@@ -48,6 +48,7 @@ export class IndividualService {
     })
   }
 
+  // METODO GET PARA BUSCAR TODOS LOS OBJETIVOS INDIVIDUALES POR EL UNIQUE_ID DEL USUARIO
   FindAllByUserId(uuid: string) {
     this.token = this.Local.findDataLocal('token');
     return api.get(`/individuals/FindAllByUserUniqueId/${uuid}`, {
@@ -71,6 +72,7 @@ export class IndividualService {
     })
   }
 
+  // METODO PUT PARA ACTUALIZAR EL ESTADO DE UN OBJETIVO INDIVIDUAL
   UpdateState(uuid: string, body: any) {
     this.token = this.Local.findDataLocal('token');
     return api.put(`/individuals/UpdateState/${uuid}`, body,{
@@ -81,5 +83,10 @@ export class IndividualService {
       throw err.response
     })
   }
-
 }
+
+// Copyright (c) Engagement
+// https://www.engagement.com.co/
+// Año: 2023
+// Sistema: Gestion de desempeño (GDD)
+// Programador: David Tuta

@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 import { TrackingService } from 'src/app/admin/services/tracking.service';
 import { CompaniesService } from 'src/app/admin/services/companies.service';
 
-
+// ESTA ES LA LOGICA DEL COMPONENTE DE INFORMES
 @Component({
   selector: 'app-informes-table',
   templateUrl: './informes-table.component.html',
@@ -21,6 +21,7 @@ import { CompaniesService } from 'src/app/admin/services/companies.service';
 export class InformesTableComponent implements OnInit{
   @ViewChild('chartCanvas', { static: false }) chartCanvas!: ElementRef<HTMLCanvasElement>;
 
+  // SE DEFINE VARIABLES A USAR
   users: any[] = [];
   companies: any[] = [];
   objetivosEstrategicos: any[] = [];
@@ -110,7 +111,7 @@ optionsTabs: any = [{
   disabled: false,
 },]
 
-
+  // SE INYECTAN LOS SERVICIOS NECESARIOS
   constructor(
     private strategicAPI: StrategicsService,
     private router: Router,
@@ -142,6 +143,7 @@ optionsTabs: any = [{
     this.getCompanyData();
   }
 
+  // FUNCION QUE CARGA LOS OBJETIVOS ESTRATEGICOS PARA LA GRAFICA 6
   cargarObjetivosEstrategicos() {
   const paginate = {
     paginate: this.pageSize,
@@ -156,26 +158,28 @@ optionsTabs: any = [{
     }
   }
 
-  this.strategicAPI.FindAll(paginate).then((res: any) => {
+  this.strategicAPI.FindAllWithIndv(paginate).then((res: any) => {
     if (res.data && res.data.objetives) {
-      this.objetivosEstrategicos = res.data.objetives;
-      this.length = res.data.total;
+      this.objetivosEstrategicos = res.data.objetives.data; // Obtén la matriz de objetivos
+      this.length = res.data.objetives.total;
+
+      // Mapea y agrega las propiedades icon y url a cada objetivo
+      this.objetivosEstrategicos.forEach((objetivo: any) => {
+        objetivo.icon = 'edit'; // Agrega el icono (personalízalo aquí)
+        objetivo.url = `/detalles-objetivo/${objetivo.unique_id}`; // URL con el unique_id
+      });
+
+      this.dataSource = this.objetivosEstrategicos;
     }
-
-    this.objetivosEstrategicos.forEach((objetivo: any) => {
-      objetivo.icon = 'edit'; // Agrega el icono (puedes personalizarlo aquí)
-      objetivo.url = `/detalles-objetivo/${objetivo.unique_id}`; // URL con el unique_id
-    });
-
-    this.dataSource = this.objetivosEstrategicos;
-    this.length = res.data.total;
   });
-  }
+}
+
 
  navigateToEdit(uniqueId: string) {
   this.router.navigate(['/admin/informes_Estrategicos', uniqueId]);
   }
 
+  // FUNCION QUE TRAE LOS DATOS DE LA EMPRESA
  getCompanyData() {
   const paginate = {
     paginate: this.pageSize,
@@ -215,8 +219,7 @@ optionsTabs: any = [{
     });
 }
 
-
-
+  // FUNCION QUE OBTIENE LOS DATOS DEL USUARIOS
   getData() {
   const paginate = {
     paginate: this.pageSize,
@@ -256,34 +259,6 @@ optionsTabs: any = [{
     });
   }
 
-
-  // getData(){
-  //   const paginate = {
-  //     paginate: this.pageSize,
-  //     page: this.actualPage,
-  //     column: this.orderColumn || 'name',
-  //     direction: this.orderType || 'asc',
-  //     search: {
-  //       nit: "",
-  //       businessName: "",
-  //       phone: "",
-  //       email: "",
-  //       address: "",
-  //       city: "",
-  //       state_id: 1
-  //     }
-  //   }
-
-  //   this.trackingAPI.FindAllUser(paginate).then((res:any)=>{
-  //     for (let i = 0; i < res.data.users.length; i++) {
-  //       res.data.users[i].icons = ['add']
-  //     }
-
-  //     this.dataSource = new MatTableDataSource(res.data.users);
-  //     this.length = res.data.total;
-  //   });
-  // }
-
   changeSort(item:any){
     this.orderColumn = item.active;
     this.orderType = item.direction;
@@ -310,6 +285,7 @@ optionsTabs: any = [{
     return this.Local.validatePermission(code) ? true : false;
   }
 
+  // FUNCION PARA LA ASIGNACION Y CAMBIO DE PESTAÑANAS
   changeTab(tab: number): void {
     this.activeTab = tab;
 
@@ -388,6 +364,7 @@ optionsTabs: any = [{
       });
   }
 
+  // FUNCION QUE CREA EL GRAFICO 2 CON LOS DATOS
   initializeChart2(): void {
   // Configura el gráfico
   this.chart2 = new Chart('canvas2', {
@@ -437,6 +414,7 @@ optionsTabs: any = [{
   });
 }
 
+  // FUNCION QUE TRAE LAS DATOS PARA EL GRAFICO 3
   fetchChartData3(): void {
     this.chartService.FindChart3().subscribe((data: any) => {
       // Asume que el servicio devuelve los datos en la forma { closed_count: number, approved_count: number }
@@ -450,6 +428,7 @@ optionsTabs: any = [{
     });
   }
 
+  // FUNCION QUE CREA LA GRAFICA 3 CON LOS DATOS
   initializeChart3(): void {
     // Configura el gráfico 3 aquí similar a como lo hiciste para las gráficas anteriores
     // Utiliza this.closedCount y this.approvedCount para los datos
@@ -500,6 +479,7 @@ optionsTabs: any = [{
     });
   }
 
+  // FUNCION QUE OBTIENE LOS DATOS Y CREA EL GRAFICO 4
   initializeChart4(): void {
   // Configura el gráfico
   if (this.chart4) {
@@ -561,9 +541,10 @@ optionsTabs: any = [{
     console.error(error);
   });
 }
-
-
-
-
-
 }
+
+// Copyright (c) Engagement
+// https://www.engagement.com.co/
+// Año: 2023
+// Sistema: Gestion de desempeño (GDD)
+// Programador: David Tuta

@@ -109,5 +109,10 @@ export class TrackingTableComponent implements OnInit {
       this.router.navigate(['admin/seguimiento/form/' + event.data.unique_id]);
     }
   }
-
 }
+
+// Copyright (c) Engagement
+// https://www.engagement.com.co/
+// Año: 2023
+// Sistema: Gestion de desempeño (GDD)
+// Programador: David Tuta

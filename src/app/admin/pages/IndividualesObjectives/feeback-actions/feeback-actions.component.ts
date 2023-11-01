@@ -7,6 +7,7 @@ import { SnackbarService } from 'src/app/config/snackbar.service';
 import { ConfirmModalComponent } from '../..';
 import { MatDialog } from '@angular/material/dialog';
 
+// ESTA ES LA LOGICA DEL COMPONENTE ACCIONES DE RETROALIMENTACION
 @Component({
   selector: 'app-feeback-actions',
   templateUrl: './feeback-actions.component.html',
@@ -16,6 +17,7 @@ export class FeebackActionsComponent implements OnInit {
 
   @ViewChild('titleInput') titleInput: any;
 
+  // SE DEFINE VARIABLES A UTILIZAR
   @ViewChild(MatAccordion) accordion?: MatAccordion;
   title: string = '';
   validateTime: any;
@@ -46,6 +48,7 @@ export class FeebackActionsComponent implements OnInit {
     cell: (element: any) => element.icons,
   },];
 
+  // SE INYECTAN SERVICIOS NECESARIOS
   constructor(
     private FeebackAPI: FeedbackActionsService,
     private snack: SnackbarService,
@@ -57,6 +60,7 @@ export class FeebackActionsComponent implements OnInit {
     this.findData();
   }
 
+  // SE BUSCA LA INFO DEL USUARIO POR LA DATA LOCAL ACTUAL
   findData() {
    let userInfo = JSON.parse(this.Local.findDataLocal('info_user'));
    const paginate = {
@@ -93,7 +97,7 @@ export class FeebackActionsComponent implements OnInit {
     this.findData();
   }
 
-
+// LOGICA DE LOS ICONOS PARA CADA CASO
  iconsFunction(event: any) {
   if (event.icon === 'delete') {
     const dialogRef = this.dialog.open(ConfirmModalComponent, {
@@ -129,6 +133,10 @@ export class FeebackActionsComponent implements OnInit {
       this.titleInput.nativeElement.value = '';
    });     // Limpiar el campo de título después de guardar los datos
   }
-
-
 }
+
+// Copyright (c) Engagement
+// https://www.engagement.com.co/
+// Año: 2023
+// Sistema: Gestion de desempeño (GDD)
+// Programador: David Tuta

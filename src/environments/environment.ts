@@ -2,15 +2,15 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+export const environment = {
+  apiUrl: 'https://gddback.kometa.com.co/api',
+  production: true
+};
+
 // export const environment = {
-//   apiUrl: 'https://gddback.kometa.com.co/api',
+//   apiUrl: 'http://localhost:8000/api',
 //   production: false
 // };
-
-export const environment = {
-  apiUrl: 'http://localhost:8000/api',
-  production: false
-};
 
 //http://localhost:8000/api
 //https://9507-179-51-101-213.ngrok.io/api

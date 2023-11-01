@@ -1,7 +1,7 @@
 // ESTILOS DE LA VISTA TABLA
 table {
-    margin-top: 2%;
-    width: 100%;
+  margin-top: 2%;
+  width: 100%;
 }
 
 .filter-content {
@@ -41,7 +41,8 @@ table {
   justify-content: center;
 }
 
-:host ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+:host ::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
   stroke: #043c33;
 }
 
@@ -67,21 +68,26 @@ table {
   color: orange;
 }
 
-.tableBody{
+.tableBody {
   margin-bottom: 2%;
 }
 
-p{
+p {
   padding: 7px !important;
 }
 
-td{
+td {
   font-family: roboto, Helvetica, sans-serif;
   font-size: 15px;
 }
 
-th{
+th {
   font-family: roboto, Helvetica, sans-serif;
   font-size: 15px;
 }
 
+// Copyright (c) Engagement
+// https://www.engagement.com.co/
+// Año: 2023
+// Sistema: Gestion de desempeño (GDD)
+// Programador: David Tuta

@@ -3,10 +3,11 @@
   display: grid;
   grid-template-columns: 55% 1fr;
   height: 100vh;
+  position: relative;
 }
 
 .LoginImg {
-  background-color: #1560BD;
+  background-color: #1560bd;
   background-image: url("../../../../assets/img/iniciar\ sesión.png");
   background-size: 1200px 1000px;
   background-position: center;
@@ -20,28 +21,81 @@
   background-position: top;
 }
 
+/* Estilos para dispositivos de pantalla pequeña (móviles) */
+@media (max-width: 768px) {
+  .LoginClass {
+    grid-template-columns: 1fr; /* Cambia a una sola columna en dispositivos móviles */
+  }
+
+  .LoginImg {
+    background-size: cover; /* Ajusta el tamaño de la imagen de fondo para que se ajuste automáticamente */
+    position: relative; /* Agrega posición relativa para que los elementos absolutos se posicionen con respecto a este elemento */
+  }
+
+  .LoginArea {
+    background-size: cover;
+    background-image: url("../../../../assets/img/logoBlanco.png");
+    background-size: contain; /* Ajusta el tamaño del área de inicio de sesión */
+    position: absolute; /* Agrega posición absoluta para superponer esta área en la imagen de fondo */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  .LoginButton {
+    width: 100%; /* Ocupa el ancho completo en dispositivos móviles */
+  }
+
+  h2 {
+    color: white !important; /* Cambia el color del h2 a blanco con !important */
+  }
+
+  mat-label {
+    color: white !important;
+  }
+
+  .textsLogin {
+    color: white;
+  }
+
+  /* Estilos específicos para la caja mat-form-field en esta vista */
+  .custom-mat-form-field .mat-form-field-wrapper {
+    border-color: white !important;
+  }
+
+  /* Anula otros estilos específicos de Angular Material para el outline en esta vista */
+  .custom-mat-form-field .mat-form-field-outline {
+    border-width: 1px !important; /* Ajusta el grosor del borde si es necesario */
+  }
+}
+
 .LoginButton {
-  background-color: #1560BD;
+  background-color: #1560bd;
   width: 100% !important;
   border-radius: 20px;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   font-size: large;
 }
 
 h2 {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  color: #1560BD;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  color: #1560bd;
   font-size: x-large;
 }
 
 mat-label {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   color: darkgray;
   font-size: larger;
 }
 
 .textsLogin {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   font-size: larger;
 }
 
@@ -75,7 +129,7 @@ mat-label {
 }
 
 .site-footer a:hover {
-  color: #1560BD;
+  color: #1560bd;
   text-decoration: none;
 }
 
@@ -95,10 +149,16 @@ mat-label {
 .footer-links a:active,
 .footer-links a:focus,
 .footer-links a:hover {
-  color: #1560BD;
+  color: #1560bd;
   text-decoration: none;
 }
 
 .footer-links.inline li {
   display: inline-block;
 }
+
+// Copyright (c) Engagement
+// https://www.engagement.com.co/
+// Año: 2023
+// Sistema: Gestion de desempeño (GDD)
+// Programador: David Tuta

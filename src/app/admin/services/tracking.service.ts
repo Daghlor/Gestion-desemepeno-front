@@ -62,6 +62,7 @@ export class TrackingService {
     })
   }
 
+  // METODO PUT PARA AGREGAR COMENTARIO DE SEGUIMIENTO DEL EMPLEADO
   addEmployComment(uuid: string, body: any){
     this.token = this.Local.findDataLocal('token');
     return api.put(`/tracing/addEmployeeComment/${uuid}`, body, {
@@ -72,5 +73,10 @@ export class TrackingService {
       throw err.response
     })
   }
-
 }
+
+// Copyright (c) Engagement
+// https://www.engagement.com.co/
+// Año: 2023
+// Sistema: Gestion de desempeño (GDD)
+// Programador: David Tuta
