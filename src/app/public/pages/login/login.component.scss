@@ -3,6 +3,7 @@
   display: grid;
   grid-template-columns: 55% 1fr;
   height: 100vh;
+  position: relative;
 }
 
 .LoginImg {
@@ -18,6 +19,55 @@
   background-size: 500px 100px;
   background-repeat: no-repeat;
   background-position: top;
+}
+
+/* Estilos para dispositivos de pantalla pequeña (móviles) */
+@media (max-width: 768px) {
+  .LoginClass {
+    grid-template-columns: 1fr; /* Cambia a una sola columna en dispositivos móviles */
+  }
+
+  .LoginImg {
+    background-size: cover; /* Ajusta el tamaño de la imagen de fondo para que se ajuste automáticamente */
+    position: relative; /* Agrega posición relativa para que los elementos absolutos se posicionen con respecto a este elemento */
+  }
+
+  .LoginArea {
+    background-size: cover;
+    background-image: url("../../../../assets/img/logoBlanco.png");
+    background-size: contain; /* Ajusta el tamaño del área de inicio de sesión */
+    position: absolute; /* Agrega posición absoluta para superponer esta área en la imagen de fondo */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  .LoginButton {
+    width: 100%; /* Ocupa el ancho completo en dispositivos móviles */
+  }
+
+  h2 {
+    color: white !important; /* Cambia el color del h2 a blanco con !important */
+  }
+
+  mat-label {
+    color: white !important;
+  }
+
+  .textsLogin {
+    color: white;
+  }
+
+  /* Estilos específicos para la caja mat-form-field en esta vista */
+  .custom-mat-form-field .mat-form-field-wrapper {
+    border-color: white !important;
+  }
+
+  /* Anula otros estilos específicos de Angular Material para el outline en esta vista */
+  .custom-mat-form-field .mat-form-field-outline {
+    border-width: 1px !important; /* Ajusta el grosor del borde si es necesario */
+  }
 }
 
 .LoginButton {

@@ -5,12 +5,12 @@
     <div class="LoginArea center">
         <div>
             <h2 style="text-align: center;">Iniciar Sesión</h2>
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" class="custom-mat-form-field">
                 <mat-label>Usuario</mat-label>
                 <input matInput autocomplete="off" [(ngModel)]="email" type="text">
             </mat-form-field><br>
 
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" class="custom-mat-form-field">
                 <mat-label>Contraseña</mat-label>
                 <input matInput autocomplete="off" [(ngModel)]="pass" [type]="typePass">
                 <mat-icon matSuffix (click)="passVisible()">{{iconPass}}</mat-icon>
