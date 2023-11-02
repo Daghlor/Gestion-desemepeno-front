@@ -1,46 +1,68 @@
 <!-- ESTE ES EL HTML DEL LOGIN -->
 <div class="LoginClass">
-    <div class="LoginImg">
-    </div>
-    <div class="LoginArea center">
+  <div class="LoginImg"></div>
+  <div class="LoginArea center">
+    <div>
+      <h2 style="text-align: center">Iniciar Sesión</h2>
+      <mat-form-field appearance="outline" class="custom-mat-form-field">
+        <mat-label>Usuario</mat-label>
+        <input
+          matInput
+          autocomplete="off"
+          [(ngModel)]="email"
+          type="text"
+        /> </mat-form-field
+      ><br />
+
+      <mat-form-field appearance="outline" class="custom-mat-form-field">
+        <mat-label>Contraseña</mat-label>
+        <input
+          matInput
+          autocomplete="off"
+          [(ngModel)]="pass"
+          [type]="typePass"
+        />
+        <mat-icon matSuffix (click)="passVisible()">{{ iconPass }}</mat-icon>
+        <mat-hint
+          ><a href="/ForgetPass" class="textsLogin"
+            >¿Haz olvidado tu Contraseña?</a
+          ></mat-hint
+        > </mat-form-field
+      ><br /><br />
+
+      <div class="center">
         <div>
-            <h2 style="text-align: center;">Iniciar Sesión</h2>
-            <mat-form-field appearance="outline" class="custom-mat-form-field">
-                <mat-label>Usuario</mat-label>
-                <input matInput autocomplete="off" [(ngModel)]="email" type="text">
-            </mat-form-field><br>
-
-            <mat-form-field appearance="outline" class="custom-mat-form-field">
-                <mat-label>Contraseña</mat-label>
-                <input matInput autocomplete="off" [(ngModel)]="pass" [type]="typePass">
-                <mat-icon matSuffix (click)="passVisible()">{{iconPass}}</mat-icon>
-                <mat-hint><a href="/ForgetPass" class="textsLogin">¿Haz olvidado tu Contraseña?</a></mat-hint>
-            </mat-form-field><br><br>
-
-            <div class="center">
-                <div>
-                  <button  mat-raised-button color="primary" class="LoginButton" (click)="login()">
-                    <span class="material-icons" style="margin-right: 20px;">login</span>Ingresar
-                  </button>
-                </div>
-              </div>
-              <div style="text-align:center;">
-                <a href="/registrarse" class="textsLogin" style="font-size: 13px;">¿No estas registrado?</a>
-              </div>
-        </div>
-    </div>
-</div>
-
-  <footer class="site-footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8 col-sm-6 col-xs-12">
-          <p class="copyright-text">Copyright &copy; 2023 All Rights Reserved by
-       <a href="https://grupofek.com">Kometa</a>.
-          </p>
+          <button
+            mat-raised-button
+            color="primary"
+            class="LoginButton"
+            (click)="login()"
+          >
+            <span class="material-icons" style="margin-right: 20px">login</span
+            >Ingresar
+          </button>
         </div>
       </div>
+      <div style="text-align: center">
+        <a href="/registrarse" class="textsLogin" style="font-size: 13px"
+          >¿No estas registrado?</a
+        >
+      </div>
     </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-sm-6 col-xs-12">
+        <p class="copyright-text">
+          Copyright &copy; 2023 All Rights Reserved by
+          <a href="https://grupofek.com">Kometa</a>.
+        </p>
+      </div>
+    </div>
+  </div>
 </footer>
 
 <!-- Copyright (c) Engagement
