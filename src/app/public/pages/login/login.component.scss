@@ -68,6 +68,15 @@
   .custom-mat-form-field .mat-form-field-outline {
     border-width: 1px !important; /* Ajusta el grosor del borde si es necesario */
   }
+
+  .custom-mat-form-field .custom-input::placeholder {
+    color: white !important; /* Cambia el color del texto de los placeholders a blanco */
+  }
+
+  .custom-mat-form-field .custom-input {
+    background-color: transparent;
+    color: white; /* Cambia el color del texto en los inputs a blanco */
+  }
 }
 
 .LoginButton {
