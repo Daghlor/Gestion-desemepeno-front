@@ -100,7 +100,7 @@ export class IndividualesObjectivesAllComponent implements OnInit {
 
     this.individualAPI.FindAll(paginate).then((res:any)=>{
       for (let i = 0; i < res.data.objetives.length; i++){
-        res.data.objetives[i].icons = ['delete', 'edit','done'];
+        res.data.objetives[i].icons = ['delete','done'];
       }
       this.dataSource = res.data.objetives;
       this.length = res.data.total;
