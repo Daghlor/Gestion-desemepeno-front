@@ -7,6 +7,12 @@
   border-radius: 50%;
 }
 
+:host {
+  display: block;
+  overflow-y: auto;
+  max-height: calc(100vh - 130px); /* Ajusta la altura máxima según tu diseño */
+}
+
 // Copyright (c) Engagement
 // https://www.engagement.com.co/
 // Año: 2023

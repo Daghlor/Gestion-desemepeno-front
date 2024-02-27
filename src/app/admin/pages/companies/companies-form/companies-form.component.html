@@ -268,7 +268,7 @@
           <div [ngStyle]="{'background-color': item.sync ? '#50FF00' : '#FF0000', 'color': item.sync ? '#50FF00' : '#FF0000' }" style="margin-right: 15px;">.</div>
           {{!item.description ? 'Sin Descripción' : item.description}}
         </mat-panel-title>
-        <mat-panel-description class="right" *ngIf="!item.sync">
+        <mat-panel-description class="right">
           <mat-icon style="color: #ff0000" (click)="deleteEmployment(i)">delete</mat-icon>
         </mat-panel-description>
       </mat-expansion-panel-header>
@@ -298,7 +298,7 @@
           <div [ngStyle]="{'background-color': item.sync ? '#50FF00' : '#FF0000', 'color': item.sync ? '#50FF00' : '#FF0000' }" style="margin-right: 15px;">.</div>
           {{!item.description ? 'Sin Descripción' : item.description}}
         </mat-panel-title>
-        <mat-panel-description class="right" *ngIf="!item.sync">
+        <mat-panel-description class="right">
           <mat-icon style="color: #ff0000" (click)="deleteAreas(i)">delete</mat-icon>
         </mat-panel-description>
       </mat-expansion-panel-header>
