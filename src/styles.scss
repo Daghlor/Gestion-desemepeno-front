@@ -90,3 +90,11 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+/* Agrega un scroll en pantallas más pequeñas */
+@media screen and (max-width: 768px) {
+  html,
+  body {
+    overflow: auto; /* Añade un scroll vertical */
+  }
+}
