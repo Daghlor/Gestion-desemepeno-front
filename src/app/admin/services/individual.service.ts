@@ -83,7 +83,19 @@ export class IndividualService {
       throw err.response
     })
   }
+
+  GetAllStates() {
+    this.token = this.Local.findDataLocal('token');
+    return api.get(`/individuals/states`, {
+      headers: { Authorization: "Bearer " + this.token }
+    })
+      .then((res) => res.data)
+      .catch((err) => {
+        throw err.response
+      })
+  }
 }
+
 
 // Copyright (c) Engagement
 // https://www.engagement.com.co/

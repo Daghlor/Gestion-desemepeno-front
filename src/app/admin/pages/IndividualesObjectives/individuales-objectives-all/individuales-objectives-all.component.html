@@ -11,16 +11,19 @@
       </mat-form-field>
     </mat-grid-tile>
 
-    <mat-grid-tile [colspan]="1">
-      <mat-form-field appearance="outline">
-        <mat-label>Estado</mat-label>
-        <input matInput autocomplete="off" type="text" [(ngModel)]="state">
-      </mat-form-field>
-    </mat-grid-tile>
+  <mat-grid-tile [colspan]="1">
+    <mat-form-field appearance="outline">
+      <mat-label>Estado</mat-label>
+      <mat-select [(ngModel)]="state" placeholder="Seleccionar estado">
+        <mat-option *ngFor="let state of states" [value]="state.id">{{ state.description }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-grid-tile>
+
 
   </mat-grid-list>
   <div class="center">
-    <button mat-raised-button color="primary" (click)="findData()">
+    <button mat-raised-button color="primary" (click)="applyFilters()">
       <mat-icon style="margin-right: 10px;">search</mat-icon>Consultar
     </button>
   </div>

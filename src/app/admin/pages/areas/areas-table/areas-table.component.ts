@@ -25,7 +25,7 @@ export class AreasTableComponent implements OnInit {
   dataSource: any = new MatTableDataSource();
   columns = [{
     columnDef: 'description',
-    header: 'Descripcion Áreas',
+    header: 'Descripción Áreas',
     width: '10%',
     sort: true,
     type: 'text',

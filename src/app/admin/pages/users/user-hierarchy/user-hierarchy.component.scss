@@ -1,0 +1,46 @@
+.user-list-container {
+  margin-top: 20px;
+}
+
+.user-card {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.user-card:hover {
+  background-color: #f0f0f0;
+}
+
+.user-checkbox {
+  margin-right: 10px;
+}
+
+.user-details {
+  flex: 1;
+}
+
+.user-name {
+  font-weight: bold;
+}
+
+.selected-user-details {
+  margin-top: 20px;
+}
+
+.save-button {
+  margin-top: 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.save-button:hover {
+  background-color: #0056b3;
+}

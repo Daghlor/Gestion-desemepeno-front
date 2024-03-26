@@ -9,7 +9,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class UsersService {
-
+  currentUser: any;
   constructor(
   // SE DEFINE VARIABLES CON SERVICIOS ASIGNADOS
   private snack: SnackbarService,
@@ -29,6 +29,7 @@ public userUrl: string = 'user'
       }
     }).catch((error)=>{throw error})
   }
+
 
   // METODO POST DE REGISTRO DE UN USUARIO
   registerEmpleado(body:any){
@@ -58,6 +59,28 @@ public userUrl: string = 'user'
   getAllUsers(body: any){
     this.token != localStorage.getItem('token');
     return api.post(`/users/getAll`, body, {
+      headers: {Authorization: "Bearer " + this.token}
+    })
+    .then((res) => res.data)
+    .catch((err) => {
+      throw err.response
+    })
+  }
+
+  GetAllUsers(body: any){
+    this.token = this.Local.findDataLocal('token');
+    return api.post(`/users/getAllUsers`, body, {
+      headers: {Authorization: "Bearer " + this.token}
+    })
+    .then((res) => res.data)
+    .catch((err) => {
+      throw err.response
+    })
+  }
+
+  GetAllUsersWithoutHierarchy(body: any){
+    this.token = this.Local.findDataLocal('token');
+    return api.post(`/users/usersWithoutHierarchy`, body, {
       headers: {Authorization: "Bearer " + this.token}
     })
     .then((res) => res.data)

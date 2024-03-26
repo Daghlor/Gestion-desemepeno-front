@@ -35,6 +35,10 @@
                     <mat-icon class="subMenuIcon">people</mat-icon>
                     <a class="itemsTitle">Usuarios</a>
                 </div>
+                <div class="subMenuOption" (click)="routers('/Jerarquia_usuarios')">
+                  <mat-icon class="subMenuIcon">people</mat-icon>
+                  <a class="itemsTitle">Jerarquía usuarios</a>
+                </div>
                 <!-- <div class="subMenuOption"  (click)="routers('/performance_plans')"  *ngIf="validatePermissions('list_users')">
                     <mat-icon class="subMenuIcon">people</mat-icon>
                     <a class="itemsTitle">Planes</a>
@@ -72,7 +76,7 @@
               <mat-icon class="itemsIcon"> {{option == 4 ? 'expand_less' : 'expand_more'}} </mat-icon>
           </div>
           <div class="subMenu" *ngIf="option == 4">
-            <div class="items" (click)="routers('/objetivos_estrategicos/all')" *ngIf="validatePermissions('list_objectives_strategics')">
+            <div class="items" (click)="routers('/Nuestros_objetivos/all')" *ngIf="validatePermissions('list_objectives_strategics')">
                 <mat-icon class="itemsIcon">analytics</mat-icon>
                 <a class="itemsTitle">Objetivos Estratégicos</a>
             </div>
@@ -82,7 +86,7 @@
             </div>
             <div class="items" (click)="routers('/objetivos_individuales/all')" *ngIf="validatePermissions('list_objectives_individuals')">
                 <mat-icon class="itemsIcon">work</mat-icon>
-                <a class="itemsTitle">Objetivos Individuales</a>
+                <a class="itemsTitle">Mis Colaboradores</a>
             </div>
             <div class="items" (click)="routers('/objetivos_individuales')" *ngIf="validatePermissions('list_my_objectives_individuals')">
                 <mat-icon class="itemsIcon">work</mat-icon>

@@ -1,0 +1,49 @@
+<app-my-tabs [optionsTabs]="optionsTabs" [intialTabCode]="initialTab"
+  (getTabActive)="currentTab = $event.code"></app-my-tabs>
+<br>
+
+<div *ngIf="currentTab == 1" class="user-list-container">
+  <div class="user-card" *ngFor="let user of users">
+    <input type="checkbox" [value]="user.unique_id" (change)="onUserSelected(user)" class="user-checkbox">
+    <div class="user-details">
+      <p class="user-name">{{ user.name }} {{ user.lastName }}</p>
+      <p class="user-info">ID: {{ user.id }}</p>
+      <!-- Agrega más detalles según sea necesario -->
+    </div>
+  </div>
+
+  <!-- Mostrar detalles del usuario seleccionado -->
+  <div *ngIf="selectedUser" class="selected-user-details">
+    <h2>Detalles del Usuario Seleccionado</h2>
+    <p>ID: {{ selectedUser.id }}</p>
+    <p>Nombre: {{ selectedUser.name }}</p>
+    <p>Apellido: {{ selectedUser.lastName }}</p>
+    <p>Identificación: {{ selectedUser.identify }}</p>
+    <!-- Agrega más detalles según sea necesario -->
+  </div>
+
+  <button (click)="onSaveHierarchy()" class="save-button">Guardar Jerarquía</button>
+</div>
+
+<div *ngIf="currentTab == 2" class="user-list-container">
+  <div class="user-card" *ngFor="let user of users">
+    <input type="checkbox" [value]="user.unique_id" (change)="onUserSelected(user)" class="user-checkbox">
+    <div class="user-details">
+      <p class="user-name">{{ user.name }} {{ user.lastName }}</p>
+      <p class="user-info">ID: {{ user.id }}</p>
+      <!-- Agrega más detalles según sea necesario -->
+    </div>
+  </div>
+
+  <!-- Mostrar detalles del usuario seleccionado -->
+  <div *ngIf="selectedUser" class="selected-user-details">
+    <h2>Detalles del Usuario Seleccionado</h2>
+    <p>ID: {{ selectedUser.id }}</p>
+    <p>Nombre: {{ selectedUser.name }}</p>
+    <p>Apellido: {{ selectedUser.lastName }}</p>
+    <p>Identificación: {{ selectedUser.identify }}</p>
+    <!-- Agrega más detalles según sea necesario -->
+  </div>
+
+  <button (click)="onSaveSubHierarchy()" class="save-button">Guardar Subordinados</button>
+</div>

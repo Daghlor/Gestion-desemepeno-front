@@ -36,7 +36,7 @@ export class FeebackActionsComponent implements OnInit {
   dataSource: any = new MatTableDataSource();
   columns = [{
     columnDef: 'titles',
-    header: 'Descripcion',
+    header: 'Descripción',
     sort: true,
     type: 'text',
     cell: (element: any) => `${element.title}`,

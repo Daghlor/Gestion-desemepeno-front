@@ -37,6 +37,17 @@ export class UsersService {
     })
   }
 
+  GetAllUsers(body: any){
+    this.token = this.Local.findDataLocal('token');
+    return api.post(`/users/getAllUsers`, body, {
+      headers: {Authorization: "Bearer " + this.token}
+    })
+    .then((res) => res.data)
+    .catch((err) => {
+      throw err.response
+    })
+  }
+
   // METODO GET PARA BUSCAR O TRAER UN SOLO USUARIO
   FindOne(uuid: string){
     this.token = this.Local.findDataLocal('token');

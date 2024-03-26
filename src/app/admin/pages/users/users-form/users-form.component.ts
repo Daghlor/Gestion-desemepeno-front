@@ -75,7 +75,7 @@ optionsTabs: any = [{
   name: 'Mis planes',
   show: true,
   disabled: false,
-    }]
+    },]
 
 
 	constructor(
@@ -142,7 +142,9 @@ optionsTabs: any = [{
     console.log('El usuario no tiene los permisos necesarios para acceder a esta funcionalidad.');
     // Puedes redirigir al usuario a una página de acceso denegado o tomar otra acción apropiada.
   }
-}
+  }
+
+
 
   async loadIndividualsData(unique_id: string) {
   try {

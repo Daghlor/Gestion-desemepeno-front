@@ -17,8 +17,10 @@ import { ChangeStateDialogComponentComponent } from '../..';
 })
 export class IndividualesObjectivesAllComponent implements OnInit {
   // SE DEFINE VARIABLES LOCALES Y EL MAQUETADO DE LA TABLA
+  states: { id: number, description: string }[] = [];
   name: string = '';
   state: string = '';
+  selectedState: string | null = null;  // O el tipo de dato adecuado para el ID del estado
   unique_id?: string;
   selectedCompany: number | null = null;
   companies: any[] = [];
@@ -79,11 +81,12 @@ export class IndividualesObjectivesAllComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.getAllStates();
     this.findData();
   }
 
   // FUNCION QUE BUSCA TODOS LOS OBJETIVOS INDIVIDUALES Y LOS PONE EN LA TABLA
-  findData(){
+  findData() {
     const paginate = {
       paginate: this.pageSize,
       page: this.actualPage,
@@ -93,7 +96,7 @@ export class IndividualesObjectivesAllComponent implements OnInit {
         nameUser: this.name,
         user_id: null,
         company_id: null,
-        state_id: 1,
+        state_id: this.selectedState,  // Usar selectedState en lugar de state
         areas_id: null
       }
     }
@@ -102,10 +105,36 @@ export class IndividualesObjectivesAllComponent implements OnInit {
       for (let i = 0; i < res.data.objetives.length; i++){
         res.data.objetives[i].icons = ['delete','done'];
       }
+      console.log("Datos recibidos:", res.data.objetives);
       this.dataSource = res.data.objetives;
       this.length = res.data.total;
     });
   }
+
+  getAllStates() {
+  this.individualAPI.GetAllStates().then((res: any) => {
+    // Mapear los datos del servidor para que coincidan con el formato esperado
+    this.states = res.data.map((state: any) => ({
+      id: state.id,
+      description: state.description
+    }));
+  }).catch((err: any) => {
+    console.error('Error al obtener los estados:', err);
+  });
+}
+
+
+  selectedStateChange() {
+  this.findData(); // Llama a la función para filtrar los datos cuando se cambia el estado seleccionado
+}
+
+  applyFilters() {
+  console.log("Aplicando filtros...");
+  this.findData(); // Llama al método para filtrar los datos después de aplicar los filtros
+}
+
+
+
 
   changeSort(item:any){
     this.orderColumn = item.active;

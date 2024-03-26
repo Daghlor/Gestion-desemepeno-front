@@ -56,6 +56,10 @@ const routes: Routes = [
         component: Pages.UsersTableComponent,
       },
       {
+        path: "Jerarquia_usuarios",
+        component: Pages.UserHierarchyComponent,
+      },
+      {
         path: "usuarios/form",
         component: Pages.UsersFormComponent,
       },
@@ -68,7 +72,7 @@ const routes: Routes = [
         component: Pages.UsersFormComponent,
       },
       {
-        path: "objetivos_estrategicos/all",
+        path: "Nuestros_objetivos/all",
         component: Pages.StrategicObjectivesAllComponent,
       },
       {

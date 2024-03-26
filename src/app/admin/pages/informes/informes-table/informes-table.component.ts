@@ -81,32 +81,32 @@ export class InformesTableComponent implements OnInit{
 currentTab: number = 1;
 optionsTabs: any = [{
   code: 1,
-  name: 'Grafica 1',
+  name: 'Gráfica 1',
   show: true,
   disabled: false,
 },{
   code: 2,
-  name: 'Grafica 2',
+  name: 'Gráfica 2',
   show: true,
   disabled: false,
     },{
   code: 3,
-  name: 'Grafica 3',
+  name: 'Gráfica 3',
   show: true,
   disabled: false,
 },{
   code: 4,
-  name: 'Grafica 4',
+  name: 'Gráfica 4',
   show: true,
   disabled: false,
 },{
   code: 5,
-  name: 'Grafica 5',
+  name: 'Gráfica 5',
   show: true,
   disabled: false,
 },{
   code: 6,
-  name: 'Grafica 6',
+  name: 'Gráfica 6',
   show: true,
   disabled: false,
 },]
