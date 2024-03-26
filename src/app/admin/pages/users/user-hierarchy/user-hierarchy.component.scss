@@ -44,3 +44,13 @@
 .save-button:hover {
   background-color: #0056b3;
 }
+
+body {
+  overflow: auto;
+}
+
+:host {
+  display: block;
+  overflow-y: auto;
+  max-height: calc(100vh - 130px); /* Ajusta la altura máxima según tu diseño */
+}

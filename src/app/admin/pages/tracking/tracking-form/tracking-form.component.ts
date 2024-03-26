@@ -14,6 +14,17 @@ import * as moment from 'moment';
 })
 export class TrackingFormComponent implements OnInit {
   // SE DEFINE VARIABLES LOCALES
+  hasApprovedObjectives(): boolean {
+    if (!this.listObjetives || this.listObjetives.length === 0) {
+      return false;
+    }
+    for (let i = 0; i < this.listObjetives.length; i++) {
+      if (this.listObjetives[i].state === 'Aprobado') {
+        return true;
+      }
+    }
+    return false;
+  }
   params: any;
   unique_id?: string;
   listObjetives: any = [];

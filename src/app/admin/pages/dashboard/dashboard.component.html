@@ -7,8 +7,11 @@
       <div class="projects-section-header">
         <p>Tu Camino al Éxito: Panorama y Conexión
 </p>
-        <p class="time">{{ currentDate }}</p>
+        <!-- <p class="time">{{ currentDate }}</p> -->
       </div>
+      <p> Descubre en un vistazo cómo cada paso que das te acerca a tus metas personales y cómo estas se entrelazan con la
+        visión estratégica de nuestra organización. Aquí, cada logro personal es un eco de nuestro éxito como equipo.
+      </p>
       <div class="projects-section-line">
         <div class="projects-status">
           <div class="item-status">
@@ -24,7 +27,8 @@
             <span class="status-type">Total Planes</span>
           </div>
         </div>
-        <div class="app-header-left">
+
+        <!-- <div class="app-header-left">
           <div class="search-wrapper">
             <input class="search-input" type="text" placeholder="Search">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-search" viewBox="0 0 24 24">
@@ -33,8 +37,9 @@
               <path d="M21 21l-4.35-4.35"></path>
             </svg>
           </div>
-        </div>
-        <div class="view-actions">
+        </div> -->
+
+        <!-- <div class="view-actions">
           <button class="view-btn list-view" title="List View">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list">
               <line x1="8" y1="6" x2="21" y2="6" />
@@ -51,7 +56,8 @@
               <rect x="14" y="14" width="7" height="7" />
               <rect x="3" y="14" width="7" height="7" /></svg>
           </button>
-        </div>
+        </div> -->
+
       </div>
       <div class="project-boxes jsGridView">
         <div class="project-box-wrapper">
@@ -308,11 +314,8 @@
 
 
 
-  <div class="projects-section-header">
-    <p>Comentarios</p>
-  </div>
 
-
+    <full-calendar [options]="calendarOptions" [events]="calendarEvents"></full-calendar>
     <div class="project-box-wrapper">
       <div class="project-box" style="background-color: #dbf6fd;">
         <p style="font-size: larger; font: bold"><strong>Optimiza tu Rendimiento con visión estratégica</strong></p>

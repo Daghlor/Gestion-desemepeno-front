@@ -10,6 +10,9 @@ import { MatPaginatorIntl } from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
 import { CustomPaginator } from '../config/matPaginador';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin from '@fullcalendar/interaction';
 
 
 
@@ -28,6 +31,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     AdminRoutingModule,
     MatTableModule,
     ScrollingModule,
+    FullCalendarModule,
   ],
   exports: [
     ...fromContainers.AdminComponents,

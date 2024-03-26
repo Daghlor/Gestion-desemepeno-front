@@ -18,6 +18,7 @@ import { ChangeStateDialogComponentComponent } from '../..';
 export class IndividualesObjectivesAllComponent implements OnInit {
   // SE DEFINE VARIABLES LOCALES Y EL MAQUETADO DE LA TABLA
   states: { id: number, description: string }[] = [];
+  currentUser: any | null = null;
   name: string = '';
   state: string = '';
   selectedState: string | null = null;  // O el tipo de dato adecuado para el ID del estado
@@ -81,35 +82,85 @@ export class IndividualesObjectivesAllComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.loadCurrentUser();
     this.getAllStates();
     this.findData();
+
   }
+
+  loadCurrentUser() {
+  // Recuperar los datos del usuario actualmente logeado desde el servicio LocalService
+  const currentUserData = this.Local.findDataLocal('info_user');
+
+  if (currentUserData) {
+    // Si se encuentran datos, convertir la cadena JSON a un objeto JavaScript
+    this.currentUser = JSON.parse(currentUserData);
+    console.log('Datos del usuario actual:', this.currentUser); // Agregar console.log para verificar los datos del usuario
+  } else {
+    console.log('No se encontraron datos del usuario actual.');
+  }
+  }
+
+  findData() {
+  if (!this.currentUser || !this.currentUser.id) {
+    console.error('No se pudo obtener el ID del usuario actual.');
+    return;
+  }
+
+  const userId = this.currentUser.id;
+
+  this.individualAPI.FindAllByHierarchy(userId).then((res: any) => {
+    // Verificar si hay datos en la respuesta
+    if (res && res.data && res.data.objetives && res.data.objetives.data) {
+      // Asignar los datos de los objetivos individuales al origen de datos de la tabla
+      // Agregar iconos a cada registro de objetivos individuales
+      res.data.objetives.data.forEach((objective: any) => {
+        objective.icons = ['delete', 'done'];
+      });
+      this.dataSource = new MatTableDataSource(res.data.objetives.data);
+      this.length = res.data.total;
+    } else {
+      console.error('No se encontraron datos de objetivos individuales en la respuesta.');
+    }
+  }).catch((error: any) => {
+    console.error('Error al buscar objetivos individuales:', error);
+    // Manejar errores
+  });
+}
+
+
+
 
   // FUNCION QUE BUSCA TODOS LOS OBJETIVOS INDIVIDUALES Y LOS PONE EN LA TABLA
-  findData() {
-    const paginate = {
-      paginate: this.pageSize,
-      page: this.actualPage,
-      column: this.orderColumn || 'title',
-      direction: this.orderType || 'asc',
-      search: {
-        nameUser: this.name,
-        user_id: null,
-        company_id: null,
-        state_id: this.selectedState,  // Usar selectedState en lugar de state
-        areas_id: null
-      }
-    }
+  // findData() {
+  //   const paginate = {
+  //     paginate: this.pageSize,
+  //     page: this.actualPage,2
+  //     column: this.orderColumn || 'title',
+  //     direction: this.orderType || 'asc',
+  //     search: {
+  //       nameUser: this.name,
+  //       user_id: null,
+  //       company_id: null,
+  //       state_id: this.selectedState,  // Usar selectedState en lugar de state
+  //       areas_id: null
+  //     }
+  //   }
 
-    this.individualAPI.FindAll(paginate).then((res:any)=>{
-      for (let i = 0; i < res.data.objetives.length; i++){
-        res.data.objetives[i].icons = ['delete','done'];
-      }
-      console.log("Datos recibidos:", res.data.objetives);
-      this.dataSource = res.data.objetives;
-      this.length = res.data.total;
-    });
-  }
+  //   this.individualAPI.FindAll(paginate).then((res:any)=>{
+  //     for (let i = 0; i < res.data.objetives.length; i++){
+  //       res.data.objetives[i].icons = ['delete','done'];
+  //     }
+  //     console.log("Datos recibidos:", res.data.objetives);
+  //     this.dataSource = res.data.objetives;
+  //     this.length = res.data.total;
+  //   });
+  // }
+
+
+  // FUNCION QUE BUSCA TODOS LOS OBJETIVOS INDIVIDUALES Y LOS PONE EN LA TABLA
+
+
 
   getAllStates() {
   this.individualAPI.GetAllStates().then((res: any) => {

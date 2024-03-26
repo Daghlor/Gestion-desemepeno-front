@@ -4,6 +4,7 @@ import { LocalService } from 'src/app/config/local.service';
 import { SnackbarService } from 'src/app/config/snackbar.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { UserHierarchyService } from '../../../services/user-hierarchy.service';
 
 // ESTE ES EL .TS DONDE ESTA LA PARTE LOGICA DE LA VISTA TABLA DE SEGUIMIENTOS
 @Component({
@@ -13,6 +14,7 @@ import { Router } from '@angular/router';
 })
 export class TrackingTableComponent implements OnInit {
   // SE DEFINE VARIABLES LOCALES Y MAQUETADO DE LA TABLA
+  currentUser: any | null = null;
   loading: boolean = false;
   paginator: boolean = true;
   length: number = 0;
@@ -54,39 +56,81 @@ export class TrackingTableComponent implements OnInit {
     private snack: SnackbarService,
     private Local: LocalService,
     private router: Router,
+    private userHierarchy: UserHierarchyService,
   ) { }
 
   ngOnInit(): void {
+    this.loadCurrentUser();
     this.getData();
   }
 
-  // FUNCION QUE OBTIENE EL SEGUIMIENTO DE UN USUARIO Y LO PONE EN LA TABLA
-  getData(){
-    const paginate = {
-      paginate: this.pageSize,
-      page: this.actualPage,
-      column: this.orderColumn || 'name',
-      direction: this.orderType || 'asc',
-      search: {
-        nit: "",
-        businessName: "",
-        phone: "",
-        email: "",
-        address: "",
-        city: "",
-        state_id: 1
-      }
-    }
+  loadCurrentUser() {
+  // Recuperar los datos del usuario actualmente logeado desde el servicio LocalService
+  const currentUserData = this.Local.findDataLocal('info_user');
 
-    this.trackingAPI.FindAllUser(paginate).then((res:any)=>{
-      for (let i = 0; i < res.data.users.length; i++) {
-        res.data.users[i].icons = ['add']
-      }
-
-      this.dataSource = new MatTableDataSource(res.data.users);
-      this.length = res.data.total;
-    });
+  if (currentUserData) {
+    // Si se encuentran datos, convertir la cadena JSON a un objeto JavaScript
+    this.currentUser = JSON.parse(currentUserData);
+    console.log('Datos del usuario actual:', this.currentUser); // Agregar console.log para verificar los datos del usuario
+  } else {
+    console.log('No se encontraron datos del usuario actual.');
   }
+  }
+
+  // FUNCION QUE OBTIENE EL SEGUIMIENTO DE UN USUARIO Y LO PONE EN LA TABLA
+getData() {
+  if (!this.currentUser || !this.currentUser.id) {
+    console.error('No se pudo obtener el ID del usuario actual.');
+    return;
+  }
+
+  const userId = this.currentUser.id;
+
+  this.userHierarchy.finassignedUsers(userId).then((userHierarchies: any[]) => {
+    // Mapear los datos recibidos para agregar los iconos y la información del usuario
+    const usersWithIcons = userHierarchies.map((userHierarchy: any) => ({
+      ...userHierarchy.user, // Agregar toda la información del usuario
+      icons: ['add']
+    }));
+
+    this.dataSource = new MatTableDataSource(usersWithIcons);
+    this.length = usersWithIcons.length;
+  }).catch((error: any) => {
+    console.error('Error al obtener seguimiento de usuarios:', error);
+    // Manejar errores aquí
+  });
+}
+
+
+
+
+  // FUNCION QUE OBTIENE EL SEGUIMIENTO DE UN USUARIO Y LO PONE EN LA TABLA
+  // getData(){
+  //   const paginate = {
+  //     paginate: this.pageSize,
+  //     page: this.actualPage,
+  //     column: this.orderColumn || 'name',
+  //     direction: this.orderType || 'asc',
+  //     search: {
+  //       nit: "",
+  //       businessName: "",
+  //       phone: "",
+  //       email: "",
+  //       address: "",
+  //       city: "",
+  //       state_id: 1
+  //     }
+  //   }
+
+  //   this.trackingAPI.FindAllUser(paginate).then((res:any)=>{
+  //     for (let i = 0; i < res.data.users.length; i++) {
+  //       res.data.users[i].icons = ['add']
+  //     }
+
+  //     this.dataSource = new MatTableDataSource(res.data.users);
+  //     this.length = res.data.total;
+  //   });
+  // }
 
   changeSort(item:any){
     this.orderColumn = item.active;

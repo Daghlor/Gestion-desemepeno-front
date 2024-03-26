@@ -43,6 +43,17 @@ export class UserHierarchyService {
       });
   }
 
+  finassignedUsers(id: string) {
+    this.token = this.Local.findDataLocal('token');
+    return api.get(`/user-hierarchies/assignedUsers/${id}`, {
+      headers: { Authorization: "Bearer " + this.token }
+    })
+      .then((res) => res.data)
+      .catch((err) => {
+        throw err.response;
+      });
+  }
+
   findAllByUserUniqueId(uuid: string) {
     this.token = this.Local.findDataLocal('token');
     return api.get(`/user-hierarchies/FindAllByUserUniqueId/${uuid}`, {

@@ -3,6 +3,10 @@ import * as moment from 'moment';
 import { StrategicsService } from '../../services/strategics.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { IndividualService } from '../../services/individual.service';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin from '@fullcalendar/interaction';
+import { CalendarOptions } from '@fullcalendar/core';
 
 
 // ESTE ES EL .TS DEL DASHBOARD DONDE ESTA LA PARTE LOGICA
@@ -12,6 +16,15 @@ import { IndividualService } from '../../services/individual.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit{
+
+  calendarPlugins = [dayGridPlugin, interactionPlugin];
+  calendarEvents: any[] = [
+    { title: 'Event Now', start: new Date() }
+  ];
+  calendarOptions: CalendarOptions = {
+    initialView: 'dayGridMonth',
+    plugins: [dayGridPlugin]
+  };
 
   currentDate!: string;
   totalObjetivosIndv?: number;
@@ -33,7 +46,13 @@ export class DashboardComponent implements OnInit{
     this.currentDate = moment().format('DD/MM/YYYY');
     this.getTotalObjetivosInd();
     this.getTotalObjetivosEstra();
+    this.calendarEvents = [
+    { title: 'Event Now', start: new Date() }
+    // Agrega más eventos aquí si es necesario
+  ];
   }
+
+
 
   getTotalObjetivosInd() {
     const paginate = {

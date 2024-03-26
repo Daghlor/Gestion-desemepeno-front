@@ -24,11 +24,6 @@ optionsTabs: any = [{
   disabled: false,
 },{
   code: 2,
-  name: 'Mis planes',
-  show: true,
-  disabled: false,
-    },{
-  code: 3,
   name: 'Mis Colaboradores',
   show: true,
   disabled: false,
@@ -71,6 +66,9 @@ optionsTabs: any = [{
       });
   }
 
+  validatePermissions(code: string): Boolean {
+        return this.local.validatePermission(code) ? true : false;
+    }
 
   loadAllUsersWithoutHierarchy() {
   this.userService.GetAllUsersWithoutHierarchy({})
@@ -95,16 +93,20 @@ optionsTabs: any = [{
 
 
   onUserSelected(user: any) {
-  // Verifica si el usuario ya está seleccionado
-  const index = this.selectedUserIds.indexOf(user.id);
+  const userId = user.id;
+  const index = this.selectedUserIds.indexOf(userId);
+
   if (index === -1) {
-    // Si no está seleccionado, agrégalo al arreglo
-    this.selectedUserIds.push(user.id);
+    // Si el usuario no está seleccionado, lo agregamos a la lista
+    this.selectedUserIds.push(userId);
+    this.selectedUser = user; // Actualizamos el usuario seleccionado
   } else {
-    // Si ya está seleccionado, quítalo del arreglo
+    // Si el usuario ya está seleccionado, lo eliminamos de la lista
     this.selectedUserIds.splice(index, 1);
+    this.selectedUser = null; // Limpiamos el usuario seleccionado
   }
 }
+
 
  onSaveHierarchy() {
     // Verifica que se haya seleccionado un usuario
@@ -115,6 +117,8 @@ optionsTabs: any = [{
           console.log('Registro de jerarquía creado:', res);
           // Limpia la selección después de crear el registro
           this.selectedUser = null;
+          // Recargar la página para actualizar la lista de usuarios
+          window.location.reload();
         })
         .catch(error => {
           console.error('Error creating hierarchy:', error);
@@ -135,6 +139,8 @@ onSaveSubHierarchy() {
         this.snack.viewsnack('Jerarquia creada con exito', 'success');
         // Limpia la selección después de crear el registro
         this.selectedUser = null;
+        // Recargar la página para actualizar la lista de usuarios
+        window.location.reload();
       })
       .catch(error => {
         console.error('Error creating hierarchy:', error);
@@ -143,6 +149,7 @@ onSaveSubHierarchy() {
     console.error('Debes seleccionar un usuario antes de guardar la jerarquía.');
   }
 }
+
 
  isUserSelected(userId: number): boolean {
     return this.selectedUserIds.includes(userId);

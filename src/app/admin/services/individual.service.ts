@@ -36,6 +36,17 @@ export class IndividualService {
     })
   }
 
+  FindAllByHierarchy(id: string){
+    this.token = this.Local.findDataLocal('token');
+    return api.get(`/individuals/FindAllByHierarchy/${id}`, {
+      headers: {Authorization: "Bearer " + this.token}
+    })
+    .then((res) => res.data)
+    .catch((err) => {
+      throw err.response
+    })
+  }
+
   // METODO GET PARA BUSCAR O TRAER UN SOLO OBJETIVO INDIVIDUAL
   FindOne(uuid: string){
     this.token = this.Local.findDataLocal('token');

@@ -31,8 +31,11 @@
     </mat-form-field>
   </mat-grid-tile>
 </mat-grid-list>
+
+<p *ngIf="!hasApprovedObjectives()">No hay objetivos aprobados.</p>
 <mat-accordion>
-  <mat-expansion-panel *ngFor="let item of listObjetives; let i = index">
+  <ng-container *ngFor="let item of listObjetives">
+  <mat-expansion-panel *ngIf="item.state === 'Aprobado'">
     <mat-expansion-panel-header>
       <mat-panel-title> {{item.weight}} - {{item.title}} </mat-panel-title>
       <span class="points-badge">Total de Peso sin asignar: {{item.totalPointsAvailable}}</span>
@@ -81,6 +84,7 @@
       </table>
     </mat-grid-list>
   </mat-expansion-panel>
+  </ng-container>
 </mat-accordion>
 
 <!-- Copyright (c) Engagement

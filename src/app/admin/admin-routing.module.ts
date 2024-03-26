@@ -4,6 +4,7 @@ import * as Pages from "./pages";
 import { AuthenticateGuard } from './components/guards/authenticate.guard';
 import { AuthenticateVerifyGuard } from './components/guards/authenticate-verify.guard';
 import { UserObjetivesComponent } from './pages/users/user-objetives/user-objetives.component';
+import { IndividualesObjectivesIndexComponent } from './pages/IndividualesObjectives/individuales-objectives-index/individuales-objectives-index.component';
 
 // ESTAS SONS LAS RUTAS DE ADMIN O GENERALES DE TODO EL PROYECTO, QUE YA CON SE MANEJAN CON PERMISOS POR SU ROL ESPECIFICO
 const routes: Routes = [
@@ -101,6 +102,10 @@ const routes: Routes = [
       },
       {
         path: "objetivos_individuales",
+        component: Pages.IndividualesObjectivesIndexComponent,
+      },
+      {
+        path: "objetivos_individuales_list",
         component: Pages.IndividualesObjectivesListComponent,
       },
       {

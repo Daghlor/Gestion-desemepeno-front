@@ -41,6 +41,7 @@ import { InformesChart2Component } from './informes/informes-chart2/informes-cha
 import { InformesChart3Component } from './informes/informes-chart3/informes-chart3.component';
 import { InformesChart4Component } from './informes/informes-chart4/informes-chart4.component';
 import { UserHierarchyComponent } from './users/user-hierarchy/user-hierarchy.component';
+import { IndividualesObjectivesIndexComponent } from './IndividualesObjectives/individuales-objectives-index/individuales-objectives-index.component';
 
 // AQUI SE IMPORTAN LOS COMPONENTES DE TODOS LAS VISTAS DEL SISTEMA Y SE EXPORTAN
 export const AdminComponents: any[] = [
@@ -88,7 +89,8 @@ export const AdminPages: any[] = [
     InformesChart2Component,
     InformesChart3Component,
   InformesChart4Component,
-    UserHierarchyComponent,
+  UserHierarchyComponent,
+    IndividualesObjectivesIndexComponent,
 ];
 
 export * from './performancePlans/performance-plans-list/performance-plans-list.component';
@@ -132,6 +134,7 @@ export * from '../pages/informes/informes-chart2/informes-chart2.component';
 export * from '../pages/informes/informes-chart3/informes-chart3.component';
 export * from '../pages/informes/informes-chart4/informes-chart4.component';
 export * from '../pages/users/user-hierarchy/user-hierarchy.component';
+export * from '../pages/IndividualesObjectives/individuales-objectives-index/individuales-objectives-index.component';
 
 // Copyright (c) Engagement
 // https://www.engagement.com.co/

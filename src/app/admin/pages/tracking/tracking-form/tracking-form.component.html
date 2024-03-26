@@ -31,6 +31,8 @@
         </mat-form-field>
     </mat-grid-tile>
 </mat-grid-list>
+
+<p *ngIf="!hasApprovedObjectives()">No hay objetivos aprobados.</p>
 <mat-accordion>
   <ng-container *ngFor="let item of listObjetives">
     <mat-expansion-panel *ngIf="item.state === 'Aprobado'">
