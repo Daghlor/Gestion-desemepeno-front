@@ -66,7 +66,6 @@ export class LocalService {
 		return Number(value);
 	}
 
-
 	private encrypt(txt: string): string {
 		return CryptoJS.AES.encrypt(txt, this.key).toString();
 	}

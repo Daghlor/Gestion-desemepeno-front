@@ -1,5 +1,5 @@
 <!-- HTML DE LA VISTA LISTA DE OBJETIVOS INDIVIDUALES -->
-
+<div class="content-v2">
 
 <div class="buttonsForms right">
     <a mat-raised-button class="buttons" (click)="redirectForm('admin/objetivos_individuales/form')">
@@ -45,13 +45,13 @@
         <mat-grid-tile [colspan]="1">
           <mat-form-field appearance="outline">
             <mat-label>Objetivo Individual</mat-label>
-            <input matInput [(ngModel)]="item.title" autocomplete="off" type="text" readonly>
+            <input matInput [(ngModel)]="item.title" autocomplete="off" type="text">
           </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="1">
             <mat-form-field appearance="outline">
               <mat-label>Peso %</mat-label>
-              <input matInput [(ngModel)]="item.weight" autocomplete="off" type="text" readonly>
+              <input matInput [(ngModel)]="item.weight" autocomplete="off" type="text">
             </mat-form-field>
         </mat-grid-tile>
       </mat-grid-list>
@@ -59,13 +59,34 @@
         <mat-grid-tile [colspan]="1">
           <mat-form-field appearance="outline" style="width: 98%;">
             <mat-label>Meta</mat-label>
-            <textarea matInput [(ngModel)]="item.objetive" name="mensaje" cols="10" rows="5" readonly></textarea>
+            <textarea matInput [(ngModel)]="item.objetive" name="mensaje" cols="10" rows="5"></textarea>
           </mat-form-field>
         </mat-grid-tile>
       </mat-grid-list>
+      <mat-grid-list cols="3" rowHeight="100px">
+        <mat-grid-tile [colspan]="1">
+          <mat-form-field appearance="outline">
+            <mat-label>Fecha de Inicio</mat-label>
+            <input matInput [(ngModel)]="item.start_date" autocomplete="off" type="date">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1">
+          <mat-form-field appearance="outline">
+            <mat-label>Fecha de Cierre</mat-label>
+            <input matInput [(ngModel)]="item.end_date" autocomplete="off" type="date">
+          </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
+      <!-- Botón para guardar cambios -->
+      <div class="right">
+        <button mat-raised-button class="buttons" (click)="updateObjective(item)">
+          <mat-icon style="margin-right: 10px;">save</mat-icon>Guardar Cambios
+        </button>
+      </div>
     </mat-expansion-panel>
   </mat-accordion>
 
+</div>
 <!-- Copyright (c) Engagement
 https://www.engagement.com.co/
 Año: 2023

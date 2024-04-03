@@ -59,6 +59,27 @@ export class IndividualesObjectivesListComponent implements OnInit {
     this.snack.redirect(url);
   }
 
+  async updatePoints() {
+    this.points = JSON.parse(this.Local.findDataLocal('points'));
+  }
+
+  updateObjective(item: any) {
+    const body = {
+      title: item.title,
+      weight: item.weight,
+      objetive: item.objetive,
+      start_date: item.start_date,
+      end_date: item.end_date
+    };
+
+    this.individualAPI.Update(item.unique_id, body).then((res: any) => {
+      this.snack.viewsnack(res.data, 'success');
+      // Puedes actualizar la lista después de la actualización si es necesario
+      // this.findData();
+    }).catch((err: any) => {
+      this.snack.viewsnack(err.message, 'error');
+    });
+  }
 
   // FUNCION QUE ELIMINA LOS OBJETIVOS INDIVIDUALES
   delete(index: number){

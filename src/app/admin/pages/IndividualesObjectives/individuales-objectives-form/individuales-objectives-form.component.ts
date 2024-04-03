@@ -21,6 +21,9 @@ export class IndividualesObjectivesFormComponent implements OnInit {
   listStrategics: any = [];
   points: number = 0;
 
+  startDate: Date = new Date();
+endDate: Date = new Date();
+
   constructor(
     // SE DEFINE VARIBLAES CON SERVICIOS ASIGNADOS
     private authApi: AuthService,
@@ -45,6 +48,11 @@ export class IndividualesObjectivesFormComponent implements OnInit {
   changeStrategics(){
     this.plans_id = this.listStrategics.find((data: any) => data.id === this.strategic_id).plans_id;
   }
+
+  formatDate(date: Date): string {
+    const isoString = date.toISOString(); // Obtener la fecha en formato ISO
+    return isoString.substring(0, 10); // Obtener solo la parte de la fecha (YYYY-MM-DD)
+}
 
   // FUNCION QUE VERIFICA LOS CAMPOS Y GUARDA EL OBJETIVO INDIVIDUAL
   async saveData() {
@@ -75,6 +83,8 @@ export class IndividualesObjectivesFormComponent implements OnInit {
       weight: this.weight,
       objetive: this.objetive,
       plans_id: this.plans_id,
+      start_date: this.formatDate(this.startDate), // Formatear la fecha de inicio
+      end_date: this.formatDate(this.endDate),
     }
 
     this.individualAPI.Create(data).then((res: any) => {

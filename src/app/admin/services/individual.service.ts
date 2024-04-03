@@ -95,6 +95,17 @@ export class IndividualService {
     })
   }
 
+  Update(uuid: string, body: any) {
+    this.token = this.Local.findDataLocal('token');
+    return api.put(`/individuals/Update/${uuid}`, body,{
+      headers: {Authorization: "Bearer " + this.token}
+    })
+    .then((res) => res.data)
+      .catch((err) => {
+      throw err.response
+    })
+  }
+
   GetAllStates() {
     this.token = this.Local.findDataLocal('token');
     return api.get(`/individuals/states`, {
