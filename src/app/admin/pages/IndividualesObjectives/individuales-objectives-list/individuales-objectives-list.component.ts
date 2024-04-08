@@ -19,6 +19,7 @@ export class IndividualesObjectivesListComponent implements OnInit {
   pageSizeOptions: number[] = [10, 15, 20, 25, 50];
   listObjetives: any = [];
   points: number = 0;
+  unique_id?: string;
 
   constructor(
     // SE DEFINE VARIABLES CON SERVICIOS ASIGNADOS
@@ -31,6 +32,8 @@ export class IndividualesObjectivesListComponent implements OnInit {
   ngOnInit(): void {
     this.points = JSON.parse(this.Local.findDataLocal('points'));
     this.findData();
+    const userInfo = JSON.parse(this.Local.findDataLocal('info_user'));
+    this.unique_id = userInfo.unique_id;
   }
 
   // FUNCION QUE BUSCA TODOS LOS OBJETIVOS INDIVIDUALES Y LOS PONE EN UNA LISTA ORGANIZADA
@@ -88,6 +91,14 @@ export class IndividualesObjectivesListComponent implements OnInit {
       this.findData();
     })
   }
+
+  routers(url: string) {
+        this.router.navigateByUrl('/admin' + url);
+    }
+
+  goToTrackinsg(): void {
+        this.router.navigateByUrl('admin/mis_seguimientos/' + this.unique_id);
+    }
 }
 
 // Copyright (c) Engagement

@@ -119,7 +119,15 @@ export class MyTrackingsComponent implements OnInit {
       });
     }
   });
-}
+  }
+
+  redirectForm(url: string){
+    this.snack.redirect(url);
+  }
+
+  goToTrackinsg(): void {
+        this.router.navigateByUrl('admin/mis_seguimientos/' + this.unique_id);
+    }
 }
 
 // Copyright (c) Engagement

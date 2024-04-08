@@ -2,17 +2,26 @@
 <div class="content-v2">
 
 <div class="buttonsForms right">
-    <a mat-raised-button class="buttons" (click)="redirectForm('admin/objetivos_individuales/form')">
-      <mat-icon  style="margin-right: 10px;">add</mat-icon>Agregar Objetivo
-    </a>
-
-    <a mat-raised-button class="buttons" (click)="redirectForm('admin/objetivos_individuales/feeback_actions')" >
-      <mat-icon style="margin-right: 10px;">add</mat-icon>Agregar Acciones de Retroalimentación
-    </a>
-
-    <a mat-raised-button class="buttons" (click)="redirectForm('admin/objetivos_individuales/training_actions')">
-      <mat-icon style="margin-right: 10px;">add</mat-icon>Agregar Acciones de Formación
-    </a>
+  <a mat-raised-button class="buttons" (click)="redirectForm('admin/objetivos_individuales')">
+    <mat-icon style="margin-right: 10px;">home</mat-icon>
+  </a>
+  <a mat-raised-button class="buttons" (click)="redirectForm('admin/objetivos_individuales_list')">
+    <mat-icon style="margin-right: 10px;">add</mat-icon>Editar mi plan
+  </a>
+  <a mat-raised-button class="buttons" (click)="goToTrackinsg()">
+    <mat-icon style="margin-right: 10px;">add</mat-icon>Mis seguimientos
+  </a>
+  <button mat-raised-button class="buttons" [matMenuTriggerFor]="menu">
+    <mat-icon style="margin-right: 10px;">add</mat-icon>
+    Creacion de plan
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="redirectForm('admin/objetivos_individuales/form')">Agregar Objetivo</button>
+    <button mat-menu-item (click)="redirectForm('admin/objetivos_individuales/feeback_actions')">Agregar Acciones de
+      Retroalimentación</button>
+    <button mat-menu-item (click)="redirectForm('admin/objetivos_individuales/training_actions')">Agregar Acciones de
+      Formación</button>
+  </mat-menu>
 </div>
 <br>
 <div class="right" style="font-size: 17px; font-weight: bold;">

@@ -36,9 +36,9 @@ export class IndividualService {
     })
   }
 
-  FindAllByHierarchy(id: string){
+  FindAllByHierarchy(id: string, body: any){
     this.token = this.Local.findDataLocal('token');
-    return api.get(`/individuals/FindAllByHierarchy/${id}`, {
+    return api.post(`/individuals/FindAllByHierarchy/${id}`, body,{
       headers: {Authorization: "Bearer " + this.token}
     })
     .then((res) => res.data)

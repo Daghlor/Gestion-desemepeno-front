@@ -1,0 +1,114 @@
+<!-- HTML DE LA VISTA FORMULARIO DE SEGUIMIENTOS -->
+<mat-grid-list cols="5" rowHeight="80px">
+  <mat-grid-tile [colspan]="1">
+    <mat-form-field appearance="outline">
+      <mat-label>Nombres</mat-label>
+      <input matInput [(ngModel)]="userData.name" autocomplete="off" type="text" readonly>
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="1">
+    <mat-form-field appearance="outline">
+      <mat-label>Apellidos</mat-label>
+      <input matInput [(ngModel)]="userData.lastName" autocomplete="off" type="text" readonly>
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="1">
+    <mat-form-field appearance="outline">
+      <mat-label>Indentificación</mat-label>
+      <input matInput [(ngModel)]="userData.identify" autocomplete="off" type="text" readonly>
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="1">
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput [(ngModel)]="userData.email" autocomplete="off" type="text" readonly>
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="1">
+    <mat-form-field appearance="outline">
+      <mat-label>Teléfono</mat-label>
+      <input matInput [(ngModel)]="userData.phone" autocomplete="off" type="text" readonly>
+    </mat-form-field>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<mat-accordion>
+  <ng-container *ngFor="let item of listObjetives">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title> {{item.weight}} - {{item.title}} </mat-panel-title>
+        <span class="points-badge">Total de Peso sin asignar: {{item.totalPointsAvailable}}</span>
+      </mat-expansion-panel-header>
+      <mat-grid-list cols="5" rowHeight="80px">
+        <mat-grid-tile [colspan]="1">
+          <mat-form-field appearance="outline">
+            <mat-label>Objetivo Estratégico</mat-label>
+            <input matInput [(ngModel)]="item.title_strategics" autocomplete="off" type="text" readonly>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1">
+          <mat-form-field appearance="outline">
+            <mat-label>Objetivo Individual</mat-label>
+            <input matInput [(ngModel)]="item.title" autocomplete="off" type="text" readonly>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1">
+          <mat-form-field appearance="outline">
+            <mat-label>Peso</mat-label>
+            <input matInput [(ngModel)]="item.weight" autocomplete="off" type="text" readonly>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1">
+          <mat-form-field appearance="outline">
+            <mat-label>Estado</mat-label>
+            <input matInput [(ngModel)]="item.state" autocomplete="off" type="text" readonly>
+          </mat-form-field>
+        </mat-grid-tile>
+
+
+        <!-- Añade un botón para actualizar el estado del objetivo individual -->
+        <mat-grid-tile [colspan]="1" class="custom-grid-tile">
+          <button mat-raised-button color="primary" class="custom-button" (click)="openStateDialog(item.unique_id)">
+            Actualizar Estado
+          </button>
+        </mat-grid-tile>
+
+
+
+      </mat-grid-list>
+      <mat-grid-list cols="1" rowHeight="150px">
+        <mat-grid-tile [colspan]="1">
+          <mat-form-field appearance="outline" style="width: 98%;">
+            <mat-label>Meta</mat-label>
+            <textarea matInput [(ngModel)]="item.objetive" name="mensaje" cols="10" rows="5"></textarea>
+          </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
+      <div class="buttonsForms right">
+        <a mat-raised-button class="buttons" (click)="openModalTracing(item)">
+          <mat-icon style="margin-right: 10px;">add</mat-icon>Agregar Seguimiento
+        </a>
+      </div><br>
+      <mat-grid-list cols="1" rowHeight="200px">
+        <table style="font-size:16px;">
+          <thead>
+            <tr>
+              <th>Seguimiento del Jefe</th>
+              <th>Seguimiento del Colaborador</th>
+              <th>Peso %</th>
+              <th>Fecha</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let tracing of item.tracing">
+              <td style="text-align: justify;">{{tracing.comment}}</td>
+              <td style="text-align: justify;">{{tracing.comment_employee}}</td>
+              <td style="text-align: center;">{{tracing.weight}}</td>
+              <td style="text-align:center; width: 210px;">{{tracing.created_at}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </mat-grid-list>
+    </mat-expansion-panel>
+  </ng-container>
+</mat-accordion>

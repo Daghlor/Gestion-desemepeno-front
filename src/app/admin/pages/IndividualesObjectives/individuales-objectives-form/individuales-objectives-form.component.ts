@@ -94,6 +94,11 @@ endDate: Date = new Date();
     });
   }
 
+  redirectForm(url: string){
+    this.snack.redirect(url);
+  }
+
+
 }
 
 // Copyright (c) Engagement

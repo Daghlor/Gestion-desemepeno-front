@@ -102,6 +102,7 @@ export class IndividualesObjectivesAllComponent implements OnInit {
   }
 
   findData() {
+  console.log('Buscando datos...');
   if (!this.currentUser || !this.currentUser.id) {
     console.error('No se pudo obtener el ID del usuario actual.');
     return;
@@ -109,15 +110,29 @@ export class IndividualesObjectivesAllComponent implements OnInit {
 
   const userId = this.currentUser.id;
 
-  this.individualAPI.FindAllByHierarchy(userId).then((res: any) => {
+  const paginate = {
+    paginate: this.pageSize,
+    page: this.actualPage,
+    column: this.orderColumn || 'title',
+    direction: this.orderType || 'asc',
+    search: {
+      nameUser: this.name,
+      user_id: null,
+      company_id: null,
+      state_id: this.selectedState,  // Usar selectedState en lugar de state
+      areas_id: null
+    }
+  };
+
+  this.individualAPI.FindAllByHierarchy(userId, paginate).then((res: any) => {
     // Verificar si hay datos en la respuesta
-    if (res && res.data && res.data.objetives && res.data.objetives.data) {
+    if (res && res.data && res.data.objetives) {
       // Asignar los datos de los objetivos individuales al origen de datos de la tabla
       // Agregar iconos a cada registro de objetivos individuales
-      res.data.objetives.data.forEach((objective: any) => {
-        objective.icons = ['delete', 'done'];
+      res.data.objetives.forEach((objective: any) => {
+        objective.icons = ['done'];
       });
-      this.dataSource = new MatTableDataSource(res.data.objetives.data);
+      this.dataSource = new MatTableDataSource(res.data.objetives);
       this.length = res.data.total;
     } else {
       console.error('No se encontraron datos de objetivos individuales en la respuesta.');
@@ -127,6 +142,8 @@ export class IndividualesObjectivesAllComponent implements OnInit {
     // Manejar errores
   });
 }
+
+
 
 
 
@@ -193,7 +210,8 @@ export class IndividualesObjectivesAllComponent implements OnInit {
     this.findData();
   }
 
-  changePaginator(info:any) {
+  changePaginator(info: any) {
+    console.log('Cambio de página detectado:', info);
     this.actualPage = info.pageIndex + 1;
     this.pageSize = info.pageSize;
     this.findData();

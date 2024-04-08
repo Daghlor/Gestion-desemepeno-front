@@ -28,6 +28,11 @@ table {
   max-height: calc(100vh - 130px); /* Ajusta la altura máxima según tu diseño */
 }
 
+.buttons:not(:last-child) {
+  margin-right: 10px; /* Espaciado horizontal entre botones, excepto el último */
+}
+
+
 // Copyright (c) Engagement
 // https://www.engagement.com.co/
 // Año: 2023

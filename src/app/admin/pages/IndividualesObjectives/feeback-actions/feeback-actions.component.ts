@@ -97,6 +97,10 @@ export class FeebackActionsComponent implements OnInit {
     this.findData();
   }
 
+   redirectForm(url: string){
+    this.snack.redirect(url);
+  }
+
 // LOGICA DE LOS ICONOS PARA CADA CASO
  iconsFunction(event: any) {
   if (event.icon === 'delete') {

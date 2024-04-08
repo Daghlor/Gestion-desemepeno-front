@@ -1,5 +1,5 @@
 <!-- HTML DE LA VISTA FORMULARIO DE SEGUIMIENTOS -->
-<mat-grid-list cols="5" rowHeight="80px">
+<!-- <mat-grid-list cols="5" rowHeight="80px">
   <mat-grid-tile [colspan]="1">
     <mat-form-field appearance="outline">
       <mat-label>Nombres</mat-label>
@@ -30,7 +30,30 @@
       <input matInput [(ngModel)]="userData.phone" autocomplete="off" type="text" readonly>
     </mat-form-field>
   </mat-grid-tile>
-</mat-grid-list>
+</mat-grid-list> -->
+
+<div class="buttonsForms right">
+  <a mat-raised-button class="buttons" (click)="redirectForm('admin/objetivos_individuales')">
+    <mat-icon style="margin-right: 10px;">home</mat-icon>
+  </a>
+  <a mat-raised-button class="buttons" (click)="redirectForm('admin/objetivos_individuales_list')">
+    <mat-icon style="margin-right: 10px;">add</mat-icon>Editar mi plan
+  </a>
+  <a mat-raised-button class="buttons" (click)="goToTrackinsg()">
+    <mat-icon style="margin-right: 10px;">add</mat-icon>Mis seguimientos
+  </a>
+  <button mat-raised-button class="buttons" [matMenuTriggerFor]="menu">
+    <mat-icon style="margin-right: 10px;">add</mat-icon>
+    Creacion de plan
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="redirectForm('admin/objetivos_individuales/form')">Agregar Objetivo</button>
+    <button mat-menu-item (click)="redirectForm('admin/objetivos_individuales/feeback_actions')">Agregar Acciones de
+      Retroalimentación</button>
+    <button mat-menu-item (click)="redirectForm('admin/objetivos_individuales/training_actions')">Agregar Acciones de
+      Formación</button>
+  </mat-menu>
+</div>
 
 <p *ngIf="!hasApprovedObjectives()">No hay objetivos aprobados.</p>
 <mat-accordion>

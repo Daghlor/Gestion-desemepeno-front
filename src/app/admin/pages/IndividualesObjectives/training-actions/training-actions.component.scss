@@ -1,0 +1,10 @@
+// ESTILOS DE LA LISTA DE OBJETIVOS INDIVIDUALES
+.buttons:not(:last-child) {
+  margin-right: 10px; /* Espaciado horizontal entre botones, excepto el último */
+}
+
+:host {
+  display: block;
+  overflow-y: auto;
+  max-height: calc(100vh - 130px); /* Ajusta la altura máxima según tu diseño */
+}

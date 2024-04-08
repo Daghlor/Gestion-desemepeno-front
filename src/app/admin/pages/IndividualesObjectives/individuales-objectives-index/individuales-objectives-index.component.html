@@ -1,26 +1,107 @@
 <div class="buttonsForms right">
   <a mat-raised-button class="buttons" (click)="redirectForm('admin/objetivos_individuales_list')">
-    <mat-icon style="margin-right: 10px;">add</mat-icon>Mi Plan
+    <mat-icon style="margin-right: 10px;">add</mat-icon>Editar mi plan
   </a>
-  <a mat-raised-button class="buttons" (click)="redirectForm('admin/objetivos_individuales/form')">
-    <mat-icon style="margin-right: 10px;">add</mat-icon>Agregar Objetivo
+  <a mat-raised-button class="buttons" (click)="goToTrackinsg()">
+    <mat-icon style="margin-right: 10px;">add</mat-icon>Mis seguimientos
   </a>
-
-  <a mat-raised-button class="buttons" (click)="redirectForm('admin/objetivos_individuales/feeback_actions')">
-    <mat-icon style="margin-right: 10px;">add</mat-icon>Agregar Acciones de Retroalimentación
-  </a>
-
-  <a mat-raised-button class="buttons" (click)="redirectForm('admin/objetivos_individuales/training_actions')">
-    <mat-icon style="margin-right: 10px;">add</mat-icon>Agregar Acciones de Formación
-  </a>
+  <button mat-raised-button class="buttons" [matMenuTriggerFor]="menu">
+    <mat-icon style="margin-right: 10px;">add</mat-icon>
+    Creacion de plan
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="redirectForm('admin/objetivos_individuales/form')">Agregar Objetivo</button>
+    <button mat-menu-item (click)="redirectForm('admin/objetivos_individuales/feeback_actions')">Agregar Acciones de
+      Retroalimentación</button>
+    <button mat-menu-item (click)="redirectForm('admin/objetivos_individuales/training_actions')">Agregar Acciones de
+      Formación</button>
+  </mat-menu>
 </div>
+
+
+
 <br>
 
 <div>
-  <h1>Mis objetivos individuales</h1>
+  <h1>Mi plan de desempeño</h1>
   <p>Entendemos que el corazón de una organización palpita al ritmo del desempeño individual. Aquí es donde tú, como
     arquitecto de tu crecimiento, puedes definir y refinar tus objetivos personales que resonarán con la misión de
     nuestra
     empresa.
   </p>
+</div>
+
+<div class="scrollable-section">
+    <div *ngIf="individualsData.length > 0">
+      <!-- Tabla de Objetivos Individuales -->
+      <h2>Objetivos Individuales</h2>
+      <table id="objetivos-table">
+        <thead>
+          <tr>
+            <th>Objetivo Estratégico</th>
+            <th>Objetivo Individual</th>
+            <th>Meta</th>
+            <th>Peso %</th>
+            <th>Estado</th>
+            <th>Inicio</th>
+            <th>Cierre</th>
+            <!-- Otras columnas si es necesario -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of individualsData">
+            <td>{{ data.title_strategics }}</td>
+            <td>{{ data.title }}</td>
+            <td>{{ data.objetive }}</td>
+            <td>{{ data.weight }}</td>
+            <td>{{ data.title_state }}</td>
+            <td>{{ data.start_date }}</td>
+            <td>{{ data.end_date }}</td>
+            <!-- Otras celdas si es necesario -->
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf="feedbackData.length > 0">
+      <!-- Tabla de Acciones de Retroalimentación -->
+      <h2>Acciones de Retroalimentación</h2>
+      <table id="retroalimentacion-table">
+        <thead>
+          <tr>
+            <th>Descripción</th>
+            <!-- Otras columnas si es necesario -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of feedbackData">
+            <td>{{ data.title }}</td>
+            <!-- Otras celdas si es necesario -->
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf="trainingData.length > 0">
+      <!-- Tabla de Acciones de Formación -->
+      <h2>Acciones de Formación</h2>
+      <table id="formacion-table">
+        <thead>
+          <tr>
+            <th>Descripción</th>
+            <!-- Otras columnas si es necesario -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of trainingData">
+            <td>{{ data.title }}</td>
+            <!-- Otras celdas si es necesario -->
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf="individualsData.length === 0 && feedbackData.length === 0 && trainingData.length === 0">
+      No se encontraron datos.
+    </div>
 </div>

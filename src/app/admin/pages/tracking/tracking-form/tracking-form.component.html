@@ -32,15 +32,14 @@
     </mat-grid-tile>
 </mat-grid-list>
 
-<p *ngIf="!hasApprovedObjectives()">No hay objetivos aprobados.</p>
 <mat-accordion>
   <ng-container *ngFor="let item of listObjetives">
-    <mat-expansion-panel *ngIf="item.state === 'Aprobado'">
+    <mat-expansion-panel>
         <mat-expansion-panel-header>
             <mat-panel-title> {{item.weight}} - {{item.title}}  </mat-panel-title>
             <span class="points-badge">Total de Peso sin asignar: {{item.totalPointsAvailable}}</span>
         </mat-expansion-panel-header>
-        <mat-grid-list cols="3" rowHeight="80px">
+        <mat-grid-list cols="5" rowHeight="80px">
           <mat-grid-tile [colspan]="1">
             <mat-form-field appearance="outline">
               <mat-label>Objetivo Estratégico</mat-label>
@@ -59,6 +58,31 @@
                   <input matInput [(ngModel)]="item.weight" autocomplete="off" type="text" readonly>
                 </mat-form-field>
             </mat-grid-tile>
+            <mat-grid-tile [colspan]="1">
+              <mat-form-field appearance="outline">
+                <mat-label>Estado</mat-label>
+                <input matInput [(ngModel)]="item.state" autocomplete="off" type="text" readonly>
+              </mat-form-field>
+            </mat-grid-tile>
+
+
+            <!-- Añade un botón para actualizar el estado del objetivo individual -->
+            <mat-grid-tile [colspan]="1" class="custom-grid-tile">
+              <button mat-raised-button color="primary" class="custom-button" (click)="openStateDialog(item.unique_id)">
+                Actualizar Estado
+              </button>
+            </mat-grid-tile>
+
+
+
+        </mat-grid-list>
+        <mat-grid-list cols="1" rowHeight="150px">
+          <mat-grid-tile [colspan]="1">
+            <mat-form-field appearance="outline" style="width: 98%;">
+              <mat-label>Meta</mat-label>
+              <textarea matInput [(ngModel)]="item.objetive" name="mensaje" cols="10" rows="5"></textarea>
+            </mat-form-field>
+          </mat-grid-tile>
         </mat-grid-list>
         <div class="buttonsForms right">
             <a mat-raised-button class="buttons" (click)="openModalTracing(item)">

@@ -11,7 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { libraries } from 'src/assets/library';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { NgChartsConfiguration, NgChartsModule } from 'ng2-charts';
-import { FullCalendarModule } from '@fullcalendar/angular'; // import the FullCalendar module!
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 
 

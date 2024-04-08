@@ -121,6 +121,14 @@ const routes: Routes = [
         component: Pages.TrackingTableComponent,
       },
       {
+        path: "mis_colaboradores/form/:uuid",
+        component: Pages.MyCollaboratorsComponent,
+      },
+      {
+        path: "mis_colaboradores",
+        component: Pages.MyCollaboratorsIndexComponent,
+      },
+      {
         path: "seguimiento/form/:uuid",
         component: Pages.TrackingFormComponent,
       },

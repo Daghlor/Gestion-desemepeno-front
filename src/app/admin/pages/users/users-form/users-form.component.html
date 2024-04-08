@@ -92,7 +92,7 @@
     <mat-grid-tile [colspan]="1">
         <mat-form-field appearance="outline">
             <mat-label>Asignar Roles</mat-label>
-            <mat-select [(ngModel)]="role_id" [value]="role_id" (selectionChange)="addRoles()">
+            <mat-select [(ngModel)]="role_id" [value]="role_id" (selectionChange)="addRoles()" disabled>
                 <mat-option *ngFor="let options of listRoles" [value]="options">{{options.description}}</mat-option>
             </mat-select>
         </mat-form-field>

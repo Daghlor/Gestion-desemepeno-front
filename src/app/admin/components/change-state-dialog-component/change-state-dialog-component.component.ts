@@ -27,12 +27,11 @@ constructor(
 }
 
   ngOnInit(): void {
-  this.currentState = this.data.currentState;
   if (!Array.isArray(this.states)) {
     this.states = []; // Inicializa como un array vacío si no lo es
   }
-    this.objectiveId = this.data.objectiveId;
-  console.log('Unique ID del objetivo individual:', this.objectiveId); // Obtén el ID del objetivo desde los datos
+  this.objectiveId = this.data.objectiveId;
+  this.currentState = this.data.currentState; // Obtén el ID del objetivo desde los datos
 }
 
 // FUNCION PARA CARGAR LOS ESTADOS REGISTRADOS DE TODOS LOS OBJETIVOS INDIVIDUALES

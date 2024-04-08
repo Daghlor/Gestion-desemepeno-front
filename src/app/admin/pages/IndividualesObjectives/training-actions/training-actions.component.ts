@@ -5,6 +5,8 @@ import { TrainingActionsService } from 'src/app/admin/services/training-actions.
 import { SnackbarService } from 'src/app/config/snackbar.service';
 import { ConfirmModalComponent } from '../..';
 import { LocalService } from 'src/app/config/local.service';
+import { MatMenuModule } from '@angular/material/menu';
+
 
 // ESTA ES LA LOGICA DEL COMPONENTE DE ACCIONES DE FORMACION
 @Component({
@@ -29,7 +31,7 @@ export class TrainingActionsComponent implements OnInit {
   dataSource: any = new MatTableDataSource();
   columns = [{
     columnDef: 'titles',
-    header: 'Descripcion',
+    header: 'Descripción',
     sort: true,
     type: 'text',
     cell: (element: any) => `${element.title}`,
@@ -75,6 +77,10 @@ export class TrainingActionsComponent implements OnInit {
       this.dataSource = new MatTableDataSource(res.data.titles);
       this.length = res.data.total;
     })
+  }
+
+  redirectForm(url: string){
+    this.snack.redirect(url);
   }
 
   changeSort(item: any) {

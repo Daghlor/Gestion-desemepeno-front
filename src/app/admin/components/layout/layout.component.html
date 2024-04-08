@@ -84,22 +84,22 @@
                 <mat-icon class="itemsIcon">analytics</mat-icon>
                 <a class="itemsTitle">Mis Objetivos Estratégicos</a>
             </div>
-            <div class="items" (click)="routers('/objetivos_individuales/all')" *ngIf="validatePermissions('list_objectives_individuals')">
+            <div class="items" (click)="routers('/mis_colaboradores')" *ngIf="validatePermissions('list_objectives_individuals')">
                 <mat-icon class="itemsIcon">work</mat-icon>
                 <a class="itemsTitle">Mis Colaboradores</a>
             </div>
             <div class="items" (click)="routers('/objetivos_individuales')" *ngIf="validatePermissions('list_my_objectives_individuals')">
                 <mat-icon class="itemsIcon">work</mat-icon>
-                <a class="itemsTitle">Mis Objetivos Individuales</a>
+                <a class="itemsTitle">Mi plan de desempeño</a>
             </div>
-            <div class="items" (click)="routers('/seguimiento')" *ngIf="validatePermissions('list_tracings')">
+            <!-- <div class="items" (click)="routers('/seguimiento')" *ngIf="validatePermissions('list_tracings')">
                 <mat-icon class="itemsIcon">vertical_split</mat-icon>
                 <a class="itemsTitle">Seguimientos</a>
-            </div>
-            <div class="items" (click)="goToTrackinsg()" *ngIf="validatePermissions('List_my_tracings')">
+            </div> -->
+            <!-- <div class="items" (click)="goToTrackinsg()" *ngIf="validatePermissions('List_my_tracings')">
               <mat-icon class="itemsIcon">vertical_split</mat-icon>
               <a class="itemsTitle">Mis Seguimientos</a>
-            </div>
+            </div> -->
             <div class="items" (click)="routers('/informes')" *ngIf="validatePermissions('View reports')">
               <mat-icon class="itemsIcon">insert_chart</mat-icon>
               <a class="itemsTitle">Informes</a>

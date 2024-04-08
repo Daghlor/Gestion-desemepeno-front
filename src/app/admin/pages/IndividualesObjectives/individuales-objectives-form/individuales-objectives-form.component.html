@@ -1,5 +1,22 @@
 <!-- HTML DE LA VISTA FORMULARIOS DE OBJETIVOS INDIVIDUALES -->
+<div class="buttonsForms right">
+  <a mat-raised-button class="buttons" (click)="redirectForm('admin/objetivos_individuales')">
+    <mat-icon style="margin-right: 10px;">home</mat-icon>
+  </a>
+  <a mat-raised-button class="buttons" (click)="redirectForm('admin/objetivos_individuales/form')">
+    <mat-icon style="margin-right: 10px;">add</mat-icon>Agregar Objetivo
+  </a>
+
+  <a mat-raised-button class="buttons" (click)="redirectForm('admin/objetivos_individuales/feeback_actions')">
+    <mat-icon style="margin-right: 10px;">add</mat-icon>Agregar Acciones de Retroalimentación
+  </a>
+
+  <a mat-raised-button class="buttons" (click)="redirectForm('admin/objetivos_individuales/training_actions')">
+    <mat-icon style="margin-right: 10px;">add</mat-icon>Agregar Acciones de Formación
+  </a>
+</div>
 <br /><br />
+
 <mat-grid-list cols="3" rowHeight="80px">
     <mat-grid-tile [colspan]="1">
         <mat-form-field appearance="outline">

@@ -8,13 +8,12 @@ import * as moment from 'moment';
 import { IndividualService } from 'src/app/admin/services/individual.service';
 import { ChangeStateDialogComponentComponent } from '../..';
 
-// ESTE ES EL .TS DONDE ESTA LA PARTE LOGICA DE LA VISTA FORMULARIO DE SEGUIMIENTO
 @Component({
-  selector: 'app-tracking-form',
-  templateUrl: './tracking-form.component.html',
-  styleUrls: ['./tracking-form.component.scss']
+  selector: 'app-my-collaborators',
+  templateUrl: './my-collaborators.component.html',
+  styleUrls: ['./my-collaborators.component.scss']
 })
-export class TrackingFormComponent implements OnInit {
+export class MyCollaboratorsComponent implements OnInit {
   // SE DEFINE VARIABLES LOCALES
   hasApprovedObjectives(): boolean {
     if (!this.listObjetives || this.listObjetives.length === 0) {
@@ -54,7 +53,7 @@ export class TrackingFormComponent implements OnInit {
     this.getAllStates();
   }
 
-  // FUNCION PARA BUSCAR UN SOLO SEGUIMIENTO
+   // FUNCION PARA BUSCAR UN SOLO SEGUIMIENTO
   findData(){
     this.listObjetives = [];
     this.trackingAPI.FindOne(this.unique_id || '').then((res:any)=>{
@@ -114,9 +113,7 @@ export class TrackingFormComponent implements OnInit {
   });
   }
 
-
-
- // Ajusta la función openStateDialog para pasar el unique_id del objetivo individual
+  // Ajusta la función openStateDialog para pasar el unique_id del objetivo individual
 openStateDialog(uniqueId: string): void {
   // Obtener el estado actual del objetivo individual usando el servicio individualAPI.FindOne
   this.individualAPI.FindOne(uniqueId).then((individualData: any) => {
@@ -139,9 +136,7 @@ openStateDialog(uniqueId: string): void {
   });
 }
 
-
-
-  updateState(objectiveId: string, newStateId: number): void {
+ updateState(objectiveId: string, newStateId: number): void {
     // Crear el cuerpo de la solicitud con el nuevo estado
     const body = {
       state_id: newStateId
@@ -160,21 +155,9 @@ openStateDialog(uniqueId: string): void {
         // Manejar errores si es necesario
         console.error('Error al actualizar el estado:', err);
       });
-  }
+ }
 
-
-
-
-
-
-
-
-
-
-
-
-
-  selectedStateChange() {
+ selectedStateChange() {
   this.findData(); // Llama a la función para filtrar los datos cuando se cambia el estado seleccionado
 }
 
@@ -185,10 +168,5 @@ openStateDialog(uniqueId: string): void {
   goToTrackinsg(): void {
         this.router.navigateByUrl('admin/mis_seguimientos/' + this.unique_id);
     }
-}
 
-// Copyright (c) Engagement
-// https://www.engagement.com.co/
-// Año: 2023
-// Sistema: Gestion de desempeño (GDD)
-// Programador: David Tuta
+}

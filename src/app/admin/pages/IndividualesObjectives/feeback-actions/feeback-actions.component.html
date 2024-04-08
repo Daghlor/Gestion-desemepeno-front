@@ -1,4 +1,23 @@
 <!--FORMULARIO PARA AGREGAR ACCIONES DE RETROALIMENTACION -->
+
+<div class="content-v2">
+<div class="buttonsForms right">
+  <a mat-raised-button class="buttons" (click)="redirectForm('admin/objetivos_individuales')">
+    <mat-icon style="margin-right: 10px;">home</mat-icon>
+  </a>
+  <a mat-raised-button class="buttons" (click)="redirectForm('admin/objetivos_individuales/form')">
+    <mat-icon style="margin-right: 10px;">add</mat-icon>Agregar Objetivo
+  </a>
+
+  <a mat-raised-button class="buttons" (click)="redirectForm('admin/objetivos_individuales/feeback_actions')">
+    <mat-icon style="margin-right: 10px;">add</mat-icon>Agregar Acciones de Retroalimentación
+  </a>
+
+  <a mat-raised-button class="buttons" (click)="redirectForm('admin/objetivos_individuales/training_actions')">
+    <mat-icon style="margin-right: 10px;">add</mat-icon>Agregar Acciones de Formación
+  </a>
+</div>
+
 <div>
   <h1>Acciones de retroalimentación</h1>
   <p>La excelencia se forja con múltiples perspectivas, te animamos a ir más allá de los límites a buscar activamente
@@ -24,14 +43,14 @@
 </div>
 
 <div>
-  <h2>Tus acciones de retroalimentación creadas</h2>
+  <h2>Tus acciones de retroalimentación creadas.</h2>
 </div>
 
 <app-my-table *ngIf="dataSource" [loading]="loading" [dataSource]="dataSource" [Columns]="columns" [length]="length"
   [pageSize]="pageSize" [PageSizeOptions]="pageSizeOptions" [paginator]="paginator" (eventIcons)="iconsFunction($event)"
   (changeSort)="changeSort($event)" (changePaginator)="changePaginator($event)">
 </app-my-table>
-
+</div>
 <!-- Copyright (c) Engagement
 https://www.engagement.com.co/
 Año: 2023

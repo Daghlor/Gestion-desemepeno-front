@@ -1,3 +1,66 @@
 .buttons:not(:last-child) {
   margin-right: 10px; /* Espaciado horizontal entre botones, excepto el último */
 }
+
+// ESTILOS DE LA VISTA FORMULARIOS DE USUARIO
+.tableRoles {
+  border-collapse: collapse;
+}
+
+.TableRolesTitle {
+  padding: 10px;
+}
+
+/* TuComponente.component.css */
+
+/* Estilos generales para las tablas */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+/* Estilos específicos para cada tabla */
+#objetivos-table th {
+  background-color: #c0e6f4;
+}
+
+#retroalimentacion-table th {
+  background-color: #f5eac0;
+}
+
+#formacion-table th {
+  background-color: #d0f0c0;
+}
+
+body {
+  overflow: auto;
+}
+
+:host {
+  display: block;
+  overflow-y: auto;
+  max-height: calc(100vh - 130px); /* Ajusta la altura máxima según tu diseño */
+}
+
+/* Estilos para los botones dentro del menú desplegable */
+.mat-menu-content button {
+  width: 100%;
+  text-align: left;
+}
+
+/* Estilos al pasar el mouse sobre los botones */
+.mat-menu-content button:hover {
+  background-color: #e0e0e0; /* Cambia el color de fondo al pasar el mouse */
+}

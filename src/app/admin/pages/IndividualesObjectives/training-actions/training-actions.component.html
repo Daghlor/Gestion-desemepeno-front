@@ -1,4 +1,21 @@
 <!-- FORMULARIO PARA AGREGAR LAS ACCIONES DE FORMACION -->
+<div class="content-v2">
+<div class="buttonsForms right">
+  <a mat-raised-button class="buttons" (click)="redirectForm('admin/objetivos_individuales')">
+    <mat-icon style="margin-right: 10px;">home</mat-icon>
+  </a>
+  <a mat-raised-button class="buttons" (click)="redirectForm('admin/objetivos_individuales/form')">
+    <mat-icon style="margin-right: 10px;">add</mat-icon>Agregar Objetivo
+  </a>
+
+  <a mat-raised-button class="buttons" (click)="redirectForm('admin/objetivos_individuales/feeback_actions')">
+    <mat-icon style="margin-right: 10px;">add</mat-icon>Agregar Acciones de Retroalimentación
+  </a>
+
+  <a mat-raised-button class="buttons" (click)="redirectForm('admin/objetivos_individuales/training_actions')">
+    <mat-icon style="margin-right: 10px;">add</mat-icon>Agregar Acciones de Formación
+  </a>
+</div>
 <div>
   <h1>Acciones de formación</h1>
   <p>El aprendizaje es la base de tu crecimiento. Tienes la oportunidad de diseñar tu ruta de desarrollo profesional.
@@ -10,7 +27,7 @@
 
 <div>
   <mat-form-field appearance="outline">
-    <mat-label>Accion de Formacion</mat-label>
+    <mat-label>Acción de formación</mat-label>
     <input matInput [(ngModel)]="title" name="title" autocomplete="off" type="text">
   </mat-form-field>
 
@@ -22,13 +39,13 @@
 </div>
 
 <div>
-  <h2>Tus acciones de formación creadas</h2>
+  <h2>Tus acciones de formación creadas.</h2>
 </div>
 <app-my-table *ngIf="dataSource" [loading]="loading" [dataSource]="dataSource" [Columns]="columns" [length]="length"
   [pageSize]="pageSize" [PageSizeOptions]="pageSizeOptions" [paginator]="paginator" (eventIcons)="iconsFunction($event)"
   (changeSort)="changeSort($event)" (changePaginator)="changePaginator($event)">
 </app-my-table>
-
+</div>
 
 <!-- Copyright (c) Engagement
 https://www.engagement.com.co/
