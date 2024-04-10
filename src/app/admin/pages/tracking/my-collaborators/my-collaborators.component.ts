@@ -161,8 +161,26 @@ openStateDialog(uniqueId: string): void {
   this.findData(); // Llama a la función para filtrar los datos cuando se cambia el estado seleccionado
 }
 
-   redirectForm(url: string){
-    this.snack.redirect(url);
+  //  redirectForm(url: string){
+  //   this.snack.redirect(url);
+  // }
+
+  redirectForm(url: string) {
+    console.log('Redireccionando a la vista de colaboradores...');
+  // Verifica si user tiene un ID
+  if (this.userData && this.userData.id) {
+    // Llama al servicio FindAllByHierarchy con el ID del usuario
+    this.individualAPI.FindAllByHierarchy(this.userData.id, {}/*body si es necesario*/)
+      .then((result) => {
+        // Manejar el resultado si es necesario
+      })
+      .catch((error) => {
+        // Manejar el error si es necesario
+      });
+  } else {
+    // Maneja el caso en que user no tenga un ID
+    console.error('El usuario no tiene un ID definido.');
+  }
   }
 
   goToTrackinsg(): void {

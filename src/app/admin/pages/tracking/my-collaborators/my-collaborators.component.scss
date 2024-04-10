@@ -38,6 +38,10 @@ table {
   padding: 5px 10px; /* Ajuste del padding */
 }
 
+.buttons:not(:last-child) {
+  margin-right: 10px; /* Espaciado horizontal entre botones, excepto el último */
+}
+
 // Copyright (c) Engagement
 // https://www.engagement.com.co/
 // Año: 2023

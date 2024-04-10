@@ -19,6 +19,10 @@ export class TrainingActionsComponent implements OnInit {
   // SE DEFINE VARIABLES A UTILIZAR
   @ViewChild('titleInput') titleInput: any;
 
+  startDate: Date = new Date();
+  endDate: Date = new Date();
+
+  statedescription: string = '';
   title: string = '';
   loading: boolean = false;
   paginator: boolean = true;
@@ -29,19 +33,44 @@ export class TrainingActionsComponent implements OnInit {
   pageSize: number = 10;
   pageSizeOptions: number[] = [10, 15, 20, 25, 50];
   dataSource: any = new MatTableDataSource();
-  columns = [{
+  columns = [
+  {
     columnDef: 'titles',
     header: 'Descripción',
     sort: true,
     type: 'text',
     cell: (element: any) => `${element.title}`,
-  },{
+  },
+  {
+    columnDef: 'startdate',
+    header: 'Fecha de inicio',
+    sort: true,
+    type: 'text',
+    cell: (element: any) => `${element.start_date}`,
+  },
+  {
+    columnDef: 'enddate',
+    header: 'Fecha de cierre',
+    sort: true,
+    type: 'text',
+    cell: (element: any) => `${element.end_date}`,
+    },
+  {
+    columnDef: 'statedescription',
+    header: 'Estado',
+    sort: true,
+    type: 'text',
+    cell: (element: any) => `${element.stateDescription}`,
+  },
+  {
     columnDef: 'icons',
     header: '',
-    sort: true, // No necesitas que se pueda ordenar por esta columna
+    sort: true,
     type: 'icons',
     cell: (element: any) => element.icons,
-  },];
+  },
+];
+
 
   // SE INYECTAN LOS SERVICIOS NECESARIOS
   constructor(
@@ -52,6 +81,8 @@ export class TrainingActionsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.startDate = new Date();
+    this.endDate = new Date();
     this.findData();
   }
 
@@ -66,15 +97,18 @@ export class TrainingActionsComponent implements OnInit {
       search: {
         user_id: userInfo.id,
         titles: this.title,
+        stateDescription: this.statedescription,
+        start_date: this.formatDate(this.startDate), // Agregar la fecha de inicio
+        end_date: this.formatDate(this.endDate),
       }
     };
 
     this.TrainingAPI.FindAll(paginate).then((res: any) => {
-      for (let i = 0; i < res.data.titles.length; i++){
-        res.data.titles[i].icons = ['delete']
+      for (let i = 0; i < res.data.trainings.length; i++){
+        res.data.trainings[i].icons = ['delete']
       }
 
-      this.dataSource = new MatTableDataSource(res.data.titles);
+      this.dataSource = new MatTableDataSource(res.data.trainings);
       this.length = res.data.total;
     })
   }
@@ -114,13 +148,20 @@ export class TrainingActionsComponent implements OnInit {
     }
   }
 
+  formatDate(date: Date): string {
+    const isoString = date.toISOString(); // Obtener la fecha en formato ISO
+    return isoString.substring(0, 10); // Obtener solo la parte de la fecha (YYYY-MM-DD)
+}
+
   async saveData() {
-    if (!this.title) {
-      return this.snack.viewsnack('Hace falta la descripcion', 'ERROR');
+    if (!this.title || !this.startDate || !this.endDate) {
+      return this.snack.viewsnack('Falta la descripción o las fechas', 'ERROR');
     }
 
     const data = {
-      title: this.title
+      title: this.title,
+      start_date: this.formatDate(this.startDate), // Formatear la fecha de inicio
+      end_date: this.formatDate(this.endDate), // Formatear la fecha de fin
     };
 
     this.TrainingAPI.Create(data).then((res: any) => {

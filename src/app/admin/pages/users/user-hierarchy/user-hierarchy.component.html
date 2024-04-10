@@ -3,53 +3,61 @@
 <br>
 
 <div class="scrollable-section">
-<div *ngIf="validatePermissions('list_permissions')">
-<div *ngIf="currentTab == 1" class="user-list-container">
-  <h2>Selecciona al jefe principal</h2>
-  <div class="user-card" *ngFor="let user of users">
-    <input type="checkbox" [value]="user.unique_id" (click)="onUserSelected(user)" class="user-checkbox">
-    <div class="user-details">
-      <p class="user-name">{{ user.name }} {{ user.lastName }}</p>
-      <p class="user-info">ID: {{ user.id }}</p>
-      <!-- Agrega más detalles según sea necesario -->
+  <div *ngIf="validatePermissions('list_permissions') || currentTab != 1; else noPermissionMessage">
+    <!-- Contenido de la vista cuando se tienen permisos -->
+    <div *ngIf="currentTab == 1" class="user-list-container">
+      <h2>Selecciona al jefe principal</h2>
+      <div class="user-card" *ngFor="let user of users">
+        <input type="checkbox" [value]="user.unique_id" (click)="onUserSelected(user)" class="user-checkbox">
+        <div class="user-details">
+          <p class="user-name">{{ user.name }} {{ user.lastName }}</p>
+          <p class="user-info">ID: {{ user.id }}</p>
+          <!-- Agrega más detalles según sea necesario -->
+        </div>
+      </div>
+
+      <!-- Mostrar detalles del usuario seleccionado -->
+      <div *ngIf="selectedUser" class="selected-user-details">
+        <h2>Detalles del Usuario Seleccionado</h2>
+        <p>ID: {{ selectedUser.id }}</p>
+        <p>Nombre: {{ selectedUser.name }}</p>
+        <p>Apellido: {{ selectedUser.lastName }}</p>
+        <p>Identificación: {{ selectedUser.identify }}</p>
+        <!-- Agrega más detalles según sea necesario -->
+      </div>
+
+      <button (click)="onSaveHierarchy()" class="save-button">Guardar Jerarquía</button>
     </div>
   </div>
 
-  <!-- Mostrar detalles del usuario seleccionado -->
-  <div *ngIf="selectedUser" class="selected-user-details">
-    <h2>Detalles del Usuario Seleccionado</h2>
-    <p>ID: {{ selectedUser.id }}</p>
-    <p>Nombre: {{ selectedUser.name }}</p>
-    <p>Apellido: {{ selectedUser.lastName }}</p>
-    <p>Identificación: {{ selectedUser.identify }}</p>
-    <!-- Agrega más detalles según sea necesario -->
-  </div>
+  <div *ngIf="currentTab == 2" class="user-list-container">
+    <h2>Selecciona a tus colaboradores</h2>
+    <div class="user-card" *ngFor="let user of users">
+      <input type="checkbox" [value]="user.unique_id" (click)="onUserSelected(user)" class="user-checkbox">
+      <div class="user-details">
+        <p class="user-name">{{ user.name }} {{ user.lastName }}</p>
+        <p class="user-info">ID: {{ user.id }}</p>
+        <!-- Agrega más detalles según sea necesario -->
+      </div>
+    </div>
 
-  <button (click)="onSaveHierarchy()" class="save-button">Guardar Jerarquía</button>
-</div>
-</div>
-
-<div *ngIf="currentTab == 2" class="user-list-container">
-  <h2>Selecciona a tus colaboradores</h2>
-  <div class="user-card" *ngFor="let user of users">
-    <input type="checkbox" [value]="user.unique_id" (click)="onUserSelected(user)" class="user-checkbox">
-    <div class="user-details">
-      <p class="user-name">{{ user.name }} {{ user.lastName }}</p>
-      <p class="user-info">ID: {{ user.id }}</p>
+    <!-- Mostrar detalles del usuario seleccionado -->
+    <div *ngIf="selectedUser" class="selected-user-details">
+      <h2>Detalles del Usuario Seleccionado</h2>
+      <p>ID: {{ selectedUser.id }}</p>
+      <p>Nombre: {{ selectedUser.name }}</p>
+      <p>Apellido: {{ selectedUser.lastName }}</p>
+      <p>Identificación: {{ selectedUser.identify }}</p>
       <!-- Agrega más detalles según sea necesario -->
     </div>
-  </div>
 
-  <!-- Mostrar detalles del usuario seleccionado -->
-  <div *ngIf="selectedUser" class="selected-user-details">
-    <h2>Detalles del Usuario Seleccionado</h2>
-    <p>ID: {{ selectedUser.id }}</p>
-    <p>Nombre: {{ selectedUser.name }}</p>
-    <p>Apellido: {{ selectedUser.lastName }}</p>
-    <p>Identificación: {{ selectedUser.identify }}</p>
-    <!-- Agrega más detalles según sea necesario -->
+    <button (click)="onSaveSubHierarchy()" class="save-button">Guardar Subordinados</button>
   </div>
+</div>
 
-  <button (click)="onSaveSubHierarchy()" class="save-button">Guardar Subordinados</button>
-</div>
-</div>
+<ng-template #noPermissionMessage>
+  <!-- Mensaje que se muestra cuando no se tienen permisos -->
+  <div class="no-permission-message">
+    <p>No tienes permiso para ver esta vista.</p>
+  </div>
+</ng-template>

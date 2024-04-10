@@ -35,6 +35,20 @@
     <input matInput [(ngModel)]="title" name="title" autocomplete="off" type="text">
   </mat-form-field>
 
+  <mat-form-field appearance="outline">
+    <mat-label>Fecha de inicio</mat-label>
+    <input matInput [matDatepicker]="startDatePicker" [(ngModel)]="startDate" autocomplete="off">
+    <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+    <mat-datepicker #startDatePicker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Fecha de cierre</mat-label>
+    <input matInput [matDatepicker]="endDatePicker" [(ngModel)]="endDate" autocomplete="off">
+    <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+    <mat-datepicker #endDatePicker></mat-datepicker>
+  </mat-form-field>
+
   <div class="right">
     <button mat-raised-button class="buttons" (click)="saveData()">
       <span class="material-icons" style="margin-right: 10px;">save</span> Guardar
