@@ -70,12 +70,18 @@
         <thead>
           <tr>
             <th>Descripción</th>
+            <th>Estado</th>
+            <th>Inicio</th>
+            <th>Cierre</th>
             <!-- Otras columnas si es necesario -->
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let data of feedbackData">
             <td>{{ data.title }}</td>
+            <td>{{ data.stateDescription }}</td>
+            <td>{{ data.start_date }}</td>
+            <td>{{ data.end_date }}</td>
             <!-- Otras celdas si es necesario -->
           </tr>
         </tbody>
@@ -89,12 +95,18 @@
         <thead>
           <tr>
             <th>Descripción</th>
+            <th>Estado</th>
+            <th>Inicio</th>
+            <th>Cierre</th>
             <!-- Otras columnas si es necesario -->
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let data of trainingData">
             <td>{{ data.title }}</td>
+            <td>{{ data.stateDescription }}</td>
+            <td>{{ data.start_date }}</td>
+            <td>{{ data.end_date }}</td>
             <!-- Otras celdas si es necesario -->
           </tr>
         </tbody>
