@@ -71,6 +71,17 @@ export class FeedbackActionsService {
       throw err.response
     })
   }
+
+  FindAllStates(body: any){
+    this.token = this.Local.findDataLocal('token');
+    return api.post(`/feedback/states`, body, {
+      headers: {Authorization: "Bearer " + this.token}
+    })
+    .then((res) => res.data)
+    .catch((err) => {
+      throw err.response
+    })
+  }
 }
 
 // Copyright (c) Engagement

@@ -1,0 +1,14 @@
+<h2 mat-dialog-title>Cambiar estado de acción de formación</h2>
+<div mat-dialog-content>
+  <mat-form-field appearance="outline">
+    <mat-label>Selecciona el nuevo estado</mat-label>
+    <mat-select [(ngModel)]="selectedState">
+      <mat-option *ngFor="let state of states" [value]="state.id">{{ state.description }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button color="primary" (click)="onSaveClick()">Guardar</button>
+</div>

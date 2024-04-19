@@ -16,7 +16,6 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 
 
 
-
 // ESTE ES EL MODULO DEL PROYECTO DONDE SE IMPORTAN MODULOS TALES COMO GRAFICAS, FORMS, SERVICIOS HTTP ETC
 
 @NgModule({

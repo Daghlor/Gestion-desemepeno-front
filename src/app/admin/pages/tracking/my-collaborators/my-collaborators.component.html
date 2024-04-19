@@ -37,6 +37,8 @@
   </mat-grid-tile>
 </mat-grid-list>
 
+<h2>Objetivos individuales</h2>
+
 <mat-accordion>
   <ng-container *ngFor="let item of listObjetives">
     <mat-expansion-panel>
@@ -117,3 +119,84 @@
     </mat-expansion-panel>
   </ng-container>
 </mat-accordion>
+<br>
+
+<h2>Acciones de formación</h2>
+
+<mat-accordion>
+  <ng-container *ngIf="trainingData">
+    <mat-expansion-panel *ngFor="let training of trainingData">
+      <mat-expansion-panel-header>
+        <mat-panel-title>{{ training.title }}</mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-grid-list cols="4" rowHeight="80px">
+        <mat-grid-tile>
+          <mat-form-field appearance="outline" style="width: 100%">
+            <mat-label>Fecha de Inicio</mat-label>
+            <input matInput value="{{ training.startDate }}" readonly style="font-size: 12px">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="outline" style="width: 100%">
+            <mat-label>Fecha de Cierre</mat-label>
+            <input matInput value="{{ training.endDate }}" readonly style="font-size: 12px">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="outline" style="width: 100%">
+            <mat-label>Estado</mat-label>
+            <input matInput value="{{ training.stateDescription }}" readonly style="font-size: 12px">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <button mat-raised-button color="primary" (click)="openTrainingStateDialog(training.unique_id)">
+            Actualizar Estado
+          </button>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-expansion-panel>
+  </ng-container>
+</mat-accordion>
+
+
+<br>
+
+<h2>Acciones de retroalimentación</h2>
+
+<mat-accordion>
+  <ng-container *ngIf="feedbackData">
+    <mat-expansion-panel *ngFor="let feedback of feedbackData">
+      <mat-expansion-panel-header>
+        <mat-panel-title>{{ feedback.title }}</mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-grid-list cols="4" rowHeight="80px">
+        <mat-grid-tile>
+          <mat-form-field appearance="outline" style="width: 100%">
+            <mat-label>Fecha de Inicio</mat-label>
+            <input matInput value="{{ feedback.startDate }}" readonly style="font-size: 12px">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="outline" style="width: 100%">
+            <mat-label>Fecha de Cierre</mat-label>
+            <input matInput value="{{ feedback.endDate }}" readonly style="font-size: 12px">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="outline" style="width: 100%">
+            <mat-label>Estado</mat-label>
+            <input matInput value="{{ feedback.stateDescription }}" readonly style="font-size: 12px">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <button mat-raised-button color="primary" (click)="openFeedbackStateDialog(feedback.unique_id)">
+            Actualizar Estado
+          </button>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-expansion-panel>
+  </ng-container>
+</mat-accordion>
+
+
+

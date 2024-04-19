@@ -7,6 +7,10 @@ import { TracingsComponent } from "src/app/admin/components/tracings/tracings.co
 import * as moment from 'moment';
 import { IndividualService } from 'src/app/admin/services/individual.service';
 import { ChangeStateDialogComponentComponent } from '../..';
+import { TrainingActionsService } from '../../../services/training-actions.service';
+import { FeedbackActionsService } from '../../../services/feedback-actions.service';
+import { ChangeTrainingStateDialogComponent } from '../..';
+import { ChangeFeedbackStateDialogComponent } from '../..';
 
 @Component({
   selector: 'app-my-collaborators',
@@ -26,7 +30,10 @@ export class MyCollaboratorsComponent implements OnInit {
     }
     return false;
   }
+
   params: any;
+  trainingData: any = [];
+  feedbackData: any = [];
   unique_id?: string;
   states: { id: number, description: string }[] = [];
   state: string = '';
@@ -44,6 +51,8 @@ export class MyCollaboratorsComponent implements OnInit {
     private router: Router,
     public dialog: MatDialog,
     private individualAPI: IndividualService,
+    private trainingActionsService: TrainingActionsService,
+    private FeedbackActionsService: FeedbackActionsService,
   ) { }
 
   ngOnInit(): void {
@@ -51,6 +60,8 @@ export class MyCollaboratorsComponent implements OnInit {
     this.unique_id = this.params.uuid;
     this.findData();
     this.getAllStates();
+    this.getTrainingData();
+    this.getFeedbackData();
   }
 
    // FUNCION PARA BUSCAR UN SOLO SEGUIMIENTO
@@ -185,6 +196,97 @@ openStateDialog(uniqueId: string): void {
 
   goToTrackinsg(): void {
         this.router.navigateByUrl('admin/mis_seguimientos/' + this.unique_id);
+  }
+
+
+  getTrainingData() {
+    // Verifica si unique_id está definido antes de llamar a trainingActionsService.FindAllByUserId
+    if (this.unique_id) {
+      this.trainingActionsService.FindAllByUserId(this.unique_id)
+        .then((res: any) => {
+          // Mapea los datos para formatearlos según sea necesario
+          this.trainingData = res.data.map((item: any) => ({
+            unique_id: item.unique_id,
+            title: item.title,
+            startDate: item.start_date,
+            endDate: item.end_date,
+            stateDescription: item.stateDescription
+          }));
+        })
+        .catch((error: any) => {
+          console.error('Error al obtener los datos de entrenamiento:', error);
+        });
+    } else {
+      console.error('El unique_id no está definido.');
     }
+  }
+
+  getFeedbackData() {
+    // Verifica si unique_id está definido antes de llamar a trainingActionsService.FindAllByUserId
+    if (this.unique_id) {
+      this.FeedbackActionsService.FindAllByUserId(this.unique_id)
+        .then((res: any) => {
+          // Mapea los datos para formatearlos según sea necesario
+          this.feedbackData = res.data.map((item: any) => ({
+            unique_id: item.unique_id,
+            title: item.title,
+            startDate: item.start_date,
+            endDate: item.end_date,
+            stateDescription: item.stateDescription
+          }));
+        })
+        .catch((error: any) => {
+          console.error('Error al obtener los datos de entrenamiento:', error);
+        });
+    } else {
+      console.error('El unique_id no está definido.');
+    }
+  }
+
+  openTrainingStateDialog(uniqueId: string): void {
+  // Obtener el estado actual de la acción de entrenamiento actual
+  const currentState = this.trainingData.find((training: any) => training.unique_id === uniqueId)?.currentState;
+
+  const dialogRef = this.dialog.open(ChangeTrainingStateDialogComponent, {
+    width: '250px',
+    data: { trainingId: uniqueId, currentState: currentState } // Pasar trainingId y currentState
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    if (result) {
+      this.snack.viewsnack('Estado cambiado correctamente', 'Success');
+      this.getTrainingData(); // Actualizar los datos después de cerrar el diálogo
+    }
+  });
+  }
+
+  openFeedbackStateDialog(uniqueId: string): void {
+  // Obtener el estado actual de la acción de entrenamiento actual
+  const currentState = this.feedbackData.find((feedback: any) => feedback.unique_id === uniqueId)?.currentState;
+
+  const dialogRef = this.dialog.open(ChangeFeedbackStateDialogComponent, {
+    width: '250px',
+    data: { feedbackId: uniqueId, currentState: currentState } // Pasar trainingId y currentState
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    if (result) {
+      this.snack.viewsnack('Estado cambiado correctamente', 'Success');
+      this.getFeedbackData(); // Actualizar los datos después de cerrar el diálogo
+    }
+  });
+}
+
+
+
+
+
+
+
+
 
 }
+
+
+
+

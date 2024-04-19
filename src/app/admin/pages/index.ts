@@ -44,6 +44,8 @@ import { UserHierarchyComponent } from './users/user-hierarchy/user-hierarchy.co
 import { IndividualesObjectivesIndexComponent } from './IndividualesObjectives/individuales-objectives-index/individuales-objectives-index.component';
 import { MyCollaboratorsComponent } from './tracking/my-collaborators/my-collaborators.component';
 import { MyCollaboratorsIndexComponent } from './tracking/my-collaborators-index/my-collaborators-index.component';
+import { ChangeTrainingStateDialogComponent } from '../components/change-training-state-dialog/change-training-state-dialog.component';
+import { ChangeFeedbackStateDialogComponent } from '../components/change-feedback-state-dialog/change-feedback-state-dialog.component';
 
 // AQUI SE IMPORTAN LOS COMPONENTES DE TODOS LAS VISTAS DEL SISTEMA Y SE EXPORTAN
 export const AdminComponents: any[] = [
@@ -94,7 +96,9 @@ export const AdminPages: any[] = [
   UserHierarchyComponent,
   IndividualesObjectivesIndexComponent,
   MyCollaboratorsComponent,
-    MyCollaboratorsIndexComponent,
+  MyCollaboratorsIndexComponent,
+  ChangeTrainingStateDialogComponent,
+    ChangeFeedbackStateDialogComponent,
 ];
 
 export * from './performancePlans/performance-plans-list/performance-plans-list.component';
@@ -141,6 +145,8 @@ export * from '../pages/users/user-hierarchy/user-hierarchy.component';
 export * from '../pages/IndividualesObjectives/individuales-objectives-index/individuales-objectives-index.component';
 export * from '../pages/tracking/my-collaborators/my-collaborators.component';
 export * from '../pages/tracking/my-collaborators-index/my-collaborators-index.component';
+export * from '../components/change-feedback-state-dialog/change-feedback-state-dialog.component';
+export * from '../components/change-training-state-dialog/change-training-state-dialog.component';
 
 // Copyright (c) Engagement
 // https://www.engagement.com.co/
